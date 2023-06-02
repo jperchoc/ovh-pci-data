@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import { JsonViewer } from "$components";
 	import type { PageData } from "./$types";
 
     export let data: PageData;
@@ -12,6 +13,7 @@
     <h2>{app.spec.name}</h2>
     <p>{app.spec.image}</p>
     <p>{app.status.url}</p>
+    <JsonViewer data={app} />
 {:else}
     <p>App not found</p>
 {/if}

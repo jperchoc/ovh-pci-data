@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { signRequest } from '$lib/helpers/api';
+import { signRequest } from '$helpers/api';
 
 export const GET: RequestHandler = async ({ params, url, cookies }) => {
     const consumerKey = cookies.get('consumerKey');

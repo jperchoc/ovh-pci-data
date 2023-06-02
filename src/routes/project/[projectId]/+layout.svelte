@@ -35,7 +35,7 @@
         <ul>
             {#each nav as link}
                 <li>
-                    <a href={link.href} class:active={link.href === $page.url.pathname}>{link.label}</a>
+                    <a href={link.href} class:active={$page.url.pathname.startsWith(link.href)}>{link.label}</a>
                 </li>
             {/each}
         </ul>

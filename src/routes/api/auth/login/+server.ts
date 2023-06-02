@@ -1,6 +1,6 @@
 import { env } from "$env/dynamic/private";
 import type { RequestHandler } from "./$types";
-import { accessRules } from '$lib/helpers/api';
+import { accessRules } from '$helpers/api';
 import { redirect } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ cookies, url }) => {
