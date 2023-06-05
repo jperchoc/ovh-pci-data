@@ -35,6 +35,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sha1": "^1.1.1"
+		"sveltekit-i18n": "^2.2.2"
 	}
 }
