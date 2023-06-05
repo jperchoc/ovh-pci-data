@@ -2,7 +2,7 @@
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-02T14:44:42.892Z
+ * Creation date: 2023-06-05T07:33:37.728Z
  * Author: Jonathan Perchoc 
 */
 declare namespace ovhapi {
@@ -8740,14 +8740,314 @@ declare namespace ovhapi {
     namespace complexType {
         /** A numeric value tagged with its unit */
         interface UnitAndValue {
-            /** Unit of the value */
+            /** unit */
             unit: string;
-            /** Value */
+            /** value */
+            value: T;
+        }
+        /** Key and value, with proper key strings */
+        interface SafeKeyValue {
+            /** key */
+            key: string;
+            /** value */
             value: T;
         }
     }
     namespace nichandle {
-        /** OVH subsidiaries */
+        namespace Authentication {
+            /** X509 Certificate */
+            interface Certificate {
+                /** Certificate's expiration */
+                expiration: string;
+                /** Certificate's subject */
+                subject: string;
+            }
+            /** A group */
+            interface Group {
+                /** Creation date of this group */
+                creation: string;
+                /** True if it is an default group. This kind of group can't be edited or deleted */
+                defaultGroup: boolean;
+                /** Group's description */
+                description: string;
+                /** Last update of this group */
+                lastUpdate: string;
+                /** Group's name */
+                name: string;
+                /** Group's role */
+                role: nichandle.Authentication.RoleEnum;
+            }
+            /** A SAML 2.0 provider */
+            interface Provider {
+                /** Creation date of the identity provider */
+                creation: string;
+                /** SAML Extensions to embed inside the SAML requests */
+                extensions ? : nichandle.Authentication.ProviderExtensions;
+                /** SAML Group attribute name */
+                groupAttributeName: string;
+                /** IdP's signing certificate */
+                idpSigningCertificates: nichandle.Authentication.Certificate[];
+                /** Last update of the identity provider */
+                lastUpdate: string;
+                /** IdP's Single Sign On Service Url */
+                ssoServiceUrl: string;
+            }
+            /** A SAML 2.0 Extension that should be added to SAML requests when using this provider */
+            interface ProviderExtensions {
+                /** List of SAML RequestedAttribute to add to SAML requestes */
+                requestedAttributes ? : nichandle.Authentication.RequestedAttribute[];
+            }
+            /** A SAML 2.0 requested attribute that should be added to SAML requests when using this provider */
+            interface RequestedAttribute {
+                /** Expresses that this RequestedAttribute is mandatory (remains advisory) */
+                isRequired: boolean;
+                /** Name of the SAML RequestedAttribute */
+                name: string;
+                /** NameFormat of the SAML RequestedAttribute */
+                nameFormat ? : string;
+                /** List of AttributeValues allowed for this RequestedAttribute */
+                values ? : string[];
+            }
+        }
+        namespace accessRestriction {
+            /** Accept or deny IP access */
+            enum IpRestrictionRuleEnum {
+                "accept",
+                "deny"
+            }
+            /** SOTP Two-Factor Authentication */
+            interface SOTPAccount {
+                /** Creation date */
+                creationDate: string;
+                /** Last used date */
+                lastUsedDate ? : string;
+                /** Number of remaining codes */
+                remaining: number;
+                /** Status of this account */
+                status: nichandle.accessRestriction.SOTPStatusEnum;
+            }
+            /** Describe SOTP secret keys */
+            interface SOTPSecret {
+                /** codes */
+                codes: string[];
+            }
+            /** Status of SOTP account */
+            enum SOTPStatusEnum {
+                "disabled",
+                "enabled",
+                "needCodeValidation",
+                "needEmailValidation"
+            }
+            /** Describe SOTP validation status */
+            interface SOTPValidate {
+                /** remainingCodes */
+                remainingCodes: number;
+            }
+            /** Sms Two-Factor Authentication */
+            interface SmsAccount {
+                /** Creation date */
+                creationDate: string;
+                /** Description of this phone */
+                description: string;
+                /** The Id of the restriction */
+                id: number;
+                /** Last used date */
+                lastUsedDate ? : string;
+                /** Associated phone number */
+                phoneNumber: string;
+                /** Status of this account */
+                status: nichandle.accessRestriction.SmsStatusEnum;
+            }
+            /** Send secret code */
+            interface SmsCode {
+                /** challenge */
+                challenge: string;
+            }
+            /** Describe secret key */
+            interface SmsSecret {
+                /** id */
+                id: number;
+                /** remainingTry */
+                remainingTry: number;
+            }
+            /** Status of the Sms account */
+            enum SmsStatusEnum {
+                "disabled",
+                "enabled",
+                "needCodeValidation",
+                "needEmailValidation"
+            }
+            /** TOTP Two-Factor Authentication */
+            interface TOTPAccount {
+                /** Creation date */
+                creationDate: string;
+                /** Description of this TOTP */
+                description: string;
+                /** The Id of the restriction */
+                id: number;
+                /** Last used date */
+                lastUsedDate ? : string;
+                /** Status of this account */
+                status: nichandle.accessRestriction.TOTPStatusEnum;
+            }
+            /** Describe TOTP secret keys */
+            interface TOTPSecret {
+                /** id */
+                id: number;
+                /** qrcodeHelper */
+                qrcodeHelper: string;
+                /** secret */
+                secret: string;
+            }
+            /** Status of TOTP account */
+            enum TOTPStatusEnum {
+                "disabled",
+                "enabled",
+                "needCodeValidation",
+                "needEmailValidation"
+            }
+            /** U2F Two-Factor Authentication */
+            interface U2FAccount {
+                /** Creation date */
+                creationDate: string;
+                /** Description of this U2F key */
+                description: string;
+                /** The Id of the restriction */
+                id: number;
+                /** Last used date */
+                lastUsedDate ? : string;
+                /** Status of this account */
+                status: nichandle.accessRestriction.U2FStatusEnum;
+            }
+            /** U2F Register Request */
+            interface U2FRegisterChallenge {
+                /** applicationId */
+                applicationId: string;
+                /** id */
+                id: number;
+                /** request */
+                request: nichandle.accessRestriction.U2FRegistrationRequest;
+            }
+            /** Describe U2F RegistrationRequest */
+            interface U2FRegistrationRequest {
+                /** challenge */
+                challenge: string;
+                /** version */
+                version: string;
+            }
+            /** U2F Register Request */
+            interface U2FSignChallenge {
+                /** applicationId */
+                applicationId: string;
+                /** request */
+                request: nichandle.accessRestriction.U2FSignRequest;
+            }
+            /** Describe U2F SignRequest */
+            interface U2FSignRequest {
+                /** challenge */
+                challenge: string;
+                /** keyHandle */
+                keyHandle: string;
+                /** version */
+                version: string;
+            }
+            /** Status of U2F account */
+            enum U2FStatusEnum {
+                "disabled",
+                "enabled",
+                "needCodeValidation"
+            }
+        }
+        namespace changeContact {
+            /** Allowed types of contact who can be changed by change contact task */
+            enum ContactTypeEnum {
+                "contactAdmin",
+                "contactBilling",
+                "contactTech"
+            }
+            /** State of contact change task */
+            enum TaskStateEnum {
+                "aborted",
+                "checkValidity",
+                "doing",
+                "done",
+                "error",
+                "expired",
+                "refused",
+                "todo",
+                "validatingByCustomers"
+            }
+        }
+        namespace changeEmail {
+            /** State of email change task */
+            enum TaskStateEnum {
+                "aborted",
+                "done",
+                "refused",
+                "todo"
+            }
+        }
+        namespace contactChange {
+            /** Task running a contact change on a service */
+            interface Task {
+                /** Account who asked the contact change */
+                askingAccount ? : string;
+                /** Contacts to be changed */
+                contactTypes: nichandle.changeContact.ContactTypeEnum[];
+                /** Date at which the contact change has been finished */
+                dateDone ? : string;
+                /** Date at which the request has been made */
+                dateRequest: string;
+                /** Account to change contact from */
+                fromAccount: string;
+                /** id */
+                id: number;
+                /** The service on which the task runs */
+                serviceDomain ? : string;
+                /** Current state of the request */
+                state: nichandle.changeContact.TaskStateEnum;
+                /** Account to change contact to */
+                toAccount: string;
+            }
+        }
+        namespace document {
+            /** List of documents added on your account */
+            interface Document {
+                /** Document creation */
+                creationDate: string;
+                /** Document expiration */
+                expirationDate ? : string;
+                /** URL used to get document */
+                getUrl: string;
+                /** Document id */
+                id: string;
+                /** Document name */
+                name: string;
+                /** URL used to put document */
+                putUrl: string;
+                /** Document size (in bytes) */
+                size: number;
+                /** Document tags */
+                tags: complexType.SafeKeyValue < string > [];
+                /** Document validation */
+                validationDate ? : string;
+            }
+        }
+        namespace emailChange {
+            /** Task running an email change on an account */
+            interface Task {
+                /** End date of that request */
+                dateDone ? : string;
+                /** Creation date of that request */
+                dateRequest: string;
+                /** id */
+                id: number;
+                /** The email address to change for */
+                newEmail: string;
+                /** Current state of the request */
+                state: nichandle.changeEmail.TaskStateEnum;
+            }
+        } /** OVH subsidiaries */
         enum OvhSubsidiaryEnum {
             "CZ",
             "DE",
@@ -8766,9 +9066,700 @@ declare namespace ovhapi {
             "SN",
             "TN"
         }
+        /** Permission given on the account */
+        enum RoleEnum {
+            "REGULAR",
+            "ADMIN",
+            "UNPRIVILEGED",
+            "NONE"
+        }
+        /** Internal customer billing capacities for customer control panel */
+        interface BillingCapacities {
+            /** Indicates if the debt system has been enabled on the customer account */
+            canUseDebtSystem: boolean;
+            /** Indicates customer's ability to use postal mailing for invoices */
+            canUsePostalMailForInvoices: boolean;
+            /** Indicates the mandatory nature of having a valid payment method */
+            requiredPaymentMethod: nichandle.RequiredPaymentMethodEnum;
+        }
+        /** Countries a nichandle can choose */
+        enum CountryEnum {
+            "AC",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AI",
+            "AL",
+            "AM",
+            "AO",
+            "AQ",
+            "AR",
+            "AS",
+            "AT",
+            "AU",
+            "AW",
+            "AX",
+            "AZ",
+            "BA",
+            "BB",
+            "BD",
+            "BE",
+            "BF",
+            "BG",
+            "BH",
+            "BI",
+            "BJ",
+            "BL",
+            "BM",
+            "BN",
+            "BO",
+            "BQ",
+            "BR",
+            "BS",
+            "BT",
+            "BW",
+            "BY",
+            "BZ",
+            "CA",
+            "CC",
+            "CD",
+            "CF",
+            "CG",
+            "CH",
+            "CI",
+            "CK",
+            "CL",
+            "CM",
+            "CN",
+            "CO",
+            "CR",
+            "CU",
+            "CV",
+            "CW",
+            "CX",
+            "CY",
+            "CZ",
+            "DE",
+            "DG",
+            "DJ",
+            "DK",
+            "DM",
+            "DO",
+            "DZ",
+            "EA",
+            "EC",
+            "EE",
+            "EG",
+            "EH",
+            "ER",
+            "ES",
+            "ET",
+            "FI",
+            "FJ",
+            "FK",
+            "FM",
+            "FO",
+            "FR",
+            "GA",
+            "GB",
+            "GD",
+            "GE",
+            "GF",
+            "GG",
+            "GH",
+            "GI",
+            "GL",
+            "GM",
+            "GN",
+            "GP",
+            "GQ",
+            "GR",
+            "GS",
+            "GT",
+            "GU",
+            "GW",
+            "GY",
+            "HK",
+            "HN",
+            "HR",
+            "HT",
+            "HU",
+            "IC",
+            "ID",
+            "IE",
+            "IL",
+            "IM",
+            "IN",
+            "IO",
+            "IQ",
+            "IR",
+            "IS",
+            "IT",
+            "JE",
+            "JM",
+            "JO",
+            "JP",
+            "KE",
+            "KG",
+            "KH",
+            "KI",
+            "KM",
+            "KN",
+            "KP",
+            "KR",
+            "KW",
+            "KY",
+            "KZ",
+            "LA",
+            "LB",
+            "LC",
+            "LI",
+            "LK",
+            "LR",
+            "LS",
+            "LT",
+            "LU",
+            "LV",
+            "LY",
+            "MA",
+            "MC",
+            "MD",
+            "ME",
+            "MF",
+            "MG",
+            "MH",
+            "MK",
+            "ML",
+            "MM",
+            "MN",
+            "MO",
+            "MP",
+            "MQ",
+            "MR",
+            "MS",
+            "MT",
+            "MU",
+            "MV",
+            "MW",
+            "MX",
+            "MY",
+            "MZ",
+            "NA",
+            "NC",
+            "NE",
+            "NF",
+            "NG",
+            "NI",
+            "NL",
+            "NO",
+            "NP",
+            "NR",
+            "NU",
+            "NZ",
+            "OM",
+            "PA",
+            "PE",
+            "PF",
+            "PG",
+            "PH",
+            "PK",
+            "PL",
+            "PM",
+            "PN",
+            "PR",
+            "PS",
+            "PT",
+            "PW",
+            "PY",
+            "QA",
+            "RE",
+            "RO",
+            "RS",
+            "RU",
+            "RW",
+            "SA",
+            "SB",
+            "SC",
+            "SD",
+            "SE",
+            "SG",
+            "SH",
+            "SI",
+            "SJ",
+            "SK",
+            "SL",
+            "SM",
+            "SN",
+            "SO",
+            "SR",
+            "SS",
+            "ST",
+            "SV",
+            "SX",
+            "SY",
+            "SZ",
+            "TA",
+            "TC",
+            "TD",
+            "TF",
+            "TG",
+            "TH",
+            "TJ",
+            "TK",
+            "TL",
+            "TM",
+            "TN",
+            "TO",
+            "TR",
+            "TT",
+            "TV",
+            "TW",
+            "TZ",
+            "UA",
+            "UG",
+            "UM",
+            "UNKNOWN",
+            "US",
+            "UY",
+            "UZ",
+            "VA",
+            "VC",
+            "VE",
+            "VG",
+            "VI",
+            "VN",
+            "VU",
+            "WF",
+            "WS",
+            "XK",
+            "YE",
+            "YT",
+            "ZA",
+            "ZM",
+            "ZW"
+        }
+        /** Customer currency */
+        interface Currency {
+            /** Currency code */
+            code: string;
+            /** Currency symbol */
+            symbol: string;
+        }
+        /** Login restrictions on a development version of the Manager */
+        interface DeveloperModeRestriction {
+            /** Allow login on your account on a development version of the Manager */
+            enabled: boolean;
+        }
+        /** Domain operation argument */
+        interface DomainTaskArgument {
+            /** List of accepted formats */
+            acceptedFormats ? : domain.DocumentFormatsEnum[];
+            /** List of accepted values */
+            acceptedValues ? : string[];
+            /** Description of the argument */
+            description ? : string;
+            /** List of impacted field names */
+            fields ? : xander.ContactFieldEnum[];
+            /** Key of the argument */
+            key: string;
+            /** Maximum of the content length that you can send */
+            maximumSize ? : number;
+            /** Minimum of the content length that you can send */
+            minimumSize ? : number;
+            /** True if the argument is in read only */
+            readOnly: boolean;
+            /** Template of the content */
+            template ? : string;
+            /** Type of the argument */
+            type: string;
+            /** Value of the argument */
+            value ? : string;
+        }
+        /** Domain operation progress */
+        interface DomainTaskProgressBar {
+            /** Current step of the operation */
+            currentStep: domain.OperationStep;
+            /** The estimated end date of the task */
+            expectedDoneDate ? : string;
+            /** All the steps of the operation */
+            followUpSteps ? : domain.OperationStep[];
+            /** The last update date of the task */
+            lastUpdateDate ? : string;
+            /** Progress percentage of the task */
+            progress: number;
+            /** Action possible on task */
+            taskActions: domain.OperationActionEnum[];
+            /** The status of the task */
+            taskStatus: domain.OperationStatusEnum;
+        }
+        /** Email notification received */
+        interface EmailNotification {
+            /** Content of the email */
+            body: string;
+            /** Date at which the email was sent */
+            date: string;
+            /** ID of the email notification */
+            id: number;
+            /** Subject of the email */
+            subject: string;
+        }
+        /** All genders a person can choose */
+        enum GenderEnum {
+            "female",
+            "male"
+        }
+        /** Ip registries */
+        enum IpRegistryEnum {
+            "ARIN",
+            "RIPE"
+        }
+        /** List of all IP Restrictions */
+        interface IpRestriction {
+            /** The Id of the restriction */
+            id: number;
+            /** An IP range where we will apply the rule */
+            ip: string;
+            /** Accept or deny IP access */
+            rule: nichandle.accessRestriction.IpRestrictionRuleEnum;
+            /** Send an email if someone try to access with this IP address */
+            warning: boolean;
+        }
+        /** IP Restriction default rule */
+        interface IpRestrictionDefaultRule {
+            /** Accept or deny access */
+            rule: nichandle.accessRestriction.IpRestrictionRuleEnum;
+            /** Send an email if someone try to access */
+            warning: boolean;
+        }
+        /** Details about an IP block organisation */
+        interface Ipv4Org {
+            /** abuse_mailbox */
+            abuse_mailbox: string;
+            /** address */
+            address: string;
+            /** city */
+            city: string;
+            /** country */
+            country: nichandle.CountryEnum;
+            /** firstname */
+            firstname: string;
+            /** lastname */
+            lastname: string;
+            /** organisationId */
+            organisationId: string;
+            /** phone */
+            phone: phoneNumber;
+            /** registry */
+            registry: nichandle.IpRegistryEnum;
+            /** state */
+            state ? : string;
+            /** zip */
+            zip ? : string;
+        }
+        /** Languages a nichandle can choose */
+        enum LanguageEnum {
+            "cs_CZ",
+            "de_DE",
+            "en_AU",
+            "en_CA",
+            "en_GB",
+            "en_IE",
+            "en_US",
+            "es_ES",
+            "fi_FI",
+            "fr_CA",
+            "fr_FR",
+            "fr_MA",
+            "fr_SN",
+            "fr_TN",
+            "it_IT",
+            "lt_LT",
+            "nl_NL",
+            "pl_PL",
+            "pt_PT"
+        }
+        /** Legal forms a nichandle can be registered as */
+        enum LegalFormEnum {
+            "administration",
+            "association",
+            "corporation",
+            "individual",
+            "other",
+            "personalcorporation"
+        }
+        /** Manager preference */
+        interface ManagerPreference {
+            /** This preference key */
+            key: string;
+            /** This preference value */
+            value: text;
+        }
+        /** Auto renewal information */
+        interface NicAutorenewInfos {
+            /** Renewal active or not */
+            active: boolean;
+            /** give the last renew */
+            lastRenew ? : string;
+            /** give the renewal day */
+            renewDay: number;
+        }
+        /** Details about your OVH identifier */
+        interface Nichandle {
+            /** Address of nichandle */
+            address ? : string;
+            /** Area of nichandle */
+            area ? : string;
+            /** City of birth */
+            birthCity ? : string;
+            /** Birth date */
+            birthDay ? : string;
+            /** City of nichandle */
+            city ? : string;
+            /** Company National Identification Number */
+            companyNationalIdentificationNumber ? : string;
+            /** Corporation type */
+            corporationType ? : string;
+            /** Customer country */
+            country: nichandle.CountryEnum;
+            /** Customer currency */
+            currency: nichandle.Currency;
+            /** Your customer code (a numerical value used for identification when contacting support via phone call) */
+            customerCode ? : string;
+            /** Email address */
+            email: string;
+            /** Fax number */
+            fax ? : string;
+            /** First name */
+            firstname ? : string;
+            /** Italian SDI */
+            italianSDI ? : string;
+            /** KYC validation state */
+            kycValidated ? : boolean;
+            /** Language */
+            language ? : nichandle.LanguageEnum;
+            /** Customer legal form */
+            legalform: nichandle.LegalFormEnum;
+            /** Customer name */
+            name ? : string;
+            /** National Identification Number */
+            nationalIdentificationNumber ? : string;
+            /** Customer identifier */
+            nichandle: string;
+            /** Name of organisation */
+            organisation ? : string;
+            /** OVH company */
+            ovhCompany: nichandle.OvhCompanyEnum;
+            /** OVH subsidiary */
+            ovhSubsidiary: nichandle.OvhSubsidiaryEnum;
+            /** Phone number */
+            phone ? : string;
+            /** phoneCountry */
+            phoneCountry ? : nichandle.CountryEnum;
+            /** Gender */
+            sex ? : nichandle.GenderEnum;
+            /** Spare email */
+            spareEmail ? : string;
+            /** Nichandle state */
+            state: nichandle.StateEnum;
+            /** VAT number */
+            vat ? : string;
+            /** Zipcode */
+            zip ? : string;
+        }
+        /** SMS notifications */
+        interface NichandleSmsNotification {
+            /** Receive notification for abuse reports */
+            abuse: boolean;
+            /** Creation date */
+            creationDate: string;
+            /** The phone number you want to receive notification on */
+            phoneNumber: string;
+            /** Status of your notification */
+            status: nichandle.NotificationStatusEnum;
+            /** Last update date */
+            updateDate ? : string;
+        }
+        /** Status of your notification */
+        enum NotificationStatusEnum {
+            "ok",
+            "waitingForValidation"
+        }
+        /** OVH companies */
+        enum OvhCompanyEnum {
+            "kimsufi",
+            "ovh",
+            "soyoustart"
+        }
+        /** Indicates the mandatory nature of having a valid payment method */
+        enum RequiredPaymentMethodEnum {
+            "mandatoryForAutorenew",
+            "mandatoryForPostpaid",
+            "notMandatory"
+        }
+        /** States a nichandle can be in */
+        enum StateEnum {
+            "complete",
+            "incomplete"
+        }
+        /** Sub Account */
+        interface SubAccount {
+            /** Creation date */
+            creationDate: string;
+            /** This sub-account description */
+            description ? : string;
+            /** This sub-account id */
+            id: number;
+        }
+        /** Credentials to interact with the api on behalf of the sub-account */
+        interface SubAccountConsumerKey {
+            /** The consumer key */
+            consumerKey: string;
+        }
+        /** List of all OVH things you can subscribe to */
+        interface Subscription {
+            /** Determine whether you are registered or not */
+            registered ? : boolean;
+            /** The type of subscription */
+            type: string;
+        }
+        /** A user */
+        interface User {
+            /** Creation date of this user */
+            creation: string;
+            /** User's description */
+            description: string;
+            /** User's email */
+            email: string;
+            /** User's group */
+            group: string;
+            /** Last update of this user */
+            lastUpdate: string;
+            /** User's login suffix */
+            login: string;
+            /** When the user changed his password for the last time */
+            passwordLastUpdate: string;
+            /** Current user's status */
+            status: nichandle.UserStatus;
+        }
+        /** Status of a User */
+        enum UserStatus {
+            "OK",
+            "DISABLED",
+            "PASSWORD_CHANGE_REQUIRED"
+        }
+        /** VIP Status by Universe */
+        interface VipStatus {
+            /** Is account VIP for Cloud Universe */
+            cloud: boolean;
+            /** Is account VIP for Dedicated Universe */
+            dedicated: boolean;
+            /** Is account VIP for Telecom Universe */
+            telecom: boolean;
+            /** Is account VIP for Web Universe */
+            web: boolean;
+        }
+        /** Voucher Status and Information */
+        interface VoucherStatus {
+            /** Is voucher valid */
+            validity: boolean;
+        }
+        /** Email notification */
+        interface emailNotification {
+            /** This email body */
+            body: text;
+            /** This email date */
+            date: string;
+            /** This email Id */
+            id: number;
+            /** This email subject */
+            subject: string;
+        }
+        /** Customer IPXE scripts */
+        interface ipxe {
+            /** Name of this script */
+            name: string;
+            /** Content of your IPXE script */
+            script: text;
+        }
+        /** Customer public SSH key, can be used for rescue netboot or server access after reinstallation */
+        interface sshKey {
+            /** True when this public SSH key is used for rescue mode and reinstallations */
+            default: boolean;
+            /** ASCII encoded public SSH key */
+            key: string;
+            /** Name of this public SSH key */
+            keyName: string;
+        }
     }
     namespace order {
-        /** CurrencyCodeEnum */
+        namespace cart {
+            /** Representation of a generic product */
+            interface GenericProductDefinition {
+                /** Product offer identifier */
+                planCode: string;
+                /** Prices of the product offer */
+                prices: order.cart.GenericProductPricing[];
+                /** Name of the product */
+                productName: string;
+                /** Product type */
+                productType: order.cart.GenericProductTypeEnum;
+            }
+            /** Representation of a product pricing */
+            interface GenericProductPricing {
+                /** Capacities of the pricing (type of pricing) */
+                capacities: order.cart.GenericProductPricingCapacitiesEnum[];
+                /** Description of the pricing */
+                description: string;
+                /** Duration for ordering the product */
+                duration: duration;
+                /** Interval of renewal */
+                interval: number;
+                /** Maximum quantity that can be ordered */
+                maximumQuantity ? : number;
+                /** Maximum repeat for renewal */
+                maximumRepeat ? : number;
+                /** Minimum quantity that can be ordered */
+                minimumQuantity: number;
+                /** Minimum repeat for renewal */
+                minimumRepeat: number;
+                /** Price of the product */
+                price: order.Price;
+                /** Price of the product in micro-centims */
+                priceInUcents: number;
+                /** Pricing model identifier */
+                pricingMode: string;
+                /** Pricing type */
+                pricingType: order.cart.GenericProductPricingTypeEnum;
+            }
+            /** Capacity of a pricing (type) */
+            enum GenericProductPricingCapacitiesEnum {
+                "consumption",
+                "detach",
+                "downgrade",
+                "dynamic",
+                "installation",
+                "renew",
+                "upgrade"
+            }
+            /** Type of a pricing */
+            enum GenericProductPricingTypeEnum {
+                "consumption",
+                "purchase",
+                "rental"
+            }
+            /** Type of a product */
+            enum GenericProductTypeEnum {
+                "cloud_service",
+                "delivery",
+                "deposit",
+                "domain",
+                "implementation_services",
+                "saas_license",
+                "shipping",
+                "storage"
+            }
+        } /** Currency code */
         enum CurrencyCodeEnum {
             "AUD",
             "CAD",
@@ -8786,14 +9777,121 @@ declare namespace ovhapi {
             "XOF",
             "points"
         }
-        /** Price with it's currency and textual representation */
+        /** Price with its currency and textual representation */
         interface Price {
-            /** currencyCode */
+            /** Currency code */
             currencyCode: order.CurrencyCodeEnum;
-            /** text */
+            /** Textual representation */
             text: string;
-            /** value */
+            /** The effective price */
             value: double;
+        }
+        /** A contract */
+        interface Contract {
+            /** Terms of the contract */
+            content: text;
+            /** Name of the contract */
+            name: string;
+            /** URL to download the contract */
+            url: string;
+        }
+        /** An order */
+        interface Order {
+            /** List of contracts related to the order */
+            contracts: order.Contract[];
+            /** Details of the order */
+            details: order.OrderDetail[];
+            /** Identifier of the order */
+            orderId ? : number;
+            /** Prices of the order including with and without taxes */
+            prices: order.OrderPrices;
+            /** URL to download the order */
+            url ? : string;
+        }
+        /** Detail of an order */
+        interface OrderDetail {
+            /** Cart Item ID the details is related to */
+            cartItemID ? : number;
+            /** Description of the detail */
+            description: string;
+            /** Type of detail */
+            detailType ? : order.OrderDetailTypeEnum;
+            /** Service name */
+            domain: string;
+            /** Original price of the detail before reduction application */
+            originalTotalPrice: order.Price;
+            /** Quantity of the service */
+            quantity: number;
+            /** Total price of the reduction */
+            reductionTotalPrice: order.Price;
+            /** List of reductions applied to the detail */
+            reductions: order.Reduction[];
+            /** Price total of the services */
+            totalPrice: order.Price;
+            /** Unitary price of the service */
+            unitPrice: order.Price;
+        }
+        /** Product type of item in order */
+        enum OrderDetailTypeEnum {
+            "ACCESSORY",
+            "CAUTION",
+            "CHOOSED",
+            "CONSUMPTION",
+            "CREATION",
+            "DELIVERY",
+            "DURATION",
+            "GIFT",
+            "INSTALLATION",
+            "LICENSE",
+            "MUTE",
+            "OTHER",
+            "OUTPLAN",
+            "QUANTITY",
+            "REFUND",
+            "RENEW",
+            "SPECIAL",
+            "SWITCH",
+            "TRANSFER",
+            "VOUCHER"
+        }
+        /** Prices of an order */
+        interface OrderPrices {
+            /** Price before reduction application */
+            originalWithoutTax ? : order.Price;
+            /** Price concerning the reduced amount */
+            reduction ? : order.Price;
+            /** Tax amount */
+            tax: order.Price;
+            /** Price with tax */
+            withTax: order.Price;
+            /** Price without tax */
+            withoutTax: order.Price;
+        }
+        /** Order detail reduction */
+        interface Reduction {
+            /** In which context the reduction is applied */
+            context: order.ReductionContextEnum;
+            /** Promotion description */
+            description: string;
+            /** Reduction price applied with this promotion */
+            price: order.Price;
+            /** Reduction description */
+            reductionDescription: string;
+            /** Reduction effect, price modification */
+            type: order.ReductionTypeEnum;
+            /** The reduction value */
+            value: order.Price;
+        }
+        /** Context of the reduction */
+        enum ReductionContextEnum {
+            "promotion",
+            "voucher"
+        }
+        /** Type of reduction */
+        enum ReductionTypeEnum {
+            "fixed_amount",
+            "forced_amount",
+            "percentage"
         }
     }
     namespace service {
@@ -8855,7 +9953,17 @@ declare namespace ovhapi {
         }
     }
     namespace services {
-        /** Details about a Service */
+        namespace expanded {
+            /** Route of the service */
+            interface Route {
+                /** Path to use in API */
+                path ? : string;
+                /** Path with variables applied */
+                url ? : string;
+                /** Variables to use in the path */
+                vars: complexType.SafeKeyValue < string > [];
+            }
+        } /** Details about a Service */
         interface Service {
             /** Indicates that the service can be set up to be deleted at expiration */
             canDeleteAtExpiration: boolean;
@@ -8883,6 +9991,4010 @@ declare namespace ovhapi {
             serviceId: long;
             /** status */
             status: service.StateEnum;
+        }
+    }
+    namespace agreements {
+        /** The current state of a contract agreement */
+        enum AgreementStateEnum {
+            "ko",
+            "obsolete",
+            "ok",
+            "todo"
+        }
+        /** Contract of service */
+        interface Contract {
+            /** Is this contract currently active or not ? */
+            active: boolean;
+            /** Date the contract was created on */
+            date: string;
+            /** Name of of the contract */
+            name: string;
+            /** URL you can download the contract at */
+            pdf: string;
+            /** Full text of the contract */
+            text: string;
+        }
+        /** Contract agreement */
+        interface ContractAgreement {
+            /** State of the agreement */
+            agreed: agreements.AgreementStateEnum;
+            /** Id of the agreed contract */
+            contractId: number;
+            /** Date the agreed contract was effective */
+            date: string;
+            /** Id of the contract */
+            id: number;
+        }
+    }
+    namespace api {
+        /** API Application */
+        interface Application {
+            /** applicationId */
+            applicationId: number;
+            /** applicationKey */
+            applicationKey: string;
+            /** description */
+            description: string;
+            /** name */
+            name: string;
+            /** status */
+            status: api.ApplicationStatusEnum;
+        }
+        /** List of state of an Api Application */
+        enum ApplicationStatusEnum {
+            "active",
+            "blocked",
+            "inactive",
+            "trusted"
+        }
+        /** API Credential */
+        interface Credential {
+            /** If defined, list of ip blocks which are allowed to call API with this credential */
+            allowedIPs ? : string[];
+            /** applicationId */
+            applicationId: number;
+            /** creation */
+            creation: string;
+            /** credentialId */
+            credentialId: number;
+            /** expiration */
+            expiration ? : string;
+            /** lastUse */
+            lastUse ? : string;
+            /** States whether this credential has been created by yourself or by the OVH support team */
+            ovhSupport: boolean;
+            /** rules */
+            rules: auth.AccessRule[];
+            /** status */
+            status: auth.CredentialStateEnum;
+        }
+        /** API Log */
+        interface Log {
+            /** Account which did the Request */
+            account: string;
+            /** Date of the request */
+            date: string;
+            /** Source IP of the request */
+            ip ? : string;
+            /** logId */
+            logId: number;
+            /** HTTP Method of the request */
+            method: http.MethodEnum;
+            /** HTTP URI of the request */
+            path: string;
+            /** API Route called */
+            route: string;
+        }
+    }
+    namespace audit {
+        /** An audit Log */
+        interface Log {
+            /** authentication details */
+            authDetails ? : audit.LogAuthDetails;
+            /** event's date */
+            createdAt: string;
+            /** IP associated to this event */
+            ip ? : string;
+            /** specific fields for LOGIN_SUCCESS events */
+            loginSuccessDetails ? : audit.LogLoginSuccessDetails;
+            /** type of event */
+            type: audit.LogTypeEnum;
+        }
+        /** Authentication details */
+        interface LogAuthDetails {
+            /** authenticated user details */
+            userDetails: audit.LogAuthUserDetails;
+        }
+        /** Authentication MFA type */
+        enum LogAuthMFATypeEnum {
+            "BACKUP_CODE",
+            "MAIL",
+            "NONE",
+            "SMS",
+            "TOTP",
+            "U2F",
+            "UNKNOWN"
+        }
+        /** Authenticated user details */
+        interface LogAuthUserDetails {
+            /** authentication type */
+            type: audit.LogAuthUserTypeEnum;
+            /** authenticated user name */
+            user ? : string;
+        }
+        /** Authentication type */
+        enum LogAuthUserTypeEnum {
+            "ACCOUNT",
+            "PROVIDER",
+            "USER"
+        }
+        /** specific fields for LOGIN_SUCCESS events */
+        interface LogLoginSuccessDetails {
+            /** Used MFA while login */
+            mfaType ? : audit.LogAuthMFATypeEnum;
+            /** Browser's user agent */
+            userAgent: string;
+        }
+        /** Audit event type */
+        enum LogTypeEnum {
+            "LOGIN_SUCCESS"
+        }
+    }
+    namespace auth {
+        /** Access rule allowed to an application */
+        interface AccessRule {
+            /** Allowed Method */
+            method: auth.HTTPMethodEnum;
+            /** Allowed path */
+            path: string;
+        }
+        /** API Application */
+        interface ApiApplication {
+            /** ID of this Application */
+            applicationId: number;
+            /** Key of this application */
+            applicationKey: string;
+            /** Description of this application */
+            description: string;
+            /** Name of this application */
+            name: string;
+            /** Status of this application */
+            status: auth.ApplicationStatusEnum;
+        }
+        /** API Credential */
+        interface ApiCredential {
+            /** If defined, list of ip blocks which are allowed to call API with this credential */
+            allowedIPs ? : string[];
+            /** ID of associated API Application */
+            applicationId: number;
+            /** Creation date of this credential */
+            creation: string;
+            /** ID of this credential */
+            credentialId: number;
+            /** Expiration date of this credential */
+            expiration ? : string;
+            /** Last use date of this credential */
+            lastUse ? : string;
+            /** States whether this credential has been created by yourself or by the OVH support team */
+            ovhSupport: boolean;
+            /** API routes allowed to this credential */
+            rules: auth.AccessRule[];
+            /** State of to this credential */
+            status: auth.CredentialStateEnum;
+        }
+        /** All states an API Application can be in */
+        enum ApplicationStatusEnum {
+            "active",
+            "blocked",
+            "inactive",
+            "trusted"
+        }
+        /** All states a Credential can be in */
+        enum CredentialStateEnum {
+            "expired",
+            "pendingValidation",
+            "refused",
+            "validated"
+        }
+        /** All HTTP methods available */
+        enum HTTPMethodEnum {
+            "DELETE",
+            "GET",
+            "POST",
+            "PUT"
+        }
+    }
+    namespace billing {
+        namespace ItemDetail {
+            /** Order data for this Detail */
+            interface Order {
+                /** The meaning of this order detail */
+                action ? : billing.ItemDetail.OrderActionEnum;
+                /** Configurations chosen during the order */
+                configurations: billing.ItemDetail.OrderConfiguration[];
+                /** Plan from /order/cart */
+                plan: billing.ItemDetail.OrderPlan;
+                /** Type of the detail to match with values inside the catalog */
+                type ? : billing.ItemDetail.OrderDetailTypeEnum;
+            }
+            /** List of order actions */
+            enum OrderActionEnum {
+                "consumption",
+                "detach",
+                "installation",
+                "renew",
+                "revert",
+                "upgrade"
+            }
+            /** Configuration of order */
+            interface OrderConfiguration {
+                /** Label of the configuration */
+                label: string;
+                /** Value of the configuration */
+                value: string;
+            }
+            /** List of order detail types */
+            enum OrderDetailTypeEnum {
+                "plan",
+                "product"
+            }
+            /** Plan data from order */
+            interface OrderPlan {
+                /** Plan code used when ordering through /order/cart */
+                code ? : string;
+                /** Duration chosen when ordering through /order/cart (ISO 8601) */
+                duration ? : string;
+                /** Pricing mode used when ordering through /order/cart */
+                pricingMode ? : string;
+                /** Product from /order/cart */
+                product: billing.ItemDetail.OrderPlanProduct;
+                /** Quantity ordered */
+                quantity ? : number;
+            }
+            /** Product data from order */
+            interface OrderPlanProduct {
+                /** Name of the product used when ordering through /order/cart */
+                name ? : string;
+            }
+        }
+        namespace credit {
+            namespace balance {
+                namespace movement {
+                    /** Movement sub object */
+                    interface SubObject {
+                        /** Sub object ID */
+                        id ? : string;
+                        /** Sub object name */
+                        name ? : string;
+                    }
+                } /** Part of a balance */
+                interface BalanceDetail {
+                    /** Balance part amount */
+                    amount: order.Price;
+                    /** Service ID of this balance part */
+                    serviceId ? : long;
+                }
+                /** Movement already booked on orders */
+                interface BookedMovement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Order ID */
+                    orderId: number;
+                }
+                /** Movement expiring soon */
+                interface ExpiringMovement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Movement creation date */
+                    creationDate: string;
+                    /** Movement expiration date */
+                    expirationDate: string;
+                    /** Movement last update */
+                    lastUpdate: string;
+                    /** Object source of this credit movement */
+                    sourceObject: billing.credit.balance.movement.SubObject;
+                }
+                /** Credit balance */
+                interface Movement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Balance name */
+                    balanceName: string;
+                    /** Movement creation date */
+                    creationDate: string;
+                    /** Object destination of this credit movement */
+                    destinationObject ? : billing.credit.balance.movement.SubObject;
+                    /** Movement expiration date */
+                    expirationDate ? : string;
+                    /** Movement last update */
+                    lastUpdate: string;
+                    /** Movement ID */
+                    movementId: number;
+                    /** Order ID associated to this credit movement */
+                    orderId ? : number;
+                    /** Object source of this credit movement */
+                    sourceObject: billing.credit.balance.movement.SubObject;
+                    /** Movement type */
+                    type: string;
+                }
+                /** Balance type */
+                enum Type {
+                    "PREPAID_ACCOUNT",
+                    "VOUCHER",
+                    "DEPOSIT",
+                    "BONUS"
+                }
+            } /** Credit balance */
+            interface Balance {
+                /** Balance amount */
+                amount: order.Price;
+                /** Balance details, amounts by serviceID */
+                balanceDetails: billing.credit.balance.BalanceDetail[];
+                /** Balance name */
+                balanceName: string;
+                /** Movement already booked on orders */
+                booked: billing.credit.balance.BookedMovement[];
+                /** Balance creation date */
+                creationDate: string;
+                /** Movement expiring soon */
+                expiring: billing.credit.balance.ExpiringMovement[];
+                /** Movement expiring soon */
+                expiringSummary: billing.credit.balance.ExpiringMovement[];
+                /** Balance last update */
+                lastUpdate: string;
+                /** Balance type */
+                type: billing.credit.balance.Type;
+            }
+        }
+        namespace fidelityAccount {
+            /** Operations a fidelity account movement can represent */
+            enum OperationEnum {
+                "bonus",
+                "cancel-bonus",
+                "cancel-credit",
+                "cancel-debit",
+                "cancel-pre-debit",
+                "credit",
+                "debit",
+                "pre-credit",
+                "pre-debit"
+            }
+        }
+        namespace order {
+            namespace associatedObject {
+                /** Type of objects an order can be linked to */
+                enum TypeEnum {
+                    "Bill",
+                    "Deposit",
+                    "Refund",
+                    "ReverseBill",
+                    "Withdrawal"
+                }
+            }
+            namespace followUp {
+                /** Step history of order follow-up */
+                interface History {
+                    /** History date of order follow-up */
+                    date: string;
+                    /** History description of order follow-up */
+                    description: string;
+                    /** History label of order follow-up */
+                    label: billing.order.followUp.HistoryStatusEnum;
+                }
+                /** History label of order follow-up */
+                enum HistoryStatusEnum {
+                    "DELIVERY",
+                    "FRAUD_CHECK",
+                    "FRAUD_DOCS_REQUESTED",
+                    "FRAUD_MANUAL_REVIEW",
+                    "FRAUD_REFUSED",
+                    "INVOICE_IN_PROGRESS",
+                    "INVOICE_SENT",
+                    "ORDER_ACCEPTED",
+                    "ORDER_STARTED",
+                    "PAYMENT_CONFIRMED",
+                    "PAYMENT_INITIATED",
+                    "PAYMENT_RECEIVED",
+                    "REGISTERED_PAYMENT_INITIATED"
+                }
+                /** Step status of order follow-up */
+                enum StatusEnum {
+                    "DOING",
+                    "DONE",
+                    "ERROR",
+                    "TODO"
+                }
+                /** Status of order follow-up */
+                enum StepEnum {
+                    "AVAILABLE",
+                    "DELIVERING",
+                    "VALIDATED",
+                    "VALIDATING"
+                }
+            }
+            namespace paymentMean {
+                /** Parameter to give to a payment page */
+                interface HttpParameter {
+                    /** choice */
+                    choice ? : billing.order.paymentMean.HttpParameterChoice[];
+                    /** name */
+                    name: string;
+                    /** value */
+                    value ? : string;
+                }
+                /** Choice for an HTTP multi value parameter */
+                interface HttpParameterChoice {
+                    /** name */
+                    name: string;
+                    /** value */
+                    value: string;
+                }
+            } /** The object the processing of the order leaded to */
+            interface AssociatedObject {
+                /** id */
+                id ? : string;
+                /** type */
+                type ? : billing.order.associatedObject.TypeEnum;
+            }
+            /** All data needed to use a payment mean */
+            interface AvailablePaymentMean {
+                /** fields */
+                fields ? : billing.order.AvailablePaymentMeanField[];
+                /** integration */
+                integration: billing.order.PaymentMeanIntegrationEnum;
+                /** name */
+                name: string;
+                /** url */
+                url ? : string;
+            }
+            /** All fields needed for a payment mean integration */
+            interface AvailablePaymentMeanField {
+                /** key */
+                key: string;
+                /** options */
+                options ? : string[];
+                /** type */
+                type: billing.order.PaymentMeanFieldTypeEnum;
+                /** value */
+                value ? : string;
+            }
+            /** Detailed consumption's retrieval information */
+            interface ConsumptionDetails {
+                /** Format of the file */
+                fileFormat ? : consumption.ConsumptionExportFormatsEnum;
+                /** Temporary URL to download detailed consumption */
+                fileURL ? : string;
+                /** Request's state description */
+                message ? : string;
+                /** Consumption details export task's identifier */
+                taskId: number;
+                /** Consumption details export task's status */
+                taskStatus: consumption.ConsumptionExportTaskStatusEnum;
+            }
+            /** Follow up history of an order */
+            interface FollowUp {
+                /** Step history of order follow-up */
+                history: billing.order.followUp.History[];
+                /** Step status of order follow-up */
+                status: billing.order.followUp.StatusEnum;
+                /** Step of order follow-up */
+                step: billing.order.followUp.StepEnum;
+            }
+            /** All possible order status */
+            enum OrderStatusEnum {
+                "cancelled",
+                "cancelling",
+                "checking",
+                "delivered",
+                "delivering",
+                "documentsRequested",
+                "notPaid",
+                "unknown"
+            }
+            /** Pay with payment method parameter */
+            interface PayWithPaymentMethod {
+                /** ID of payment method for pay this order */
+                id: number;
+            }
+            /** All data needed to use a payment mean */
+            interface PaymentMean {
+                /** fee */
+                fee: double;
+                /** htmlForm */
+                htmlForm ? : text;
+                /** httpMethod */
+                httpMethod: string;
+                /** logo */
+                logo ? : string;
+                /** parameters */
+                parameters: billing.order.paymentMean.HttpParameter[];
+                /** subType */
+                subType ? : string;
+                /** url */
+                url: string;
+            }
+            /** Field type of a payment mean */
+            enum PaymentMeanFieldTypeEnum {
+                "hidden",
+                "select",
+                "text"
+            }
+            /** Integration payment mean type */
+            enum PaymentMeanIntegrationEnum {
+                "GET_FORM",
+                "POST_FORM",
+                "REDIRECT"
+            }
+            /** TODO */
+            interface PaymentMeans {
+                /** creditCard */
+                creditCard ? : billing.order.PaymentMean[];
+                /** edinar */
+                edinar ? : billing.order.PaymentMean[];
+                /** fidelityPoints */
+                fidelityPoints ? : billing.order.PaymentMean[];
+                /** ideal */
+                ideal ? : billing.order.PaymentMean[];
+                /** multibanco */
+                multibanco ? : billing.order.PaymentMean[];
+                /** ovhAccount */
+                ovhAccount ? : billing.order.PaymentMean[];
+                /** paypal */
+                paypal ? : billing.order.PaymentMean[];
+                /** promotion */
+                promotion ? : billing.order.PaymentMean[];
+            }
+            /** Payment methods */
+            interface PaymentMethods {
+                /** Payment method available on this order */
+                available: payment.method.AvailablePaymentMethod[];
+                /** List of registered Payment methods usable on this order */
+                paymentMethods: payment.method.PaymentMethod[];
+                /** IDs of registered payment method usable on this order */
+                registered: number[];
+            }
+            /** A registered payment mean */
+            interface RegisteredPaymentMean {
+                /** paymentMean */
+                paymentMean: billing.ReusablePaymentMeanEnum;
+            }
+            /** Retraction reason type */
+            enum RetractionReasonEnum {
+                "competitor",
+                "difficulty",
+                "expensive",
+                "other",
+                "performance",
+                "reliability",
+                "unused"
+            }
+        }
+        namespace ovhAccount {
+            /** Operations an OVH account movement can represent */
+            enum OperationEnum {
+                "cancel-credit",
+                "cancel-debit",
+                "cancel-pre-debit",
+                "credit",
+                "debit",
+                "pre-credit",
+                "pre-debit"
+            }
+        }
+        namespace voucherAccount {
+            /** Operations a voucher account movement can represent */
+            enum OperationEnum {
+                "cancel-credit",
+                "cancel-debit",
+                "cancel-pre-debit",
+                "credit",
+                "debit",
+                "pre-credit",
+                "pre-debit"
+            }
+        } /** List of available archive types */
+        enum ArchiveTypeEnum {
+            "csv",
+            "zip"
+        }
+        /** Available automatic payment means */
+        interface AutomaticPaymentMean {
+            /** Bank Account */
+            bankAccount: boolean;
+            /** Credit Card */
+            creditCard: boolean;
+            /** Deferred invoice payment account for authorized customers */
+            deferredPaymentAccount: boolean;
+            /** Paypal account */
+            paypal: boolean;
+        }
+        /** Details about a Bill */
+        interface Bill {
+            /** billId */
+            billId: string;
+            /** category */
+            category: billing.CategoryEnum;
+            /** date */
+            date: string;
+            /** orderId */
+            orderId: number;
+            /** password */
+            password: string;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** priceWithTax */
+            priceWithTax: order.Price;
+            /** priceWithoutTax */
+            priceWithoutTax: order.Price;
+            /** tax */
+            tax: order.Price;
+            /** url */
+            url: string;
+        }
+        /** Information about a Bill entry */
+        interface BillDetail {
+            /** billDetailId */
+            billDetailId: string;
+            /** description */
+            description: string;
+            /** domain */
+            domain: string;
+            /** periodEnd */
+            periodEnd ? : string;
+            /** periodStart */
+            periodStart ? : string;
+            /** quantity */
+            quantity: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+        }
+        /** billing task status */
+        enum BillingTaskStatusEnum {
+            "cancelled",
+            "customerError",
+            "doing",
+            "done",
+            "init",
+            "ovhError",
+            "todo"
+        }
+        /** Types of plans */
+        enum CategoryEnum {
+            "autorenew",
+            "earlyrenewal",
+            "purchase",
+            "purchase-cloud",
+            "purchase-servers",
+            "purchase-telecom",
+            "purchase-web"
+        }
+        /** Credit balance applied on an Order */
+        interface CreditBalance {
+            /** Amount applied from the balance */
+            amount: order.Price;
+            /** Credit balance name */
+            balanceName: string;
+        }
+        /** Details about a deposit */
+        interface Deposit {
+            /** amount */
+            amount: order.Price;
+            /** date */
+            date: string;
+            /** depositId */
+            depositId: string;
+            /** orderId */
+            orderId: number;
+            /** password */
+            password: string;
+            /** paymentInfo */
+            paymentInfo ? : debt.associatedObject.PaymentInfo;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** url */
+            url: string;
+        }
+        /** Information about a Deposit entry */
+        interface DepositDetail {
+            /** depositDetailId */
+            depositDetailId: string;
+            /** description */
+            description: string;
+            /** domain */
+            domain: string;
+            /** quantity */
+            quantity: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+        }
+        /** Balance of the fidelity account */
+        interface FidelityAccount {
+            /** alertThreshold */
+            alertThreshold ? : number;
+            /** balance */
+            balance: number;
+            /** canBeCredited */
+            canBeCredited: boolean;
+            /** lastUpdate */
+            lastUpdate: string;
+            /** openDate */
+            openDate: string;
+        }
+        /** Details about a fidelity account */
+        interface FidelityMovement {
+            /** amount */
+            amount: number;
+            /** balance */
+            balance: number;
+            /** date */
+            date: string;
+            /** description */
+            description: string;
+            /** movementId */
+            movementId: number;
+            /** operation */
+            operation: billing.fidelityAccount.OperationEnum;
+            /** order */
+            order: number;
+            /** previousBalance */
+            previousBalance: number;
+        }
+        /** Extensions of a detail */
+        interface ItemDetail {
+            /** order */
+            order: billing.ItemDetail.Order;
+        }
+        /** Status of your manual domain payment migration */
+        interface ManualDomainPaymentStatus {
+            /** Total number of domains that needs to be migrated to manual renew mode */
+            domainsToMigrate ? : number;
+            /** Total number of domains successfully migrated to manual renew mode */
+            migratedDomains ? : number;
+            /** status */
+            status: billing.BillingTaskStatusEnum;
+        }
+        /** Details about an OVH account */
+        interface Movement {
+            /** amount */
+            amount: order.Price;
+            /** balance */
+            balance: order.Price;
+            /** date */
+            date: string;
+            /** description */
+            description: string;
+            /** movementId */
+            movementId: number;
+            /** operation */
+            operation: billing.ovhAccount.OperationEnum;
+            /** order */
+            order: number;
+            /** previousBalance */
+            previousBalance: order.Price;
+            /** retrievableAmount */
+            retrievableAmount: order.Price;
+        }
+        /** Details about an Order */
+        interface Order {
+            /** date */
+            date ? : string;
+            /** expirationDate */
+            expirationDate ? : string;
+            /** orderId */
+            orderId: number;
+            /** password */
+            password: string;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** priceWithTax */
+            priceWithTax: order.Price;
+            /** priceWithoutTax */
+            priceWithoutTax: order.Price;
+            /** retractionDate */
+            retractionDate ? : string;
+            /** tax */
+            tax: order.Price;
+            /** url */
+            url: string;
+        }
+        /** Information about a Bill entry */
+        interface OrderDetail {
+            /** cancelled */
+            cancelled: boolean;
+            /** description */
+            description: string;
+            /** detailType */
+            detailType ? : order.OrderDetailTypeEnum;
+            /** domain */
+            domain: string;
+            /** orderDetailId */
+            orderDetailId: number;
+            /** quantity */
+            quantity: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+        }
+        /** Details about an OVH account */
+        interface OvhAccount {
+            /** alertThreshold */
+            alertThreshold ? : number;
+            /** balance */
+            balance: order.Price;
+            /** canBeCredited */
+            canBeCredited: boolean;
+            /** isActive */
+            isActive: boolean;
+            /** lastUpdate */
+            lastUpdate: string;
+            /** openDate */
+            openDate: string;
+            /** ovhAccountId */
+            ovhAccountId: string;
+        }
+        /** Details about a payment */
+        interface Payment {
+            /** paymentDate */
+            paymentDate: string;
+            /** paymentIdentifier */
+            paymentIdentifier ? : string;
+            /** paymentType */
+            paymentType: billing.PaymentMeanEnum;
+        }
+        /** All payment means you might have use on an OVH order */
+        enum PaymentMeanEnum {
+            "cash",
+            "chargeback",
+            "check",
+            "cheque",
+            "creditAccount",
+            "creditCard",
+            "debtAccount",
+            "deposit",
+            "digitalLaunchPad",
+            "edinar",
+            "fidelityPoints",
+            "free",
+            "ideal",
+            "incubatorAccount",
+            "mandat",
+            "multibanco",
+            "none",
+            "ovhAccount",
+            "paymentMandate",
+            "paypal",
+            "payu",
+            "platnosci",
+            "refund",
+            "rupay",
+            "transfer",
+            "withdrawal"
+        }
+        /** Details about a Refund */
+        interface Refund {
+            /** date */
+            date: string;
+            /** orderId */
+            orderId: number;
+            /** originalBillId */
+            originalBillId ? : string;
+            /** password */
+            password: string;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** priceWithTax */
+            priceWithTax: order.Price;
+            /** priceWithoutTax */
+            priceWithoutTax: order.Price;
+            /** refundId */
+            refundId: string;
+            /** tax */
+            tax: order.Price;
+            /** url */
+            url: string;
+        }
+        /** Information about a Bill entry */
+        interface RefundDetail {
+            /** description */
+            description: string;
+            /** domain */
+            domain: string;
+            /** quantity */
+            quantity: string;
+            /** reference */
+            reference: string;
+            /** refundDetailId */
+            refundDetailId: string;
+            /** refundId */
+            refundId: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+        }
+        /** Reusable payment mean type */
+        enum ReusablePaymentMeanEnum {
+            "CREDIT_CARD",
+            "CURRENT_ACCOUNT",
+            "DEFERRED_PAYMENT_ACCOUNT",
+            "DOMESTIC_CARD",
+            "ENTERPRISE",
+            "INTERNAL_TRUSTED_ACCOUNT",
+            "PAYPAL",
+            "RUPAY",
+            "SEPA_DIRECT_DEBIT",
+            "bankAccount",
+            "creditCard",
+            "deferredPaymentAccount",
+            "fidelityAccount",
+            "ovhAccount",
+            "paypal"
+        }
+        /** Information about withdrawal entry */
+        interface ReversableBillDetail {
+            /** description */
+            description: string;
+            /** domain */
+            domain: string;
+            /** quantity */
+            quantity: string;
+            /** reference */
+            reference: string;
+            /** reverseBillDetailId */
+            reverseBillDetailId: string;
+            /** reverseBillId */
+            reverseBillId: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+        }
+        /** Details about a bill from customer */
+        interface ReverseBill {
+            /** date */
+            date: string;
+            /** orderId */
+            orderId: number;
+            /** password */
+            password: string;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** priceWithTax */
+            priceWithTax: order.Price;
+            /** priceWithoutTax */
+            priceWithoutTax: order.Price;
+            /** reverseBillId */
+            reverseBillId: string;
+            /** tax */
+            tax: order.Price;
+            /** url */
+            url: string;
+        }
+        /** SLA properties */
+        interface SlaOperation {
+            /** Date of the event that led to SLA */
+            date: string;
+            /** Description of the SLA operation for this incident */
+            description: string;
+            /** Date of the end of the SLA */
+            endDate ? : string;
+            /** SLA identifier */
+            id: number;
+            /** Sla operation name */
+            name: string;
+            /** Date of the start of the SLA */
+            startDate: string;
+        }
+        /** Describe all services impacted by SLA */
+        interface SlaOperationService {
+            /** Service description */
+            description: string;
+            /** Impacted service name */
+            serviceName: string;
+            /** SLA plan application */
+            slaApplication: string;
+            /** SLA plan description */
+            slaPlan: string;
+        }
+        /** Details about a Voucher account */
+        interface VoucherAccount {
+            /** balance */
+            balance: order.Price;
+            /** lastUpdate */
+            lastUpdate: string;
+            /** openDate */
+            openDate: string;
+            /** voucherAccountId */
+            voucherAccountId: string;
+        }
+        /** Details about a voucher account */
+        interface VoucherMovement {
+            /** amount */
+            amount: order.Price;
+            /** balance */
+            balance: order.Price;
+            /** date */
+            date: string;
+            /** description */
+            description: string;
+            /** movementId */
+            movementId: number;
+            /** operation */
+            operation: billing.voucherAccount.OperationEnum;
+            /** order */
+            order: number;
+            /** previousBalance */
+            previousBalance: order.Price;
+        }
+        /** Details about a withdrawal */
+        interface Withdrawal {
+            /** amount */
+            amount: order.Price;
+            /** country */
+            country: string;
+            /** date */
+            date: string;
+            /** orderId */
+            orderId: number;
+            /** password */
+            password: string;
+            /** pdfUrl */
+            pdfUrl: string;
+            /** url */
+            url: string;
+            /** withdrawalId */
+            withdrawalId: string;
+        }
+        /** Information about a Withdrawal entry */
+        interface WithdrawalDetail {
+            /** description */
+            description: string;
+            /** domain */
+            domain: string;
+            /** quantity */
+            quantity: string;
+            /** totalPrice */
+            totalPrice: order.Price;
+            /** unitPrice */
+            unitPrice: order.Price;
+            /** withdrawalDetailId */
+            withdrawalDetailId: string;
+        }
+    }
+    namespace carbonCalculator {
+        namespace Task {
+            /** Status of a calculation task */
+            enum TaskStatusEnum {
+                "ERROR",
+                "IN_PROGRESS",
+                "SUCCESS"
+            }
+        } /** Request body for the calculation of customer's carbon impact */
+        interface CalculationRequest {
+            /** Month of the requested document (day is ignored) */
+            date: string;
+        }
+        /** Response for request of customer's carbon impact */
+        interface CalculationResponse {
+            /** ID of the calculation task */
+            taskID: string;
+        }
+        /** Task to generate a carbon impact document */
+        interface Task {
+            /** Link to the document */
+            link ? : string;
+            /** Status of the task */
+            status: carbonCalculator.Task.TaskStatusEnum;
+            /** ID of the task */
+            taskID: string;
+        }
+    }
+    namespace consumption {
+        /** Export file format */
+        enum ConsumptionExportFormatsEnum {
+            "csv"
+        }
+        /** Export task status */
+        enum ConsumptionExportTaskStatusEnum {
+            "DOING",
+            "DONE",
+            "ERROR",
+            "TODO"
+        }
+    }
+    namespace contact {
+        /** Representation of an Address */
+        interface Address {
+            /** City */
+            city: string;
+            /** Country */
+            country: nichandle.CountryEnum;
+            /** First line of the address */
+            line1: string;
+            /** Second line of the address */
+            line2 ? : string;
+            /** Third line of the address */
+            line3 ? : string;
+            /** Others details */
+            otherDetails ? : string;
+            /** Province name */
+            province ? : string;
+            /** Zipcode */
+            zip: string;
+        }
+        /** Representation of a Contact */
+        interface Contact {
+            /** Address for this contact */
+            address: contact.Address;
+            /** Birth city */
+            birthCity ? : string;
+            /** Birth Country */
+            birthCountry ? : nichandle.CountryEnum;
+            /** Birth date */
+            birthDay ? : string;
+            /** Birth Zipcode */
+            birthZip ? : string;
+            /** Cellphone number */
+            cellPhone ? : phoneNumber;
+            /** National identification number of your company */
+            companyNationalIdentificationNumber ? : string;
+            /** Email address */
+            email: string;
+            /** Fax number */
+            fax ? : phoneNumber;
+            /** First name */
+            firstName: string;
+            /** Gender */
+            gender ? : nichandle.GenderEnum;
+            /** Contact Identifier */
+            id: number;
+            /** Language */
+            language: nichandle.LanguageEnum;
+            /** Last name */
+            lastName: string;
+            /** Legal form of the contact */
+            legalForm: nichandle.LegalFormEnum;
+            /** National identification number of the contact */
+            nationalIdentificationNumber ? : string;
+            /** Nationality */
+            nationality ? : nichandle.CountryEnum;
+            /** Organisation name */
+            organisationName ? : string;
+            /** Organisation type */
+            organisationType ? : string;
+            /** Telephone number */
+            phone ? : phoneNumber;
+            /** Spare email address */
+            spareEmail ? : string;
+            /** VAT number */
+            vat ? : string;
+        }
+        /** Extras informations about a field */
+        interface FieldInformation {
+            /** Name of the field concerned by restrictions */
+            fieldName: string;
+            /** Indicates if the field is mandatory when editing */
+            mandatory: boolean;
+            /** Indicates if the field can't be edited */
+            readOnly: boolean;
+        }
+    }
+    namespace debt {
+        namespace associatedObject {
+            /** The payment infos linked to this debt entry */
+            interface PaymentInfo {
+                /** Optional customer description */
+                description ? : string;
+                /** Payment mean used for this debt operation */
+                paymentType: billing.PaymentMeanEnum;
+                /** Public payment mean label */
+                publicLabel ? : string;
+            }
+            /** Type of objects an order can be linked to */
+            enum TypeEnum {
+                "Bill",
+                "DebtOperation",
+                "Deposit",
+                "Order",
+                "OvhAccountMovement",
+                "Refund",
+                "Withdrawal"
+            }
+        }
+        namespace entry {
+            /** The object linked to this debt entry */
+            interface AssociatedObject {
+                /** id */
+                id ? : string;
+                /** paymentInfo */
+                paymentInfo ? : debt.associatedObject.PaymentInfo;
+                /** subId */
+                subId ? : string;
+                /** type */
+                type ? : debt.associatedObject.TypeEnum;
+            }
+            /** All operations a debt entry can represent */
+            enum OperationEnum {
+                "BANK_TRANSFER_MANUAL",
+                "CANCEL",
+                "CASH_MANUAL",
+                "CHECK_MANUAL",
+                "CREDITCARD",
+                "CREDITCARD_AUTOMATIC",
+                "CREDITCARD_MANUAL",
+                "CREDIT_ACCOUNT_AUTOMATIC",
+                "CREDIT_CARD_AUTOMATIC",
+                "CREDIT_CARD_MANUAL",
+                "CURRENT_ACCOUNT_AUTOMATIC",
+                "CURRENT_ACCOUNT_MANUAL",
+                "DOMESTIC_CARD_AUTOMATIC",
+                "DOMESTIC_CARD_MANUAL",
+                "EDINAR_MANUAL",
+                "ENTERPRISE_AUTOMATIC",
+                "ENTERPRISE_MANUAL",
+                "IDEAL_AUTOMATIC",
+                "IDEAL_MANUAL",
+                "INTERNAL_TRUSTED_ACCOUNT_AUTOMATIC",
+                "INTERNAL_TRUSTED_ACCOUNT_MANUAL",
+                "MULTIBANCO_AUTOMATIC",
+                "MULTIBANCO_MANUAL",
+                "ORDER",
+                "PAYPAL_AUTOMATIC",
+                "PAYPAL_MANUAL",
+                "PAYU_AUTOMATIC",
+                "PAYU_MANUAL",
+                "RECOVERY_TRANSFER_AUTOMATIC",
+                "REFUND",
+                "REFUND_CHECK",
+                "REFUND_CREDITCARD",
+                "REFUND_CREDIT_ACCOUNT",
+                "REFUND_CREDIT_CARD",
+                "REFUND_CURRENT_ACCOUNT",
+                "REFUND_DOMESTIC_CARD",
+                "REFUND_ENTERPRISE",
+                "REFUND_IDEAL",
+                "REFUND_INTERNAL_TRUSTED_ACCOUNT",
+                "REFUND_LOSS",
+                "REFUND_MULTIBANCO",
+                "REFUND_PAYPAL",
+                "REFUND_PAYU",
+                "REFUND_RUPAY",
+                "REFUND_SEPA",
+                "REFUND_SEPA_DIRECT_DEBIT",
+                "REFUND_TRANSFER",
+                "REFUND_UNKNOWN",
+                "RUPAY_AUTOMATIC",
+                "RUPAY_MANUAL",
+                "SEPA_AUTOMATIC",
+                "SEPA_DIRECT_DEBIT_AUTOMATIC",
+                "SEPA_DIRECT_DEBIT_MANUAL",
+                "TRANSFER_MANUAL",
+                "UNPAID_CHECK",
+                "UNPAID_CREDITCARD",
+                "UNPAID_CREDIT_ACCOUNT",
+                "UNPAID_CREDIT_CARD",
+                "UNPAID_CURRENT_ACCOUNT",
+                "UNPAID_DOMESTIC_CARD",
+                "UNPAID_ENTERPRISE",
+                "UNPAID_IDEAL",
+                "UNPAID_INTERNAL_TRUSTED_ACCOUNT",
+                "UNPAID_MULTIBANCO",
+                "UNPAID_PAYPAL",
+                "UNPAID_PAYU",
+                "UNPAID_RUPAY",
+                "UNPAID_SEPA",
+                "UNPAID_SEPA_DIRECT_DEBIT",
+                "UNPAID_WITHDRAW",
+                "WARRANT_MANUAL",
+                "WITHDRAW_AUTOMATIC"
+            }
+            /** All status a debt HistoryOrder entry can be in */
+            enum StatusDebtOrderEnum {
+                "PAID",
+                "REFUNDED",
+                "TO_BE_PAID",
+                "UNMATURED",
+                "UNPAID"
+            }
+            /** All status a debt entry can be in */
+            enum StatusEnum {
+                "CANCELLED",
+                "DONE",
+                "FAILED",
+                "PAID",
+                "PENDING",
+                "TODO"
+            }
+        } /** Debt balance of the account */
+        interface Balance {
+            /** active */
+            active: boolean;
+            /** Amount of debts the account has */
+            dueAmount: order.Price;
+            /** Amount currently being processed */
+            pendingAmount: order.Price;
+            /** Reserved amount awaiting payment */
+            todoAmount: order.Price;
+            /** Unmatured amount for deferred payment term */
+            unmaturedAmount: order.Price;
+        }
+        /** State of a debt */
+        interface Debt {
+            /** Original amount of the debt */
+            amount: order.Price;
+            /** Date the debt was created on */
+            date: string;
+            /** debtId */
+            debtId: number;
+            /** Amount you still owe for that debt */
+            dueAmount: order.Price;
+            /** If specified, the debt will not be recovered before that date */
+            dueDate ? : string;
+            /** The order the debt relates to */
+            orderId: number;
+            /** Amount currently being processed */
+            pendingAmount: order.Price;
+            /** Status of a debt */
+            status: debt.entry.StatusDebtOrderEnum;
+            /** Reserved amount awaiting payment */
+            todoAmount: order.Price;
+            /** Unmatured amount for deferred payment term */
+            unmaturedAmount: order.Price;
+        }
+        /** Operation that happend on a debt */
+        interface Operation {
+            /** Amount of the operation */
+            amount: order.Price;
+            /** Date the operation took place on */
+            date: string;
+            /** Order id associated to the deposit */
+            depositOrderId: number;
+            /** operationId */
+            operationId: number;
+            /** Status of the operation */
+            status: debt.entry.StatusEnum;
+            /** Type of movement this operation represents */
+            type ? : debt.entry.OperationEnum;
+        }
+    }
+    namespace dedicated {
+        namespace installationTemplate {
+            /** Available installation templates */
+            interface Templates {
+                /** list of all language available for this template */
+                availableLanguages: dedicated.TemplateOsLanguageEnum[];
+                /** this template bit format */
+                bitFormat: dedicated.server.BitFormatEnum;
+                /** category of this template (informative only) */
+                category: dedicated.TemplateOsUsageEnum;
+                /** Customizable template properties  */
+                customization ? : dedicated.TemplateOsProperties;
+                /** the default language of this template */
+                defaultLanguage: dedicated.TemplateOsLanguageEnum;
+                /** information about this template */
+                description: string;
+                /** the distribution this template is based on */
+                distribution: string;
+                /** after this date, install of this template will not be possible at OVH */
+                endOfInstall: string;
+                /** this template family type */
+                family: dedicated.TemplateOsTypeEnum;
+                /** list of all filesystems available for this template */
+                filesystems: dedicated.server.FileSystemEnum[];
+                /** This distribution supports hardware raid configuration through the OVH API */
+                hardRaidConfiguration ? : boolean;
+                /** Inputs */
+                inputs ? : dedicated.TemplateOsInput[];
+                /** This distribution licensing details */
+                license ? : dedicated.TemplateOsInfoLicense;
+                /** This distribution supports Logical Volumes (Linux LVM) */
+                lvmReady ? : boolean;
+                /** Partitioning customization is not available for this OS template */
+                noPartitioning: boolean;
+                /** This distribution project details */
+                project ? : dedicated.TemplateOsInfoProject;
+                /** Partitioning customization is available but limited to mirroring for this OS template */
+                softRaidOnlyMirroring: boolean;
+                /** this template subfamily type */
+                subfamily: dedicated.TemplateOsSubfamilyEnum;
+                /** This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel */
+                supportsDistributionKernel ? : boolean;
+                /** This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2 TB */
+                supportsGptLabel ? : boolean;
+                /** This distribution supports RTM software */
+                supportsRTM: boolean;
+                /** This distribution supports the microsoft SQL server */
+                supportsSqlServer ? : boolean;
+                /** This template name */
+                templateName: string;
+            }
+            /** Hardware RAID defined in this partitioning scheme */
+            interface hardwareRaid {
+                /** Disk list */
+                disks: string[];
+                /** RAID mode */
+                mode: dedicated.TemplateOsHardwareRaidEnum;
+                /** Hardware RAID name */
+                name: string;
+                /** Specifies the creation order of the hardware RAID */
+                step: number;
+            }
+            /** Partitioning schemes available on this template */
+            interface templatePartitioningSchemes {
+                /** This partitioning scheme name */
+                name: string;
+                /** on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications) */
+                priority: number;
+            }
+            /**  Partitions defined in this partitioning scheme */
+            interface templatePartitions {
+                /** Partition filesytem */
+                filesystem: dedicated.server.FileSystemEnum;
+                /** Partition mount point */
+                mountpoint: string;
+                /** specifies the creation order of the partition on the disk */
+                order: number;
+                /** Partition raid */
+                raid ? : dedicated.server.PartitionRaidEnum;
+                /** Partition size (unit: MB GB TB, MB by default), 0 => rest of the space */
+                size: complexType.UnitAndValue < long > ;
+                /** Partition type */
+                type: dedicated.TemplatePartitionTypeEnum;
+                /** Logical volume name (required if type is lv) or optional zpool name if filesystem is ZFS */
+                volumeName ? : string;
+            }
+        }
+        namespace server {
+            /** Available os bit format */
+            enum BitFormatEnum {
+                "32",
+                "64"
+            }
+            /** FileSystems */
+            enum FileSystemEnum {
+                "btrfs",
+                "ext3",
+                "ext4",
+                "fat16",
+                "none",
+                "ntfs",
+                "reiserfs",
+                "swap",
+                "ufs",
+                "vmfs5",
+                "vmfs6",
+                "vmfsl",
+                "xfs",
+                "zfs"
+            }
+            /** partition raid type */
+            enum PartitionRaidEnum {
+                "0",
+                "1",
+                "10",
+                "5",
+                "6",
+                "7"
+            }
+        } /** Hardware RAID enum */
+        enum TemplateOsHardwareRaidEnum {
+            "raid0",
+            "raid1",
+            "raid10",
+            "raid5",
+            "raid50",
+            "raid6",
+            "raid60"
+        }
+        /** A structure describing some interesting facts about an OS template licensing */
+        interface TemplateOsInfoLicense {
+            /** OS template license OS details */
+            os ? : dedicated.TemplateOsInfoLicenseItem;
+            /** OS template license usage details */
+            usage ? : dedicated.TemplateOsInfoLicenseItem;
+        }
+        /** A structure describing some interesting facts about an OS template license item */
+        interface TemplateOsInfoLicenseItem {
+            /** OS template license item names */
+            name ? : dedicated.TemplateOsInfoLicenseItemEnum[];
+            /** OS template license item url */
+            url ? : string;
+        }
+        /** Standard license name according to SPDX */
+        enum TemplateOsInfoLicenseItemEnum {
+            "0BSD",
+            "AAL",
+            "ADSL",
+            "AFL-1.1",
+            "AFL-1.2",
+            "AFL-2.0",
+            "AFL-2.1",
+            "AFL-3.0",
+            "AGPL-1.0-only",
+            "AGPL-1.0-or-later",
+            "AGPL-3.0-only",
+            "AGPL-3.0-or-later",
+            "AMDPLPA",
+            "AML",
+            "AMPAS",
+            "ANTLR-PD",
+            "ANTLR-PD-fallback",
+            "APAFML",
+            "APL-1.0",
+            "APSL-1.0",
+            "APSL-1.1",
+            "APSL-1.2",
+            "APSL-2.0",
+            "Abstyles",
+            "Adobe-2006",
+            "Adobe-Glyph",
+            "Afmparse",
+            "Aladdin",
+            "Apache-1.0",
+            "Apache-1.1",
+            "Apache-2.0",
+            "Artistic-1.0",
+            "Artistic-1.0-Perl",
+            "Artistic-1.0-cl8",
+            "Artistic-2.0",
+            "BSD-1-Clause",
+            "BSD-2-Clause",
+            "BSD-2-Clause-Patent",
+            "BSD-2-Clause-Views",
+            "BSD-3-Clause",
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause-Clear",
+            "BSD-3-Clause-LBNL",
+            "BSD-3-Clause-Modification",
+            "BSD-3-Clause-No-Nuclear-License",
+            "BSD-3-Clause-No-Nuclear-License-2014",
+            "BSD-3-Clause-No-Nuclear-Warranty",
+            "BSD-3-Clause-Open-MPI",
+            "BSD-4-Clause",
+            "BSD-4-Clause-Shortened",
+            "BSD-4-Clause-UC",
+            "BSD-Protection",
+            "BSD-Source-Code",
+            "BSL-1.0",
+            "BUSL-1.1",
+            "Bahyph",
+            "Barr",
+            "Beerware",
+            "BitTorrent-1.0",
+            "BitTorrent-1.1",
+            "BlueOak-1.0.0",
+            "Borceux",
+            "C-UDA-1.0",
+            "CAL-1.0",
+            "CAL-1.0-Combined-Work-Exception",
+            "CATOSL-1.1",
+            "CC-BY-1.0",
+            "CC-BY-2.0",
+            "CC-BY-2.5",
+            "CC-BY-3.0",
+            "CC-BY-4.0",
+            "CC-BY-NC-1.0",
+            "CC-BY-NC-2.0",
+            "CC-BY-NC-2.5",
+            "CC-BY-NC-3.0",
+            "CC-BY-NC-4.0",
+            "CC-BY-NC-ND-1.0",
+            "CC-BY-NC-ND-2.0",
+            "CC-BY-NC-ND-2.5",
+            "CC-BY-NC-ND-3.0",
+            "CC-BY-NC-ND-4.0",
+            "CC-BY-NC-SA-1.0",
+            "CC-BY-NC-SA-2.0",
+            "CC-BY-NC-SA-2.5",
+            "CC-BY-NC-SA-3.0",
+            "CC-BY-NC-SA-4.0",
+            "CC-BY-ND-1.0",
+            "CC-BY-ND-2.0",
+            "CC-BY-ND-2.5",
+            "CC-BY-ND-3.0",
+            "CC-BY-ND-4.0",
+            "CC-BY-SA-1.0",
+            "CC-BY-SA-2.0",
+            "CC-BY-SA-2.5",
+            "CC-BY-SA-3.0",
+            "CC-BY-SA-4.0",
+            "CC-PDDC",
+            "CC0-1.0",
+            "CDDL-1.0",
+            "CDDL-1.1",
+            "CDLA-Permissive-1.0",
+            "CDLA-Sharing-1.0",
+            "CECILL-1.0",
+            "CECILL-1.1",
+            "CECILL-2.0",
+            "CECILL-2.1",
+            "CECILL-B",
+            "CECILL-C",
+            "CERN-OHL-1.1",
+            "CERN-OHL-1.2",
+            "CERN-OHL-P-2.0",
+            "CERN-OHL-S-2.0",
+            "CERN-OHL-W-2.0",
+            "CNRI-Jython",
+            "CNRI-Python",
+            "CNRI-Python-GPL-Compatible",
+            "CPAL-1.0",
+            "CPL-1.0",
+            "CPOL-1.02",
+            "CUA-OPL-1.0",
+            "Caldera",
+            "ClArtistic",
+            "Condor-1.1",
+            "Crossword",
+            "CrystalStacker",
+            "Cube",
+            "D-FSL-1.0",
+            "DFSG",
+            "DOC",
+            "DRL-1.0",
+            "DSDP",
+            "Dotseqn",
+            "ECL-1.0",
+            "ECL-2.0",
+            "EFL-1.0",
+            "EFL-2.0",
+            "EPICS",
+            "EPL-1.0",
+            "EPL-2.0",
+            "EUDatagrid",
+            "EUPL-1.0",
+            "EUPL-1.1",
+            "EUPL-1.2",
+            "Entessa",
+            "ErlPL-1.1",
+            "Eurosym",
+            "FSFAP",
+            "FSFUL",
+            "FSFULLR",
+            "FTL",
+            "Fair",
+            "Frameworx-1.0",
+            "FreeBSD-DOC",
+            "FreeImage",
+            "GD",
+            "GFDL-1.1-invariants-only",
+            "GFDL-1.1-invariants-or-later",
+            "GFDL-1.1-no-invariants-only",
+            "GFDL-1.1-no-invariants-or-later",
+            "GFDL-1.1-only",
+            "GFDL-1.1-or-later",
+            "GFDL-1.2-invariants-only",
+            "GFDL-1.2-invariants-or-later",
+            "GFDL-1.2-no-invariants-only",
+            "GFDL-1.2-no-invariants-or-later",
+            "GFDL-1.2-only",
+            "GFDL-1.2-or-later",
+            "GFDL-1.3-invariants-only",
+            "GFDL-1.3-invariants-or-later",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-only",
+            "GFDL-1.3-or-later",
+            "GL2PS",
+            "GLWTPL",
+            "GPL-1.0-only",
+            "GPL-1.0-or-later",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later",
+            "Giftware",
+            "Glide",
+            "Glulxe",
+            "HPND",
+            "HPND-sell-variant",
+            "HTMLTIDY",
+            "HaskellReport",
+            "Hippocratic-2.1",
+            "IBM-pibs",
+            "ICU",
+            "IJG",
+            "IPA",
+            "IPL-1.0",
+            "ISC",
+            "ImageMagick",
+            "Imlib2",
+            "Info-ZIP",
+            "Intel",
+            "Intel-ACPI",
+            "Interbase-1.0",
+            "JPNIC",
+            "JSON",
+            "JasPer-2.0",
+            "LAL-1.2",
+            "LAL-1.3",
+            "LGPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-only",
+            "LGPL-3.0-or-later",
+            "LGPLLR",
+            "LPL-1.0",
+            "LPL-1.02",
+            "LPPL-1.0",
+            "LPPL-1.1",
+            "LPPL-1.2",
+            "LPPL-1.3a",
+            "LPPL-1.3c",
+            "Latex2e",
+            "Leptonica",
+            "LiLiQ-P-1.1",
+            "LiLiQ-R-1.1",
+            "LiLiQ-Rplus-1.1",
+            "Libpng",
+            "Linux-OpenIB",
+            "MIT",
+            "MIT-0",
+            "MIT-CMU",
+            "MIT-Modern-Variant",
+            "MIT-advertising",
+            "MIT-enna",
+            "MIT-feh",
+            "MIT-open-group",
+            "MITNFA",
+            "MPL-1.0",
+            "MPL-1.1",
+            "MPL-2.0",
+            "MPL-2.0-no-copyleft-exception",
+            "MS-PL",
+            "MS-RL",
+            "MTLL",
+            "MakeIndex",
+            "MirOS",
+            "Motosoto",
+            "MulanPSL-1.0",
+            "MulanPSL-2.0",
+            "Multics",
+            "Mup",
+            "NAIST-2003",
+            "NASA-1.3",
+            "NBPL-1.0",
+            "NCGL-UK-2.0",
+            "NCSA",
+            "NGPL",
+            "NIST-PD",
+            "NIST-PD-fallback",
+            "NLOD-1.0",
+            "NLPL",
+            "NOSL",
+            "NPL-1.0",
+            "NPL-1.1",
+            "NPOSL-3.0",
+            "NRL",
+            "NTP",
+            "NTP-0",
+            "Naumen",
+            "Net-SNMP",
+            "NetCDF",
+            "Newsletr",
+            "Nokia",
+            "Noweb",
+            "O-UDA-1.0",
+            "OCCT-PL",
+            "OCLC-2.0",
+            "ODC-By-1.0",
+            "ODbL-1.0",
+            "OFL-1.0",
+            "OFL-1.0-RFN",
+            "OFL-1.0-no-RFN",
+            "OFL-1.1",
+            "OFL-1.1-RFN",
+            "OFL-1.1-no-RFN",
+            "OGC-1.0",
+            "OGDL-Taiwan-1.0",
+            "OGL-Canada-2.0",
+            "OGL-UK-1.0",
+            "OGL-UK-2.0",
+            "OGL-UK-3.0",
+            "OGTSL",
+            "OLDAP-1.1",
+            "OLDAP-1.2",
+            "OLDAP-1.3",
+            "OLDAP-1.4",
+            "OLDAP-2.0",
+            "OLDAP-2.0.1",
+            "OLDAP-2.1",
+            "OLDAP-2.2",
+            "OLDAP-2.2.1",
+            "OLDAP-2.2.2",
+            "OLDAP-2.3",
+            "OLDAP-2.4",
+            "OLDAP-2.5",
+            "OLDAP-2.6",
+            "OLDAP-2.7",
+            "OLDAP-2.8",
+            "OML",
+            "OPL-1.0",
+            "OSET-PL-2.1",
+            "OSL-1.0",
+            "OSL-1.1",
+            "OSL-2.0",
+            "OSL-2.1",
+            "OSL-3.0",
+            "OpenSSL",
+            "PDDL-1.0",
+            "PHP-3.0",
+            "PHP-3.01",
+            "PSF-2.0",
+            "Parity-6.0.0",
+            "Parity-7.0.0",
+            "Plexus",
+            "PolyForm-Noncommercial-1.0.0",
+            "PolyForm-Small-Business-1.0.0",
+            "PostgreSQL",
+            "Python-2.0",
+            "QPL-1.0",
+            "Qhull",
+            "RHeCos-1.1",
+            "RPL-1.1",
+            "RPL-1.5",
+            "RPSL-1.0",
+            "RSA-MD",
+            "RSCPL",
+            "Rdisc",
+            "Ruby",
+            "SAX-PD",
+            "SCEA",
+            "SGI-B-1.0",
+            "SGI-B-1.1",
+            "SGI-B-2.0",
+            "SHL-0.5",
+            "SHL-0.51",
+            "SISSL",
+            "SISSL-1.2",
+            "SMLNJ",
+            "SMPPL",
+            "SNIA",
+            "SPL-1.0",
+            "SSH-OpenSSH",
+            "SSH-short",
+            "SSPL-1.0",
+            "SWL",
+            "Saxpath",
+            "Sendmail",
+            "Sendmail-8.23",
+            "SimPL-2.0",
+            "Sleepycat",
+            "Spencer-86",
+            "Spencer-94",
+            "Spencer-99",
+            "SugarCRM-1.1.3",
+            "TAPR-OHL-1.0",
+            "TCL",
+            "TCP-wrappers",
+            "TMate",
+            "TORQUE-1.1",
+            "TOSL",
+            "TU-Berlin-1.0",
+            "TU-Berlin-2.0",
+            "UCL-1.0",
+            "UPL-1.0",
+            "Unicode-DFS-2015",
+            "Unicode-DFS-2016",
+            "Unicode-TOU",
+            "Unlicense",
+            "VOSTROM",
+            "VSL-1.0",
+            "Vim",
+            "W3C",
+            "W3C-19980720",
+            "W3C-20150513",
+            "WTFPL",
+            "Watcom-1.0",
+            "Wsuipa",
+            "X11",
+            "XFree86-1.1",
+            "XSkat",
+            "Xerox",
+            "Xnet",
+            "ZPL-1.1",
+            "ZPL-2.0",
+            "ZPL-2.1",
+            "Zed",
+            "Zend-2.0",
+            "Zimbra-1.3",
+            "Zimbra-1.4",
+            "Zlib",
+            "blessing",
+            "bzip2-1.0.5",
+            "bzip2-1.0.6",
+            "copyleft-next-0.3.0",
+            "copyleft-next-0.3.1",
+            "curl",
+            "diffmark",
+            "dvipdfm",
+            "eGenix",
+            "etalab-2.0",
+            "freeware",
+            "gSOAP-1.3b",
+            "gnuplot",
+            "iMatix",
+            "libpng-2.0",
+            "libselinux-1.0",
+            "libtiff",
+            "mpich2",
+            "proprietary",
+            "psfrag",
+            "psutils",
+            "unknown",
+            "xinetd",
+            "xpp",
+            "zlib-acknowledgement"
+        }
+        /** A structure describing some interesting facts about an OS template project */
+        interface TemplateOsInfoProject {
+            /** OS template project OS details */
+            os ? : dedicated.TemplateOsInfoProjectItem;
+            /** OS template project usage details */
+            usage ? : dedicated.TemplateOsInfoProjectItem;
+        }
+        /** A structure describing some interesting facts about an OS template project item */
+        interface TemplateOsInfoProjectItem {
+            /** OS template project item governance */
+            governance ? : string[];
+            /** OS template project item release notes */
+            releaseNotes ? : string;
+            /** OS template project item url */
+            url ? : string;
+            /** OS template project item version */
+            version ? : string;
+        }
+        /** A structure describing input questions for the specific OS template */
+        interface TemplateOsInput {
+            /** Default value */
+            default ? : string;
+            /** Input question description */
+            description ? : string;
+            /** When type is enum: name of the possible enum values */
+            enum: string[];
+            /** Whether answering to that question is mandatory in order to trigger an install with that specific OS or not */
+            mandatory: boolean;
+            /** Input question name */
+            name: string;
+            /** Input type */
+            type: dedicated.TemplateOsInputTypeEnum;
+        }
+        /** Template OS Input type enum */
+        enum TemplateOsInputTypeEnum {
+            "boolean",
+            "date",
+            "email",
+            "enum",
+            "hexstring",
+            "ip",
+            "keyValue",
+            "number",
+            "string",
+            "text",
+            "time",
+            "url",
+            "uuid"
+        }
+        /** all language available */
+        enum TemplateOsLanguageEnum {
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fi",
+            "fr",
+            "he",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "lv",
+            "nb",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "tu",
+            "uk",
+            "zh-Hans-CN",
+            "zh-Hans-HK"
+        }
+        /** A structure describing properties customizables about this dedicated installation template */
+        interface TemplateOsProperties {
+            /** Set up the server using the provided hostname instead of the default hostname */
+            customHostname ? : string;
+            /** Indicate the URL where your postinstall customisation script is located */
+            postInstallationScriptLink ? : string;
+            /** indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is "loh1Xee7eo OK OK OK UGh8Ang1Gu */
+            postInstallationScriptReturn ? : string;
+            /** Name of the ssh key that should be installed. Password login will be disabled */
+            sshKeyName ? : string;
+            /** Use the distribution's native kernel instead of the recommended OVH Kernel */
+            useDistributionKernel ? : boolean;
+        }
+        /** Os subfamily definition */
+        enum TemplateOsSubfamilyEnum {
+            "alma",
+            "aos",
+            "arch",
+            "byoi",
+            "centos",
+            "cloudlinux",
+            "coreos",
+            "debian",
+            "dgx",
+            "esxi",
+            "fedora",
+            "freebsd",
+            "gentoo",
+            "hyperv",
+            "omnios",
+            "openio",
+            "openmediavault",
+            "opensuse",
+            "ovh",
+            "pcs",
+            "power",
+            "proxmox",
+            "rhel",
+            "rocky",
+            "slackware",
+            "sles-sap",
+            "smartos",
+            "solusvm",
+            "ubuntu",
+            "windows-server-core",
+            "windows-server-desktop-exp",
+            "xcp",
+            "xen"
+        }
+        /** Os type */
+        enum TemplateOsTypeEnum {
+            "bsd",
+            "custom",
+            "ibm",
+            "linux",
+            "solaris",
+            "unix",
+            "windows"
+        }
+        /** Os usage definition */
+        enum TemplateOsUsageEnum {
+            "backup",
+            "basic",
+            "customer",
+            "database",
+            "erp",
+            "hosting",
+            "management",
+            "other",
+            "readyToUse",
+            "virtualisation",
+            "virtualization"
+        }
+        /** partition type */
+        enum TemplatePartitionTypeEnum {
+            "logical",
+            "lv",
+            "primary"
+        }
+    }
+    namespace domain {
+        /** Document file format */
+        enum DocumentFormatsEnum {
+            "gif",
+            "jpeg",
+            "jpg",
+            "pdf",
+            "png"
+        }
+        /** Operation actions */
+        enum OperationActionEnum {
+            "canCancel",
+            "canCorrect",
+            "canRelaunch",
+            "canReset"
+        }
+        /** Operation functions */
+        enum OperationFunctionEnum {
+            "ContactControl",
+            "DnsAnycastActivate",
+            "DnsAnycastDeactivate",
+            "DnssecDisable",
+            "DnssecEnable",
+            "DnssecResigning",
+            "DnssecRollKsk",
+            "DnssecRollZsk",
+            "DomainAfterMarket",
+            "DomainContactControl",
+            "DomainContactUpdate",
+            "DomainControl",
+            "DomainCreate",
+            "DomainDelete",
+            "DomainDnsUpdate",
+            "DomainDsUpdate",
+            "DomainEmailRedirectionsCreate",
+            "DomainEmailRedirectionsDelete",
+            "DomainHold",
+            "DomainHostCreate",
+            "DomainHostDelete",
+            "DomainHostUpdate",
+            "DomainIncomingTransfer",
+            "DomainLock",
+            "DomainOutgoingTransfer",
+            "DomainRegistryDelete",
+            "DomainRenew",
+            "DomainResourceDelete",
+            "DomainRestore",
+            "DomainTrade",
+            "DomainUnhold",
+            "DomainUnlock",
+            "ZoneImport"
+        }
+        /** Operation status */
+        enum OperationStatusEnum {
+            "cancelled",
+            "doing",
+            "done",
+            "error",
+            "todo"
+        }
+        /** One step from an operation */
+        interface OperationStep {
+            /** Description of the step */
+            description: string;
+            /** Execution time of the step */
+            executionDuration: number;
+            /** Name of the step */
+            step: string;
+        }
+        /** Tasks associated to domain */
+        interface Task {
+            /** Can accelerate the task */
+            canAccelerate: boolean;
+            /** Can cancel the task */
+            canCancel: boolean;
+            /** Can relaunch the task */
+            canRelaunch: boolean;
+            /** Comment about the task */
+            comment ? : string;
+            /** Creation date of the task */
+            creationDate: string;
+            /** Domain of the task */
+            domain ? : string;
+            /** Done date of the task */
+            doneDate ? : string;
+            /** Function of the task */
+            function: string;
+            /** Id of the task */
+            id: number;
+            /** Last update date of the task */
+            lastUpdate: string;
+            /** Status of the task */
+            status: domain.OperationStatusEnum;
+            /** Todo date of the task */
+            todoDate: string;
+        }
+    }
+    namespace http {
+        /** All HTTP methods available */
+        enum MethodEnum {
+            "DELETE",
+            "GET",
+            "POST",
+            "PUT"
+        }
+    }
+    namespace insight {
+        /** Insight access token */
+        interface Access {
+            /** Access token */
+            access: string;
+            /** Token creation date */
+            createdAt: string;
+            /** Token expiration date */
+            expireAt: string;
+        }
+    }
+    namespace ip {
+        /** Possible values for IP campuses' names */
+        enum CampusEnum {
+            "BHS",
+            "ERI",
+            "GRA",
+            "HIL",
+            "LIM",
+            "RBX",
+            "SBG",
+            "SGP",
+            "SY2",
+            "SYD",
+            "VIN",
+            "WAW",
+            "YNM"
+        }
+    }
+    namespace me {
+        namespace SupportLevel {
+            /** Support level of an account */
+            interface Level {
+                /** Level of support */
+                level: me.SupportLevel.LevelTypeEnum;
+            }
+            /** Type of level */
+            enum LevelTypeEnum {
+                "business",
+                "enterprise",
+                "premium",
+                "premium-accredited",
+                "standard"
+            }
+        }
+        namespace abuse {
+            /** Get report API response */
+            interface Abuse {
+                /** Abuse category */
+                category: me.abuse.AbuseCategoryEnum;
+                /** Creation date of the abuse */
+                creationDate: string;
+                /** Public ID of the abuse case */
+                publicId: string;
+                /** Service where is hosted the abuse */
+                service: string;
+                /** Abuse case status */
+                status: me.abuse.AbuseStatusEnum;
+            }
+            /** The abuse categories */
+            enum AbuseCategoryEnum {
+                "Compromised",
+                "Copyright",
+                "Illegal",
+                "Intrusion",
+                "Malware",
+                "Network Attack",
+                "Other",
+                "Phishing",
+                "Spam"
+            }
+            /** The abuse status */
+            enum AbuseStatusEnum {
+                "Answered",
+                "Claimed",
+                "Closed",
+                "Escalated",
+                "Open",
+                "Paused",
+                "Reopened",
+                "Updated",
+                "WaitingAnswer"
+            }
+        }
+        namespace agreements {
+            /** State of the agreement */
+            enum AgreementStatusEnum {
+                "ko",
+                "obsolete",
+                "ok",
+                "todo"
+            }
+            /** Contract Agreement */
+            interface ContractAgreement {
+                /** State of the agreement */
+                agreed: me.agreements.AgreementStatusEnum;
+                /** Contract ID */
+                contractId: number;
+                /** Date of creation if the agreement is not signed. Date of signature if the agreement is signed */
+                date: string;
+                /** Contract Agreement ID */
+                id: number;
+            }
+        }
+        namespace billing {
+            namespace group {
+                namespace service {
+                    /** Missing description */
+                    interface Create {
+                        /** A service ID to associate */
+                        serviceId: number;
+                    }
+                } /** Missing description */
+                interface BillingGroup {
+                    /** Contact ID from /me/contact */
+                    contactId ? : number;
+                    /** Creation date */
+                    creationDate: string;
+                    /** Billing group ID */
+                    groupId: number;
+                    /** Last update date */
+                    lastUpdate: string;
+                    /** Billing group unique name */
+                    name: string;
+                    /** Payment method ID associated to the billing group */
+                    paymentMethodId ? : number;
+                }
+                /** Missing description */
+                interface Service {
+                    /** Billing group ID */
+                    groupId: number;
+                    /** Service ID */
+                    serviceId: number;
+                }
+            }
+            namespace purchaseOrder {
+                /** Purchase order creation payload */
+                interface Creation {
+                    /** Active */
+                    active ? : boolean;
+                    /** Billing Group identifier */
+                    billingGroupId ? : number;
+                    /** Description */
+                    description ? : string;
+                    /** End date */
+                    endDate ? : string;
+                    /** Reference */
+                    reference: string;
+                    /** Start date */
+                    startDate: string;
+                    /** Type of a purchase order */
+                    type: me.billing.purchaseOrder.PurchaseOrderTypeEnum;
+                }
+                /** Purchase Order */
+                interface PurchaseOrder {
+                    /** Active */
+                    active ? : boolean;
+                    /** Billing Group identifier */
+                    billingGroupId ? : number;
+                    /** Creation date */
+                    creationDate: string;
+                    /** Description */
+                    description ? : string;
+                    /** End date */
+                    endDate ? : string;
+                    /** Purchase Order identifier */
+                    id: number;
+                    /** Last update date */
+                    lastUpdate: string;
+                    /** Reference */
+                    reference: string;
+                    /** Start date */
+                    startDate: string;
+                    /** Status */
+                    status: me.billing.purchaseOrder.StatusEnum;
+                    /** Type of a purchase order */
+                    type: me.billing.purchaseOrder.PurchaseOrderTypeEnum;
+                }
+                /** Type of a purchase order */
+                enum PurchaseOrderTypeEnum {
+                    "PURCHASE_ORDER",
+                    "REFERENCE_ORDER"
+                }
+                /** Status of the Purchase Order */
+                enum StatusEnum {
+                    "CREATED",
+                    "DELETED"
+                }
+                /** Purchase order update payload */
+                interface Update {
+                    /** Active */
+                    active ? : boolean;
+                    /** Billing group identifier */
+                    billingGroupId ? : number;
+                    /** Description */
+                    description ? : string;
+                    /** End date */
+                    endDate ? : string;
+                    /** Reference */
+                    reference ? : string;
+                    /** Start date */
+                    startDate ? : string;
+                    /** Type of a purchase order */
+                    type ? : me.billing.purchaseOrder.PurchaseOrderTypeEnum;
+                }
+            }
+            namespace tasks {
+                /** Asynchronous task related to Billing */
+                interface Task {
+                    /** Unique identifier of the Task */
+                    id: number;
+                    /** Metadata linked to the Task. Will help you determine which object it relates to */
+                    metadata: me.billing.tasks.TaskMetadatum[];
+                    /** Describes which Task is being performed */
+                    name: me.billing.tasks.TaskNameEnum;
+                    /** Current status of the Task */
+                    status: me.billing.tasks.TaskStatusEnum;
+                    /** Current step of the Task. The step depends on the Task name. */
+                    step: string;
+                }
+                /** Metadatum linked to a Task */
+                interface TaskMetadatum {
+                    /** Metadatum key */
+                    key: string;
+                    /** Metadatum value */
+                    value: string;
+                }
+                /** Billing tasks names */
+                enum TaskNameEnum {
+                    "contact/change"
+                }
+                /** Billing tasks statuses */
+                enum TaskStatusEnum {
+                    "CANCELLED",
+                    "DOING",
+                    "DONE",
+                    "ERROR",
+                    "INIT",
+                    "PROBLEM",
+                    "TODO"
+                }
+            }
+        }
+        namespace consent {
+            /** Consent campaign */
+            interface Campaign {
+                /** Campaign description */
+                description: string;
+                /** Campaign name */
+                name: string;
+                /** Campaign type */
+                type: me.consent.CampaignTypeEnum;
+            }
+            /** Campaign type */
+            enum CampaignTypeEnum {
+                "OPTIN",
+                "OPTOUT"
+            }
+            /** Customer consent information for a campaign */
+            interface Consent {
+                /** Campaign name */
+                campaign: string;
+                /** Consent decisions history for this campaign */
+                history: me.consent.Decision[];
+                /** Campaign type */
+                type: me.consent.CampaignTypeEnum;
+                /** Current consent value */
+                value: boolean;
+            }
+            /** Customer consent decision */
+            interface Decision {
+                /** Consent decision datetime */
+                timestamp: string;
+                /** Consent decision value */
+                value: boolean;
+            }
+        }
+        namespace consumption {
+            namespace transaction {
+                namespace Element {
+                    /** Element of consumption for resource */
+                    interface Detail {
+                        /** Consumption amount price */
+                        price: me.consumption.Price;
+                        /** Consumption quantity */
+                        quantity: number;
+                        /** Unique ID associated to one service element */
+                        unique_id ? : string;
+                    }
+                } /** Element of consumption for resource */
+                interface Element {
+                    /** List of consumption details for this planCode */
+                    details: me.consumption.transaction.element.Detail[];
+                    /** Identifier of the offer */
+                    planCode: string;
+                    /** Family of the offer */
+                    planFamily: string;
+                    /** Consumption amount price */
+                    price: me.consumption.Price;
+                    /** Consumption quantity */
+                    quantity: number;
+                }
+            } /** Price with currency and amount in micro-cents */
+            interface Price {
+                /** currencyCode */
+                currencyCode: order.CurrencyCodeEnum;
+                /** text */
+                text: string;
+                /** value */
+                value: double;
+                /** valueInUcents */
+                valueInUcents: number;
+            }
+            /** List of consumptions recorded in a range */
+            interface Transaction {
+                /** Begin date */
+                beginDate: string;
+                /** Creation date */
+                creationDate ? : string;
+                /** List of product plan code consumption */
+                elements: me.consumption.transaction.Element[];
+                /** End date */
+                endDate ? : string;
+                /** Transaction ID */
+                id ? : number;
+                /** Last update */
+                lastUpdate ? : string;
+                /** Consumption amount price */
+                price: me.consumption.Price;
+                /** Service ID */
+                serviceId: number;
+            }
+        }
+        namespace contact {
+            /** Representation of a Contact */
+            interface Address {
+                /** City */
+                city: string;
+                /** Country */
+                country: nichandle.CountryEnum;
+                /** First line of the address */
+                line1: string;
+                /** Second line of the address */
+                line2 ? : string;
+                /** Third line of the address */
+                line3 ? : string;
+                /** Other details */
+                otherDetails ? : string;
+                /** Province name */
+                province ? : string;
+                /** Zipcode */
+                zip ? : string;
+            }
+            /** Contact definition */
+            interface Contact {
+                /** Address for this contact */
+                address: me.contact.Address;
+                /** Birth city */
+                birthCity ? : string;
+                /** Birth Country */
+                birthCountry ? : nichandle.CountryEnum;
+                /** Birth date */
+                birthDay ? : string;
+                /** Birth Zipcode */
+                birthZip ? : string;
+                /** Cellphone number */
+                cellPhone ? : phoneNumber;
+                /** National identification number of your company */
+                companyNationalIdentificationNumber ? : string;
+                /** Email address */
+                email: string;
+                /** Fax number */
+                fax ? : phoneNumber;
+                /** First name */
+                firstName: string;
+                /** Gender */
+                gender ? : nichandle.GenderEnum;
+                /** Contact Identifier */
+                id: number;
+                /** Language */
+                language: nichandle.LanguageEnum;
+                /** Last name */
+                lastName: string;
+                /** Legal form of the contact */
+                legalForm: nichandle.LegalFormEnum;
+                /** National identification number of the contact */
+                nationalIdentificationNumber ? : string;
+                /** Nationality */
+                nationality ? : nichandle.CountryEnum;
+                /** Organisation name */
+                organisationName ? : string;
+                /** Organisation type */
+                organisationType ? : string;
+                /** Telephone number */
+                phone ? : phoneNumber;
+                /** Spare email address */
+                spareEmail ? : string;
+                /** VAT number */
+                vat ? : string;
+            }
+        }
+        namespace credit {
+            namespace balance {
+                namespace movement {
+                    /** Missing description */
+                    interface SubObject {
+                        /** Sub object ID */
+                        id: string;
+                        /** Sub object name */
+                        name: string;
+                    }
+                    /** Balance movement type */
+                    enum TypeEnum {
+                        "BONUS",
+                        "CANCEL",
+                        "CREDIT_NOTE",
+                        "EXPIRE",
+                        "GIFT",
+                        "MANUAL",
+                        "ORDER",
+                        "REFUND",
+                        "UNPAID",
+                        "USE",
+                        "VOUCHER"
+                    }
+                } /** Missing description */
+                interface BalanceDetails {
+                    /** Balance part amount */
+                    amount: order.Price;
+                    /** Balance sub name */
+                    balanceSubName ? : string;
+                    /** Expiring parts of this balance */
+                    expiring: me.credit.balance.ExpiringMovement[];
+                    /** Service ID of this balance part */
+                    serviceId ? : number;
+                }
+                /** Missing description */
+                interface BookedMovement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Balance sub name */
+                    balanceSubName ? : string;
+                    /** Order ID */
+                    orderId: number;
+                }
+                /** Missing description */
+                interface ExpiringMovement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Movement creation date */
+                    creationDate: string;
+                    /** Movement expiration date */
+                    expirationDate: string;
+                    /** Movement last update */
+                    lastUpdate: string;
+                    /** Object source of this credit movement */
+                    sourceObject: me.credit.balance.movement.SubObject;
+                }
+                /** Missing description */
+                interface Movement {
+                    /** Movement amount */
+                    amount: order.Price;
+                    /** Balance name */
+                    balanceName: string;
+                    /** Movement creation date */
+                    creationDate: string;
+                    /** Object destination of this credit movement */
+                    destinationObject ? : me.credit.balance.movement.SubObject;
+                    /** Movement expiration date */
+                    expirationDate ? : string;
+                    /** Movement last update */
+                    lastUpdate: string;
+                    /** Movement ID */
+                    movementId: number;
+                    /** Order ID associated to this credit movement */
+                    orderId ? : number;
+                    /** Object source of this credit movement */
+                    sourceObject: me.credit.balance.movement.SubObject;
+                    /** Movement type */
+                    type: me.credit.balance.movement.TypeEnum;
+                }
+                /** Balance type */
+                enum TypeEnum {
+                    "BONUS",
+                    "DEPOSIT",
+                    "PREPAID_ACCOUNT",
+                    "VOUCHER"
+                }
+            }
+            namespace code {
+                /** Missing description */
+                interface Redeem {
+                    /** Code to validate */
+                    inputCode: string;
+                    /** Restrict credit to a specific service */
+                    serviceId: number;
+                }
+            } /** Missing description */
+            interface Balance {
+                /** Balance amount */
+                amount: order.Price;
+                /** Balance details, amounts by serviceID */
+                balanceDetails: me.credit.balance.BalanceDetails[];
+                /** Balance name */
+                balanceName: string;
+                /** Movement already booked on orders */
+                booked: me.credit.balance.BookedMovement[];
+                /** Balance creation date */
+                creationDate: string;
+                /** Movement expiring soon */
+                expiring: me.credit.balance.ExpiringMovement[];
+                /** Balance last update */
+                lastUpdate: string;
+                /** Balance type */
+                type: me.credit.balance.TypeEnum;
+            }
+        }
+        namespace geolocation {
+            /** Representation of country and continent from visitor IP */
+            interface ContinentCountryLocation {
+                /** Continent */
+                continent ? : me.geolocation.ContinentEnum;
+                /** Country iso code */
+                countryCode ? : me.geolocation.CountryEnum;
+                /** The IP address processed, the user's origin one */
+                ip: string;
+            }
+            /** Continent */
+            enum ContinentEnum {
+                "africa",
+                "antartica",
+                "asia",
+                "europe",
+                "north-america",
+                "oceania",
+                "south-america"
+            }
+            /** Country iso code */
+            enum CountryEnum {
+                "ac",
+                "ad",
+                "ae",
+                "af",
+                "ag",
+                "ai",
+                "al",
+                "am",
+                "an",
+                "ao",
+                "aq",
+                "ar",
+                "as",
+                "at",
+                "au",
+                "aw",
+                "ax",
+                "az",
+                "ba",
+                "bb",
+                "bd",
+                "be",
+                "bf",
+                "bg",
+                "bh",
+                "bi",
+                "bj",
+                "bl",
+                "bm",
+                "bn",
+                "bo",
+                "bq",
+                "br",
+                "bs",
+                "bt",
+                "bv",
+                "bw",
+                "by",
+                "bz",
+                "ca",
+                "cc",
+                "cd",
+                "cf",
+                "cg",
+                "ch",
+                "ci",
+                "ck",
+                "cl",
+                "cm",
+                "cn",
+                "co",
+                "cr",
+                "cs",
+                "cu",
+                "cv",
+                "cw",
+                "cx",
+                "cy",
+                "cz",
+                "de",
+                "dj",
+                "dk",
+                "dm",
+                "do",
+                "dz",
+                "ec",
+                "ee",
+                "eg",
+                "eh",
+                "er",
+                "es",
+                "et",
+                "fc",
+                "fd",
+                "fi",
+                "fj",
+                "fk",
+                "fm",
+                "fo",
+                "fr",
+                "fx",
+                "ga",
+                "gb",
+                "gd",
+                "ge",
+                "gf",
+                "gg",
+                "gh",
+                "gi",
+                "gl",
+                "gm",
+                "gn",
+                "gp",
+                "gq",
+                "gr",
+                "gs",
+                "gt",
+                "gu",
+                "gw",
+                "gy",
+                "hk",
+                "hm",
+                "hn",
+                "hr",
+                "ht",
+                "hu",
+                "id",
+                "ie",
+                "il",
+                "im",
+                "in",
+                "io",
+                "iq",
+                "ir",
+                "is",
+                "it",
+                "je",
+                "jm",
+                "jo",
+                "jp",
+                "ke",
+                "kg",
+                "kh",
+                "ki",
+                "km",
+                "kn",
+                "kp",
+                "kr",
+                "kw",
+                "ky",
+                "kz",
+                "la",
+                "lb",
+                "lc",
+                "li",
+                "lk",
+                "lr",
+                "ls",
+                "lt",
+                "lu",
+                "lv",
+                "ly",
+                "ma",
+                "mc",
+                "md",
+                "me",
+                "mf",
+                "mg",
+                "mh",
+                "mk",
+                "ml",
+                "mm",
+                "mn",
+                "mo",
+                "mp",
+                "mq",
+                "mr",
+                "ms",
+                "mt",
+                "mu",
+                "mv",
+                "mw",
+                "mx",
+                "my",
+                "mz",
+                "na",
+                "nc",
+                "ne",
+                "nf",
+                "ng",
+                "ni",
+                "nl",
+                "no",
+                "np",
+                "nr",
+                "nu",
+                "nz",
+                "om",
+                "pa",
+                "pe",
+                "pf",
+                "pg",
+                "ph",
+                "pk",
+                "pl",
+                "pm",
+                "pn",
+                "pr",
+                "ps",
+                "pt",
+                "pw",
+                "py",
+                "qa",
+                "qc",
+                "re",
+                "ro",
+                "rs",
+                "ru",
+                "rw",
+                "sa",
+                "sb",
+                "sc",
+                "sd",
+                "se",
+                "sg",
+                "sh",
+                "si",
+                "sj",
+                "sk",
+                "sl",
+                "sm",
+                "sn",
+                "so",
+                "sr",
+                "ss",
+                "st",
+                "sv",
+                "sx",
+                "sy",
+                "sz",
+                "tc",
+                "td",
+                "tf",
+                "tg",
+                "th",
+                "tj",
+                "tk",
+                "tl",
+                "tm",
+                "tn",
+                "to",
+                "tp",
+                "tr",
+                "tt",
+                "tv",
+                "tw",
+                "tz",
+                "ua",
+                "ug",
+                "uk",
+                "um",
+                "us",
+                "uy",
+                "uz",
+                "va",
+                "vc",
+                "ve",
+                "vg",
+                "vi",
+                "vn",
+                "vu",
+                "we",
+                "wf",
+                "ws",
+                "ye",
+                "yt",
+                "yu",
+                "za",
+                "zm",
+                "zw"
+            }
+        }
+        namespace incident {
+            /** Original service that can be migrated */
+            interface MigrateServices {
+                /** If false, the order will be registered; if true, the order will be returned but not registered. Useful to compute prices */
+                dryRun: boolean;
+                /** IDs of the services to migrate */
+                serviceIds: number[];
+            }
+            /** Order created in order to migrate a service */
+            interface Order {
+                /** Order created in order to migrate a service */
+                order: order.Order;
+            }
+            /** Commercial gesture applied for the service migration */
+            interface PercentagePromotion {
+                /** Duration applied for the commercial gesture */
+                duration: duration;
+                /** Percentage of the discount */
+                value: number;
+            }
+            /** Commercial offer a customer can migrate his service to */
+            interface ProposedOffer {
+                /** List of configurations used for the migration */
+                configurations: me.incident.ProposedOfferConfiguration[];
+                /** Proposed commercial offer */
+                plan: order.cart.GenericProductDefinition;
+                /** Pricing mode used to bill the offer */
+                pricingMode: string;
+                /** Promotion applied to the commercial offer */
+                promotion: me.incident.PercentagePromotion;
+            }
+            /** Config */
+            interface ProposedOfferConfiguration {
+                /** name */
+                name: string;
+                /** value */
+                value: string;
+            }
+            /** Service you may migrate to a given offer */
+            interface ServiceMigration {
+                /** Options to migrate linked to the original service */
+                addons: me.incident.ServiceMigration[];
+                /** ID of an ongoing migration order */
+                orderId ? : number;
+                /** Proposed commercial offer to replace the service */
+                proposedOffer: me.incident.ProposedOffer;
+                /** Description of the service to migrate */
+                serviceToMigrate ? : me.incident.ServiceToMigrate;
+            }
+            /** Original service that can be migrated */
+            interface ServiceToMigrate {
+                /** Description of the offer of the service */
+                description: string;
+                /** Additional information on the service */
+                metadata: complexType.SafeKeyValue < string > [];
+                /** Route */
+                route ? : string;
+                /** ID of the migratable service */
+                serviceId: number;
+                /** Name of the migratable service */
+                serviceName: string;
+            }
+        }
+        namespace migration {
+            namespace step {
+                /** Country Migration step contracts data */
+                interface Contracts {
+                    /** Array of contract agreements to accept */
+                    agreements: me.agreements.ContractAgreement[];
+                }
+                /** Country Migration step debt data */
+                interface Debt {
+                    /** Balance amount */
+                    balanceAmount ? : order.Price;
+                    /** OVH Account amount */
+                    ovhAccountAmount ? : order.Price;
+                }
+                /** Name of the migration step */
+                enum NameEnum {
+                    "CONTRACTS",
+                    "DEBT",
+                    "NIC",
+                    "ORDERS"
+                }
+                /** Country Migration step orders data */
+                interface Orders {
+                    /** Whether there is pending operations */
+                    pendingOperations: boolean;
+                    /** Whether there is pending promotions */
+                    pendingPromotions: boolean;
+                    /** Whether there is pending subscriptions */
+                    pendingSubscriptions: boolean;
+                }
+                /** Status of the migration step */
+                enum StatusEnum {
+                    "OK",
+                    "PENDING"
+                }
+            } /** contract */
+            interface Contract {
+                /** Status */
+                active: boolean;
+                /** Date */
+                date: string;
+                /** ID */
+                id: number;
+                /** Name */
+                name: string;
+                /** PDF URL */
+                pdf: string;
+                /** Text of the contract */
+                text: string;
+            }
+            /** Status of the migration */
+            enum StatusEnum {
+                "CANCELED",
+                "CHECKED",
+                "DOING",
+                "MIGRATED",
+                "TODO",
+                "TO_CHECK"
+            }
+            /** Country Migration Step */
+            interface Step {
+                /** Contracts data */
+                contracts ? : me.migration.step.Contracts;
+                /** Debt data */
+                debt ? : me.migration.step.Debt;
+                /** Migration step name */
+                name: me.migration.step.NameEnum;
+                /** Orders data */
+                orders ? : me.migration.step.Orders;
+                /** Billing step status */
+                status: me.migration.step.StatusEnum;
+            }
+        }
+        namespace partnerLevel {
+            /** Partner level of an account */
+            interface Level {
+                /** Level of partner */
+                level: me.partnerLevel.LevelTypeEnum;
+                /** Level of Support required */
+                requirement: me.partnerLevel.RequirementLoSEnum;
+            }
+            /** Type of level */
+            enum LevelTypeEnum {
+                "advanced",
+                "none",
+                "standard"
+            }
+            /** Level of Support required */
+            enum RequirementLoSEnum {
+                "none",
+                "premium",
+                "premium-accredited"
+            }
+        }
+        namespace payment {
+            namespace method {
+                /** Callback URL's to register a new payment method */
+                interface CallbackUrl {
+                    /** URL when customer cancels the action */
+                    cancel: string;
+                    /** URL when registration encounters an error */
+                    error: string;
+                    /** URL when registration failed */
+                    failure: string;
+                    /** URL when payment method is in validation */
+                    pending: string;
+                    /** URL when payment method registration success */
+                    success: string;
+                }
+                /** Payment method Challenge */
+                interface Challenge {
+                    /** Challenge */
+                    challenge: string;
+                }
+                /** Payment method creation payload */
+                interface Creation {
+                    /** Associated billing contact ID */
+                    billingContactId ? : number;
+                    /** Callback URL's necessary to register */
+                    callbackUrl: me.payment.method.CallbackUrl;
+                    /** Indicates if this payment method will be set as the default one */
+                    default: boolean;
+                    /** Personalized description */
+                    description ? : string;
+                    /** Additional payment information */
+                    formData ? : string;
+                    /** Order ID to pay it if it's possible (in oneshot transaction or while registration) */
+                    orderId ? : number;
+                    /** Payment sub-type */
+                    paymentSubType ? : me.payment.CreationSubTypeEnum;
+                    /** Payment type */
+                    paymentType: string;
+                    /** Register this payment method if it's possible (default value is false and will proceed a oneshot transaction) */
+                    register: boolean;
+                }
+                /** Add details to one payment method challenge */
+                interface Details {
+                    /** Details data */
+                    details: string;
+                    /** Transaction ID */
+                    transactionId: number;
+                }
+                /** Payload to finalize payment method registration */
+                interface Finalize {
+                    /** Expiration month */
+                    expirationMonth ? : number;
+                    /** Expiration year */
+                    expirationYear ? : number;
+                    /** Form session ID */
+                    formSessionId ? : string;
+                    /** Registration ID */
+                    registrationId ? : string;
+                }
+                /** Payment method status */
+                enum StatusEnum {
+                    "CANCELED",
+                    "CANCELING",
+                    "CREATED",
+                    "CREATING",
+                    "ERROR",
+                    "EXPIRED",
+                    "FAILED",
+                    "MAINTENANCE",
+                    "PAUSED",
+                    "REJECTED",
+                    "REPLACED",
+                    "VALID",
+                    "VALIDATING"
+                }
+                /** Registration response to validate */
+                interface Validation {
+                    /** Form session ID */
+                    formSessionId ? : string;
+                    /** Merchant ID */
+                    merchantId ? : string;
+                    /** Organization ID */
+                    organizationId ? : string;
+                    /** Registered new payment method ID */
+                    paymentMethodId: number;
+                    /** Registered new transaction ID */
+                    transactionId ? : number;
+                    /** Registration validation URL to redirect */
+                    url ? : string;
+                    /** Registration validation type */
+                    validationType: me.payment.IntegrationEnum;
+                }
+            }
+            namespace transaction {
+                /** Transaction status */
+                enum StatusEnum {
+                    "CANCELED",
+                    "CANCELING",
+                    "CONFIRMING",
+                    "ERROR",
+                    "EXPIRED",
+                    "FAILED",
+                    "READY",
+                    "SUCCESS"
+                }
+                /** Transaction type */
+                enum TypeEnum {
+                    "CREDIT",
+                    "DEBIT"
+                }
+            } /** Available payment method object */
+            interface AvailablePaymentMethod {
+                /** Form session ID */
+                formSessionId ? : string;
+                /** Payment method type icon */
+                icon: me.payment.Icon;
+                /** Payment method integration type */
+                integration: me.payment.IntegrationEnum;
+                /** Merchant ID */
+                merchantId ? : string;
+                /** Indicates if payment method type allows to process oneshot payment */
+                oneshot: boolean;
+                /** Organization ID */
+                organizationId ? : string;
+                /** Payment method sub-type */
+                paymentSubType ? : me.payment.AvailableSubTypeEnum;
+                /** Payment method type */
+                paymentType: string;
+                /** Indicates if payment method type is registerable ? */
+                registerable: boolean;
+                /** Indicates if payment method type allows payment and registration at the same time */
+                registerableWithTransaction: boolean;
+            }
+            /** Payment method available sub-type enum */
+            enum AvailableSubTypeEnum {
+                "30_DAYS",
+                "45_DAYS",
+                "60_DAYS",
+                "AMERICAN_EXPRESS",
+                "AURA",
+                "CARTE_BANCAIRE",
+                "CARTE_BLEUE",
+                "CHORUS",
+                "DINERS_CLUB",
+                "DISCOVER",
+                "JCB",
+                "MAESTRO",
+                "MASTERCARD",
+                "NONE",
+                "VISA"
+            }
+            /** Payment method creation sub-type enum */
+            enum CreationSubTypeEnum {
+                "CHORUS",
+                "NONE"
+            }
+            /** Icon */
+            interface Icon {
+                /** Icon in base64 */
+                data ? : string;
+                /** Icon name */
+                name: string;
+                /** Icon URL */
+                url ? : string;
+            }
+            /** Register integration type enum */
+            enum IntegrationEnum {
+                "COMPONENT",
+                "IFRAME_VANTIV",
+                "IN_CONTEXT",
+                "NONE",
+                "POST_FORM",
+                "REDIRECT"
+            }
+            /** Payment method object */
+            interface PaymentMethod {
+                /** Associated billing contact ID */
+                billingContactId ? : number;
+                /** Creation date */
+                creationDate: string;
+                /** Indicates if payment method is the default one for this account */
+                default: boolean;
+                /** Custom customer description */
+                description ? : string;
+                /** Expiration date */
+                expirationDate ? : string;
+                /** Form session ID */
+                formSessionId ? : string;
+                /** Payment method type icon */
+                icon: me.payment.Icon;
+                /** Payment method integration type */
+                integration ? : me.payment.IntegrationEnum;
+                /** Payment method public label */
+                label ? : string;
+                /** Last update date */
+                lastUpdate: string;
+                /** Merchant ID */
+                merchantId ? : string;
+                /** Indicates if payment method support the oneclick functionality */
+                oneclick ? : boolean;
+                /** Payment mean ID associated to this payment method */
+                paymentMeanId ? : number;
+                /** Payment method ID */
+                paymentMethodId: number;
+                /** Payment method sub-type */
+                paymentSubType ? : me.payment.AvailableSubTypeEnum;
+                /** Payment method type */
+                paymentType: string;
+                /** Payment method status */
+                status: me.payment.method.StatusEnum;
+            }
+            /** Transaction object */
+            interface Transaction {
+                /** Transaction amount */
+                amount: order.Price;
+                /** Creation date */
+                creationDate: string;
+                /** Last update date */
+                lastUpdate: string;
+                /** Associated payment method ID */
+                paymentMethodId: number;
+                /** Transaction status */
+                status: me.payment.transaction.StatusEnum;
+                /** Transaction ID */
+                transactionId: number;
+                /** Transaction type */
+                type: me.payment.transaction.TypeEnum;
+            }
+        }
+        namespace paymentMean {
+            /** Credit card informations */
+            interface BankAccount {
+                /** bic */
+                bic: string;
+                /** creationDate */
+                creationDate: string;
+                /** This credit card is the default payment mean? */
+                defaultPaymentMean: boolean;
+                /** Custom description of this bank account */
+                description ? : string;
+                /** iban */
+                iban: string;
+                /** Payment method type icon */
+                icon ? : me.paymentMean.IconData;
+                /** id */
+                id: number;
+                /** mandateSignatureDate */
+                mandateSignatureDate ? : string;
+                /** Bank account owner's address */
+                ownerAddress: string;
+                /** Bank account owner's name */
+                ownerName: string;
+                /** Bank account state */
+                state: me.paymentMean.BankAccountStateEnum;
+                /** uniqueReference */
+                uniqueReference: string;
+                /** validationDocumentLink */
+                validationDocumentLink ? : string;
+            }
+            /** Missing description */
+            interface BankAccountChallengeCreation {
+                /** Payload to answer the challenge */
+                challenge: string;
+            }
+            /** Missing description */
+            interface BankAccountCreation {
+                /** Bank account BIC */
+                bic: string;
+                /** Custom description of this account */
+                description ? : string;
+                /** Bank account IBAN */
+                iban: string;
+                /** Bank account owner's address */
+                ownerAddress: string;
+                /** Bank account owner's name */
+                ownerName: string;
+                /** Set as default payment mean once validated */
+                setDefault ? : boolean;
+            }
+            /** State of your bank account */
+            enum BankAccountStateEnum {
+                "blockedForIncidents",
+                "pendingValidation",
+                "replaced",
+                "valid"
+            }
+            /** A validation required to add a payment mean bank account */
+            interface BankAccountValidation {
+                /** id */
+                id: number;
+                /** submitUrl */
+                submitUrl ? : string;
+                /** URL where redirect for registration process */
+                url: string;
+                /** Kind of registration validation */
+                validationType: me.paymentMean.ValidationTypeEnum;
+            }
+            /** Credit card informations */
+            interface CreditCard {
+                /** This credit card is the default payment mean? */
+                defaultPaymentMean: boolean;
+                /** Custom description of this credit card */
+                description ? : string;
+                /** expirationDate */
+                expirationDate: string;
+                /** Payment method type icon */
+                icon ? : me.paymentMean.IconData;
+                /** id */
+                id: number;
+                /** Credit card BIN */
+                number: string;
+                /** Credit card state */
+                state: me.paymentMean.CreditCardStateEnum;
+                /** True if this credit card has been registered with a successful 3DSecure challenge */
+                threeDsValidated: boolean;
+                /** Kind of credit card */
+                type: string;
+            }
+            /** Missing description */
+            interface CreditCardChallengeCreation {
+                /** Payload to answer the challenge */
+                challenge: string;
+            }
+            /** Missing description */
+            interface CreditCardCreation {
+                /** Custom description of this account */
+                description ? : string;
+                /** Callback URL where the customer will be redirected to after validation */
+                returnUrl ? : string;
+                /** Set as default payment mean once validated */
+                setDefault ? : boolean;
+            }
+            /** State of your credit card */
+            enum CreditCardStateEnum {
+                "expired",
+                "tooManyFailures",
+                "valid"
+            }
+            /** A validation required to add a payment mean credit card */
+            interface CreditCardValidation {
+                /** id */
+                id: number;
+                /** submitUrl */
+                submitUrl ? : string;
+                /** URL where redirect for registration process */
+                url: string;
+                /** Kind of registration validation */
+                validationType: me.paymentMean.ValidationTypeEnum;
+            }
+            /** Deferred account informations */
+            interface Deferred {
+                /** Creation date of this deferred account */
+                creationDate: string;
+                /** This deferred account is the default payment mean? */
+                defaultPaymentMean: boolean;
+                /** Custom description of this deferred account */
+                description ? : string;
+                /** Payment method type icon */
+                icon ? : me.paymentMean.IconData;
+                /** id */
+                id: number;
+                /** Deferred account type */
+                label ? : string;
+                /** Deferred account state */
+                state: me.paymentMean.DeferredStateEnum;
+            }
+            /** State of you deferred account */
+            enum DeferredStateEnum {
+                "failed",
+                "valid"
+            }
+            /** Payment mean type icon */
+            interface IconData {
+                /** Icon in base64 */
+                data ? : string;
+                /** Icon name */
+                name ? : string;
+                /** Icon URL */
+                url ? : string;
+            }
+            /** Paypal informations */
+            interface Paypal {
+                /** Paypal agreement */
+                agreementId: string;
+                /** Paypal creation date */
+                creationDate: string;
+                /** This paypal is the default payment mean? */
+                defaultPaymentMean: boolean;
+                /** Custom description of this paypal */
+                description ? : string;
+                /** Paypal associated email */
+                email: string;
+                /** Payment method type icon */
+                icon ? : me.paymentMean.IconData;
+                /** id */
+                id: number;
+                /** Paypal state */
+                state: me.paymentMean.PaypalStateEnum;
+            }
+            /** Missing description */
+            interface PaypalChallengeCreation {
+                /** Payload to answer the challenge */
+                challenge: string;
+            }
+            /** Missing description */
+            interface PaypalCreation {
+                /** Custom description of this account */
+                description ? : string;
+                /** Callback URL where the customer will be redirected to after validation */
+                returnUrl ? : string;
+                /** Set as default payment mean once validated */
+                setDefault ? : boolean;
+            }
+            /** State of you paypal */
+            enum PaypalStateEnum {
+                "failing",
+                "tooManyFailures",
+                "valid"
+            }
+            /** A validation required to add a payment mean paypal */
+            interface PaypalValidation {
+                /** id */
+                id: number;
+                /** submitUrl */
+                submitUrl ? : string;
+                /** URL where redirect for registration process */
+                url: string;
+                /** Kind of registration validation */
+                validationType: me.paymentMean.ValidationTypeEnum;
+            }
+            /** All the validation you may have to do */
+            enum ValidationTypeEnum {
+                "creditAccount",
+                "documentToSend",
+                "simpleValidation"
+            }
+        }
+        namespace repricing {
+            /** Description of a service being repricing */
+            interface Service {
+                /** Addons of the Service */
+                addons: me.repricing.Service[];
+                /** Date of application of the repricing */
+                applicationDate: string;
+                /** Description of the Service */
+                description: string;
+                /** Custom name for the Service */
+                displayName: string;
+                /** Duration for the price described in the payload (ISO8601) */
+                duration: string;
+                /** Price after repricing, tax included */
+                priceAfterWithTax: order.Price;
+                /** Price after repricing, tax excluded */
+                priceAfterWithoutTax: order.Price;
+                /** Price before repricing, tax included */
+                priceBeforeWithTax: order.Price;
+                /** Price before repricing, tax excluded */
+                priceBeforeWithoutTax: order.Price;
+                /** Route */
+                route ? : services.expanded.Route;
+                /** Service ID */
+                serviceId: number;
+                /** Identifier of the service */
+                serviceName: string;
+                /** Total price (addons included) after repricing, tax included */
+                totalPriceAfterWithTax: order.Price;
+                /** Total price (addons included) after repricing, tax excluded */
+                totalPriceAfterWithoutTax: order.Price;
+                /** Total price (addons included) before repricing, tax included */
+                totalPriceBeforeWithTax: order.Price;
+                /** Total price (addons included) before repricing, tax excluded */
+                totalPriceBeforeWithoutTax: order.Price;
+            }
+        }
+        namespace tag {
+            namespace tagKey {
+                /** Tag key type */
+                enum TypeEnum {
+                    "ARRAY",
+                    "DATE",
+                    "ENUM",
+                    "INTEGER",
+                    "TEXT",
+                    "VARCHAR"
+                }
+            } /** Available tag configuration object for creation */
+            interface AvailableTag {
+                /** Tag configuration keys */
+                keys: me.tag.TagKey[];
+                /** Tag name */
+                name: string;
+            }
+            /** Tag creation payload */
+            interface Creation {
+                /** Reason */
+                reason ? : string;
+                /** Tag name */
+                tagName: string;
+            }
+            /** Tag status */
+            enum StatusEnum {
+                "CREATED",
+                "CREATING",
+                "DELETED",
+                "DELETING",
+                "ERROR",
+                "MODERATING",
+                "REFUSED",
+                "REFUSING",
+                "REVOCATING",
+                "WAIT_MODERATION",
+                "WAIT_REVOCATION"
+            }
+            /** Tag */
+            interface Tag {
+                /** Creation date */
+                creationDate: string;
+                /** Customer code */
+                customerCode: string;
+                /** Expiration date */
+                expirationDate ? : string;
+                /** Extra data */
+                extra ? : me.tag.TagExtra;
+                /** Last update */
+                lastUpdate: string;
+                /** Tag Status */
+                status: me.tag.StatusEnum;
+                /** Tag name */
+                tag: string;
+            }
+            /** Tag Extra */
+            interface TagExtra {
+                /** Tax exemption */
+                exemption ? : string;
+            }
+            /** Tag configuration key */
+            interface TagKey {
+                /** Enum values */
+                enum ? : string[];
+                /** Tag key name */
+                key: string;
+                /** Maximum length for a text */
+                maxLength ? : number;
+                /** Minimum value for a number */
+                minValue ? : number;
+                /** Tag key optional */
+                optional: boolean;
+                /** Tag value regex pattern */
+                pattern ? : string;
+                /** Tag key type */
+                type: me.tag.tagKey.TypeEnum;
+            }
+        } /** Country Migration */
+        interface Migration {
+            /** Billing country to migrate from */
+            from: nichandle.OvhSubsidiaryEnum;
+            /** Migration Id */
+            id: number;
+            /** Migration status */
+            status: me.migration.StatusEnum;
+            /** Migration steps */
+            steps ? : me.migration.Step[];
+            /** Billing country to migrate to */
+            to: nichandle.OvhSubsidiaryEnum;
+        }
+    }
+    namespace oauth2 {
+        /** An oAuth2 Client */
+        interface client {
+            /** allowed callback urls */
+            callbackUrls: string[];
+            /** client's client_id */
+            clientId: string;
+            /** client's creation date */
+            createdAt: string;
+            /** client's description */
+            description: string;
+            /** client's name */
+            name: string;
+        }
+        /** An oAuth2 Client Request */
+        interface clientRequest {
+            /** allowed callback urls */
+            callbackUrls: string[];
+            /** client's description */
+            description: string;
+            /** client's name */
+            name: string;
+        }
+        /** An oAuth2 Client Secret */
+        interface clientSecret {
+            /** client's client_id */
+            clientId: string;
+            /** client's client_secret */
+            clientSecret: string;
+        }
+    }
+    namespace payment {
+        namespace method {
+            /** Available payment methods */
+            interface AvailablePaymentMethod {
+                /** Payment method session identifier */
+                formSessionId ? : string;
+                /** Payment method type icon */
+                icon: payment.method.Icon;
+                /** Graphical payment integration to use */
+                integration: payment.method.IntegrationType;
+                /** Payment method merchant identifier */
+                merchantId ? : string;
+                /** Payment method type is possible to pay in oneshot mode ? */
+                oneshot: boolean;
+                /** Payment method organization identifier */
+                organizationId ? : string;
+                /** Payment method subtype */
+                paymentSubType ? : string;
+                /** Payment method type */
+                paymentType: string;
+                /** Payment method type is registerable ? */
+                registerable: boolean;
+                /** Payment method type is registerable with the possibility to pay in same time an order ? */
+                registerableWithTransaction: boolean;
+            }
+            /** Payment icon */
+            interface Icon {
+                /** Icon data in base64 */
+                data ? : string;
+                /** Icon name */
+                name ? : string;
+                /** Icon URL */
+                url ? : string;
+            }
+            /** Payment method integration type */
+            enum IntegrationType {
+                "COMPONENT",
+                "DONE",
+                "IFRAME_VANTIV",
+                "IN_CONTEXT",
+                "NONE",
+                "POST_FORM",
+                "REDIRECT"
+            }
+            /** payment method */
+            interface PaymentMethod {
+                /** Associated billing contact ID */
+                billingContactId ? : number;
+                /** Creation date */
+                creationDate: string;
+                /** Indicates if payment method is the default one for this account */
+                default: boolean;
+                /** Custom customer description */
+                description ? : string;
+                /** Expiration date */
+                expirationDate ? : string;
+                /** Form session ID */
+                formSessionId ? : string;
+                /** Payment method type icon */
+                icon: payment.method.Icon;
+                /** Payment method integration type */
+                integration ? : payment.method.IntegrationType;
+                /** Payment method public label */
+                label ? : string;
+                /** Last update date */
+                lastUpdate ? : string;
+                /** Merchant ID */
+                merchantId ? : string;
+                /** Indicates if payment method support the oneclick functionality */
+                oneclick ? : boolean;
+                /** Payment mean ID associated to this payment method */
+                paymentMeanId ? : number;
+                /** Payment method ID */
+                paymentMethodId: number;
+                /** Payment method sub type */
+                paymentSubType ? : payment.method.SubTypeEnum;
+                /** Payment method type */
+                paymentType: string;
+                /** Payment method status */
+                status: payment.method.StatusEnum;
+            }
+            /** Payment method status */
+            enum StatusEnum {
+                "CANCELED",
+                "CANCELING",
+                "CREATED",
+                "CREATING",
+                "ERROR",
+                "EXPIRED",
+                "FAILED",
+                "MAINTENANCE",
+                "PAUSED",
+                "REJECTED",
+                "REPLACED",
+                "VALID",
+                "VALIDATING"
+            }
+            /** Payment method sub-type */
+            enum SubTypeEnum {
+                "30_DAYS",
+                "45_DAYS",
+                "60_DAYS",
+                "AMERICAN_EXPRESS",
+                "AURA",
+                "CARTE_BANCAIRE",
+                "CARTE_BLEUE",
+                "CHORUS",
+                "DINERS_CLUB",
+                "DISCOVER",
+                "JCB",
+                "MAESTRO",
+                "MASTERCARD",
+                "NONE",
+                "VISA"
+            }
+        }
+    }
+    namespace recommendations {
+        /** Recommendation struct */
+        interface Recommendation {
+            /** advices */
+            advices: recommendations.RecommendationAdvice[];
+            /** Recommendation advices introduction and description sentences, indexed by supported locales */
+            localizedDescription: Record < string,
+            string > ;
+            /** Recommendation rank */
+            rank: number;
+        }
+        /** Recommendation advice struct */
+        interface RecommendationAdvice {
+            /** Product identifier, usually range>line>category>subCategory>marketingName */
+            id: string;
+            /** Recommendation score */
+            score: double;
+            /** Product page url */
+            url: string;
+        }
+        /** Array of Recommendation objects */
+        interface Recommendations {
+            /** recommendations */
+            recommendations: recommendations.Recommendation[];
+        }
+        /** Recommendations product ranges */
+        enum productRangesEnum {
+            "baremetal",
+            "domain",
+            "public_cloud",
+            "saas",
+            "vps",
+            "web"
+        }
+    }
+    namespace telephony {
+        /** Billing policies settings */
+        interface BillingSettings {
+            /** Renew is done by billing contact instead of billing account */
+            renewByBillingContact: boolean;
+        }
+        /** Default IP restriction of a VoIP line */
+        interface DefaultIpRestriction {
+            /** id */
+            id: number;
+            /** The IPv4 subnet you want to allow */
+            subnet: ipv4Block;
+            /** The protocol you want to restrict (sip/mgcp) */
+            type: telephony.ProtocolEnum;
+        }
+        /** Line description policies settings */
+        interface LineDescriptionSettings {
+            /** Line's description is displayed on bills */
+            displayOnBill: boolean;
+            /** Line's description is displayed on incoming calls */
+            displayOnIncomingCall: boolean;
+        }
+        /** Custom domains of your fax services */
+        interface MailDomain2Service {
+            /** The custom domain of your fax services */
+            domain: string;
+            /** id */
+            id: number;
+        }
+        /** Phone protocol */
+        enum ProtocolEnum {
+            "mgcp",
+            "sip"
+        }
+        /** Telephony settings linked to the customer account */
+        interface Settings {
+            /** Billing policies settings */
+            billingPolicies: telephony.BillingSettings;
+            /** Line description policies settings */
+            lineDescriptionPolicies: telephony.LineDescriptionSettings;
+        }
+    }
+    namespace xander {
+        /** Available contact fields */
+        enum ContactFieldEnum {
+            "address.city",
+            "address.country",
+            "address.line1",
+            "address.line2",
+            "address.line3",
+            "address.otherDetails",
+            "address.province",
+            "address.zip",
+            "birthCity",
+            "birthCountry",
+            "birthDay",
+            "birthZip",
+            "cellPhone",
+            "companyNationalIdentificationNumber",
+            "email",
+            "fax",
+            "firstName",
+            "gender",
+            "language",
+            "lastName",
+            "legalForm",
+            "nationalIdentificationNumber",
+            "nationality",
+            "organisationName",
+            "organisationType",
+            "phone",
+            "spareEmail",
+            "vat"
+        }
+    }
+    namespace xdsl {
+        /** Xdsl Settings */
+        interface Setting {
+            /** Send the modem as soon as possible, do not wait the xdsl line to be active */
+            resellerFastModemShipping: boolean;
+            /** Let the modem with vendor configuration. It prevent to apply the config managed by ovh manager */
+            resellerModemBasicConfig: boolean;
         }
     }
 }

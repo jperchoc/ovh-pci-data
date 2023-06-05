@@ -5,9 +5,15 @@
 import fs from 'fs';
 import beautify from 'js-beautify/js/index.js';
 
-const cloudJSON = 'https://api.ovh.com/1.0/cloud.json';
-const apiRes = await fetch(cloudJSON);
-const api = await apiRes.json();
+const JSONFiles = [
+    'https://api.ovh.com/1.0/cloud.json',
+    'https://api.ovh.com/1.0/me.json'
+];
+
+const responses = await Promise.all(JSONFiles.map(f => fetch(f)));
+const jsonResponses = await Promise.all(responses.map(r => r.json()));
+
+const models = jsonResponses.reduce((acc, curr) => ({...acc, ...curr.models}), {}); 
 
 const sanitizePropName = (propName) => {
     const illegalChars = ['-'];
@@ -76,8 +82,6 @@ const namespaceToTs = (namespace) => {
     return (`namespace ${namespace.name} { ${namespace.namespaces.map(n => namespaceToTs(n)).join('\r\n')} ${namespace.models.map(m => modelToTs(m)).join('\r\n')}
     }`)
 }
-
-const models = api.models;
 
 const ovhApi = {
     name: 'ovhapi',
