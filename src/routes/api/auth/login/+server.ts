@@ -3,13 +3,17 @@ import type { RequestHandler } from "./$types";
 import { accessRules } from '$helpers/api';
 import { redirect } from "@sveltejs/kit";
 
-export const GET: RequestHandler = async ({ cookies, url }) => {
+export const GET: RequestHandler = async ({ cookies, url, fetch }) => {
+    const redirectQueryParam = url.searchParams.get('redirect') || null;
     const headers = {
         'Accept': 'application/json',
         'X-Ovh-Application': env.AK,
         'Content-Type': 'application/json;charset=UTF-8',
     }
-    const redirectUrl = env.FORCE_HTTP === 'enabled' ? `http://${url.host}` : url.origin;
+    let redirectUrl = env.FORCE_HTTP === 'enabled' ? `http://${url.host}/api/auth/callback` : `${url.origin}/api/auth/callback`;
+    if (redirectQueryParam) {
+        redirectUrl += `?redirect=${redirectQueryParam}`
+    }
     const response = await fetch(`${env.API_BASE_URL}/auth/credential`,
         {
             headers,
@@ -20,14 +24,8 @@ export const GET: RequestHandler = async ({ cookies, url }) => {
             }),
         }
     );
-    const { consumerKey, validationUrl } = await response.json();
-	cookies.set("consumerKey", consumerKey, {
-        path: "/",
-        httpOnly: true,
-        sameSite: "strict",
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24 * 7, //1week 
-    });
+    const { consumerKey, validationUrl } : { consumerKey:string, validationUrl:string} = await response.json();
 
+	cookies.set("tmpConsumerKey", consumerKey);
 	throw redirect(303, validationUrl)
 };

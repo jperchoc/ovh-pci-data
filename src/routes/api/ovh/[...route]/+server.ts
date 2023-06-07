@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { json } from '@sveltejs/kit';
+import { json, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { signRequest } from '$helpers/api';
 
@@ -32,7 +32,7 @@ export const GET: RequestHandler = async ({ params, url, cookies }) => {
     return json(jsResponse, {
         status: response.status,
         statusText: response.statusText,
-    });
+    });    
 };
 
 export const PUT: RequestHandler = async ({ request, params, url, cookies }) => {
