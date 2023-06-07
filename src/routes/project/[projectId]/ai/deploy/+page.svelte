@@ -4,28 +4,27 @@
 	import { page } from "$app/stores";
 	import { invalidate } from "$app/navigation";
 	import { writable, type Writable } from "svelte/store";
-	import { t } from '$lib/translations/translations';
-    import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
+    import { createRender, createTable } from 'svelte-headless-table';
     import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
-	import { JsonViewer, TableDateCell, TableLinkCell } from "$components";
+	import { JsonViewer, TableDateCell, TableLinkCell, DataTable } from "$components";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);
-    let selectedApp: ovhapi.cloud.project.ai.app.App;
+    let selectedApp: Writable<ovhapi.cloud.project.ai.app.App> = writable();
 
     $: apps = data.apps.sort((a, b) => a.spec.name.localeCompare(b.spec.name));
     $: {
-        tableData.set(apps)
+        tableData.set(apps);
     }
 
     const table = createTable(tableData,  {
-        sort: addSortBy({ disableMultiSort: true }),
+        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'] }),
         colOrder: addColumnOrder(),
         page: addPagination({
             initialPageIndex: 0,
             initialPageSize: 10
         })
-        });
+    });
     const columns = table.createColumns([
         table.column({
             header: 'Name',
@@ -57,19 +56,19 @@
         }),
         table.column({
             header: 'Created at',
-            accessor: app => new Date(app.createdAt),
+            accessor: app => app.createdAt,
             cell: ({ value }) =>
                 createRender(TableDateCell, {
-                    date: value,
+                    date: new Date(value),
                 }
             ),
         }),
         table.column({
             header: 'Updated at',
-            accessor: app => new Date(app.updatedAt),
+            accessor: app => app.updatedAt,
             cell: ({ value }) =>
                 createRender(TableDateCell, {
-                    date: value,
+                    date: new Date(value),
                 }
             ),
         }),
@@ -78,8 +77,7 @@
             accessor: app => app.status.state,
         }),
     ]);
-    const { headerRows, tableAttrs, tableBodyAttrs, pageRows, pluginStates } = table.createViewModel(columns);
-    const { pageSize, pageIndex, hasPreviousPage, hasNextPage, pageCount } = pluginStates.page;
+    const viewModel = table.createViewModel(columns);
 
     onMount(() => {
         const it = setInterval(() => {
@@ -92,69 +90,13 @@
 </script>
 
 <h2>Apps</h2>
-{$t('common.test')}
 {#if apps}
-    <div class="table-wrapper">
-        <table {...$tableAttrs}>
-        <thead>
-          {#each $headerRows as headerRow (headerRow.id)}
-            <Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-              <tr {...rowAttrs}>
-                {#each headerRow.cells as cell (cell.id)}
-                  <Subscribe attrs={cell.attrs()} let:attrs
-                  props={cell.props()} let:props>
-                    <th {...attrs} on:click={props.sort.toggle}>
-                        <Render of={cell.render()} />
-                        {#if props.sort.order === 'asc'}
-                          ⬇️
-                        {:else if props.sort.order === 'desc'}
-                          ⬆️
-                        {/if}
-                      </th>
-                  </Subscribe>
-                {/each}
-              </tr>
-            </Subscribe>
-          {/each}
-        </thead>
-        <tbody {...$tableBodyAttrs}>
-          {#each $pageRows as row (row.id)}
-            <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-              <tr {...rowAttrs} class="clickable" class:selected={row.isData() && row.original.id === selectedApp?.id}  on:click={() => { if (row.isData()) {
-                    selectedApp = row.original;
-                }}}>
-                {#each row.cells as cell (cell.id)}
-                  <Subscribe attrs={cell.attrs()} let:attrs>
-                    <td {...attrs}>
-                        <Render of={cell.render()} />
-                    </td>
-                  </Subscribe>
-                {/each}
-              </tr>
-            </Subscribe>
-          {/each}
-        </tbody>
-      </table>
-      <button on:click={() => { $pageIndex--}} disabled={!$hasPreviousPage}>Previous</button>
-      <button on:click={() => { $pageIndex++}} disabled={!$hasNextPage}>Next</button>
-      <p>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</p>
-    </div>
+    <DataTable {viewModel} selectedItem={selectedApp}/>
 {:else}
-<p>No app found</p>
+    <p>No app found</p>
 {/if}
 
-{#if selectedApp}
-    <JsonViewer data={selectedApp} />
+{#if $selectedApp}
+    <JsonViewer data={$selectedApp} />
 {/if}
 
-<style>
-    .clickable {
-        cursor: pointer;
-    }
-    .clickable:hover {
-        background: azure;
-    }
-    .selected {
-        background-color: rgb(180, 225, 255);
-    }
-</style>
