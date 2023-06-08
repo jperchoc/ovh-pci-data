@@ -22,7 +22,7 @@
         colOrder: addColumnOrder(),
         page: addPagination({
             initialPageIndex: 0,
-            initialPageSize: 10
+            initialPageSize: 5
         })
     });
     const columns = table.createColumns([
@@ -78,6 +78,7 @@
         }),
     ]);
     const viewModel = table.createViewModel(columns);
+    console.log(viewModel)
 
     onMount(() => {
         const it = setInterval(() => {
