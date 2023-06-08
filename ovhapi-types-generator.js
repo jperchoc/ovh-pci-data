@@ -35,6 +35,7 @@ const getType = (fullType) => {
         case 'ip':
         case 'password':            
         case 'date':
+        case 'time':
             return `string${isArray?'[]':''}`;
         case 'long':
             return `number${isArray?'[]':''}`;

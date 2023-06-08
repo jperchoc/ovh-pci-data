@@ -2,7 +2,7 @@
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-05T07:33:37.728Z
+ * Creation date: 2023-06-08T14:00:18.357Z
  * Author: Jonathan Perchoc 
 */
 declare namespace ovhapi {
@@ -4622,7 +4622,7 @@ declare namespace ovhapi {
                     /** Cloud database kafka service definition */
                     interface Service {
                         /** Time on which backups start every day */
-                        backupTime: time;
+                        backupTime: string;
                         /** Date of the creation of the cluster */
                         createdAt: string;
                         /** Description of the cluster */
@@ -4640,7 +4640,7 @@ declare namespace ovhapi {
                         /** IP Blocks authorized to access to the cluster */
                         ipRestrictions: cloud.project.database.service.IpRestriction[];
                         /** Time on which maintenances can start every day */
-                        maintenanceTime: time;
+                        maintenanceTime: string;
                         /** Private network ID in which the cluster is */
                         networkId ? : string;
                         /** Type of network of the cluster */
@@ -5043,7 +5043,7 @@ declare namespace ovhapi {
                         /** Defines whether the acls are enabled on the cluster */
                         aclsEnabled: boolean;
                         /** Time on which backups start every day. DEPRECATED: use backups.time */
-                        backupTime: time;
+                        backupTime: string;
                         /** Information related to the backups, null if the engine does not support backups */
                         backups ? : cloud.project.database.service.Backup;
                         /** Date of the creation of the cluster */
@@ -5063,7 +5063,7 @@ declare namespace ovhapi {
                         /** IP Blocks authorized to access to the cluster */
                         ipRestrictions: cloud.project.database.service.IpRestriction[];
                         /** Time on which maintenances can start every day */
-                        maintenanceTime: time;
+                        maintenanceTime: string;
                         /** Private network ID in which the cluster is */
                         networkId ? : string;
                         /** Type of network of the cluster */
@@ -5474,7 +5474,7 @@ declare namespace ovhapi {
                         /** Regions on which the backups are stored */
                         regions: string[];
                         /** Time on which backups start every day */
-                        time: time;
+                        time: string;
                     }
                     /** Certificates definition for cloud project databases */
                     interface Certificates {
@@ -5891,7 +5891,7 @@ declare namespace ovhapi {
                 /** Cloud database service definition */
                 interface Service {
                     /** Time on which backups start every day. DEPRECATED: use backups.time */
-                    backupTime: time;
+                    backupTime: string;
                     /** Information related to the backups, null if the engine does not support backups */
                     backups ? : cloud.project.database.service.Backup;
                     /** Date of the creation of the cluster */
@@ -5911,7 +5911,7 @@ declare namespace ovhapi {
                     /** IP Blocks authorized to access to the cluster */
                     ipRestrictions: cloud.project.database.service.IpRestriction[];
                     /** Time on which maintenances can start every day */
-                    maintenanceTime: time;
+                    maintenanceTime: string;
                     /** Private network ID in which the cluster is */
                     networkId ? : string;
                     /** Type of network of the cluster */
@@ -5932,7 +5932,7 @@ declare namespace ovhapi {
                     /** Backup from which the new service is created. DEPRECATED: use forkFrom */
                     backup ? : cloud.project.database.service.creation.BackupFork;
                     /** Time on which backups start every day. DEPRECATED: use backups.time */
-                    backupTime ? : time;
+                    backupTime ? : string;
                     /** Information related to the backups, null if the engine does not support backups */
                     backups ? : cloud.project.database.service.Backup;
                     /** Description of the cluster */
@@ -5944,7 +5944,7 @@ declare namespace ovhapi {
                     /** IP Blocks authorized to access to the cluster */
                     ipRestrictions: cloud.project.database.service.IpRestriction[];
                     /** Time on which maintenances can start every day */
-                    maintenanceTime ? : time;
+                    maintenanceTime ? : string;
                     /** Private network ID in which the cluster is */
                     networkId ? : string;
                     /** List of nodes in the cluster, not compatible with nodesPattern */
