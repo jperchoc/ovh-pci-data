@@ -7,6 +7,8 @@
     import { createRender, createTable } from 'svelte-headless-table';
     import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
 	import { JsonViewer, TableDateCell, TableLinkCell, DataTable } from "$components";
+	import { Card } from "$components/ui/card";
+	import CardContent from "$components/ui/card/CardContent.svelte";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);
@@ -90,14 +92,24 @@
     });
 </script>
 
-<h2>Apps</h2>
+<h2 class="mb-4">Apps</h2>
+<Card>
+    <CardContent>
 {#if apps}
     <DataTable {viewModel} selectedItem={selectedApp}/>
 {:else}
     <p>No app found</p>
 {/if}
+    </CardContent>
+</Card>
 
 {#if $selectedApp}
+<Card class="mt-2 py-4">
+    <CardContent>
+    
     <JsonViewer data={$selectedApp} />
+    </CardContent>
+</Card>
 {/if}
+
 

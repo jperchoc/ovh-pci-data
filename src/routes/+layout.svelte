@@ -31,7 +31,7 @@
 {/if}
 </div> -->
 
-<div class="relative flex min-h-screen flex-col" id="page">
+<div class="relative flex min-h-screen flex-col dark:bg-primary" id="page">
 	<Header />
 	<div class="flex-1">
 		<slot />

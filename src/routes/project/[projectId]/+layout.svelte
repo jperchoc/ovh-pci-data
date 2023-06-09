@@ -58,16 +58,16 @@
 </header> -->
 
 <div
-	class="bg-secondary max-w-full flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"
+	class="bg-background max-w-full flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"
 >
 	<aside
-		class="bg-background fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block container"
+		class="bg-card fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block container"
 	>
 		<div class="py-6 pr-6 lg:py-8">
 			<DocsSidebarNav items={nav} />
 		</div>
 	</aside>
-    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr]">
+    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] md:pr-6 lg:pr-10 ">
         <div class="mx-auto w-full min-w-0">
             <slot />
         </div>
