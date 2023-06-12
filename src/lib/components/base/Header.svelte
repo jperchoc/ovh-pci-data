@@ -1,15 +1,29 @@
 <script lang="ts">
-	import { buttonVariants } from "$components/ui/button";
+	import Avatar from "$components/ui/avatar/Avatar.svelte";
+	import AvatarFallback from "$components/ui/avatar/AvatarFallback.svelte";
+import { buttonVariants } from "$components/ui/button";
 	import { cn } from "$lib/utils";
 	import LightSwitch from "./light-switch/LightSwitch.svelte";
 	import MainNav from "./nav/MainNav.svelte";
 	import MobileNav from "./nav/MobileNav.svelte";
+
+	export let user: ovhapi.nichandle.Nichandle | null;
+	let avatarInitials = '';
+	$: {
+		if (user) {
+			if (user.firstname && user.name) {
+				avatarInitials = `${user.firstname[0]}${user.name[0]}`;
+			} else {
+				avatarInitials = user.nichandle.slice(0, 2).toUpperCase();
+			}
+		}
+	}
 </script>
 
 <header
-	class="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 shadow-sm backdrop-blur"
+	class="px-2 md:px-8 supports-backdrop-blur:bg-headerbg/60 sticky top-0 z-40 w-full border-b bg-headerbg/95 shadow-sm backdrop-blur"
 >
-	<div class="container flex h-14 items-center">
+	<div class="flex h-14 items-center">
 		<MainNav />
 		<MobileNav />
 		<div
@@ -19,44 +33,12 @@
 				<!-- Command Menu Here -->
 			</div>
 			<nav class="flex items-center space-x-1">
-				<a
-					href={"siteConfig.links.github"}
-					target="_blank"
-					rel="noreferrer"
-				>
-					<div
-						class={cn(
-							buttonVariants({
-								size: "sm",
-								variant: "ghost"
-							}),
-							"w-9 px-0"
-						)}
-					>
-						<!-- <Icons.gitHub class="h-5 w-5" /> -->
-						<span class="sr-only">GitHub</span>
-					</div>
-				</a>
-				<a
-					href={"siteConfig.links.shadTwitter"}
-					target="_blank"
-					rel="noreferrer"
-				>
-					<div
-						class={cn(
-							buttonVariants({
-								size: "sm",
-								variant: "ghost"
-							}),
-							"w-9 px-0"
-						)}
-					>
-						<!-- <Icons.twitter class="h-5 w-5 fill-current" /> -->
-                        Twitter
-						<span class="sr-only">Twitter</span>
-					</div>
-				</a>
 				<LightSwitch />
+				{#if user}
+				<Avatar>
+					<AvatarFallback>{avatarInitials}</AvatarFallback>
+				</Avatar>
+				{/if}
 			</nav>
 		</div>
 	</div>

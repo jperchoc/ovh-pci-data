@@ -9,6 +9,7 @@
 	import { JsonViewer, TableDateCell, TableLinkCell, DataTable } from "$components";
 	import { Card } from "$components/ui/card";
 	import CardContent from "$components/ui/card/CardContent.svelte";
+	import CardHeader from "$components/ui/card/CardHeader.svelte";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);
@@ -20,7 +21,7 @@
     }
 
     const table = createTable(tableData,  {
-        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'] }),
+        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'], initialSortKeys: [{id: 'createdAtCol', order: 'desc'}] }),
         colOrder: addColumnOrder(),
         page: addPagination({
             initialPageIndex: 0,
@@ -58,6 +59,7 @@
         }),
         table.column({
             header: 'Created at',
+            id: 'createdAtCol',
             accessor: app => app.createdAt,
             cell: ({ value }) =>
                 createRender(TableDateCell, {
@@ -80,7 +82,6 @@
         }),
     ]);
     const viewModel = table.createViewModel(columns);
-    console.log(viewModel)
 
     onMount(() => {
         const it = setInterval(() => {
@@ -92,9 +93,11 @@
     });
 </script>
 
-<h2 class="mb-4">Apps</h2>
 <Card>
-    <CardContent>
+    <CardHeader>
+        <h2 class="font-bold text-xl">AI Deploy</h2>
+    </CardHeader>
+    <CardContent class="p-0 pb-4">
 {#if apps}
     <DataTable {viewModel} selectedItem={selectedApp}/>
 {:else}
@@ -104,10 +107,9 @@
 </Card>
 
 {#if $selectedApp}
-<Card class="mt-2 py-4">
-    <CardContent>
-    
-    <JsonViewer data={$selectedApp} />
+<Card class="mt-2 pb-4">
+    <CardContent class="p-6">
+        <JsonViewer data={$selectedApp} />
     </CardContent>
 </Card>
 {/if}

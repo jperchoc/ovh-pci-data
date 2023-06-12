@@ -33,4 +33,6 @@
 >
 	Next
 </Button>
-<p>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</p>
+<p>
+<small>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</small>
+</p>

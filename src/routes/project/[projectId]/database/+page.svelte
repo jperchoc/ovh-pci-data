@@ -1,21 +1,102 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import { writable, type Writable } from "svelte/store";
 	import type { PageData } from "./$types";
+    import { createRender, createTable } from 'svelte-headless-table';
+    import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
+	import TableLinkCell from "$components/TableLinkCell.svelte";
+	import TableDateCell from "$components/TableDateCell.svelte";
+	import { onMount } from "svelte";
+	import { invalidate } from "$app/navigation";
+	import { Card, CardContent, CardHeader } from "$components/ui/card";
+	import { DataTable } from "$components";
+	
 
     export let data: PageData;
+    const tableData: Writable<ovhapi.cloud.project.database.Service[]> = writable([]);
 
     $: dbServices = data.dbServices;
+    $: {
+        tableData.set(dbServices);
+    }
+
+    const table = createTable(tableData,  {
+        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'], initialSortKeys: [{id: 'createdAtCol', order: 'desc'}] }),
+        colOrder: addColumnOrder(),
+        page: addPagination({
+            initialPageIndex: 0,
+            initialPageSize: 5
+        })
+    });
+    const columns = table.createColumns([
+        table.column({
+            header: 'Name',
+            accessor: item => item,
+            cell: ({ value: service }) =>
+                createRender(TableLinkCell, {
+                    linkLabel: service.description, 
+                    href: `/project/${$page.params.projectId}/database/${service.id}`, 
+                    subLabel: service.id
+                }
+            ),
+            plugins: {
+                sort: {
+                    getSortValue: (item) => item.description,
+                }
+            }
+        }),
+        table.column({
+            header: 'Engine',
+            accessor: service => service.engine,
+        }),
+        table.column({
+            header: 'Plan',
+            accessor: service => service.plan,
+        }),
+        table.column({
+            header: 'Flavor',
+            accessor: service => service.flavor,
+        }),
+        table.column({
+            header: 'Nodes',
+            accessor: service => service.nodeNumber,
+        }),
+        table.column({
+            header: 'Created at',
+            id: 'createdAtCol',
+            accessor: service => service.createdAt,
+            cell: ({ value }) =>
+                createRender(TableDateCell, {
+                    date: new Date(value),
+                }
+            ),
+        }),
+        table.column({
+            header: 'Status',
+            accessor: service => service.status,
+        }),
+    ]);
+    const viewModel = table.createViewModel(columns);
+
+    onMount(() => {
+        const it = setInterval(() => {
+            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/database/service`);
+        }, 10000)
+        return () => {
+            clearInterval(it);
+        }
+    });
 </script>
 
-<h2>Databases</h2>
-{#if dbServices && dbServices.length > 0}
-<ul>
-    {#each dbServices as service}
-     <li>
-        <a href="/project/{$page.params.projectId}/database/{service.id}">{service.description}</a>
-    </li>   
-    {/each}
-</ul>
+<Card>
+    <CardHeader>
+        <h2 class="font-bold text-xl">Databases</h2>
+    </CardHeader>
+    <CardContent class="p-0 pb-4">
+{#if dbServices}
+    <DataTable {viewModel}/>
 {:else}
-    <p>Aucun service</p>
+    <p>No service found</p>
 {/if}
+    </CardContent>
+</Card>

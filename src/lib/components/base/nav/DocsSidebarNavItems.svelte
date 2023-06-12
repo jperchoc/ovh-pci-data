@@ -2,6 +2,7 @@
 	import type { SidebarNavItem } from "$lib/types/nav";
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils";
+	import Button from "$components/ui/button/Button.svelte";
 
 	export let items: SidebarNavItem[] = [];
 </script>
@@ -16,8 +17,8 @@
 						"group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
 						item.disabled && "cursor-not-allowed opacity-60",
 						$page.url.pathname === item.href
-							? "font-medium text-foreground"
-							: "text-muted-foreground"
+							? "font-bold text-primary/95"
+							: "text-foreground"
 					)}
 					target={item.external ? "_blank" : ""}
 					rel={item.external ? "noreferrer" : ""}
