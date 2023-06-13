@@ -2,7 +2,7 @@
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-08T14:00:18.357Z
+ * Creation date: 2023-06-13T09:49:07.127Z
  * Author: Jonathan Perchoc 
 */
 declare namespace ovhapi {
@@ -1659,7 +1659,7 @@ declare namespace ovhapi {
                     /** Protocol port number for the resource */
                     protocolPort: number;
                     /** Weight of a member determines the portion of requests or connections it services compared to the other members of the pool. Between 1 and 256. */
-                    weight: number;
+                    weight ? : number;
                 }
                 /** Network information to create a loadbalancer */
                 interface NetworkInformationCreate {
@@ -1704,7 +1704,7 @@ declare namespace ovhapi {
                     /** Provisioning status of the resource */
                     provisioningStatus: cloud.loadbalancing.LoadBalancerProvisioningStatusEnum;
                     /** Weight of a member determines the portion of requests or connections it services compared to the other members of the pool */
-                    weight: number;
+                    weight ? : number;
                 }
                 /** Parameters to update a pool member */
                 interface MemberUpdate {
@@ -1760,7 +1760,7 @@ declare namespace ovhapi {
                 /** Number of successful checks before changing the operating status of the member to ONLINE */
                 maxRetries: number;
                 /** Number of allowed check failures before changing the operating status of the member to ERROR */
-                maxRetriesDown: number;
+                maxRetriesDown ? : number;
                 /** Type of the monitor */
                 monitorType: cloud.loadbalancing.LoadBalancerHealthMonitorTypeEnum;
                 /** The name of the resource */
@@ -1783,7 +1783,7 @@ declare namespace ovhapi {
                 /** Number of successful checks before changing the operating status of the member to ONLINE */
                 maxRetries: number;
                 /** Number of allowed check failures before changing the operating status of the member to ERROR */
-                maxRetriesDown: number;
+                maxRetriesDown ? : number;
                 /** Type of the monitor */
                 monitorType: cloud.loadbalancing.LoadBalancerHealthMonitorTypeEnum;
                 /** The name of the resource */
@@ -1928,6 +1928,7 @@ declare namespace ovhapi {
             enum ListenerProtocolEnum {
                 "http",
                 "https",
+                "prometheus",
                 "sctp",
                 "tcp",
                 "terminatedHTTPS",
@@ -2037,7 +2038,8 @@ declare namespace ovhapi {
             enum PoolAlgorithmEnum {
                 "leastConnections",
                 "roundRobin",
-                "sourceIP"
+                "sourceIP",
+                "sourceIPPort"
             }
             /** Pool */
             interface PoolCreate {
@@ -2059,6 +2061,7 @@ declare namespace ovhapi {
                 "http",
                 "https",
                 "proxy",
+                "proxyV2",
                 "sctp",
                 "tcp",
                 "udp"
