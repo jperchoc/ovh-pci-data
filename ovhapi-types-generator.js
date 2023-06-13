@@ -5,6 +5,7 @@
 import fs from 'fs';
 import beautify from 'js-beautify/js/index.js';
 
+const outputLocation = './src/lib/types/ovh/index.d.ts';
 const JSONFiles = [
     'https://api.ovh.com/1.0/cloud.json',
     'https://api.ovh.com/1.0/me.json'
@@ -122,4 +123,4 @@ const types = (`
 */
 declare ${beautify(namespaceToTs(ovhApi))}
 `)
-fs.writeFileSync('./src/types/ovh/index.d.ts', types);
+fs.writeFileSync(outputLocation, types);

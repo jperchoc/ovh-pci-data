@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Readable, Writable } from 'svelte/store';
+	import Button from './ui/button/Button.svelte';
 
 	type Pagination = {
 		pageSize: Readable<number>;
@@ -14,20 +15,24 @@
 	const { pageSize, pageIndex, pageCount, hasPreviousPage, hasNextPage } = pagination;
 </script>
 
-<button
+<Button
+	variant="outline"
 	on:click={() => {
 		$pageIndex--;
 	}}
 	disabled={!$hasPreviousPage}
 >
 	Previous
-</button>
-<button
+</Button>
+<Button
+	variant="outline"
 	on:click={() => {
 		$pageIndex++;
 	}}
 	disabled={!$hasNextPage}
 >
 	Next
-</button>
-<p>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</p>
+</Button>
+<p>
+<small>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</small>
+</p>

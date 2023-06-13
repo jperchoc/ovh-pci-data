@@ -7,6 +7,9 @@
     import { createRender, createTable } from 'svelte-headless-table';
     import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
 	import { JsonViewer, TableDateCell, TableLinkCell, DataTable } from "$components";
+	import { Card } from "$components/ui/card";
+	import CardContent from "$components/ui/card/CardContent.svelte";
+	import CardHeader from "$components/ui/card/CardHeader.svelte";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);
@@ -18,11 +21,11 @@
     }
 
     const table = createTable(tableData,  {
-        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'] }),
+        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'], initialSortKeys: [{id: 'createdAtCol', order: 'desc'}] }),
         colOrder: addColumnOrder(),
         page: addPagination({
             initialPageIndex: 0,
-            initialPageSize: 10
+            initialPageSize: 5
         })
     });
     const columns = table.createColumns([
@@ -56,6 +59,7 @@
         }),
         table.column({
             header: 'Created at',
+            id: 'createdAtCol',
             accessor: app => app.createdAt,
             cell: ({ value }) =>
                 createRender(TableDateCell, {
@@ -89,14 +93,25 @@
     });
 </script>
 
-<h2>Apps</h2>
+<Card>
+    <CardHeader>
+        <h2 class="font-bold text-xl">AI Deploy</h2>
+    </CardHeader>
+    <CardContent class="p-0 pb-4">
 {#if apps}
     <DataTable {viewModel} selectedItem={selectedApp}/>
 {:else}
     <p>No app found</p>
 {/if}
+    </CardContent>
+</Card>
 
 {#if $selectedApp}
-    <JsonViewer data={$selectedApp} />
+<Card class="mt-2 pb-4">
+    <CardContent class="p-6">
+        <JsonViewer data={$selectedApp} />
+    </CardContent>
+</Card>
 {/if}
+
 

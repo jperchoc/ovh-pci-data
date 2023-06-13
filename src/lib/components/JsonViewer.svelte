@@ -12,6 +12,7 @@
         border-radius: 5px;
     }
     pre {
+        font-size: small;
         color: white;
         margin: 0;
         background-color: #1f1f1f;
