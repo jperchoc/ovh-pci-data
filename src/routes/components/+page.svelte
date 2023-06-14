@@ -197,7 +197,7 @@
 <Separator class="my-4" />
 <Card>
 	<CardContent class="p-10 space-y-4">
-		<div class="w-[450px]">
+		<div class="max-w-[450px]">
 			<AspectRatio ratio={16 / 9} class="bg-muted">
 				<img
 					src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
@@ -270,9 +270,8 @@
 	<Lead>Displays a card with header, content, and footer.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Card class="w-[380px]">
+<div class="p-10 space-y-4">
+		<Card class="max-w-[380px]">
 			<CardHeader>
 				<CardTitle tag="h3">Card Title</CardTitle>
 				<CardDescription>Card Description</CardDescription>
@@ -316,8 +315,7 @@
 				</Button>
 			</CardFooter>
 		</Card>
-	</CardContent>
-</Card>
+</div>
 
 <div class="space-y-2 mt-6">
 	<H1 id="checkbox">Checkbox</H1>
@@ -586,8 +584,8 @@
 		<div class="flex items-center space-x-4">
 			<Skeleton class="h-12 w-12 rounded-full" />
 			<div class="space-y-2">
-				<Skeleton class="h-4 w-[250px]" />
-				<Skeleton class="h-4 w-[200px]" />
+				<Skeleton class="h-4 max-w-[250px]" />
+				<Skeleton class="h-4 max-w-[200px]" />
 			</div>
 		</div>
 	</CardContent>
@@ -628,7 +626,7 @@
 		<TableCaption>A list of your recent invoices.</TableCaption>
 		<TableHeader>
 			<TableRow>
-				<TableHead class="w-[100px]">Invoice</TableHead>
+				<TableHead class="max-w-[100px]">Invoice</TableHead>
 				<TableHead>Status</TableHead>
 				<TableHead>Method</TableHead>
 				<TableHead class="text-right">Amount</TableHead>
@@ -666,7 +664,7 @@
 <Separator class="my-4" />
 <Card>
 	<CardContent class="p-10 space-y-4">
-		<Tabs value="account" class="w-[400px]">
+		<Tabs value="account" class="max-w-[400px]">
 			<TabsList>
 				<TabsTrigger value="account">Account</TabsTrigger>
 				<TabsTrigger value="password">Password</TabsTrigger>

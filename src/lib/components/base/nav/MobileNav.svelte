@@ -4,6 +4,8 @@
 	import { Sheet, SheetContent, SheetTrigger } from "$components/ui/sheet";
 	import MobileLink from "./MobileLink.svelte";
 
+	import navStore from "$stores/nav";
+
 	export let open = false;
 </script>
 
@@ -28,16 +30,16 @@
 		</MobileLink>
 		<div class="my-4 h-[calc(100vh-8rem)] pb-10 pl-6 overflow-auto">
 			<div class="flex flex-col space-y-3">
-				<!-- {#each docsConfig.mainNav as navItem, index (navItem + index.toString())}
+				{#each $navStore as navItem, index (navItem + index.toString())}
 					{#if navItem.href}
 						<MobileLink href={navItem.href} bind:open>
 							{navItem.title}
 						</MobileLink>
 					{/if}
-				{/each} -->
+				{/each}
 			</div>
 			<div class="flex flex-col space-y-2">
-				<!-- {#each docsConfig.sidebarNav as navItem, index (index)}
+				{#each $navStore as navItem, index (index)}
 					<div class="flex flex-col space-y-3 pt-6">
 						<h4 class="font-medium">{navItem.title}</h4>
 						{#if navItem?.items?.length}
@@ -50,7 +52,7 @@
 							{/each}
 						{/if}
 					</div>
-				{/each} -->
+				{/each}
 			</div>
 		</div>
 	</SheetContent>

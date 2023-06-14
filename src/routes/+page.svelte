@@ -1,16 +1,24 @@
 <script lang="ts">
+	import { Button } from "$components/ui/button";
+	import { A, H1 } from "$components/ui/typography";
 	import type { LayoutData } from "./$types";
 
     export let data: LayoutData;
     $: user = data.user
 </script>
 
-<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Welcome to PCI-Data project</h1>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] px-2 md:px-6 lg:px-10 ">
+    <div class="mx-auto w-full min-w-0">
 
-{#if user}
-    <a href="/project">See your projects</a>
-{:else}
-    <a href="/api/auth/login">Login</a>
-{/if}
+        <H1 class="mb-4">Welcome to PCI-Data project</H1>
+
+        <Button href="/components">Browse components gallery</Button>
+        {#if user}
+            <Button href="/project">See your projects</Button>
+        {:else}
+            <Button href="/api/auth/login">Login</Button>
+        {/if}
 
 
+    </div>
+</main>
