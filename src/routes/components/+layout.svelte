@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { DocsSidebarNav } from "$components/base/nav";
 	import type { SidebarNavItem } from "$types/nav";
-    const nav:SidebarNavItem[] = [{
+    import navStore from "$stores/nav";
+
+    navStore.set([{
         title: 'Components',
         items: [
             {
@@ -130,7 +132,7 @@
             },
         ]
     }
-];
+]);
 
 </script>
 <div
@@ -139,11 +141,11 @@
 	<aside
 		class="bg-sidebarbg fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block pl-4"
 	>
-		<div class="py-4 pr-4">
-			<DocsSidebarNav items={nav} />
+		<div class="py-4 px-4">
+			<DocsSidebarNav />
 		</div>
 	</aside>
-    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr] md:pr-6 lg:pr-10 ">
+    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr]  px-2 md:px-0 md:pr-6 lg:pr-10 ">
         <div class="mx-auto w-full min-w-0">
             <slot />
         </div>
