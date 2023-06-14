@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page } from "$app/stores";
-	import { writable, type Writable } from "svelte/store";
 	import type { PageData } from "./$types";
+	import { onMount } from "svelte";
+	import { page } from "$app/stores";
+	import { invalidate } from "$app/navigation";
+	import { writable, type Writable } from "svelte/store";
 	import { createRender, createTable } from "svelte-headless-table";
 	import { addColumnOrder, addPagination, addSortBy } from "svelte-headless-table/plugins";
-	import { DataTable, TableDateCell, TableLinkCell } from "$components";
-	import CardContent from "$components/ui/card/CardContent.svelte";
-	import Card from "$components/ui/card/Card.svelte";
-	import CardHeader from "$components/ui/card/CardHeader.svelte";
+	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
+	import { Card, CardContent, CardHeader } from "$components/ui/card";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.job.Job[]> = writable([]);
@@ -70,6 +70,14 @@
     ]);
     const viewModel = table.createViewModel(columns);
 
+    onMount(() => {
+        const it = setInterval(() => {
+            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/job`);
+        }, 10000)
+        return () => {
+            clearInterval(it);
+        }
+    });
 </script>
 
 

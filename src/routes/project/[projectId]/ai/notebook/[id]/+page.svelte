@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import { JsonViewer } from "$components";
+    import { JsonViewer } from "$components/ui/json-viewer";
 	import type { PageData } from "./$types";
 
     export let data: PageData;

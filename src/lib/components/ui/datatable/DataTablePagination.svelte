@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Readable, Writable } from 'svelte/store';
-	import Button from './ui/button/Button.svelte';
+	import Button from '../button/Button.svelte';
+	import { P, Small } from '../typography';
 
 	type Pagination = {
 		pageSize: Readable<number>;
@@ -33,6 +34,6 @@
 >
 	Next
 </Button>
-<p>
-<small>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</small>
-</p>
+<P>
+	<Small>showing page {$pageIndex + 1}/{$pageCount} ({$pageSize} items/page)</Small>
+</P>

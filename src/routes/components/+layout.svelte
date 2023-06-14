@@ -62,6 +62,11 @@
                 items: []
             },
             {
+                title: 'Datatable',
+                href: '/components#data-table',
+                items: []
+            },
+            {
                 title: 'Dialog',
                 href: '/components#dialog',
                 items: []

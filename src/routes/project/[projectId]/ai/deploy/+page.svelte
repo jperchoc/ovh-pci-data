@@ -6,10 +6,9 @@
 	import { writable, type Writable } from "svelte/store";
     import { createRender, createTable } from 'svelte-headless-table';
     import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
-	import { JsonViewer, TableDateCell, TableLinkCell, DataTable } from "$components";
-	import { Card } from "$components/ui/card";
-	import CardContent from "$components/ui/card/CardContent.svelte";
-	import CardHeader from "$components/ui/card/CardHeader.svelte";
+	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
+	import { Card, CardContent, CardHeader } from "$components/ui/card";
+	import { JsonViewer } from "$components/ui/json-viewer";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);

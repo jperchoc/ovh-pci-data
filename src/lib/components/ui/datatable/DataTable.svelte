@@ -1,4 +1,6 @@
 <script lang="ts">
+	import DataTablePagination from "./DataTablePagination.svelte";
+
 	import { cn } from "$lib/utils";
 
 	export let classTable: string | undefined | null = undefined;
@@ -7,7 +9,6 @@
 	export let classTh: string | undefined | null = undefined;
 	export let classTd: string | undefined | null = undefined;
 
-	import { DataTablePagination } from '$components';
 
 	import type { Writable } from 'svelte/store';
 
@@ -16,6 +17,8 @@
 	import { BodyRow, Render, Subscribe } from 'svelte-headless-table';
 	import type { TableViewModel } from 'svelte-headless-table';
 	import type { AnyPlugins } from 'svelte-headless-table/lib/types/TablePlugin';
+	import { Table, TableHeader, TableRow } from "../table";
+	import TableBody from "../table/TableBody.svelte";
 
 	export let viewModel: TableViewModel<Item, AnyPlugins>;
 
@@ -31,14 +34,11 @@
 </script>
 
 <div class="w-full overflow-auto">
-	<table class={cn("w-full caption-bottom text-sm", classTable)} {...$tableAttrs}>
-		<thead class={cn("[&_tr]:border-b", classThead)}>
+	<Table class={classTable} {...$tableAttrs}>
+		<TableHeader class={classThead}>
 			{#each $headerRows as headerRow (headerRow.id)}
 				<Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-					<tr class={cn(
-						"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-						classTr
-					)} {...rowAttrs}>
+					<TableRow class={classTr} {...rowAttrs}>
 						{#each headerRow.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 								<th class={cn(
@@ -56,11 +56,11 @@
 								</th>
 							</Subscribe>
 						{/each}
-					</tr>
+					</TableRow>
 				</Subscribe>
 			{/each}
-		</thead>
-		<tbody {...$tableBodyAttrs}>
+		</TableHeader>
+		<TableBody {...$tableBodyAttrs}>
 			{#each $pageRows as row (row.id)}
 				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 					<tr 
@@ -83,8 +83,8 @@
 					</tr>
 				</Subscribe>
 			{/each}
-		</tbody>
-	</table>
+		</TableBody>
+	</Table>
 </div>
 {#if pluginStates.page}
 <div class="text-right p-2">
