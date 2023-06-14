@@ -1,17 +1,13 @@
 <script lang="ts">
+    import type { PageData } from "./$types";
+	import { onMount } from "svelte";
 	import { page } from "$app/stores";
-	import DataTable from "$components/DataTable.svelte";
-	import Card from "$components/ui/card/Card.svelte";
-	import CardContent from "$components/ui/card/CardContent.svelte";
-	import CardHeader from "$components/ui/card/CardHeader.svelte";
+	import { invalidate } from "$app/navigation";
 	import { writable, type Writable } from "svelte/store";
-	import type { PageData } from "./$types";
 	import { createRender, createTable } from "svelte-headless-table";
 	import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
-	import TableLinkCell from "$components/TableLinkCell.svelte";
-	import TableDateCell from "$components/TableDateCell.svelte";
-	import { onMount } from "svelte";
-	import { invalidate } from "$app/navigation";
+	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
+	import { Card, CardContent, CardHeader } from "$components/ui/card";
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.notebook.Notebook[]> = writable([]);

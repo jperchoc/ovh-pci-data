@@ -3,11 +3,11 @@
 	import { dev } from "$app/environment";
 	import { locale } from '$lib/translations/translations';
 	import type { LayoutData } from "./$types";
-	import TailwindIndicator from "$components/base/TailwindIndicator.svelte";
 	import Header from "$components/base/Header.svelte";
 	import { navigating } from "$app/stores";
-	import PreloadingIndicator from "$components/base/PreloadingIndicator.svelte";
-	import { setInitialClassState } from "$components/base/light-switch/light-switch";
+	import { PreloadingIndicator } from "$components/ui/preloading-indicator";
+	import { setInitialClassState } from "$components/ui/light-switch/light-switch";
+	import { TailwindIndicator } from "$components/ui/tailwind-indicator";
 
 	function changeLanguage(lang: string) {
 		localStorage.setItem('lang', lang);

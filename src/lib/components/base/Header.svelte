@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Avatar from "$components/ui/avatar/Avatar.svelte";
 	import AvatarFallback from "$components/ui/avatar/AvatarFallback.svelte";
-import { buttonVariants } from "$components/ui/button";
-	import { cn } from "$lib/utils";
-	import LightSwitch from "./light-switch/LightSwitch.svelte";
+	import LightSwitch from "$components/ui/light-switch/LightSwitch.svelte";
 	import MainNav from "./nav/MainNav.svelte";
 	import MobileNav from "./nav/MobileNav.svelte";
 

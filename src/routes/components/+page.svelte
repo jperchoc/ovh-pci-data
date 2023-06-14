@@ -85,14 +85,102 @@
 	import { Textarea } from '$components/ui/textarea';
 	import { Toggle } from '$components/ui/toggle';
 	import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '$components/ui/tooltip';
+	import { writable, type Writable } from 'svelte/store';
+	import { createTable } from 'svelte-headless-table';
+    import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
+	import DataTable from '$components/ui/datatable/DataTable.svelte';
 
-    //Handle interactive Sheet component
+	//Handle interactive Sheet component
 	const SHEET_POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
 	type SheetPosition = (typeof SHEET_POSITIONS)[number];
 	let sheetPosition: SheetPosition = 'right';
 	const SHEET_SIZES = ['sm', 'default', 'lg', 'xl', 'full', 'content'] as const;
 	type SheetSize = (typeof SHEET_SIZES)[number];
 	let sheetSize: SheetSize = 'default';
+
+	//handle datatable
+	type Invoice = {
+		invoice: string;
+		paymentStatus: 'Paid' | 'Pending' | 'Unpaid';
+		paymentMethod: 'Credit Card' | 'PayPal' | 'Bank Transfer';
+		totalAmount: number;
+	};
+	const invoices: Invoice[] = [
+		{
+			invoice: 'INV001',
+			paymentStatus: 'Paid',
+			totalAmount: 250,
+			paymentMethod: 'Credit Card'
+		},
+		{
+			invoice: 'INV002',
+			paymentStatus: 'Pending',
+			totalAmount: 150,
+			paymentMethod: 'PayPal'
+		},
+		{
+			invoice: 'INV003',
+			paymentStatus: 'Unpaid',
+			totalAmount: 350,
+			paymentMethod: 'Bank Transfer'
+		},
+		{
+			invoice: 'INV004',
+			paymentStatus: 'Paid',
+			totalAmount: 450,
+			paymentMethod: 'Credit Card'
+		},
+		{
+			invoice: 'INV005',
+			paymentStatus: 'Paid',
+			totalAmount: 550,
+			paymentMethod: 'PayPal'
+		},
+		{
+			invoice: 'INV006',
+			paymentStatus: 'Pending',
+			totalAmount: 200,
+			paymentMethod: 'Bank Transfer'
+		},
+		{
+			invoice: 'INV007',
+			paymentStatus: 'Unpaid',
+			totalAmount: 300,
+			paymentMethod: 'Credit Card'
+		}
+	];
+	const tableData: Writable<Invoice[]> = writable([]);
+	const selectedInvoice: Writable<Invoice> = writable();
+	tableData.set(invoices);
+	const table = createTable(tableData,  {
+        sort: addSortBy({ disableMultiSort: true, toggleOrder: ['asc', 'desc'], initialSortKeys: [{id: 'invoiceCol', order: 'desc'}] }),
+        colOrder: addColumnOrder(),
+        page: addPagination({
+            initialPageIndex: 0,
+            initialPageSize: 5
+        })
+    });
+	const columns = table.createColumns([
+        table.column({
+			id: 'invoiceCol',
+            header: 'Invoice',
+            accessor: invoice => invoice.invoice,
+        }),
+		table.column({
+            header: 'Status',
+            accessor: invoice => invoice.paymentStatus,
+        }),
+		table.column({
+            header: 'Method',
+            accessor: invoice => invoice.paymentMethod,
+        }),
+		table.column({
+            header: 'Amount',
+            accessor: invoice => `$${invoice.totalAmount.toFixed(2)}`,
+        })
+	]);
+    const viewModel = table.createViewModel(columns);
+
 </script>
 
 <div class="space-y-2">
@@ -271,50 +359,50 @@
 </div>
 <Separator class="my-4" />
 <div class="p-10 space-y-4">
-		<Card class="max-w-[380px]">
-			<CardHeader>
-				<CardTitle tag="h3">Card Title</CardTitle>
-				<CardDescription>Card Description</CardDescription>
-			</CardHeader>
-			<CardContent class="grid gap-4">
-				<div class=" flex items-center space-x-4 rounded-md border p-4">
-					<BellRing />
-					<div class="flex-1 space-y-1">
-						<p class="text-sm font-medium leading-none">Push Notifications</p>
-						<p class="text-sm text-muted-foreground">Send notifications to device.</p>
-					</div>
-					<Switch />
+	<Card class="max-w-[380px]">
+		<CardHeader>
+			<CardTitle tag="h3">Card Title</CardTitle>
+			<CardDescription>Card Description</CardDescription>
+		</CardHeader>
+		<CardContent class="grid gap-4">
+			<div class=" flex items-center space-x-4 rounded-md border p-4">
+				<BellRing />
+				<div class="flex-1 space-y-1">
+					<p class="text-sm font-medium leading-none">Push Notifications</p>
+					<p class="text-sm text-muted-foreground">Send notifications to device.</p>
 				</div>
-				<div>
-					<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-						<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-						<div class="space-y-1">
-							<p class="text-sm font-medium leading-none">Your call has been confirmed.</p>
-							<p class="text-sm text-muted-foreground">1 hour ago</p>
-						</div>
-					</div>
-					<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-						<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-						<div class="space-y-1">
-							<p class="text-sm font-medium leading-none">You have a new message!</p>
-							<p class="text-sm text-muted-foreground">1 hour ago</p>
-						</div>
-					</div>
-					<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
-						<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-						<div class="space-y-1">
-							<p class="text-sm font-medium leading-none">Your subscription is expiring soon!</p>
-							<p class="text-sm text-muted-foreground">2 hours ago</p>
-						</div>
+				<Switch />
+			</div>
+			<div>
+				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
+					<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+					<div class="space-y-1">
+						<p class="text-sm font-medium leading-none">Your call has been confirmed.</p>
+						<p class="text-sm text-muted-foreground">1 hour ago</p>
 					</div>
 				</div>
-			</CardContent>
-			<CardFooter>
-				<Button class="w-full">
-					<Check class="mr-2 h-4 w-4" /> Mark all as read
-				</Button>
-			</CardFooter>
-		</Card>
+				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
+					<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+					<div class="space-y-1">
+						<p class="text-sm font-medium leading-none">You have a new message!</p>
+						<p class="text-sm text-muted-foreground">1 hour ago</p>
+					</div>
+				</div>
+				<div class="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
+					<span class="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+					<div class="space-y-1">
+						<p class="text-sm font-medium leading-none">Your subscription is expiring soon!</p>
+						<p class="text-sm text-muted-foreground">2 hours ago</p>
+					</div>
+				</div>
+			</div>
+		</CardContent>
+		<CardFooter>
+			<Button class="w-full">
+				<Check class="mr-2 h-4 w-4" /> Mark all as read
+			</Button>
+		</CardFooter>
+	</Card>
 </div>
 
 <div class="space-y-2 mt-6">
@@ -372,6 +460,24 @@
 				Yes. Free to use for personal and commercial projects. No attribution required.
 			</CollapsibleContent>
 		</Collapsible>
+	</CardContent>
+</Card>
+
+<div class="space-y-2 mt-6">
+	<H1 id="data-table">Datatable</H1>
+	<Lead
+		>A responsive table component with sorting, pagination and selection.</Lead
+	>
+</div>
+<Separator class="my-4" />
+<Card>
+	<CardContent class="p-10 space-y-4">
+		<DataTable {viewModel} selectedItem={selectedInvoice}/>
+		{#if !$selectedInvoice}
+			<P>Click on a row to select an invoice.</P>
+		{:else}
+			<P>You have selected the invoice <span class="text-primary">{$selectedInvoice.invoice}</span></P>
+		{/if}
 	</CardContent>
 </Card>
 
@@ -633,24 +739,14 @@
 			</TableRow>
 		</TableHeader>
 		<TableBody>
-			<TableRow key="INV001">
-				<TableCell class="font-medium">INV001</TableCell>
-				<TableCell>Paid</TableCell>
-				<TableCell>Credit Card</TableCell>
-				<TableCell class="text-right">$250.00</TableCell>
-			</TableRow>
-			<TableRow key="INV002">
-				<TableCell class="font-medium">INV002</TableCell>
-				<TableCell>Pending</TableCell>
-				<TableCell>PayPal</TableCell>
-				<TableCell class="text-right">$150.00.00</TableCell>
-			</TableRow>
-			<TableRow key="INV003">
-				<TableCell class="font-medium">INV003</TableCell>
-				<TableCell>Unpaid</TableCell>
-				<TableCell>Bank Transfer</TableCell>
-				<TableCell class="text-right">$350.00</TableCell>
-			</TableRow>
+			{#each invoices as invoice}
+				<TableRow key={invoice.invoice}>
+					<TableCell class="font-medium">{invoice.invoice}</TableCell>
+					<TableCell>{invoice.paymentStatus}</TableCell>
+					<TableCell>{invoice.paymentMethod}</TableCell>
+					<TableCell class="text-right">${invoice.totalAmount.toFixed(2)}</TableCell>
+				</TableRow>
+			{/each}
 		</TableBody>
 	</Table>
 </Card>
