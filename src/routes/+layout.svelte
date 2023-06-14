@@ -29,7 +29,7 @@
 
 <div class="relative flex min-h-screen flex-col bg-pagebg" id="page">
 	<Header {user} />
-	<div class="flex-1">
+	<div class="flex-1 container py-4">
 		<slot />
 	</div>
 	<!-- <SiteFooter /> -->
