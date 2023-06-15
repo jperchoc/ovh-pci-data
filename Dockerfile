@@ -1,5 +1,7 @@
 FROM node:19.7-alpine AS sk-build
 
+RUN apk add --no-cache git
+
 EXPOSE 3000
 
 WORKDIR /usr/src/app
