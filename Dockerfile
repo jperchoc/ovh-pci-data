@@ -5,8 +5,8 @@ EXPOSE 3000
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-
-RUN npm install
+RUN pnpm i -g pnpm
+RUN pnpm install
 COPY . .
 
 ENV PORT 3000
@@ -17,6 +17,6 @@ ENV FORCE_HTTP 'disabled'
 ENV NODE_ENV 'production'
 
 
-RUN npm run build
+RUN pnpm run build
 
 CMD ["node", "-r", "dotenv/config", "build" ]
