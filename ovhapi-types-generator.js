@@ -5,7 +5,7 @@
 import fs from 'fs';
 import beautify from 'js-beautify/js/index.js';
 
-const outputLocation = './src/lib/types/ovh/index.d.ts';
+const outputLocation = './src/lib/types/ovh/index.ts';
 const JSONFiles = [
     'https://api.ovh.com/1.0/cloud.json',
     'https://api.ovh.com/1.0/me.json'
@@ -36,9 +36,15 @@ const getType = (fullType) => {
         case 'ip':
         case 'password':            
         case 'date':
+        case 'ipv4Block':
+        case 'ipv4':
+        case 'text':
         case 'time':
+        case 'duration':
+        case 'phoneNumber':
             return `string${isArray?'[]':''}`;
         case 'long':
+        case 'double':
             return `number${isArray?'[]':''}`;
     }
     //handle bugs like 'coreTypes.AccountId:string'
@@ -67,12 +73,12 @@ const propertyToTs = (property) => {
 const modelToTs = (model) => {
     if (model.enum) {
         return (`/** ${model.description ?? model.id} */
-        enum ${model.id}{
-            ${model.enum.map(e => `"${e}"`).join(',')}
+        export enum ${model.id}{
+            ${model.enum.map(e => `"${e}"="${e}"`).join(',\r\n')}
         }`);
     } else {
         return (`/** ${model.description ?? model.id} */
-        interface ${model.id}{
+        export interface ${model.id}{
             ${
                 Object.entries(model.properties).map(e => propertyToTs({...e[1], name: e[0]})).join('\r\n')
             }
@@ -81,7 +87,7 @@ const modelToTs = (model) => {
 };
 
 const namespaceToTs = (namespace) => {
-    return (`namespace ${namespace.name} { ${namespace.namespaces.map(n => namespaceToTs(n)).join('\r\n')} ${namespace.models.map(m => modelToTs(m)).join('\r\n')}
+    return (`export namespace ${namespace.name} { ${namespace.namespaces.map(n => namespaceToTs(n)).join('\r\n')} ${namespace.models.map(m => modelToTs(m)).join('\r\n')}
     }`)
 }
 
@@ -115,12 +121,13 @@ for (const modelName in models) {
     }
 }
 const types = (`
+// @ts-nocheck
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
  * Creation date: ${new Date().toISOString()}
  * Author: Jonathan Perchoc 
 */
-declare ${beautify(namespaceToTs(ovhApi))}
+${beautify(namespaceToTs(ovhApi))}
 `)
 fs.writeFileSync(outputLocation, types);

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import Avatar from "$components/ui/avatar/Avatar.svelte";
 	import AvatarFallback from "$components/ui/avatar/AvatarFallback.svelte";
+	import { Button } from "$components/ui/button";
 	import LightSwitch from "$components/ui/light-switch/LightSwitch.svelte";
+	import type { ovhapi } from "$types/ovh";
 	import MainNav from "./nav/MainNav.svelte";
 	import MobileNav from "./nav/MobileNav.svelte";
+	import { locale } from '$lib/translations/translations';
 
 	export let user: ovhapi.nichandle.Nichandle | null;
 	let avatarInitials = '';
@@ -15,6 +18,10 @@
 				avatarInitials = user.nichandle.slice(0, 2).toUpperCase();
 			}
 		}
+	}
+	function changeLanguage(lang: string) {
+		localStorage.setItem('lang', lang);
+		locale.set(lang);
 	}
 </script>
 
@@ -31,6 +38,8 @@
 				<!-- Command Menu Here -->
 			</div>
 			<nav class="flex items-center space-x-1">
+				<Button on:click={() => changeLanguage('en')}>EN</Button>
+				<Button on:click={() => changeLanguage('fr')}>FR</Button>
 				<LightSwitch />
 				{#if user}
 				<Avatar>

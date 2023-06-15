@@ -144,7 +144,7 @@
 	class="max-w-full flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)]"
 >
 	<aside
-		class="bg-sidebarbg fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block pl-4"
+		class="bg-sidebarbg fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem-1px)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block pl-4"
 	>
 		<div class="py-4 px-4">
 			<DocsSidebarNav />

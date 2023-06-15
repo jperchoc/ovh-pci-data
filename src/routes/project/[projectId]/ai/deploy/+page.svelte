@@ -9,6 +9,32 @@
 	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
 	import { Card, CardContent, CardHeader } from "$components/ui/card";
 	import { JsonViewer } from "$components/ui/json-viewer";
+	import { POLLING_INTERVAL } from "$lib/global.constants";
+	import { Badge, badgeVariants } from "$components/ui/badge";
+	import type { VariantProps } from "class-variance-authority";
+	import { ovhapi } from "$types/ovh";
+
+    const getStatusVariant = (status: ovhapi.cloud.project.ai.app.AppStateEnum):VariantProps<typeof badgeVariants>["variant"] => {
+        switch(status) {
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.FAILED):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.ERROR):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.STOPPED):
+                return 'error';
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.STOPPING):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.SCALING):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.INITIALIZING):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.QUEUED):
+                return 'warning'
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.RUNNING):
+                return 'success'
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.DELETED):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.DELETING):
+            case (ovhapi.cloud.project.ai.app.AppStateEnum.STOPPED):
+                return 'info'
+            default: 
+                return 'default'
+        }
+    }
 
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.app.App[]> = writable([]);
@@ -78,14 +104,21 @@
         table.column({
             header: 'Status',
             accessor: app => app.status.state,
+            cell: ({ value }) => {
+                return createRender(Badge, {
+                    variant: value ? getStatusVariant(value) : 'default'
+                }).slot(value || '')
+            },
         }),
     ]);
     const viewModel = table.createViewModel(columns);
 
     onMount(() => {
         const it = setInterval(() => {
-            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/app`);
-        }, 10000)
+            if (document && !document.hidden) {
+                invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/app`);
+            }
+        }, POLLING_INTERVAL)
         return () => {
             clearInterval(it);
         }

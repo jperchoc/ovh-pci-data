@@ -8,7 +8,32 @@
 	import { addColumnOrder, addPagination, addSortBy } from "svelte-headless-table/plugins";
 	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
 	import { Card, CardContent, CardHeader } from "$components/ui/card";
+	import { POLLING_INTERVAL } from "$lib/global.constants";
+    import { ovhapi } from '$types/ovh';
+	import { Badge, badgeVariants } from "$components/ui/badge";
+	import type { VariantProps } from "class-variance-authority";
 
+    const getStatusVariant = (status: ovhapi.cloud.project.ai.job.JobStateEnum):VariantProps<typeof badgeVariants>["variant"] => {
+        switch(status) {
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.FAILED):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.ERROR):
+                return 'error';
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.TIMEOUT):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTING):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTED):
+                return 'warning';
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.DONE):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.RUNNING):
+                return 'success';
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.PENDING):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.QUEUED):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.INITIALIZING):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.FINALIZING):
+                return 'info'
+            default: 
+                return 'default'
+        }
+    }
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.job.Job[]> = writable([]);
     $: trainings = data.trainings;
@@ -56,6 +81,11 @@
         table.column({
             header: 'Status',
             accessor: item => item.status.state,
+            cell: ({ value }) => {
+                return createRender(Badge, {
+                    variant: value ? getStatusVariant(value) : 'default'
+                }).slot(value || '')
+            },
         }),
         table.column({
             header: 'Creation date',
@@ -72,8 +102,10 @@
 
     onMount(() => {
         const it = setInterval(() => {
-            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/job`);
-        }, 10000)
+            if (document && !document.hidden) {
+                invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/job`);
+            }
+        }, POLLING_INTERVAL)
         return () => {
             clearInterval(it);
         }

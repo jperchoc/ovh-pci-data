@@ -1,4 +1,5 @@
 import fetchRelog from "$helpers/fetch-relog";
+import type { ovhapi } from "$types/ovh";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async ({ fetch: _fetch, url, params}) => {

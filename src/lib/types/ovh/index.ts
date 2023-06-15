@@ -1,15 +1,16 @@
 
+// @ts-nocheck
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-13T09:49:07.127Z
+ * Creation date: 2023-06-15T15:47:05.919Z
  * Author: Jonathan Perchoc 
 */
-declare namespace ovhapi {
-    namespace cloud {
-        namespace authentication {
+export namespace ovhapi {
+    export namespace cloud {
+        export namespace authentication {
             /** Catalog */
-            interface Catalog {
+            export interface Catalog {
                 /** endpoints */
                 endpoints: cloud.authentication.Endpoint[];
                 /** id */
@@ -18,12 +19,12 @@ declare namespace ovhapi {
                 type: string;
             }
             /** Domain */
-            interface Domain {
+            export interface Domain {
                 /** name */
                 name: string;
             }
             /** Endpoint */
-            interface Endpoint {
+            export interface Endpoint {
                 /** id */
                 id: string;
                 /** interface */
@@ -38,7 +39,7 @@ declare namespace ovhapi {
                 url: string;
             }
             /** OpenstackToken */
-            interface OpenstackToken {
+            export interface OpenstackToken {
                 /** catalog */
                 catalog: cloud.authentication.Catalog[];
                 /** expires_at */
@@ -55,21 +56,21 @@ declare namespace ovhapi {
                 user: cloud.authentication.UserToken;
             }
             /** Role */
-            interface Role {
+            export interface Role {
                 /** id */
                 id: string;
                 /** name */
                 name: string;
             }
             /** Token */
-            interface Token {
+            export interface Token {
                 /** X-Auth-Token */
                 "X-Auth-Token": string;
                 /** token */
                 token: cloud.authentication.OpenstackToken;
             }
             /** TokenProject */
-            interface TokenProject {
+            export interface TokenProject {
                 /** domain */
                 domain: cloud.authentication.Domain;
                 /** id */
@@ -78,7 +79,7 @@ declare namespace ovhapi {
                 name: string;
             }
             /** UserToken */
-            interface UserToken {
+            export interface UserToken {
                 /** domain */
                 domain: cloud.authentication.Domain;
                 /** id */
@@ -87,32 +88,32 @@ declare namespace ovhapi {
                 name: string;
             }
         }
-        namespace billingView {
+        export namespace billingView {
             /** BandwidthInstance */
-            interface BandwidthInstance {
+            export interface BandwidthInstance {
                 /** Total bandwidth in GiB */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** BandwidthStorage */
-            interface BandwidthStorage {
+            export interface BandwidthStorage {
                 /** Total bandwidth in GiB */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** Component */
-            interface Component {
+            export interface Component {
                 /** Name of the component */
                 name: string;
                 /** Total quantity for the component */
                 quantity: cloud.billingView.Quantity;
                 /** Total price for this component */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyInstance */
-            interface HourlyInstance {
+            export interface HourlyInstance {
                 /** Details about hourly instances */
                 details: cloud.billingView.HourlyInstanceDetail[];
                 /** Hours of run instances */
@@ -122,10 +123,10 @@ declare namespace ovhapi {
                 /** Instance region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyInstanceBandwidth */
-            interface HourlyInstanceBandwidth {
+            export interface HourlyInstanceBandwidth {
                 /** Instance incoming bandwidth details */
                 incomingBandwidth ? : cloud.billingView.BandwidthInstance;
                 /** Instance outgoing bandwidth details */
@@ -133,19 +134,19 @@ declare namespace ovhapi {
                 /** Region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyInstanceDetail */
-            interface HourlyInstanceDetail {
+            export interface HourlyInstanceDetail {
                 /** Instance ID */
                 instanceId: string;
                 /** Hours of run instances */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyInstanceOption */
-            interface HourlyInstanceOption {
+            export interface HourlyInstanceOption {
                 /** Details about hourly instances option */
                 details: cloud.billingView.HourlyInstanceOptionDetail[];
                 /** Quantity of instance hours running with this option */
@@ -155,19 +156,19 @@ declare namespace ovhapi {
                 /** Instance region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyInstanceOptionDetail */
-            interface HourlyInstanceOptionDetail {
+            export interface HourlyInstanceOptionDetail {
                 /** Instance ID */
                 instanceId: string;
                 /** Quantity of instance hours running with this option */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** HourlyResources */
-            interface HourlyResources {
+            export interface HourlyResources {
                 /** Details about hourly instances */
                 instance: cloud.billingView.HourlyInstance[];
                 /** Details about instances bandwidth consumption */
@@ -182,18 +183,18 @@ declare namespace ovhapi {
                 volume: cloud.billingView.HourlyVolume[];
             }
             /** HourlySnapshot */
-            interface HourlySnapshot {
+            export interface HourlySnapshot {
                 /** Instance snapshot details */
                 instance ? : cloud.billingView.InstanceSnapshot;
                 /** Region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
                 /** Volume snapshot details */
                 volume ? : cloud.billingView.VolumeSnapshot;
             }
             /** HourlyStorage */
-            interface HourlyStorage {
+            export interface HourlyStorage {
                 /** Bucket Name */
                 bucketName ? : string;
                 /** Storage incoming bandwidth details */
@@ -209,12 +210,12 @@ declare namespace ovhapi {
                 /** Information about stored data */
                 stored ? : cloud.billingView.StoredStorage;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
                 /** Storage type */
                 type: cloud.billingView.StorageTypeEnum;
             }
             /** HourlyVolume */
-            interface HourlyVolume {
+            export interface HourlyVolume {
                 /** Detail about volume consumption */
                 details: cloud.billingView.HourlyVolumeDetail[];
                 /** Total GiBh of volume */
@@ -222,44 +223,44 @@ declare namespace ovhapi {
                 /** Region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
                 /** Volume type */
                 type: string;
             }
             /** HourlyVolumeDetail */
-            interface HourlyVolumeDetail {
+            export interface HourlyVolumeDetail {
                 /** GiBh of volume */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
                 /** Volume ID */
                 volumeId: string;
             }
             /** InstanceSnapshot */
-            interface InstanceSnapshot {
+            export interface InstanceSnapshot {
                 /** GiBh stored */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyCertification */
-            interface MonthlyCertification {
+            export interface MonthlyCertification {
                 /** Details about certifications */
                 details: cloud.billingView.MonthlyCertificationDetail[];
                 /** Certification reference */
                 reference: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyCertificationDetail */
-            interface MonthlyCertificationDetail {
+            export interface MonthlyCertificationDetail {
                 /** Certification activation */
                 activation: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyInstance */
-            interface MonthlyInstance {
+            export interface MonthlyInstance {
                 /** Details about monthly instances */
                 details: cloud.billingView.MonthlyInstanceDetail[];
                 /** Instance reference */
@@ -267,19 +268,19 @@ declare namespace ovhapi {
                 /** Instance region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyInstanceDetail */
-            interface MonthlyInstanceDetail {
+            export interface MonthlyInstanceDetail {
                 /** Monthly instance activation */
                 activation: string;
                 /** Instance ID */
                 instanceId: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyInstanceOption */
-            interface MonthlyInstanceOption {
+            export interface MonthlyInstanceOption {
                 /** Details about monthly instances */
                 details: cloud.billingView.MonthlyInstanceOptionDetail[];
                 /** Instance reference */
@@ -287,17 +288,17 @@ declare namespace ovhapi {
                 /** Instance region */
                 region: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyInstanceOptionDetail */
-            interface MonthlyInstanceOptionDetail {
+            export interface MonthlyInstanceOptionDetail {
                 /** Instance ID */
                 instanceId: string;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** MonthlyResources */
-            interface MonthlyResources {
+            export interface MonthlyResources {
                 /** Details about certifications */
                 certification ? : cloud.billingView.MonthlyCertification[];
                 /** Details about monthly instances */
@@ -306,100 +307,100 @@ declare namespace ovhapi {
                 instanceOption: cloud.billingView.MonthlyInstanceOption[];
             }
             /** Quantity */
-            interface Quantity {
+            export interface Quantity {
                 /** Quantity unit */
                 unit: cloud.billingView.UnitQuantityEnum;
                 /** Quantity value */
-                value: double;
+                value: number;
             }
             /** RegionalizedResource */
-            interface RegionalizedResource {
+            export interface RegionalizedResource {
                 /** List of components */
                 components: cloud.billingView.Component[];
                 /** Region of the resource */
                 region: string;
             }
             /** StorageTypeEnum */
-            enum StorageTypeEnum {
-                "pca",
-                "pcs",
-                "storage-coldarchive",
-                "storage-high-perf",
-                "storage-standard"
+            export enum StorageTypeEnum {
+                "pca" = "pca",
+                "pcs" = "pcs",
+                "storage-coldarchive" = "storage-coldarchive",
+                "storage-high-perf" = "storage-high-perf",
+                "storage-standard" = "storage-standard"
             }
             /** StoredStorage */
-            interface StoredStorage {
+            export interface StoredStorage {
                 /** GiBh stored */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
             /** TypedResources */
-            interface TypedResources {
+            export interface TypedResources {
                 /** Resources per region */
                 resources: cloud.billingView.RegionalizedResource[];
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
                 /** Type of the resources */
                 type: string;
             }
             /** UnitQuantity */
-            enum UnitQuantityEnum {
-                "GiB",
-                "GiBh",
-                "Hour",
-                "Minute",
-                "Second",
-                "Unit"
+            export enum UnitQuantityEnum {
+                "GiB" = "GiB",
+                "GiBh" = "GiBh",
+                "Hour" = "Hour",
+                "Minute" = "Minute",
+                "Second" = "Second",
+                "Unit" = "Unit"
             }
             /** UsedCredit */
-            interface UsedCredit {
+            export interface UsedCredit {
                 /** Credit description */
                 description: string;
                 /** Credit ID */
                 id: number;
                 /** Total credit used */
-                usedAmount: double;
+                usedAmount: number;
             }
             /** UsedCredits */
-            interface UsedCredits {
+            export interface UsedCredits {
                 /** Details about credits that will be used */
                 details: cloud.billingView.UsedCredit[];
                 /** Total credit that will be used to pay the bill */
-                totalCredit: double;
+                totalCredit: number;
             }
             /** VolumeSnapshot */
-            interface VolumeSnapshot {
+            export interface VolumeSnapshot {
                 /** GiBh stored */
                 quantity: cloud.billingView.Quantity;
                 /** Total price */
-                totalPrice: double;
+                totalPrice: number;
             }
         }
-        namespace capabilities {
+        export namespace capabilities {
             /** Public Cloud products availability */
-            interface Availability {
+            export interface Availability {
                 /** Plan availability */
                 plans: cloud.capabilities.AvailabilityPlan[];
                 /** Product availability */
                 products: cloud.capabilities.AvailabilityProduct[];
             }
             /** Public Cloud plan availability */
-            interface AvailabilityPlan {
+            export interface AvailabilityPlan {
                 /** Plan code */
                 code: string;
                 /** Plan is available on those regions */
                 regions: cloud.capabilities.AvailabilityRegion[];
             }
             /** Public Cloud product availability */
-            interface AvailabilityProduct {
+            export interface AvailabilityProduct {
                 /** Product name */
                 name: string;
                 /** Product is available on those regions */
                 regions: cloud.capabilities.AvailabilityRegion[];
             }
             /** Details about a region */
-            interface AvailabilityRegion {
+            export interface AvailabilityRegion {
                 /** Region continent code */
                 continentCode: cloud.RegionContinentEnum;
                 /** Location of the datacenter where the region is */
@@ -410,23 +411,23 @@ declare namespace ovhapi {
                 name: string;
             }
         }
-        namespace common {
+        export namespace common {
             /** Voucher validity range */
-            interface VoucherValidity {
+            export interface VoucherValidity {
                 /** Valid from */
                 from ? : string;
                 /** Valid to */
                 to ? : string;
             }
         }
-        namespace containerRegistry {
-            namespace registry {
+        export namespace containerRegistry {
+            export namespace registry {
                 /** Region of the registry */
-                enum RegionEnum {
-                    "GRA7"
+                export enum RegionEnum {
+                    "GRA7" = "GRA7"
                 }
                 /** Managed docker registry */
-                interface Registry {
+                export interface Registry {
                     /** Registry creation date */
                     createdAt: string;
                     /** Registry ID */
@@ -447,21 +448,21 @@ declare namespace ovhapi {
                     version: string;
                 }
                 /** Status of the registry */
-                enum StatusEnum {
-                    "ERROR",
-                    "READY",
-                    "DELETED",
-                    "SUSPENDED",
-                    "INSTALLING",
-                    "UPDATING",
-                    "RESTORING",
-                    "SUSPENDING",
-                    "DELETING"
+                export enum StatusEnum {
+                    "ERROR" = "ERROR",
+                    "READY" = "READY",
+                    "DELETED" = "DELETED",
+                    "SUSPENDED" = "SUSPENDED",
+                    "INSTALLING" = "INSTALLING",
+                    "UPDATING" = "UPDATING",
+                    "RESTORING" = "RESTORING",
+                    "SUSPENDING" = "SUSPENDING",
+                    "DELETING" = "DELETING"
                 }
             }
-            namespace user {
+            export namespace user {
                 /** Docker registry user */
-                interface User {
+                export interface User {
                     /** User email */
                     email: string;
                     /** User ID */
@@ -472,26 +473,26 @@ declare namespace ovhapi {
                     user: string;
                 }
             } /** The container registry capability for a single region */
-            interface Capability {
+            export interface Capability {
                 /** Available plans in the region */
                 plans: cloud.containerRegistry.Plan[];
                 /** The region name */
                 regionName: string;
             }
             /** Features list, enabled or not */
-            interface Features {
+            export interface Features {
                 /** Vulnerability scanning */
                 vulnerability: boolean;
             }
             /** Limitation of a docker registry */
-            interface Limits {
+            export interface Limits {
                 /** Docker image storage limits in bytes */
                 imageStorage: number;
                 /** Parallel requests on Docker image API (/v2 Docker registry API) */
                 parallelRequest: number;
             }
             /** Plan of the registry */
-            interface Plan {
+            export interface Plan {
                 /** Plan code from catalog */
                 code: string;
                 /** Plan creation date */
@@ -508,12 +509,12 @@ declare namespace ovhapi {
                 updatedAt: string;
             }
             /** Missing description */
-            interface PlanUpdate {
+            export interface PlanUpdate {
                 /** Plan ID to apply to the registry */
                 planID: string;
             }
             /** Managed docker registry */
-            interface Registry {
+            export interface Registry {
                 /** Registry creation date */
                 createdAt: string;
                 /** Registry ID */
@@ -536,19 +537,19 @@ declare namespace ovhapi {
                 version: string;
             }
             /** Status of the registry */
-            enum StatusEnum {
-                "DELETED",
-                "DELETING",
-                "ERROR",
-                "INSTALLING",
-                "READY",
-                "RESTORING",
-                "SUSPENDED",
-                "SUSPENDING",
-                "UPDATING"
+            export enum StatusEnum {
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "INSTALLING" = "INSTALLING",
+                "READY" = "READY",
+                "RESTORING" = "RESTORING",
+                "SUSPENDED" = "SUSPENDED",
+                "SUSPENDING" = "SUSPENDING",
+                "UPDATING" = "UPDATING"
             }
             /** Docker registry user */
-            interface User {
+            export interface User {
                 /** User email */
                 email: string;
                 /** User ID */
@@ -559,23 +560,23 @@ declare namespace ovhapi {
                 user: string;
             }
         }
-        namespace flavor {
+        export namespace flavor {
             /** Flavor capability */
-            interface Capability {
+            export interface Capability {
                 /** Is the capability enabled */
                 enabled: boolean;
                 /** Name of the capability */
                 name: cloud.flavor.CapabilityNameEnum;
             }
             /** Enum values for flavor capabilities names */
-            enum CapabilityNameEnum {
-                "failoverip",
-                "resize",
-                "snapshot",
-                "volume"
+            export enum CapabilityNameEnum {
+                "failoverip" = "failoverip",
+                "resize" = "resize",
+                "snapshot" = "snapshot",
+                "volume" = "volume"
             }
             /** Flavor */
-            interface Flavor {
+            export interface Flavor {
                 /** Available in stock */
                 available: boolean;
                 /** Capabilities of the flavor */
@@ -606,16 +607,16 @@ declare namespace ovhapi {
                 vcpus: number;
             }
             /** FlavorPlanCodes */
-            interface FlavorPlanCodes {
+            export interface FlavorPlanCodes {
                 /** Plan code to order hourly instance */
                 hourly ? : string;
                 /** Plan code to order monthly instance */
                 monthly ? : string;
             }
         }
-        namespace image {
+        export namespace image {
             /** Image */
-            interface Image {
+            export interface Image {
                 /** Image creation date */
                 creationDate: string;
                 /** Image usable only for this type of flavor if not null */
@@ -633,7 +634,7 @@ declare namespace ovhapi {
                 /** Image region */
                 region: string;
                 /** Image size (in GiB) */
-                size: double;
+                size: number;
                 /** Image status */
                 status: string;
                 /** Tags about the image */
@@ -646,66 +647,66 @@ declare namespace ovhapi {
                 visibility: string;
             }
             /** OSTypeEnum */
-            enum OSTypeEnum {
-                "baremetal-linux",
-                "bsd",
-                "linux",
-                "windows"
+            export enum OSTypeEnum {
+                "baremetal-linux" = "baremetal-linux",
+                "bsd" = "bsd",
+                "linux" = "linux",
+                "windows" = "windows"
             }
         }
-        namespace instance {
-            namespace CreateInput {
-                namespace Network {
-                    namespace Private {
-                        namespace GatewayCreate {
+        export namespace instance {
+            export namespace CreateInput {
+                export namespace Network {
+                    export namespace Private {
+                        export namespace GatewayCreate {
                             /** Gateway model */
-                            enum ModelEnum {
-                                "l",
-                                "m",
-                                "s"
+                            export enum ModelEnum {
+                                "l" = "l",
+                                "m" = "m",
+                                "s" = "s"
                             }
                         }
-                        namespace NetworkCreate {
+                        export namespace NetworkCreate {
                             /** New subnet information */
-                            interface Subnet {
+                            export interface Subnet {
                                 /** Subnet range in CIDR notation */
-                                cidr: ipv4Block;
+                                cidr: string;
                                 /** enableDhcp */
                                 enableDhcp: boolean;
                                 /** IP version */
                                 ipVersion: number;
                             }
                         } /** Existing floating IP */
-                        interface FloatingIp {
+                        export interface FloatingIp {
                             /** Floating IP ID */
                             id: string;
                         }
                         /** Information to create a new floating IP */
-                        interface FloatingIpCreate {
+                        export interface FloatingIpCreate {
                             /** Floating IP description */
                             description: string;
                         }
                         /** Existing gateway */
-                        interface Gateway {
+                        export interface Gateway {
                             /** Gateway ID */
                             id: string;
                         }
                         /** Information to create a new gateway */
-                        interface GatewayCreate {
+                        export interface GatewayCreate {
                             /** Gateway model */
                             model: cloud.instance.CreateInput.Network.Private.GatewayCreate.ModelEnum;
                             /** Gateway name */
                             name: string;
                         }
                         /** Existing private network */
-                        interface Network {
+                        export interface Network {
                             /** Network ID */
                             id: string;
                             /** Existing Subnet ID */
                             subnetId: string;
                         }
                         /** Information to create a new private network */
-                        interface NetworkCreate {
+                        export interface NetworkCreate {
                             /** Network name */
                             name: string;
                             /** New subnet information */
@@ -714,7 +715,7 @@ declare namespace ovhapi {
                             vlanId ? : number;
                         }
                     } /** Private network information */
-                    interface Private {
+                    export interface Private {
                         /** Existing floating IP */
                         floatingIp ? : cloud.instance.CreateInput.Network.Private.FloatingIp;
                         /** Information to create a new floating IP */
@@ -724,62 +725,62 @@ declare namespace ovhapi {
                         /** Information to create a new gateway */
                         gatewayCreate ? : cloud.instance.CreateInput.Network.Private.GatewayCreate;
                         /** Instance IP in the private network */
-                        ip ? : ipv4;
+                        ip ? : string;
                         /** Existing private network */
                         network ? : cloud.instance.CreateInput.Network.Private.Network;
                         /** Information to create a new private network */
                         networkCreate ? : cloud.instance.CreateInput.Network.Private.NetworkCreate;
                     }
                 } /** Create an autobackup workflow after instance start up */
-                interface Autobackup {
+                export interface Autobackup {
                     /** Unix Cron pattern (eg: '0 0 * * *') */
                     cron: string;
                     /** Number of backup to keep */
                     rotation: number;
                 }
                 /** Billing period */
-                enum BillingPeriodEnum {
-                    "hourly",
-                    "monthly"
+                export enum BillingPeriodEnum {
+                    "hourly" = "hourly",
+                    "monthly" = "monthly"
                 }
                 /** Boot the instance from an image or a volume */
-                interface BootFrom {
+                export interface BootFrom {
                     /** Instance image id */
                     imageId ? : string;
                     /** Specify a volume id to boot from it */
                     volumeId ? : string;
                 }
                 /** Flavor information */
-                interface Flavor {
+                export interface Flavor {
                     /** Instance flavor id */
                     id: string;
                 }
                 /** Start instance in group */
-                interface Group {
+                export interface Group {
                     /** Group id */
                     id: string;
                 }
                 /** Networks information */
-                interface Network {
+                export interface Network {
                     /** Private network information */
                     private ? : cloud.instance.CreateInput.Network.Private;
                     /** Set the new instance as public */
                     public: boolean;
                 }
                 /** Existing SSH Keypair */
-                interface SshKey {
+                export interface SshKey {
                     /** SSH Keypair name */
                     name: string;
                 }
                 /** Information to create a new SSH Keypair */
-                interface SshKeyCreate {
+                export interface SshKeyCreate {
                     /** SSH key name */
                     name: string;
                     /** SSH public key */
                     publicKey: string;
                 }
             } /** Access */
-            interface Access {
+            export interface Access {
                 /** Login */
                 login: string;
                 /** Password */
@@ -790,19 +791,19 @@ declare namespace ovhapi {
                 url: string;
             }
             /** ApplicationAccess */
-            interface ApplicationAccess {
+            export interface ApplicationAccess {
                 /** List of credentials */
                 accesses: cloud.instance.Access[];
                 /** Application status */
                 status: cloud.instance.ApplicationAccessStateEnum;
             }
             /** ApplicationAccessStateEnum */
-            enum ApplicationAccessStateEnum {
-                "installing",
-                "ok"
+            export enum ApplicationAccessStateEnum {
+                "installing" = "installing",
+                "ok" = "ok"
             }
             /** Parameters to associate an existing floating IP to an instance */
-            interface AssociateFloatingIp {
+            export interface AssociateFloatingIp {
                 /** Floating IP ID */
                 floatingIpId: string;
                 /** Parameters to create a gateway if required */
@@ -811,21 +812,21 @@ declare namespace ovhapi {
                 ip: string;
             }
             /** Autobackup params at instance creation */
-            interface AutoBackup {
+            export interface AutoBackup {
                 /** Unix Cron pattern (eg: '0 0 * * *') */
                 cron: string;
                 /** Number of backup to keep */
                 rotation: number;
             }
             /** Parameters to create a floating IP for an instance */
-            interface CreateFloatingIp {
+            export interface CreateFloatingIp {
                 /** Parameters to create a gateway if required */
                 gateway ? : cloud.network.CreateGatewaySummary;
                 /** Private instance IP to associate the floating IP with */
                 ip: string;
             }
             /** Instance creation input */
-            interface CreateInput {
+            export interface CreateInput {
                 /** Create an autobackup workflow after instance start up */
                 autobackup ? : cloud.instance.CreateInput.Autobackup;
                 /** Billing period */
@@ -850,7 +851,7 @@ declare namespace ovhapi {
                 userData ? : string;
             }
             /** Instance */
-            interface Instance {
+            export interface Instance {
                 /** Instance creation date */
                 created: string;
                 /** Instance outgoing network traffic for the current month (in bytes) */
@@ -879,7 +880,7 @@ declare namespace ovhapi {
                 status: cloud.instance.InstanceStatusEnum;
             }
             /** InstanceDetail */
-            interface InstanceDetail {
+            export interface InstanceDetail {
                 /** Instance creation date */
                 created: string;
                 /** Instance outgoing network traffic for the current month (in bytes) */
@@ -910,69 +911,69 @@ declare namespace ovhapi {
                 status: cloud.instance.InstanceStatusEnum;
             }
             /** InstanceMetrics */
-            interface InstanceMetrics {
+            export interface InstanceMetrics {
                 /** unit */
                 unit: string;
                 /** values */
                 values: cloud.instance.InstanceMetricsValue[];
             }
             /** InstanceMetricsValue */
-            interface InstanceMetricsValue {
+            export interface InstanceMetricsValue {
                 /** timestamp */
                 timestamp: number;
                 /** value */
-                value: double;
+                value: number;
             }
             /** InstanceStatusEnum */
-            enum InstanceStatusEnum {
-                "ACTIVE",
-                "BUILD",
-                "BUILDING",
-                "DELETED",
-                "DELETING",
-                "ERROR",
-                "HARD_REBOOT",
-                "MIGRATING",
-                "PASSWORD",
-                "PAUSED",
-                "REBOOT",
-                "REBUILD",
-                "RESCUE",
-                "RESCUED",
-                "RESCUING",
-                "RESIZE",
-                "RESIZED",
-                "RESUMING",
-                "REVERT_RESIZE",
-                "SHELVED",
-                "SHELVED_OFFLOADED",
-                "SHELVING",
-                "SHUTOFF",
-                "SNAPSHOTTING",
-                "SOFT_DELETED",
-                "STOPPED",
-                "SUSPENDED",
-                "UNKNOWN",
-                "UNRESCUING",
-                "UNSHELVING",
-                "VERIFY_RESIZE"
+            export enum InstanceStatusEnum {
+                "ACTIVE" = "ACTIVE",
+                "BUILD" = "BUILD",
+                "BUILDING" = "BUILDING",
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "HARD_REBOOT" = "HARD_REBOOT",
+                "MIGRATING" = "MIGRATING",
+                "PASSWORD" = "PASSWORD",
+                "PAUSED" = "PAUSED",
+                "REBOOT" = "REBOOT",
+                "REBUILD" = "REBUILD",
+                "RESCUE" = "RESCUE",
+                "RESCUED" = "RESCUED",
+                "RESCUING" = "RESCUING",
+                "RESIZE" = "RESIZE",
+                "RESIZED" = "RESIZED",
+                "RESUMING" = "RESUMING",
+                "REVERT_RESIZE" = "REVERT_RESIZE",
+                "SHELVED" = "SHELVED",
+                "SHELVED_OFFLOADED" = "SHELVED_OFFLOADED",
+                "SHELVING" = "SHELVING",
+                "SHUTOFF" = "SHUTOFF",
+                "SNAPSHOTTING" = "SNAPSHOTTING",
+                "SOFT_DELETED" = "SOFT_DELETED",
+                "STOPPED" = "STOPPED",
+                "SUSPENDED" = "SUSPENDED",
+                "UNKNOWN" = "UNKNOWN",
+                "UNRESCUING" = "UNRESCUING",
+                "UNSHELVING" = "UNSHELVING",
+                "VERIFY_RESIZE" = "VERIFY_RESIZE"
             }
             /** Instance */
-            interface InstanceSummary {
+            export interface InstanceSummary {
                 /** Instance id */
                 id: string;
                 /** Instance name */
                 name: string;
             }
             /** InstanceVnc */
-            interface InstanceVnc {
+            export interface InstanceVnc {
                 /** VNC type */
                 type: string;
                 /** VNC url */
                 url: string;
             }
             /** IpAddress */
-            interface IpAddress {
+            export interface IpAddress {
                 /** Gateway IP */
                 gatewayIp ? : string;
                 /** Instance IP address */
@@ -985,74 +986,74 @@ declare namespace ovhapi {
                 version: number;
             }
             /** MetricsPeriod */
-            enum MetricsPeriodEnum {
-                "lastday",
-                "lastmonth",
-                "lastweek",
-                "lastyear",
-                "today"
+            export enum MetricsPeriodEnum {
+                "lastday" = "lastday",
+                "lastmonth" = "lastmonth",
+                "lastweek" = "lastweek",
+                "lastyear" = "lastyear",
+                "today" = "today"
             }
             /** MetricsType */
-            enum MetricsTypeEnum {
-                "cpu:max",
-                "cpu:used",
-                "mem:max",
-                "mem:used",
-                "net:rx",
-                "net:tx"
+            export enum MetricsTypeEnum {
+                "cpu:max" = "cpu:max",
+                "cpu:used" = "cpu:used",
+                "mem:max" = "mem:max",
+                "mem:used" = "mem:used",
+                "net:rx" = "net:rx",
+                "net:tx" = "net:tx"
             }
             /** MonthlyBilling */
-            interface MonthlyBilling {
+            export interface MonthlyBilling {
                 /** Monthly billing activated since */
                 since: string;
                 /** Monthly billing status */
                 status: cloud.instance.MonthlyBillingStatusEnum;
             }
             /** MonthlyBillingStatusEnum */
-            enum MonthlyBillingStatusEnum {
-                "activationPending",
-                "ok"
+            export enum MonthlyBillingStatusEnum {
+                "activationPending" = "activationPending",
+                "ok" = "ok"
             }
             /** Instance with region to set as monthly billing */
-            interface MonthlyInstanceBulkParams {
+            export interface MonthlyInstanceBulkParams {
                 /** Instance id */
                 instanceId: string;
                 /** Region name */
                 region: string;
             }
             /** NetworkBulkParams */
-            interface NetworkBulkParams {
+            export interface NetworkBulkParams {
                 /** Private or public network Id */
                 networkId: string;
             }
             /** NetworkParams */
-            interface NetworkParams {
+            export interface NetworkParams {
                 /** Static ip (Can only be defined for private networks) */
                 ip ? : string;
                 /** Private or public network Id */
                 networkId: string;
             }
             /** RebootTypeEnum */
-            enum RebootTypeEnum {
-                "hard",
-                "soft"
+            export enum RebootTypeEnum {
+                "hard" = "hard",
+                "soft" = "soft"
             }
             /** RescueAdminPassword */
-            interface RescueAdminPassword {
+            export interface RescueAdminPassword {
                 /** Admin password to connect to your rescue server with */
                 adminPassword ? : string;
             }
         }
-        namespace instanceInterface {
+        export namespace instanceInterface {
             /** FixedIp */
-            interface FixedIp {
+            export interface FixedIp {
                 /** Ip */
                 ip: string;
                 /** Subnetwork Id */
                 subnetId: string;
             }
             /** Interface */
-            interface Interface {
+            export interface Interface {
                 /** List of ips of the interface */
                 fixedIps: cloud.instanceInterface.FixedIp[];
                 /** Interface unique identifier */
@@ -1067,9 +1068,9 @@ declare namespace ovhapi {
                 type: string;
             }
         }
-        namespace instancegroup {
+        export namespace instancegroup {
             /** InstanceGroup */
-            interface InstanceGroup {
+            export interface InstanceGroup {
                 /** Instance group id */
                 id: string;
                 /** Instances ids */
@@ -1082,14 +1083,14 @@ declare namespace ovhapi {
                 type: cloud.instancegroup.InstanceGroupTypeEnum;
             }
             /** InstanceGroupTypeEnum */
-            enum InstanceGroupTypeEnum {
-                "affinity",
-                "anti-affinity"
+            export enum InstanceGroupTypeEnum {
+                "affinity" = "affinity",
+                "anti-affinity" = "anti-affinity"
             }
         }
-        namespace ip {
+        export namespace ip {
             /** CloudIp */
-            interface CloudIp {
+            export interface CloudIp {
                 /** Ip id */
                 id: string;
                 /** Ip */
@@ -1100,7 +1101,7 @@ declare namespace ovhapi {
                 type: string;
             }
             /** FailoverIp */
-            interface FailoverIp {
+            export interface FailoverIp {
                 /** IP block */
                 block ? : string;
                 /** Ip continent */
@@ -1121,19 +1122,19 @@ declare namespace ovhapi {
                 subType: cloud.ip.IpSubTypeEnum;
             }
             /** IpStatusEnum */
-            enum IpStatusEnum {
-                "ok",
-                "operationPending"
+            export enum IpStatusEnum {
+                "ok" = "ok",
+                "operationPending" = "operationPending"
             }
             /** IpSubTypeEnum */
-            enum IpSubTypeEnum {
-                "cloud",
-                "ovh"
+            export enum IpSubTypeEnum {
+                "cloud" = "cloud",
+                "ovh" = "ovh"
             }
         }
-        namespace keymanager {
+        export namespace keymanager {
             /** Key-manager certificate secret container */
-            interface Certificate {
+            export interface Certificate {
                 /** ID of the certificate */
                 id: string;
                 /** Name of the certificate */
@@ -1144,7 +1145,7 @@ declare namespace ovhapi {
                 secrets: cloud.keymanager.SecretRef[];
             }
             /** Input to create a certificate */
-            interface CertificateCreate {
+            export interface CertificateCreate {
                 /** Content of the certificate */
                 certificate: string;
                 /** Content of the intermediates certificates if any */
@@ -1157,7 +1158,7 @@ declare namespace ovhapi {
                 privateKeyPassphrase: string;
             }
             /** secret */
-            interface Secret {
+            export interface Secret {
                 /** ID of the secret */
                 id: string;
                 /** Name of the secret */
@@ -1166,23 +1167,23 @@ declare namespace ovhapi {
                 region: string;
             }
             /** Secret reference */
-            interface SecretRef {
+            export interface SecretRef {
                 /** ID of the secret */
                 id: string;
                 /** Name of the secret */
                 name: string;
             }
         }
-        namespace kube {
+        export namespace kube {
             /** Managed Kubernetes Audit Logs */
-            interface AuditLogs {
+            export interface AuditLogs {
                 /** Temporary url expiration date */
                 expirationDate: string;
                 /** Temporary logs URL */
                 url: string;
             }
             /** Managed Kubernetes cluster description */
-            interface Cluster {
+            export interface Cluster {
                 /** True if control-plane is up to date */
                 controlPlaneIsUpToDate: boolean;
                 /** Cluster creation date */
@@ -1219,46 +1220,46 @@ declare namespace ovhapi {
                 version: string;
             }
             /** Enum values for Status */
-            enum ClusterStatus {
-                "INSTALLING",
-                "UPDATING",
-                "RESETTING",
-                "SUSPENDING",
-                "REOPENING",
-                "DELETING",
-                "SUSPENDED",
-                "ERROR",
-                "USER_ERROR",
-                "USER_QUOTA_ERROR",
-                "READY"
+            export enum ClusterStatus {
+                "INSTALLING" = "INSTALLING",
+                "UPDATING" = "UPDATING",
+                "RESETTING" = "RESETTING",
+                "SUSPENDING" = "SUSPENDING",
+                "REOPENING" = "REOPENING",
+                "DELETING" = "DELETING",
+                "SUSPENDED" = "SUSPENDED",
+                "ERROR" = "ERROR",
+                "USER_ERROR" = "USER_ERROR",
+                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
+                "READY" = "READY"
             }
             /** Enum values for Status */
-            enum ClusterStatusEnum {
-                "DELETED",
-                "DELETING",
-                "ERROR",
-                "INSTALLING",
-                "MAINTENANCE",
-                "READY",
-                "REDEPLOYING",
-                "REOPENING",
-                "RESETTING",
-                "SUSPENDED",
-                "SUSPENDING",
-                "UPDATING",
-                "USER_ERROR",
-                "USER_QUOTA_ERROR",
-                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
+            export enum ClusterStatusEnum {
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "INSTALLING" = "INSTALLING",
+                "MAINTENANCE" = "MAINTENANCE",
+                "READY" = "READY",
+                "REDEPLOYING" = "REDEPLOYING",
+                "REOPENING" = "REOPENING",
+                "RESETTING" = "RESETTING",
+                "SUSPENDED" = "SUSPENDED",
+                "SUSPENDING" = "SUSPENDING",
+                "UPDATING" = "UPDATING",
+                "USER_ERROR" = "USER_ERROR",
+                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
+                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR" = "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
             }
             /** Etcd usage and quota for a given cluster */
-            interface EtcdUsage {
+            export interface EtcdUsage {
                 /** Maximum allowed size of etcd data for the cluster (bytes) */
                 quota: number;
                 /** Size of etcd data used by the cluster (bytes) */
                 usage: number;
             }
             /** a flavor kind */
-            interface Flavor {
+            export interface Flavor {
                 /** Flavor family */
                 category: cloud.kube.FlavorCategoryEnum;
                 /** Number of GPUs */
@@ -1273,54 +1274,54 @@ declare namespace ovhapi {
                 vCPUs: number;
             }
             /** Enum values for category */
-            enum FlavorCategory {
-                "c",
-                "g",
-                "t",
-                "b",
-                "r"
+            export enum FlavorCategory {
+                "c" = "c",
+                "g" = "g",
+                "t" = "t",
+                "b" = "b",
+                "r" = "r"
             }
             /** Enum values for category */
-            enum FlavorCategoryEnum {
-                "b",
-                "c",
-                "d",
-                "g",
-                "i",
-                "r",
-                "t"
+            export enum FlavorCategoryEnum {
+                "b" = "b",
+                "c" = "c",
+                "d" = "d",
+                "g" = "g",
+                "i" = "i",
+                "r" = "r",
+                "t" = "t"
             }
             /** Enum values for State */
-            enum FlavorState {
-                "available",
-                "unavailable"
+            export enum FlavorState {
+                "available" = "available",
+                "unavailable" = "unavailable"
             }
             /** Enum values for State */
-            enum FlavorStateEnum {
-                "available",
-                "unavailable"
+            export enum FlavorStateEnum {
+                "available" = "available",
+                "unavailable" = "unavailable"
             }
             /** Enum values for scheduler parameter of cluster kubeProxy custom ipvs config */
-            enum KubeProxyIpvsSchedulerEnum {
-                "dh",
-                "lc",
-                "nq",
-                "rr",
-                "sed",
-                "sh"
+            export enum KubeProxyIpvsSchedulerEnum {
+                "dh" = "dh",
+                "lc" = "lc",
+                "nq" = "nq",
+                "rr" = "rr",
+                "sed" = "sed",
+                "sh" = "sh"
             }
             /** Enum values for cluster kubeProxyMode */
-            enum KubeProxyModeEnum {
-                "iptables",
-                "ipvs"
+            export enum KubeProxyModeEnum {
+                "iptables" = "iptables",
+                "ipvs" = "ipvs"
             }
             /** Kubeconfig description */
-            interface Kubeconfig {
+            export interface Kubeconfig {
                 /** kubeconfig file */
                 content: string;
             }
             /** Node installed on your cluster */
-            interface Node {
+            export interface Node {
                 /** Creation date */
                 createdAt: string;
                 /** Node deployment date */
@@ -1347,7 +1348,7 @@ declare namespace ovhapi {
                 version: string;
             }
             /** NodePool created on your cluster to manage your nodes */
-            interface NodePool {
+            export interface NodePool {
                 /** Enable anti affinity groups for nodes in the pool */
                 antiAffinity: boolean;
                 /** Enable auto-scaling for the pool */
@@ -1388,51 +1389,51 @@ declare namespace ovhapi {
                 updatedAt: string;
             }
             /** Autoscaling customization parameters */
-            interface NodePoolAutoscaling {
+            export interface NodePoolAutoscaling {
                 /** How long a node should be unneeded before it is eligible for scale down */
                 scaleDownUnneededTimeSeconds: number;
                 /** How long an unready node should be unneeded before it is eligible for scale down */
                 scaleDownUnreadyTimeSeconds: number;
                 /** Sum of cpu or memory of all pods running on the node divided by node's corresponding allocatable resource, below which a node can be considered for scale down */
-                scaleDownUtilizationThreshold: double;
+                scaleDownUtilizationThreshold: number;
             }
             /** Enum values for NodePool size Status */
-            enum NodePoolSizeStatusEnum {
-                "CAPACITY_OK",
-                "OVER_CAPACITY",
-                "UNDER_CAPACITY"
+            export enum NodePoolSizeStatusEnum {
+                "CAPACITY_OK" = "CAPACITY_OK",
+                "OVER_CAPACITY" = "OVER_CAPACITY",
+                "UNDER_CAPACITY" = "UNDER_CAPACITY"
             }
             /** Enum values for NodePool Status */
-            enum NodePoolStatusEnum {
-                "DELETED",
-                "DELETING",
-                "DOWNSCALING",
-                "ERROR",
-                "INSTALLING",
-                "MAINTENANCE",
-                "READY",
-                "REDEPLOYING",
-                "REOPENING",
-                "RESETTING",
-                "SUSPENDED",
-                "SUSPENDING",
-                "UPDATING",
-                "UPSCALING",
-                "USER_ERROR",
-                "USER_NODE_NOT_FOUND_ERROR",
-                "USER_NODE_SUSPENDED_SERVICE",
-                "USER_QUOTA_ERROR",
-                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
+            export enum NodePoolStatusEnum {
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "DOWNSCALING" = "DOWNSCALING",
+                "ERROR" = "ERROR",
+                "INSTALLING" = "INSTALLING",
+                "MAINTENANCE" = "MAINTENANCE",
+                "READY" = "READY",
+                "REDEPLOYING" = "REDEPLOYING",
+                "REOPENING" = "REOPENING",
+                "RESETTING" = "RESETTING",
+                "SUSPENDED" = "SUSPENDED",
+                "SUSPENDING" = "SUSPENDING",
+                "UPDATING" = "UPDATING",
+                "UPSCALING" = "UPSCALING",
+                "USER_ERROR" = "USER_ERROR",
+                "USER_NODE_NOT_FOUND_ERROR" = "USER_NODE_NOT_FOUND_ERROR",
+                "USER_NODE_SUSPENDED_SERVICE" = "USER_NODE_SUSPENDED_SERVICE",
+                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
+                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR" = "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
             }
             /** Managed Kubernetes nodepool template */
-            interface NodePoolTemplate {
+            export interface NodePoolTemplate {
                 /** Metadata of each nodes in the pool */
                 metadata: cloud.kube.NodePoolTemplateMetadata;
                 /** Spec of each nodes in the pool */
                 spec: cloud.kube.NodePoolTemplateSpec;
             }
             /** Metadata of each nodes in the pool */
-            interface NodePoolTemplateMetadata {
+            export interface NodePoolTemplateMetadata {
                 /** Annotations to apply to each nodes */
                 annotations: Record < string,
                 string > ;
@@ -1443,51 +1444,51 @@ declare namespace ovhapi {
                 string > ;
             }
             /** Spec of each nodes in the pool */
-            interface NodePoolTemplateSpec {
+            export interface NodePoolTemplateSpec {
                 /** Taints to apply to each nodes */
                 taints: cloud.kube.Taint[];
                 /** If true, set nodes as un-schedulable */
                 unschedulable: boolean;
             }
             /** Enum values for Status */
-            enum NodeStatus {
-                "INSTALLING",
-                "UPDATING",
-                "RESETTING",
-                "SUSPENDING",
-                "REOPENING",
-                "DELETING",
-                "SUSPENDED",
-                "ERROR",
-                "USER_ERROR",
-                "USER_QUOTA_ERROR",
-                "USER_NODE_NOT_FOUND_ERROR",
-                "USER_NODE_SUSPENDED_SERVICE",
-                "READY"
+            export enum NodeStatus {
+                "INSTALLING" = "INSTALLING",
+                "UPDATING" = "UPDATING",
+                "RESETTING" = "RESETTING",
+                "SUSPENDING" = "SUSPENDING",
+                "REOPENING" = "REOPENING",
+                "DELETING" = "DELETING",
+                "SUSPENDED" = "SUSPENDED",
+                "ERROR" = "ERROR",
+                "USER_ERROR" = "USER_ERROR",
+                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
+                "USER_NODE_NOT_FOUND_ERROR" = "USER_NODE_NOT_FOUND_ERROR",
+                "USER_NODE_SUSPENDED_SERVICE" = "USER_NODE_SUSPENDED_SERVICE",
+                "READY" = "READY"
             }
             /** Enum values for Status */
-            enum NodeStatusEnum {
-                "DELETED",
-                "DELETING",
-                "ERROR",
-                "FLAVOR_OUT_OF_STOCK_ERROR",
-                "INSTALLING",
-                "MAINTENANCE",
-                "READY",
-                "REDEPLOYING",
-                "REOPENING",
-                "RESETTING",
-                "SUSPENDED",
-                "SUSPENDING",
-                "UPDATING",
-                "USER_ERROR",
-                "USER_NODE_NOT_FOUND_ERROR",
-                "USER_NODE_SUSPENDED_SERVICE",
-                "USER_QUOTA_ERROR",
-                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
+            export enum NodeStatusEnum {
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "FLAVOR_OUT_OF_STOCK_ERROR" = "FLAVOR_OUT_OF_STOCK_ERROR",
+                "INSTALLING" = "INSTALLING",
+                "MAINTENANCE" = "MAINTENANCE",
+                "READY" = "READY",
+                "REDEPLOYING" = "REDEPLOYING",
+                "REOPENING" = "REOPENING",
+                "RESETTING" = "RESETTING",
+                "SUSPENDED" = "SUSPENDED",
+                "SUSPENDING" = "SUSPENDING",
+                "UPDATING" = "UPDATING",
+                "USER_ERROR" = "USER_ERROR",
+                "USER_NODE_NOT_FOUND_ERROR" = "USER_NODE_NOT_FOUND_ERROR",
+                "USER_NODE_SUSPENDED_SERVICE" = "USER_NODE_SUSPENDED_SERVICE",
+                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
+                "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR" = "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR"
             }
             /** Managed Kubernetes oidc integration */
-            interface OpenIdConnect {
+            export interface OpenIdConnect {
                 /** Content of the certificate for the CA, in base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs. */
                 caContent ? : string;
                 /** Client ID */
@@ -1508,77 +1509,77 @@ declare namespace ovhapi {
                 usernamePrefix ? : string;
             }
             /** Enum values for OpenIdConnect signing algorithms */
-            enum OpenIdConnectSigningAlgorithmsEnum {
-                "ES256",
-                "ES384",
-                "ES512",
-                "PS256",
-                "PS384",
-                "PS512",
-                "RS256",
-                "RS384",
-                "RS512"
+            export enum OpenIdConnectSigningAlgorithmsEnum {
+                "ES256" = "ES256",
+                "ES384" = "ES384",
+                "ES512" = "ES512",
+                "PS256" = "PS256",
+                "PS384" = "PS384",
+                "PS512" = "PS512",
+                "RS256" = "RS256",
+                "RS384" = "RS384",
+                "RS512" = "RS512"
             }
             /** Managed Kubernetes cluster private networking configuration */
-            interface PrivateNetworkConfiguration {
+            export interface PrivateNetworkConfiguration {
                 /** If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. */
                 defaultVrackGateway: string;
                 /** Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false. */
                 privateNetworkRoutingAsDefault ? : boolean;
             }
             /** Enum values for available regions */
-            enum Region {
-                "GRA5",
-                "GRA7",
-                "BHS5"
+            export enum Region {
+                "GRA5" = "GRA5",
+                "GRA7" = "GRA7",
+                "BHS5" = "BHS5"
             }
             /** Enum values for regions where cluster creation is possible, region where cluster are deployed is cloud.kube.RegionEnum */
-            enum RegionCapabilitiesEnum {
-                "BHS5",
-                "DE1",
-                "GRA5",
-                "GRA7",
-                "GRA9",
-                "SBG5",
-                "SGP1",
-                "SYD1",
-                "UK1",
-                "US-EAST-VA-1",
-                "US-WEST-OR-1",
-                "WAW1"
+            export enum RegionCapabilitiesEnum {
+                "BHS5" = "BHS5",
+                "DE1" = "DE1",
+                "GRA5" = "GRA5",
+                "GRA7" = "GRA7",
+                "GRA9" = "GRA9",
+                "SBG5" = "SBG5",
+                "SGP1" = "SGP1",
+                "SYD1" = "SYD1",
+                "UK1" = "UK1",
+                "US-EAST-VA-1" = "US-EAST-VA-1",
+                "US-WEST-OR-1" = "US-WEST-OR-1",
+                "WAW1" = "WAW1"
             }
             /** Enum values for regions where cluster are deployed and flavor related location. Available region for cluster creation is cloud.kube.RegionCapabilitiesEnum */
-            enum RegionEnum {
-                "BHS5",
-                "DE1",
-                "GRA5",
-                "GRA7",
-                "GRA9",
-                "SBG5",
-                "SGP1",
-                "SYD1",
-                "UK1",
-                "US-EAST-VA-1",
-                "US-WEST-OR-1",
-                "WAW1"
+            export enum RegionEnum {
+                "BHS5" = "BHS5",
+                "DE1" = "DE1",
+                "GRA5" = "GRA5",
+                "GRA7" = "GRA7",
+                "GRA9" = "GRA9",
+                "SBG5" = "SBG5",
+                "SGP1" = "SGP1",
+                "SYD1" = "SYD1",
+                "UK1" = "UK1",
+                "US-EAST-VA-1" = "US-EAST-VA-1",
+                "US-WEST-OR-1" = "US-WEST-OR-1",
+                "WAW1" = "WAW1"
             }
             /** Enum values for worker nodes reset policy */
-            enum ResetWorkerNodesPolicy {
-                "reinstall",
-                "delete"
+            export enum ResetWorkerNodesPolicy {
+                "reinstall" = "reinstall",
+                "delete" = "delete"
             }
             /** Enum values for worker nodes reset policy */
-            enum ResetWorkerNodesPolicyEnum {
-                "delete",
-                "reinstall"
+            export enum ResetWorkerNodesPolicyEnum {
+                "delete" = "delete",
+                "reinstall" = "reinstall"
             }
             /** A generic object for response message */
-            interface ResponseMessage {
+            export interface ResponseMessage {
                 /** The response message. */
                 message: string;
             }
             /** Kubernetes taint object */
-            interface Taint {
+            export interface Taint {
                 /** The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute */
                 effect: cloud.kube.TaintEffectEnum;
                 /** The taint key to be applied to a node */
@@ -1587,58 +1588,58 @@ declare namespace ovhapi {
                 value: string;
             }
             /** Enum values for taint effects */
-            enum TaintEffectEnum {
-                "NoExecute",
-                "NoSchedule",
-                "PreferNoSchedule"
+            export enum TaintEffectEnum {
+                "NoExecute" = "NoExecute",
+                "NoSchedule" = "NoSchedule",
+                "PreferNoSchedule" = "PreferNoSchedule"
             }
             /** Enum values for UpdatePolicy */
-            enum UpdatePolicy {
-                "ALWAYS_UPDATE",
-                "MINIMAL_DOWNTIME",
-                "NEVER_UPDATE"
+            export enum UpdatePolicy {
+                "ALWAYS_UPDATE" = "ALWAYS_UPDATE",
+                "MINIMAL_DOWNTIME" = "MINIMAL_DOWNTIME",
+                "NEVER_UPDATE" = "NEVER_UPDATE"
             }
             /** Enum values for UpdatePolicy */
-            enum UpdatePolicyEnum {
-                "ALWAYS_UPDATE",
-                "MINIMAL_DOWNTIME",
-                "NEVER_UPDATE"
+            export enum UpdatePolicyEnum {
+                "ALWAYS_UPDATE" = "ALWAYS_UPDATE",
+                "MINIMAL_DOWNTIME" = "MINIMAL_DOWNTIME",
+                "NEVER_UPDATE" = "NEVER_UPDATE"
             }
             /** Enum values for UpdateStrategy */
-            enum UpdateStrategy {
-                "LATEST_PATCH",
-                "NEXT_MINOR"
+            export enum UpdateStrategy {
+                "LATEST_PATCH" = "LATEST_PATCH",
+                "NEXT_MINOR" = "NEXT_MINOR"
             }
             /** Enum values for UpdateStrategy */
-            enum UpdateStrategyEnum {
-                "LATEST_PATCH",
-                "NEXT_MINOR"
+            export enum UpdateStrategyEnum {
+                "LATEST_PATCH" = "LATEST_PATCH",
+                "NEXT_MINOR" = "NEXT_MINOR"
             }
             /** List of available versions for upgrade */
-            enum UpgradeVersion {
-                "1.12",
-                "1.13",
-                "1.14",
-                "1.15",
-                "1.16"
+            export enum UpgradeVersion {
+                "1.12" = "1.12",
+                "1.13" = "1.13",
+                "1.14" = "1.14",
+                "1.15" = "1.15",
+                "1.16" = "1.16"
             }
             /** List of available versions for installation */
-            enum Version {
-                "1.13",
-                "1.14",
-                "1.15"
+            export enum Version {
+                "1.13" = "1.13",
+                "1.14" = "1.14",
+                "1.15" = "1.15"
             }
             /** List of available versions for installation */
-            enum VersionEnum {
-                "1.24",
-                "1.25",
-                "1.26"
+            export enum VersionEnum {
+                "1.24" = "1.24",
+                "1.25" = "1.25",
+                "1.26" = "1.26"
             }
         }
-        namespace loadbalancing {
-            namespace loadbalancer {
+        export namespace loadbalancing {
+            export namespace loadbalancer {
                 /** Create a listener on loadbalancer creation */
-                interface ListenerCreate {
+                export interface ListenerCreate {
                     /** Name of the listener */
                     name: string;
                     /** Listener pools */
@@ -1651,7 +1652,7 @@ declare namespace ovhapi {
                     secretId: string;
                 }
                 /** Create a member on loadbalancer creation */
-                interface MemberCreate {
+                export interface MemberCreate {
                     /** IP address of the resource */
                     address: string;
                     /** Name of the member */
@@ -1662,7 +1663,7 @@ declare namespace ovhapi {
                     weight ? : number;
                 }
                 /** Network information to create a loadbalancer */
-                interface NetworkInformationCreate {
+                export interface NetworkInformationCreate {
                     /** Create a new gateway for the given network */
                     gateway: cloud.network.CreateGatewaySummary;
                     /** Private network ID to create the loadbalancer */
@@ -1671,7 +1672,7 @@ declare namespace ovhapi {
                     subnetId: string;
                 }
                 /** Create a pool on loadbalancer creation */
-                interface PoolCreate {
+                export interface PoolCreate {
                     /** Pool algorithm to split traffic between members */
                     algorithm: cloud.loadbalancing.PoolAlgorithmEnum;
                     /** Is pool default pool for the listener */
@@ -1688,9 +1689,9 @@ declare namespace ovhapi {
                     sessionPersistence: cloud.loadbalancing.PoolSessionPersistence;
                 }
             }
-            namespace pool {
+            export namespace pool {
                 /** Member */
-                interface Member {
+                export interface Member {
                     /** IP address of the resource */
                     address: string;
                     /** ID of the resource */
@@ -1707,14 +1708,14 @@ declare namespace ovhapi {
                     weight ? : number;
                 }
                 /** Parameters to update a pool member */
-                interface MemberUpdate {
+                export interface MemberUpdate {
                     /** Name of the resource */
                     name ? : string;
                     /** Weight of a member determines the portion of requests or connections it services compared to the other members of the pool */
                     weight ? : number;
                 }
             } /** Parameters to associate an existing floating IP to a loadbalancer */
-            interface AssociateFloatingIp {
+            export interface AssociateFloatingIp {
                 /** Floating IP ID */
                 floatingIpId: string;
                 /** Parameters to create a gateway if required */
@@ -1723,14 +1724,14 @@ declare namespace ovhapi {
                 ip: string;
             }
             /** Parameters to create a floating IP for a loadbalancer */
-            interface CreateFloatingIp {
+            export interface CreateFloatingIp {
                 /** Parameters to create a gateway if required */
                 gateway ? : cloud.network.CreateGatewaySummary;
                 /** Private loadbalancer IP to associate the floating IP with */
                 ip: string;
             }
             /** Input to create a loadbalancer listener */
-            interface CreateListener {
+            export interface CreateListener {
                 /** The ID of the secret containing the certificate */
                 certificateId: string;
                 /** The ID of the default pool */
@@ -1745,14 +1746,14 @@ declare namespace ovhapi {
                 protocol: cloud.loadbalancing.ListenerProtocolEnum;
             }
             /** Flavor */
-            interface Flavor {
+            export interface Flavor {
                 /** Flavor id */
                 id: string;
                 /** Flavor name */
                 name: string;
             }
             /** HealthMonitor */
-            interface HealthMonitor {
+            export interface HealthMonitor {
                 /** Monitor HTTP configuration */
                 httpConfiguration ? : cloud.loadbalancing.HealthMonitorHTTPConfiguration;
                 /** The ID of the pool */
@@ -1768,7 +1769,7 @@ declare namespace ovhapi {
                 /** The operating status of the resource */
                 operatingStatus: cloud.loadbalancing.LoadBalancerOperatingStatusEnum;
                 /** Duration between sending probes to members, in format RFC3339 */
-                periodicity: duration;
+                periodicity: string;
                 /** The ID of the pool */
                 poolId: string;
                 /** The provisioning status of the resource */
@@ -1777,7 +1778,7 @@ declare namespace ovhapi {
                 timeout: number;
             }
             /** Create a health monitor on loadbalancer creation */
-            interface HealthMonitorCreate {
+            export interface HealthMonitorCreate {
                 /** Monitor HTTP configuration */
                 httpConfiguration ? : cloud.loadbalancing.HealthMonitorHTTPConfiguration;
                 /** Number of successful checks before changing the operating status of the member to ONLINE */
@@ -1791,14 +1792,14 @@ declare namespace ovhapi {
                 /** The operating status of the resource */
                 operatingStatus: cloud.loadbalancing.LoadBalancerOperatingStatusEnum;
                 /** Duration between sending probes to members, in format RFC3339 */
-                periodicity: duration;
+                periodicity: string;
                 /** The provisioning status of the resource */
                 provisioningStatus: cloud.loadbalancing.LoadBalancerProvisioningStatusEnum;
                 /** Maximum time, in seconds, that a monitor waits to connect before it times out. This value must be less than the periodicity value */
                 timeout: number;
             }
             /** HTTP configuration for loadbalancer health monitor */
-            interface HealthMonitorHTTPConfiguration {
+            export interface HealthMonitorHTTPConfiguration {
                 /** Domain name, which be injected into the HTTP Host Header to the backend server for HTTP health check */
                 domainName: string;
                 /** List of HTTP status codes expected in response from the member to declare it healthy */
@@ -1811,7 +1812,7 @@ declare namespace ovhapi {
                 urlPath: string;
             }
             /** L7 policy */
-            interface L7Policy {
+            export interface L7Policy {
                 /** The L7 policy action */
                 action: cloud.loadbalancing.L7PolicyActionEnum;
                 /** A human-readable description for the resource */
@@ -1838,14 +1839,14 @@ declare namespace ovhapi {
                 redirectUrl ? : string;
             }
             /** Loadbalancer L7 policy */
-            enum L7PolicyActionEnum {
-                "redirectPrefix",
-                "redirectToPool",
-                "redirectToURL",
-                "reject"
+            export enum L7PolicyActionEnum {
+                "redirectPrefix" = "redirectPrefix",
+                "redirectToPool" = "redirectToPool",
+                "redirectToURL" = "redirectToURL",
+                "reject" = "reject"
             }
             /** L7 policy */
-            interface L7PolicyUpdate {
+            export interface L7PolicyUpdate {
                 /** The L7 policy action */
                 action: cloud.loadbalancing.L7PolicyActionEnum;
                 /** A human-readable description for the resource */
@@ -1866,7 +1867,7 @@ declare namespace ovhapi {
                 redirectUrl ? : string;
             }
             /** L7 rule */
-            interface L7Rule {
+            export interface L7Rule {
                 /** The comparison type for the L7 rule */
                 compareType: cloud.loadbalancing.L7RuleCompareTypeEnum;
                 /** The ID of the L7 rule */
@@ -1885,26 +1886,26 @@ declare namespace ovhapi {
                 value: string;
             }
             /** Loadbalancer L7 rule compare type */
-            enum L7RuleCompareTypeEnum {
-                "contains",
-                "endsWith",
-                "equalTo",
-                "regex",
-                "startsWith"
+            export enum L7RuleCompareTypeEnum {
+                "contains" = "contains",
+                "endsWith" = "endsWith",
+                "equalTo" = "equalTo",
+                "regex" = "regex",
+                "startsWith" = "startsWith"
             }
             /** Loadbalancer L7 rule type */
-            enum L7RuleTypeEnum {
-                "cookie",
-                "fileType",
-                "header",
-                "hostName",
-                "path",
-                "sslConnHasCert",
-                "sslDNField",
-                "sslVerifyResult"
+            export enum L7RuleTypeEnum {
+                "cookie" = "cookie",
+                "fileType" = "fileType",
+                "header" = "header",
+                "hostName" = "hostName",
+                "path" = "path",
+                "sslConnHasCert" = "sslConnHasCert",
+                "sslDNField" = "sslDNField",
+                "sslVerifyResult" = "sslVerifyResult"
             }
             /** Listener */
-            interface Listener {
+            export interface Listener {
                 /** The ID of the secret containing the certificate */
                 certificateId ? : string;
                 /** The ID of the default pool */
@@ -1925,17 +1926,17 @@ declare namespace ovhapi {
                 provisioningStatus: cloud.loadbalancing.LoadBalancerProvisioningStatusEnum;
             }
             /** Loadbalancer listener protocol */
-            enum ListenerProtocolEnum {
-                "http",
-                "https",
-                "prometheus",
-                "sctp",
-                "tcp",
-                "terminatedHTTPS",
-                "udp"
+            export enum ListenerProtocolEnum {
+                "http" = "http",
+                "https" = "https",
+                "prometheus" = "prometheus",
+                "sctp" = "sctp",
+                "tcp" = "tcp",
+                "terminatedHTTPS" = "terminatedHTTPS",
+                "udp" = "udp"
             }
             /** LoadBalancer */
-            interface LoadBalancer {
+            export interface LoadBalancer {
                 /** The UTC date and timestamp when the resource was created */
                 createdAt: string;
                 /** ID of the flavor */
@@ -1958,52 +1959,52 @@ declare namespace ovhapi {
                 vipSubnetId: string;
             }
             /** Load balancer Healthmonitor HTTP Method */
-            enum LoadBalancerHealthMonitorHTTPMethodEnum {
-                "CONNECT",
-                "DELETE",
-                "GET",
-                "HEAD",
-                "OPTIONS",
-                "PATCH",
-                "POST",
-                "PUT",
-                "TRACE"
+            export enum LoadBalancerHealthMonitorHTTPMethodEnum {
+                "CONNECT" = "CONNECT",
+                "DELETE" = "DELETE",
+                "GET" = "GET",
+                "HEAD" = "HEAD",
+                "OPTIONS" = "OPTIONS",
+                "PATCH" = "PATCH",
+                "POST" = "POST",
+                "PUT" = "PUT",
+                "TRACE" = "TRACE"
             }
             /** Load balancer Healthmonitor HTTP Version */
-            enum LoadBalancerHealthMonitorHTTPVersionEnum {
-                "1.0",
-                "1.1"
+            export enum LoadBalancerHealthMonitorHTTPVersionEnum {
+                "1.0" = "1.0",
+                "1.1" = "1.1"
             }
             /** Load balancer Healthmonitor type */
-            enum LoadBalancerHealthMonitorTypeEnum {
-                "http",
-                "https",
-                "ping",
-                "sctp",
-                "tcp",
-                "tls-hello",
-                "udp-connect"
+            export enum LoadBalancerHealthMonitorTypeEnum {
+                "http" = "http",
+                "https" = "https",
+                "ping" = "ping",
+                "sctp" = "sctp",
+                "tcp" = "tcp",
+                "tls-hello" = "tls-hello",
+                "udp-connect" = "udp-connect"
             }
             /** Load balancer operating status */
-            enum LoadBalancerOperatingStatusEnum {
-                "degraded",
-                "draining",
-                "error",
-                "noMonitor",
-                "offline",
-                "online"
+            export enum LoadBalancerOperatingStatusEnum {
+                "degraded" = "degraded",
+                "draining" = "draining",
+                "error" = "error",
+                "noMonitor" = "noMonitor",
+                "offline" = "offline",
+                "online" = "online"
             }
             /** Load balancer provisioning status */
-            enum LoadBalancerProvisioningStatusEnum {
-                "active",
-                "creating",
-                "deleted",
-                "deleting",
-                "error",
-                "updating"
+            export enum LoadBalancerProvisioningStatusEnum {
+                "active" = "active",
+                "creating" = "creating",
+                "deleted" = "deleted",
+                "deleting" = "deleting",
+                "error" = "error",
+                "updating" = "updating"
             }
             /** Create a loadbalancer */
-            interface LoadbalancerCreate {
+            export interface LoadbalancerCreate {
                 /** Loadbalancer flavor id */
                 flavorId: string;
                 /** Listeners to create with the loadbalancer */
@@ -2014,7 +2015,7 @@ declare namespace ovhapi {
                 networkInformation: cloud.loadbalancing.loadbalancer.NetworkInformationCreate;
             }
             /** Pool */
-            interface Pool {
+            export interface Pool {
                 /** Algorithm of the pool */
                 algorithm: cloud.loadbalancing.PoolAlgorithmEnum;
                 /** ID of the resource */
@@ -2035,14 +2036,14 @@ declare namespace ovhapi {
                 sessionPersistence ? : cloud.loadbalancing.PoolSessionPersistence;
             }
             /** Pool algorithm */
-            enum PoolAlgorithmEnum {
-                "leastConnections",
-                "roundRobin",
-                "sourceIP",
-                "sourceIPPort"
+            export enum PoolAlgorithmEnum {
+                "leastConnections" = "leastConnections",
+                "roundRobin" = "roundRobin",
+                "sourceIP" = "sourceIP",
+                "sourceIPPort" = "sourceIPPort"
             }
             /** Pool */
-            interface PoolCreate {
+            export interface PoolCreate {
                 /** Algorithm of the pool */
                 algorithm: cloud.loadbalancing.PoolAlgorithmEnum;
                 /** ID of the listener */
@@ -2057,31 +2058,31 @@ declare namespace ovhapi {
                 sessionPersistence ? : cloud.loadbalancing.PoolSessionPersistence;
             }
             /** Pool protocol */
-            enum PoolProtocolEnum {
-                "http",
-                "https",
-                "proxy",
-                "proxyV2",
-                "sctp",
-                "tcp",
-                "udp"
+            export enum PoolProtocolEnum {
+                "http" = "http",
+                "https" = "https",
+                "proxy" = "proxy",
+                "proxyV2" = "proxyV2",
+                "sctp" = "sctp",
+                "tcp" = "tcp",
+                "udp" = "udp"
             }
             /** PoolSessionPersistence */
-            interface PoolSessionPersistence {
+            export interface PoolSessionPersistence {
                 /** Cookie name, only applicable to session persistence through cookie */
                 cookieName: string;
                 /** Type of session persistence */
                 type: cloud.loadbalancing.PoolSessionPersistenceTypeEnum;
             }
             /** Pool session persistence type */
-            enum PoolSessionPersistenceTypeEnum {
-                "appCookie",
-                "disabled",
-                "httpCookie",
-                "sourceIP"
+            export enum PoolSessionPersistenceTypeEnum {
+                "appCookie" = "appCookie",
+                "disabled" = "disabled",
+                "httpCookie" = "httpCookie",
+                "sourceIP" = "sourceIP"
             }
             /** Parameters to update a load balancer pool */
-            interface PoolUpdate {
+            export interface PoolUpdate {
                 /** Algorithm of the pool */
                 algorithm ? : cloud.loadbalancing.PoolAlgorithmEnum;
                 /** Name of the resource */
@@ -2090,7 +2091,7 @@ declare namespace ovhapi {
                 sessionPersistence ? : cloud.loadbalancing.PoolSessionPersistence;
             }
             /** Health monitor for LoadBalancer */
-            interface UpdateHealthMonitor {
+            export interface UpdateHealthMonitor {
                 /** Monitor HTTP configuration */
                 httpConfiguration: cloud.loadbalancing.HealthMonitorHTTPConfiguration;
                 /** Number of successful checks before changing the operating status of the member to ONLINE */
@@ -2100,14 +2101,14 @@ declare namespace ovhapi {
                 /** The name of the resource */
                 name: string;
                 /** Duration between sending probes to members, in format RFC3339 */
-                periodicity: duration;
+                periodicity: string;
                 /** Maximum time, in seconds, that a monitor waits to connect before it times out. This value must be less than the periodicity value */
                 timeout: number;
             }
         }
-        namespace migration {
+        export namespace migration {
             /** Migration */
-            interface Migration {
+            export interface Migration {
                 /** The planned date of the migration */
                 date: string;
                 /** Migration Id */
@@ -2118,26 +2119,26 @@ declare namespace ovhapi {
                 resourceType: cloud.migration.ResourceTypeEnum;
             }
             /** ResourceTypeEnum */
-            enum ResourceTypeEnum {
-                "instance"
+            export enum ResourceTypeEnum {
+                "instance" = "instance"
             }
         }
-        namespace network {
-            namespace gateway {
+        export namespace network {
+            export namespace gateway {
                 /** Input to create a new interface for a gateway */
-                interface CreateInterface {
+                export interface CreateInterface {
                     /** Subnet id to add */
                     subnetId: string;
                 }
                 /** External information of the gateway */
-                interface ExternalInformation {
+                export interface ExternalInformation {
                     /** External ips of the gateway */
                     ips: cloud.network.gateway.IpSubnet[];
                     /** External network ID of the gateway */
                     networkId: string;
                 }
                 /** Interface of the gateway */
-                interface Interface {
+                export interface Interface {
                     /** ID of the interface */
                     id: string;
                     /** IP of the interface */
@@ -2148,14 +2149,14 @@ declare namespace ovhapi {
                     subnetId: string;
                 }
                 /** IP and subnet information */
-                interface IpSubnet {
+                export interface IpSubnet {
                     /** External IP of the gateway */
                     ip: string;
                     /** Subnet ID of the ip */
                     subnetId: string;
                 }
             } /** Input to create a gateway */
-            interface CreateGateway {
+            export interface CreateGateway {
                 /** Model of the gateway */
                 model: cloud.network.GatewayModelEnum;
                 /** Name of the gateway */
@@ -2164,14 +2165,14 @@ declare namespace ovhapi {
                 network: cloud.network.CreateNetworkForGatewaySummary;
             }
             /** Parameters to create a gateway from another resource creation */
-            interface CreateGatewaySummary {
+            export interface CreateGatewaySummary {
                 /** Model of the gateway */
                 model: cloud.network.GatewayModelEnum;
                 /** Gateway name */
                 name: string;
             }
             /** Parameters to create a network with a gateway */
-            interface CreateNetwork {
+            export interface CreateNetwork {
                 /** gateway */
                 gateway ? : cloud.network.CreateGatewaySummary;
                 /** Network name */
@@ -2182,7 +2183,7 @@ declare namespace ovhapi {
                 vlanId: number;
             }
             /** Parameters to create a network from another resource creation */
-            interface CreateNetworkForGatewaySummary {
+            export interface CreateNetworkForGatewaySummary {
                 /** Name of the network */
                 name: string;
                 /** Subnet of the network */
@@ -2191,7 +2192,7 @@ declare namespace ovhapi {
                 vlanId: number;
             }
             /** Parameters to create a subnet from another resource creation */
-            interface CreateSubnetForGatewaySummary {
+            export interface CreateSubnetForGatewaySummary {
                 /** Subnet range in CIDR notation */
                 cidr: string;
                 /** Enable DHCP for the subnet */
@@ -2200,7 +2201,7 @@ declare namespace ovhapi {
                 ipVersion: number;
             }
             /** Parameters to create a subnet from another resource creation */
-            interface CreateSubnetSummary {
+            export interface CreateSubnetSummary {
                 /** Subnet range in CIDR notation */
                 cidr: string;
                 /** Enable DHCP for the subnet */
@@ -2211,7 +2212,7 @@ declare namespace ovhapi {
                 ipVersion: number;
             }
             /** Gateway */
-            interface Gateway {
+            export interface Gateway {
                 /** External information */
                 externalInformation ? : cloud.network.gateway.ExternalInformation;
                 /** ID of the gateway */
@@ -2228,20 +2229,20 @@ declare namespace ovhapi {
                 status: cloud.network.GatewayStatusEnum;
             }
             /** GatewayModelEnum */
-            enum GatewayModelEnum {
-                "l",
-                "m",
-                "s"
+            export enum GatewayModelEnum {
+                "l" = "l",
+                "m" = "m",
+                "s" = "s"
             }
             /** GatewayStatusEnum */
-            enum GatewayStatusEnum {
-                "active",
-                "building",
-                "down",
-                "error"
+            export enum GatewayStatusEnum {
+                "active" = "active",
+                "building" = "building",
+                "down" = "down",
+                "error" = "error"
             }
             /** IPPool */
-            interface IPPool {
+            export interface IPPool {
                 /** Enable DHCP */
                 dhcp: boolean;
                 /** Last IP for this region (eg: 192.168.1.24) */
@@ -2254,7 +2255,7 @@ declare namespace ovhapi {
                 start: string;
             }
             /** Network */
-            interface Network {
+            export interface Network {
                 /** Network id */
                 id: string;
                 /** Network name */
@@ -2269,7 +2270,7 @@ declare namespace ovhapi {
                 vlanId: number;
             }
             /** NetworkRegion */
-            interface NetworkRegion {
+            export interface NetworkRegion {
                 /** Network id on openstack region */
                 openstackId ? : string;
                 /** Network region */
@@ -2278,28 +2279,28 @@ declare namespace ovhapi {
                 status: cloud.network.NetworkRegionStatusEnum;
             }
             /** NetworkRegionStatusEnum */
-            enum NetworkRegionStatusEnum {
-                "ACTIVE",
-                "BUILDING"
+            export enum NetworkRegionStatusEnum {
+                "ACTIVE" = "ACTIVE",
+                "BUILDING" = "BUILDING"
             }
             /** NetworkStatusEnum */
-            enum NetworkStatusEnum {
-                "ACTIVE",
-                "BUILDING",
-                "DELETING"
+            export enum NetworkStatusEnum {
+                "ACTIVE" = "ACTIVE",
+                "BUILDING" = "BUILDING",
+                "DELETING" = "DELETING"
             }
             /** NetworkTypeEnum */
-            enum NetworkTypeEnum {
-                "private",
-                "public"
+            export enum NetworkTypeEnum {
+                "private" = "private",
+                "public" = "public"
             }
             /** NetworkVisibilityEnum */
-            enum NetworkVisibilityEnum {
-                "private",
-                "public"
+            export enum NetworkVisibilityEnum {
+                "private" = "private",
+                "public" = "public"
             }
             /** Subnet */
-            interface Subnet {
+            export interface Subnet {
                 /** Subnet CIDR */
                 cidr: string;
                 /** Is DHCP enabled for the subnet */
@@ -2312,45 +2313,45 @@ declare namespace ovhapi {
                 ipPools: cloud.network.IPPool[];
             }
             /** Input to update a gateway */
-            interface UpdateGateway {
+            export interface UpdateGateway {
                 /** Model of the gateway */
                 model: cloud.network.GatewayModelEnum;
                 /** Name of the gateway */
                 name: string;
             }
         }
-        namespace order {
-            namespace rule {
+        export namespace order {
+            export namespace rule {
                 /** Public Cloud products availability */
-                interface Availability {
+                export interface Availability {
                     /** Plan availability */
                     plans: cloud.order.rule.AvailabilityPlan[];
                     /** Product availability */
                     products: cloud.order.rule.AvailabilityProduct[];
                 }
                 /** Public Cloud plan availability */
-                interface AvailabilityPlan {
+                export interface AvailabilityPlan {
                     /** Plan code */
                     code: string;
                     /** Plan is available on those regions */
                     regions: string[];
                 }
                 /** Public Cloud product availability */
-                interface AvailabilityProduct {
+                export interface AvailabilityProduct {
                     /** Product name */
                     name: string;
                     /** Product is available on those regions */
                     regions: string[];
                 }
                 /** Public Cloud instance categories */
-                interface InstanceCategories {
+                export interface InstanceCategories {
                     /** Instance categories */
                     categories: cloud.order.rule.InstanceCategory[];
                     /** Default instance category name */
                     defaultCategory: string;
                 }
                 /** Public Cloud instance category */
-                interface InstanceCategory {
+                export interface InstanceCategory {
                     /** Instance category name */
                     category: cloud.order.rule.InstanceCategoryTypeEnum;
                     /** Instance category is new */
@@ -2361,17 +2362,17 @@ declare namespace ovhapi {
                     title: string;
                 }
                 /** InstanceCategoryTypeEnum */
-                enum InstanceCategoryTypeEnum {
-                    "accelerated",
-                    "balanced",
-                    "baremetal",
-                    "discovery",
-                    "iops",
-                    "ram",
-                    "vps"
+                export enum InstanceCategoryTypeEnum {
+                    "accelerated" = "accelerated",
+                    "balanced" = "balanced",
+                    "baremetal" = "baremetal",
+                    "discovery" = "discovery",
+                    "iops" = "iops",
+                    "ram" = "ram",
+                    "vps" = "vps"
                 }
             } /** Cloud Order */
-            interface Order {
+            export interface Order {
                 /** Order creation date */
                 date: string;
                 /** Order id */
@@ -2384,18 +2385,18 @@ declare namespace ovhapi {
                 status: cloud.order.StatusEnum;
             }
             /** Order status */
-            enum StatusEnum {
-                "delivered",
-                "delivering",
-                "unknown",
-                "unpaid"
+            export enum StatusEnum {
+                "delivered" = "delivered",
+                "delivering" = "delivering",
+                "unknown" = "unknown",
+                "unpaid" = "unpaid"
             }
         }
-        namespace project {
-            namespace ai {
-                namespace app {
+        export namespace project {
+            export namespace ai {
+                export namespace app {
                     /** AI Solutions Platform App Object */
-                    interface App {
+                    export interface App {
                         /** App creation date */
                         createdAt: string;
                         /** App Id */
@@ -2410,12 +2411,12 @@ declare namespace ovhapi {
                         user: string;
                     }
                     /** AI App Image object */
-                    interface AppImageInput {
+                    export interface AppImageInput {
                         /** URL of the Docker image */
                         url: string;
                     }
                     /** AI Solutions App Spec Object to create an app */
-                    interface AppSpec {
+                    export interface AppSpec {
                         /** App command */
                         command ? : string[];
                         /** Default port to access the http service inside the app */
@@ -2446,7 +2447,7 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** AI Solutions App Spec Object to create a app */
-                    interface AppSpecInput {
+                    export interface AppSpecInput {
                         /** App command */
                         command ? : string[];
                         /** Default port to access http service inside the app */
@@ -2477,27 +2478,27 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** State of the application */
-                    enum AppStateEnum {
-                        "DELETED",
-                        "DELETING",
-                        "ERROR",
-                        "FAILED",
-                        "INITIALIZING",
-                        "QUEUED",
-                        "RUNNING",
-                        "SCALING",
-                        "STOPPED",
-                        "STOPPING"
+                    export enum AppStateEnum {
+                        "DELETED" = "DELETED",
+                        "DELETING" = "DELETING",
+                        "ERROR" = "ERROR",
+                        "FAILED" = "FAILED",
+                        "INITIALIZING" = "INITIALIZING",
+                        "QUEUED" = "QUEUED",
+                        "RUNNING" = "RUNNING",
+                        "SCALING" = "SCALING",
+                        "STOPPED" = "STOPPED",
+                        "STOPPING" = "STOPPING"
                     }
                     /** AI Solutions App State History Object */
-                    interface AppStateHistory {
+                    export interface AppStateHistory {
                         /** Date when the status occurred */
                         date: string;
                         /** State of the app */
                         state: cloud.project.ai.app.AppStateEnum;
                     }
                     /** AI Solutions App Status Object */
-                    interface AppStatus {
+                    export interface AppStatus {
                         /** Number of available replicas */
                         availableReplicas: number;
                         /** Status about the datasync linked to the app */
@@ -2520,21 +2521,21 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.VolumeStatus[];
                     }
                     /** AI Solutions App Probe Object */
-                    interface Probe {
+                    export interface Probe {
                         /** Path to access to check for readiness */
                         path ? : string;
                         /** Port to access to check for readiness */
                         port ? : number;
                     }
                     /** AI Solutions App Probe Object */
-                    interface ProbeInput {
+                    export interface ProbeInput {
                         /** Path to access to check for readiness */
                         path ? : string;
                         /** Port to access to check for readiness */
                         port ? : number;
                     }
                     /** AI Solutions App automatic scaling strategy object */
-                    interface ScalingAutomaticStrategy {
+                    export interface ScalingAutomaticStrategy {
                         /** The average resource usage threshold that the app upscale or downscale will be triggered from, in percent */
                         averageUsageTarget: number;
                         /** Maximum number of replicas */
@@ -2545,7 +2546,7 @@ declare namespace ovhapi {
                         resourceType: cloud.project.ai.app.ScalingAutomaticStrategyResourceTypeEnum;
                     }
                     /** AI Solutions App automatic scaling strategy object */
-                    interface ScalingAutomaticStrategyInput {
+                    export interface ScalingAutomaticStrategyInput {
                         /** The average resource usage threshold that the app upscale or downscale will be triggered from, in percent */
                         averageUsageTarget: number;
                         /** Maximum number of replicas */
@@ -2556,39 +2557,39 @@ declare namespace ovhapi {
                         resourceType: cloud.project.ai.app.ScalingAutomaticStrategyResourceTypeEnum;
                     }
                     /** Resource type for App automatic scaling strategy */
-                    enum ScalingAutomaticStrategyResourceTypeEnum {
-                        "CPU",
-                        "RAM"
+                    export enum ScalingAutomaticStrategyResourceTypeEnum {
+                        "CPU" = "CPU",
+                        "RAM" = "RAM"
                     }
                     /** AI Solutions App Status Object */
-                    interface ScalingFixedStrategy {
+                    export interface ScalingFixedStrategy {
                         /** Number of wanted replicas */
                         replicas: number;
                     }
                     /** AI Solutions App Status Object */
-                    interface ScalingFixedStrategyInput {
+                    export interface ScalingFixedStrategyInput {
                         /** Number of wanted replicas */
                         replicas: number;
                     }
                     /** AI Solutions App Status Object */
-                    interface ScalingStrategy {
+                    export interface ScalingStrategy {
                         /** Strategy setting a variable number of replicas, based on an average resource usage threshold */
                         automatic ? : cloud.project.ai.app.ScalingAutomaticStrategy;
                         /** Strategy setting a fix number of replicas */
                         fixed ? : cloud.project.ai.app.ScalingFixedStrategy;
                     }
                     /** AI Solutions App Status Object */
-                    interface ScalingStrategyInput {
+                    export interface ScalingStrategyInput {
                         /** Strategy setting a variable number of replicas, based on an average resource usage threshold (conflicts with 'fixed' property when both are not null) */
                         automatic ? : cloud.project.ai.app.ScalingAutomaticStrategyInput;
                         /** Strategy setting a fix number of replicas (conflicts with 'automatic' property when both are not null) */
                         fixed ? : cloud.project.ai.app.ScalingFixedStrategyInput;
                     }
                 }
-                namespace capabilities {
-                    namespace app {
+                export namespace capabilities {
+                    export namespace app {
                         /** AI Solutions App image object */
-                        interface Image {
+                        export interface Image {
                             /** Short description of the image */
                             description: string;
                             /** URL of the image documentation */
@@ -2609,9 +2610,9 @@ declare namespace ovhapi {
                             versions: string[];
                         }
                     }
-                    namespace flavor {
+                    export namespace flavor {
                         /** AI Solutions Global GPU information */
-                        interface GpuInformation {
+                        export interface GpuInformation {
                             /** The GPU Brand */
                             gpuBrand: string;
                             /** The GPU Memory in bits */
@@ -2620,7 +2621,7 @@ declare namespace ovhapi {
                             gpuModel: string;
                         }
                         /** AI Solutions Global Resource per flavor unit */
-                        interface ResourcesPerUnit {
+                        export interface ResourcesPerUnit {
                             /** The amount of cpu for one unit of the flavor */
                             cpu: number;
                             /** The amount of ephemeral storage in bytes */
@@ -2633,9 +2634,9 @@ declare namespace ovhapi {
                             publicNetwork: number;
                         }
                     }
-                    namespace job {
+                    export namespace job {
                         /** AI Solutions Job image object */
-                        interface Image {
+                        export interface Image {
                             /** Short description of the image */
                             description: string;
                             /** URL of the image documentation */
@@ -2650,9 +2651,9 @@ declare namespace ovhapi {
                             versions: string[];
                         }
                     }
-                    namespace notebook {
+                    export namespace notebook {
                         /** AI Solutions Notebook editor object */
-                        interface Editor {
+                        export interface Editor {
                             /** Short description of the editor */
                             description: string;
                             /** URL of the editor documentation */
@@ -2667,7 +2668,7 @@ declare namespace ovhapi {
                             versions: string[];
                         }
                         /** AI Solutions Notebook framework object */
-                        interface Framework {
+                        export interface Framework {
                             /** Short description of the framework */
                             description: string;
                             /** URL of the framework documentation */
@@ -2682,14 +2683,14 @@ declare namespace ovhapi {
                             versions: string[];
                         }
                     } /** AI Solutions Features */
-                    interface Features {
+                    export interface Features {
                         /** Inform if the AI Solutions is in Lab mode or not */
                         lab: boolean;
                         /** Capability to add registry */
                         registry: boolean;
                     }
                     /** AI Solutions Flavor */
-                    interface Flavor {
+                    export interface Flavor {
                         /** Is the flavor the default one for a flavor type */
                         default: boolean;
                         /** Flavor description */
@@ -2706,18 +2707,18 @@ declare namespace ovhapi {
                         type: cloud.project.ai.capabilities.FlavorTypeEnum;
                     }
                     /** Flavor Type */
-                    enum FlavorTypeEnum {
-                        "cpu",
-                        "gpu"
+                    export enum FlavorTypeEnum {
+                        "cpu" = "cpu",
+                        "gpu" = "gpu"
                     }
                     /** Licensing Type */
-                    enum LicensingTypeEnum {
-                        "per-app",
-                        "per-replica",
-                        "per-resource"
+                    export enum LicensingTypeEnum {
+                        "per-app" = "per-app",
+                        "per-replica" = "per-replica",
+                        "per-resource" = "per-resource"
                     }
                     /** AI Solutions Preset image */
-                    interface Preset {
+                    export interface Preset {
                         /** Preset capabilities */
                         capabilities: cloud.project.ai.capabilities.PresetCapabilities;
                         /** Preset description */
@@ -2738,7 +2739,7 @@ declare namespace ovhapi {
                         type: cloud.project.ai.capabilities.PresetTypeEnum;
                     }
                     /** AI Solutions Preset image enabled features */
-                    interface PresetCapabilities {
+                    export interface PresetCapabilities {
                         /** Exec enabled */
                         exec: boolean;
                         /** Flavor types */
@@ -2753,25 +2754,25 @@ declare namespace ovhapi {
                         volume: boolean;
                     }
                     /** AI Solutions Preset image */
-                    interface PresetDocumentationUrl {
+                    export interface PresetDocumentationUrl {
                         /** Documentation Name */
                         name: string;
                         /** Documentation URL */
                         url: string;
                     }
                     /** AI Solutions Preset resources requirements */
-                    interface PresetResources {
+                    export interface PresetResources {
                         /** Maximum number of GPUs supported */
                         maxGpu: number;
                     }
                     /** Preset Type */
-                    enum PresetTypeEnum {
-                        "app",
-                        "job",
-                        "notebook"
+                    export enum PresetTypeEnum {
+                        "app" = "app",
+                        "job" = "job",
+                        "notebook" = "notebook"
                     }
                     /** AI Solutions Project Quotas */
-                    interface ProjectQuotas {
+                    export interface ProjectQuotas {
                         /** Project's quotas per compute-type resource (e.g CPU/GPU) */
                         resources: Record < string,
                         number > ;
@@ -2779,7 +2780,7 @@ declare namespace ovhapi {
                         storage: number;
                     }
                     /** AI Solutions Region */
-                    interface Region {
+                    export interface Region {
                         /** Client Install Url */
                         cliInstallUrl: string;
                         /** Documentation Url */
@@ -2792,9 +2793,9 @@ declare namespace ovhapi {
                         version: string;
                     }
                 }
-                namespace job {
+                export namespace job {
                     /** AI Solutions Job Object */
-                    interface Job {
+                    export interface Job {
                         /** Job creation date */
                         createdAt: string;
                         /** Job Id */
@@ -2809,14 +2810,14 @@ declare namespace ovhapi {
                         user: string;
                     }
                     /** AI Solutions Job Env Object */
-                    interface JobEnv {
+                    export interface JobEnv {
                         /** Name of the environment variable to set inside the job */
                         name: string;
                         /** Value of the environment variable to set inside the job */
                         value: string;
                     }
                     /** AI Solutions Job Spec Object to create a job */
-                    interface JobSpec {
+                    export interface JobSpec {
                         /** Job command */
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
@@ -2851,7 +2852,7 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** AI Solutions Job Spec Object to create a job */
-                    interface JobSpecInput {
+                    export interface JobSpecInput {
                         /** Job command */
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
@@ -2886,22 +2887,22 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** State of the job */
-                    enum JobStateEnum {
-                        "DONE",
-                        "ERROR",
-                        "FAILED",
-                        "FINALIZING",
-                        "INITIALIZING",
-                        "INTERRUPTED",
-                        "INTERRUPTING",
-                        "PENDING",
-                        "QUEUED",
-                        "RUNNING",
-                        "SYNC_FAILED",
-                        "TIMEOUT"
+                    export enum JobStateEnum {
+                        "DONE" = "DONE",
+                        "ERROR" = "ERROR",
+                        "FAILED" = "FAILED",
+                        "FINALIZING" = "FINALIZING",
+                        "INITIALIZING" = "INITIALIZING",
+                        "INTERRUPTED" = "INTERRUPTED",
+                        "INTERRUPTING" = "INTERRUPTING",
+                        "PENDING" = "PENDING",
+                        "QUEUED" = "QUEUED",
+                        "RUNNING" = "RUNNING",
+                        "SYNC_FAILED" = "SYNC_FAILED",
+                        "TIMEOUT" = "TIMEOUT"
                     }
                     /** AI Solutions Job Status Object */
-                    interface JobStatus {
+                    export interface JobStatus {
                         /** Status about the datasync linked to the job */
                         dataSync: cloud.project.ai.volume.DataSync[];
                         /** Duration of the job */
@@ -2942,14 +2943,14 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.VolumeStatus[];
                     }
                     /** AI Solutions Job Status History Object */
-                    interface JobStatusHistory {
+                    export interface JobStatusHistory {
                         /** Date when the status occurred */
                         date: string;
                         /** State of the job */
                         state: cloud.project.ai.job.JobStateEnum;
                     }
                     /** AI Solutions Partner Object */
-                    interface Partner {
+                    export interface Partner {
                         /** Partner flavor */
                         flavor: string;
                         /** Partner ID */
@@ -2958,7 +2959,7 @@ declare namespace ovhapi {
                         name: string;
                     }
                     /** A Image of a preset data science image */
-                    interface PresetImage {
+                    export interface PresetImage {
                         /** Model Image Description */
                         description: string;
                         /** Image id */
@@ -2971,9 +2972,9 @@ declare namespace ovhapi {
                         name: string;
                     }
                 }
-                namespace notebook {
+                export namespace notebook {
                     /** AI Solutions Platform Notebook Backup Object */
-                    interface Backup {
+                    export interface Backup {
                         /** Backup creation date */
                         createdAt: string;
                         /** Backup Id */
@@ -2982,7 +2983,7 @@ declare namespace ovhapi {
                         updatedAt: string;
                     }
                     /** AI Solutions Data Object */
-                    interface Editor {
+                    export interface Editor {
                         /** Short description of the code editor */
                         description: string;
                         /** URL toward the code editor documentation */
@@ -2997,7 +2998,7 @@ declare namespace ovhapi {
                         version: string;
                     }
                     /** AI Solutions Data Object */
-                    interface Framework {
+                    export interface Framework {
                         /** Short description of the framework */
                         description: string;
                         /** URL toward the framework documentation */
@@ -3012,7 +3013,7 @@ declare namespace ovhapi {
                         versions: string[];
                     }
                     /** AI Solutions Platform Notebook Object */
-                    interface Notebook {
+                    export interface Notebook {
                         /** Notebook creation date */
                         createdAt: string;
                         /** Notebook Id */
@@ -3027,7 +3028,7 @@ declare namespace ovhapi {
                         user: string;
                     }
                     /** AI Solutions Framework Object to create a notebook */
-                    interface NotebookEnv {
+                    export interface NotebookEnv {
                         /** Code editor to use */
                         editorId: string;
                         /** Framework name */
@@ -3036,7 +3037,7 @@ declare namespace ovhapi {
                         frameworkVersion ? : string;
                     }
                     /** AI Solutions Notebook Spec Object to create a notebook */
-                    interface NotebookSpec {
+                    export interface NotebookSpec {
                         /** Environment to deploy in this notebook */
                         env: cloud.project.ai.notebook.NotebookEnv;
                         /** List of environment variables to be set inside the notebook */
@@ -3062,7 +3063,7 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** AI Solutions Notebook Spec Object to create a notebook */
-                    interface NotebookSpecInput {
+                    export interface NotebookSpecInput {
                         /** Environment to deploy in this notebook */
                         env: cloud.project.ai.notebook.NotebookEnv;
                         /** List of environment variables to be set inside the notebook */
@@ -3086,17 +3087,17 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** State of the notebook */
-                    enum NotebookStateEnum {
-                        "DELETING",
-                        "FAILED",
-                        "RUNNING",
-                        "STARTING",
-                        "STOPPED",
-                        "STOPPING",
-                        "SYNC_FAILED"
+                    export enum NotebookStateEnum {
+                        "DELETING" = "DELETING",
+                        "FAILED" = "FAILED",
+                        "RUNNING" = "RUNNING",
+                        "STARTING" = "STARTING",
+                        "STOPPED" = "STOPPED",
+                        "STOPPING" = "STOPPING",
+                        "SYNC_FAILED" = "SYNC_FAILED"
                     }
                     /** AI Solutions Notebook Status Object */
-                    interface NotebookStatus {
+                    export interface NotebookStatus {
                         /** Status about the datasync linked to the job */
                         dataSync: cloud.project.ai.volume.DataSync[];
                         /** Duration of the notebook in seconds */
@@ -3125,7 +3126,7 @@ declare namespace ovhapi {
                         workspace ? : cloud.project.ai.notebook.NotebookWorkspace;
                     }
                     /** AI Solutions Notebook Spec Object to update a notebook */
-                    interface NotebookUpdate {
+                    export interface NotebookUpdate {
                         /** Labels for the notebook */
                         labels ? : Record < string, string > ;
                         /** Notebook resources */
@@ -3138,28 +3139,28 @@ declare namespace ovhapi {
                         volumes ? : cloud.project.ai.volume.Volume[];
                     }
                     /** AI Solutions Notebook Workspace Object */
-                    interface NotebookWorkspace {
+                    export interface NotebookWorkspace {
                         /** The number of storage bytes free of charges for notebook workspace */
                         storageFree: number;
                         /** The number of storage bytes currently used to persist notebook workspace */
                         storageUsed: number;
                     }
                 }
-                namespace partner {
+                export namespace partner {
                     /** Representation of a partner's contract with logged in user's tenant */
-                    interface Contract {
+                    export interface Contract {
                         /** Contract signature date for the logged in user's tenant */
                         signedAt ? : string;
                         /** Map of terms of service details per locale */
                         termsOfService: Record < string, cloud.project.ai.partner.ContractTermsLocale > ;
                     }
                     /** Representation of a partner's contract on a given language */
-                    interface ContractTermsLocale {
+                    export interface ContractTermsLocale {
                         /** Contract file URL for a given language */
                         url: string;
                     }
                     /** Representation of a partner */
-                    interface Partner {
+                    export interface Partner {
                         /** Partner contract with logged in user's tenant */
                         contract ? : cloud.project.ai.partner.Contract;
                         /** Partner creation date */
@@ -3172,9 +3173,9 @@ declare namespace ovhapi {
                         name: string;
                     }
                 }
-                namespace registry {
+                export namespace registry {
                     /** Representation of a registry */
-                    interface Registry {
+                    export interface Registry {
                         /** Registry creation date */
                         createdAt: string;
                         /** Registry Id */
@@ -3193,7 +3194,7 @@ declare namespace ovhapi {
                         username ? : string;
                     }
                     /** Docker registry update object */
-                    interface RegistryUpdateInput {
+                    export interface RegistryUpdateInput {
                         /** Docker registry password */
                         password ? : string;
                         /** Docker registry URL */
@@ -3202,18 +3203,18 @@ declare namespace ovhapi {
                         username ? : string;
                     }
                 }
-                namespace serving {
+                export namespace serving {
                     /** Status of API */
-                    enum APIStatusEnum {
-                        "pending",
-                        "running",
-                        "scaling",
-                        "sleeping",
-                        "starting",
-                        "waking"
+                    export enum APIStatusEnum {
+                        "pending" = "pending",
+                        "running" = "running",
+                        "scaling" = "scaling",
+                        "sleeping" = "sleeping",
+                        "starting" = "starting",
+                        "waking" = "waking"
                     }
                     /** Autoscaling specification */
-                    interface AutoscalingSpec {
+                    export interface AutoscalingSpec {
                         /** CPU utilization threshold beyond which a scale is triggered */
                         cpuAverageUtilization ? : number;
                         /** Maximum number of replicas */
@@ -3224,7 +3225,7 @@ declare namespace ovhapi {
                         minReplicas ? : number;
                     }
                     /** Backend serving the model */
-                    interface Backend {
+                    export interface Backend {
                         /** Backend ID */
                         id: cloud.project.ai.serving.BackendIdEnum;
                         /** Link to the backend project */
@@ -3233,17 +3234,17 @@ declare namespace ovhapi {
                         name: string;
                     }
                     /** Backend serving the model */
-                    enum BackendIdEnum {
-                        "bentoml",
-                        "serving-runtime"
+                    export enum BackendIdEnum {
+                        "bentoml" = "bentoml",
+                        "serving-runtime" = "serving-runtime"
                     }
                     /** Features of Serving Engine */
-                    interface Features {
+                    export interface Features {
                         /** Capability to choose backend */
                         chooseBackend: boolean;
                     }
                     /** Compute Flavor for the Serving Engine */
-                    interface Flavor {
+                    export interface Flavor {
                         /** Number of CPU core of the flavor */
                         cpuCore: number;
                         /** Description of the flavor */
@@ -3254,7 +3255,7 @@ declare namespace ovhapi {
                         ramMB: number;
                     }
                     /** Framework of the model */
-                    interface Framework {
+                    export interface Framework {
                         /** Backends handling this framework */
                         backends: cloud.project.ai.serving.BackendIdEnum[];
                         /** Documentation page */
@@ -3273,31 +3274,31 @@ declare namespace ovhapi {
                         version: string;
                     }
                     /** Framework of the model */
-                    enum FrameworkIdEnum {
-                        "fastai",
-                        "flow",
-                        "huggingface",
-                        "onnx",
-                        "pmml",
-                        "tensorflow_1",
-                        "torch"
+                    export enum FrameworkIdEnum {
+                        "fastai" = "fastai",
+                        "flow" = "flow",
+                        "huggingface" = "huggingface",
+                        "onnx" = "onnx",
+                        "pmml" = "pmml",
+                        "tensorflow_1" = "tensorflow_1",
+                        "torch" = "torch"
                     }
                     /** Metrics information */
-                    interface Metrics {
+                    export interface Metrics {
                         /** Metrics endpoint query platforms */
                         endpoints: cloud.project.ai.serving.MetricsEndpoint[];
                         /** Metrics token linked to the project */
                         token: string;
                     }
                     /** User Metrics Endpoints */
-                    interface MetricsEndpoint {
+                    export interface MetricsEndpoint {
                         /** Name of endpoint */
                         name: string;
                         /** URL of endpoint */
                         url: string;
                     }
                     /** A deployed machine learning model */
-                    interface Model {
+                    export interface Model {
                         /** Api status */
                         apiStatus: cloud.project.ai.serving.APIStatusEnum;
                         /** Autoscaling specification */
@@ -3322,7 +3323,7 @@ declare namespace ovhapi {
                         workflowTemplateParameters: cloud.project.ai.serving.ModelWorkflowTemplateParameter;
                     }
                     /** Missing description */
-                    interface ModelDefinition {
+                    export interface ModelDefinition {
                         /** Autoscaling specification */
                         autoscalingSpec ? : cloud.project.ai.serving.AutoscalingSpec;
                         /** Backend which will serve your model */
@@ -3341,7 +3342,7 @@ declare namespace ovhapi {
                         workflowTemplate ? : cloud.project.ai.serving.WorkflowTemplateEnum;
                     }
                     /** Parameters of the Workflow that build */
-                    interface ModelWorkflowTemplateParameter {
+                    export interface ModelWorkflowTemplateParameter {
                         /** Backend which will serve your model */
                         backend ? : cloud.project.ai.serving.BackendIdEnum;
                         /** Framework of your model */
@@ -3352,7 +3353,7 @@ declare namespace ovhapi {
                         storagePath ? : string;
                     }
                     /** A serving engine namespace */
-                    interface Namespace {
+                    export interface Namespace {
                         /** Cluster id */
                         clusterId: string;
                         /** Object storage container */
@@ -3373,7 +3374,7 @@ declare namespace ovhapi {
                         url: string;
                     }
                     /** Missing description */
-                    interface NamespaceCreation {
+                    export interface NamespaceCreation {
                         /** Object storage container name */
                         container: string;
                         /** Description of namespace */
@@ -3382,7 +3383,7 @@ declare namespace ovhapi {
                         region: string;
                     }
                     /** A Image of a built serving model */
-                    interface PresetImage {
+                    export interface PresetImage {
                         /** Model Image Description */
                         description: string;
                         /** Image id */
@@ -3395,7 +3396,7 @@ declare namespace ovhapi {
                         ramRequirementMB ? : number;
                     }
                     /** Representation of a registry */
-                    interface Registry {
+                    export interface Registry {
                         /** True if user have a registry attached */
                         custom: boolean;
                         /** Docker registry password */
@@ -3406,12 +3407,12 @@ declare namespace ovhapi {
                         username ? : string;
                     }
                     /** Missing description */
-                    interface RegistryResponse {
+                    export interface RegistryResponse {
                         /** message */
                         message: string;
                     }
                     /** A token to access / manage a machine learning Model */
-                    interface Token {
+                    export interface Token {
                         /** Token creation date */
                         createdAt: string;
                         /** A list of access group to grant */
@@ -3424,30 +3425,30 @@ declare namespace ovhapi {
                         token ? : string;
                     }
                     /** A serving engine access group */
-                    enum TokenGroupEnum {
-                        "model-evaluation",
-                        "model-management"
+                    export enum TokenGroupEnum {
+                        "model-evaluation" = "model-evaluation",
+                        "model-management" = "model-management"
                     }
                     /** Status of current version */
-                    enum VersionStatusEnum {
-                        "build-error",
-                        "building",
-                        "built",
-                        "deployed",
-                        "deploying",
-                        "failed",
-                        "pending",
-                        "rollback"
+                    export enum VersionStatusEnum {
+                        "build-error" = "build-error",
+                        "building" = "building",
+                        "built" = "built",
+                        "deployed" = "deployed",
+                        "deploying" = "deploying",
+                        "failed" = "failed",
+                        "pending" = "pending",
+                        "rollback" = "rollback"
                     }
                     /** The workflow Template to use */
-                    enum WorkflowTemplateEnum {
-                        "build-image",
-                        "preset-image"
+                    export enum WorkflowTemplateEnum {
+                        "build-image" = "build-image",
+                        "preset-image" = "preset-image"
                     }
                 }
-                namespace token {
+                export namespace token {
                     /** AI Solutions Application Token */
-                    interface Token {
+                    export interface Token {
                         /** Application token creation date */
                         createdAt: string;
                         /** Application token Id */
@@ -3460,7 +3461,7 @@ declare namespace ovhapi {
                         updatedAt: string;
                     }
                     /** AI Solutions Application Token Spec Object to create a notebook */
-                    interface TokenSpec {
+                    export interface TokenSpec {
                         /** Application token label selector */
                         labelSelector ? : string;
                         /** Application token name */
@@ -3471,16 +3472,16 @@ declare namespace ovhapi {
                         role: cloud.project.ai.TokenRoleEnum;
                     }
                     /** AI Solutions Application Token Status Object */
-                    interface TokenStatus {
+                    export interface TokenStatus {
                         /** Application token value to use as a Bearer */
                         value ? : string;
                         /** Application token version */
                         version: number;
                     }
                 }
-                namespace volume {
+                export namespace volume {
                     /** AI Solutions data store container Volume Object */
-                    interface DataStore {
+                    export interface DataStore {
                         /** Data store alias */
                         alias: string;
                         /** Name of the tar archive that needs to be saved */
@@ -3493,7 +3494,7 @@ declare namespace ovhapi {
                         prefix ? : string;
                     }
                     /** AI Solutions Data Sync */
-                    interface DataSync {
+                    export interface DataSync {
                         /** Data Sync creation date */
                         createdAt: string;
                         /** Data Sync Id */
@@ -3506,21 +3507,21 @@ declare namespace ovhapi {
                         updatedAt: string;
                     }
                     /** Data Sync Direction */
-                    enum DataSyncEnum {
-                        "pull",
-                        "push"
+                    export enum DataSyncEnum {
+                        "pull" = "pull",
+                        "push" = "push"
                     }
                     /** State of the progress sync */
-                    enum DataSyncProgressStateEnum {
-                        "DONE",
-                        "ERROR",
-                        "FAILED",
-                        "INTERRUPTED",
-                        "QUEUED",
-                        "RUNNING"
+                    export enum DataSyncProgressStateEnum {
+                        "DONE" = "DONE",
+                        "ERROR" = "ERROR",
+                        "FAILED" = "FAILED",
+                        "INTERRUPTED" = "INTERRUPTED",
+                        "QUEUED" = "QUEUED",
+                        "RUNNING" = "RUNNING"
                     }
                     /** AI Solutions Data Sync Spec */
-                    interface DataSyncSpec {
+                    export interface DataSyncSpec {
                         /** Direction of the sync */
                         direction: cloud.project.ai.volume.DataSyncEnum;
                         /** True if the user has created the object */
@@ -3529,16 +3530,16 @@ declare namespace ovhapi {
                         volume ? : string;
                     }
                     /** State of the data sync */
-                    enum DataSyncStateEnum {
-                        "DONE",
-                        "ERROR",
-                        "FAILED",
-                        "INTERRUPTED",
-                        "QUEUED",
-                        "RUNNING"
+                    export enum DataSyncStateEnum {
+                        "DONE" = "DONE",
+                        "ERROR" = "ERROR",
+                        "FAILED" = "FAILED",
+                        "INTERRUPTED" = "INTERRUPTED",
+                        "QUEUED" = "QUEUED",
+                        "RUNNING" = "RUNNING"
                     }
                     /** AI Solutions Data Sync Status */
-                    interface DataSyncStatus {
+                    export interface DataSyncStatus {
                         /** Date when the data sync ended */
                         endedAt ? : string;
                         /** Information about the data sync */
@@ -3553,7 +3554,7 @@ declare namespace ovhapi {
                         state: cloud.project.ai.volume.DataSyncStateEnum;
                     }
                     /** AI Solutions private Swift container Volume Object. Deprecated: Use DataStore instead */
-                    interface PrivateSwift {
+                    export interface PrivateSwift {
                         /** Name of the tar archive that needs to be saved */
                         archive ? : string;
                         /** Public Cloud Storage container to attach */
@@ -3566,7 +3567,7 @@ declare namespace ovhapi {
                         region: string;
                     }
                     /** AI Solutions Progress Object */
-                    interface Progress {
+                    export interface Progress {
                         /** Number of completed files */
                         completed: number;
                         /** Progress creation date */
@@ -3597,22 +3598,22 @@ declare namespace ovhapi {
                         updatedAt: string;
                     }
                     /** AI Solutions public Git repository Volume Object */
-                    interface PublicGit {
+                    export interface PublicGit {
                         /** URL of the public git repository */
                         url: string;
                     }
                     /** AI Solutions public Swift container Volume Object */
-                    interface PublicSwift {
+                    export interface PublicSwift {
                         /** URL of the public swift container */
                         url: string;
                     }
                     /** AI Solutions No Source Volume Object */
-                    interface Standalone {
+                    export interface Standalone {
                         /** Name of the volume */
                         name ? : string;
                     }
                     /** AI Solutions Volume Object */
-                    interface Volume {
+                    export interface Volume {
                         /** Enable/disable volume caching */
                         cache: boolean;
                         /** Public Cloud Storage container to attach */
@@ -3643,7 +3644,7 @@ declare namespace ovhapi {
                         targetPrivateSwift ? : cloud.project.ai.volume.PrivateSwift;
                     }
                     /** AI Solutions Volume Object */
-                    interface VolumeStatus {
+                    export interface VolumeStatus {
                         /** Volume Id */
                         id: string;
                         /** Path where the data is mounted inside the container */
@@ -3652,24 +3653,24 @@ declare namespace ovhapi {
                         userVolumeId: string;
                     }
                 } /** Authorization status */
-                interface AuthorizationStatus {
+                export interface AuthorizationStatus {
                     /** True if project is authorized to use AI Solutions Platform */
                     authorized: boolean;
                 }
                 /** AI Solutions basic auth credentials input */
-                interface BasicAuthCredentialsInput {
+                export interface BasicAuthCredentialsInput {
                     /** Basic Auth Password */
                     password: string;
                     /** Basic Auth Username */
                     username: string;
                 }
                 /** AI Solutions CLI command */
-                interface Command {
+                export interface Command {
                     /** AI Solutions CLI command */
                     command: string;
                 }
                 /** AI Solutions data store container Volume Object */
-                interface DataStore {
+                export interface DataStore {
                     /** Data store alias */
                     alias: string;
                     /** Owner type of the datastore */
@@ -3678,7 +3679,7 @@ declare namespace ovhapi {
                     type: cloud.project.ai.DataStoreTypeEnum;
                 }
                 /** AI Solutions data store auth */
-                interface DataStoreAuth {
+                export interface DataStoreAuth {
                     /** Access key to the datastore */
                     accessKey ? : string;
                     /** Region of the datastore */
@@ -3693,14 +3694,14 @@ declare namespace ovhapi {
                     url ? : string;
                 }
                 /** AI Solutions data store credentials Object */
-                interface DataStoreCredentialsInput {
+                export interface DataStoreCredentialsInput {
                     /** Git data store credentials */
                     git ? : cloud.project.ai.GitCredentialsInput;
                     /** S3 data store credentials */
                     s3 ? : cloud.project.ai.S3CredentialsInput;
                 }
                 /** AI Solutions data store container Volume Object */
-                interface DataStoreInput {
+                export interface DataStoreInput {
                     /** Data store alias */
                     alias: string;
                     /** Data store credentials */
@@ -3715,119 +3716,119 @@ declare namespace ovhapi {
                     type: cloud.project.ai.DataStoreTypeEnum;
                 }
                 /** Data Store Owner */
-                enum DataStoreOwnerEnum {
-                    "customer",
-                    "ovhcloud"
+                export enum DataStoreOwnerEnum {
+                    "customer" = "customer",
+                    "ovhcloud" = "ovhcloud"
                 }
                 /** Data Store Type */
-                enum DataStoreTypeEnum {
-                    "git",
-                    "s3",
-                    "swift"
+                export enum DataStoreTypeEnum {
+                    "git" = "git",
+                    "s3" = "s3",
+                    "swift" = "swift"
                 }
                 /** Basic model with a single message field */
-                interface GenericResponse {
+                export interface GenericResponse {
                     /** message */
                     message: string;
                 }
                 /** AI Solutions data store git credentials input */
-                interface GitCredentialsInput {
+                export interface GitCredentialsInput {
                     /** Basic Auth data store credentials */
                     basicAuth ? : cloud.project.ai.BasicAuthCredentialsInput;
                     /** SSH data store credentials */
                     sshKeypair ? : cloud.project.ai.SshCredentialsInput;
                 }
                 /** Information about the state of this entity */
-                interface Info {
+                export interface Info {
                     /** Info code identifier */
                     code: cloud.project.ai.InfoCodeEnum;
                     /** Formatted message */
                     message: string;
                 }
                 /** Code enum for Info object */
-                enum InfoCodeEnum {
-                    "APP_CREATE_ERROR",
-                    "APP_ERROR",
-                    "APP_FAILED",
-                    "APP_INITIALIZING",
-                    "APP_INTERRUPTED_BY_PLATFORM",
-                    "APP_QUEUED",
-                    "APP_RUNNING",
-                    "APP_SCALING",
-                    "APP_STOPPED",
-                    "APP_STOPPING",
-                    "COMPATIBILITY",
-                    "DATASYNC_AUTHENTICATE_FAILED",
-                    "DATASYNC_DATA_STORE_NOT_FOUND",
-                    "DATASYNC_DONE",
-                    "DATASYNC_ERROR",
-                    "DATASYNC_FAILED",
-                    "DATASYNC_INTERRUPTED",
-                    "DATASYNC_INVALID_CONTAINER",
-                    "DATASYNC_QUEUED",
-                    "DATASYNC_RETRY_ERROR",
-                    "DATASYNC_RUNNING",
-                    "JOB_CREATE_CONTAINER_CONFIG_ERROR",
-                    "JOB_CREATE_CONTAINER_ERROR",
-                    "JOB_DONE",
-                    "JOB_ERROR",
-                    "JOB_EVICTED",
-                    "JOB_FAILED",
-                    "JOB_FAILED_WITH_MESSAGE",
-                    "JOB_FINALIZING",
-                    "JOB_IMAGE_INSPECT_ERROR",
-                    "JOB_IMAGE_PULL",
-                    "JOB_IMAGE_PULL_BACKOFF",
-                    "JOB_INITIALIZING",
-                    "JOB_INTERRUPTED",
-                    "JOB_INTERRUPTED_BY_PLATFORM",
-                    "JOB_INTERRUPTING",
-                    "JOB_INVALID_IMAGE_NAME",
-                    "JOB_PENDING",
-                    "JOB_QUEUED",
-                    "JOB_REGISTRY_UNAVAILABLE",
-                    "JOB_RUNNING",
-                    "JOB_SYNC_FAILED",
-                    "JOB_TIMEOUT",
-                    "NOTEBOOK_FAILED",
-                    "NOTEBOOK_FAILED_WITH_MESSAGE",
-                    "NOTEBOOK_FINALIZING",
-                    "NOTEBOOK_INITIALIZING",
-                    "NOTEBOOK_PENDING",
-                    "NOTEBOOK_RUNNING",
-                    "NOTEBOOK_STARTING",
-                    "NOTEBOOK_STOPPED",
-                    "NOTEBOOK_STOPPING",
-                    "NOTEBOOK_SYNC_FAILED"
+                export enum InfoCodeEnum {
+                    "APP_CREATE_ERROR" = "APP_CREATE_ERROR",
+                    "APP_ERROR" = "APP_ERROR",
+                    "APP_FAILED" = "APP_FAILED",
+                    "APP_INITIALIZING" = "APP_INITIALIZING",
+                    "APP_INTERRUPTED_BY_PLATFORM" = "APP_INTERRUPTED_BY_PLATFORM",
+                    "APP_QUEUED" = "APP_QUEUED",
+                    "APP_RUNNING" = "APP_RUNNING",
+                    "APP_SCALING" = "APP_SCALING",
+                    "APP_STOPPED" = "APP_STOPPED",
+                    "APP_STOPPING" = "APP_STOPPING",
+                    "COMPATIBILITY" = "COMPATIBILITY",
+                    "DATASYNC_AUTHENTICATE_FAILED" = "DATASYNC_AUTHENTICATE_FAILED",
+                    "DATASYNC_DATA_STORE_NOT_FOUND" = "DATASYNC_DATA_STORE_NOT_FOUND",
+                    "DATASYNC_DONE" = "DATASYNC_DONE",
+                    "DATASYNC_ERROR" = "DATASYNC_ERROR",
+                    "DATASYNC_FAILED" = "DATASYNC_FAILED",
+                    "DATASYNC_INTERRUPTED" = "DATASYNC_INTERRUPTED",
+                    "DATASYNC_INVALID_CONTAINER" = "DATASYNC_INVALID_CONTAINER",
+                    "DATASYNC_QUEUED" = "DATASYNC_QUEUED",
+                    "DATASYNC_RETRY_ERROR" = "DATASYNC_RETRY_ERROR",
+                    "DATASYNC_RUNNING" = "DATASYNC_RUNNING",
+                    "JOB_CREATE_CONTAINER_CONFIG_ERROR" = "JOB_CREATE_CONTAINER_CONFIG_ERROR",
+                    "JOB_CREATE_CONTAINER_ERROR" = "JOB_CREATE_CONTAINER_ERROR",
+                    "JOB_DONE" = "JOB_DONE",
+                    "JOB_ERROR" = "JOB_ERROR",
+                    "JOB_EVICTED" = "JOB_EVICTED",
+                    "JOB_FAILED" = "JOB_FAILED",
+                    "JOB_FAILED_WITH_MESSAGE" = "JOB_FAILED_WITH_MESSAGE",
+                    "JOB_FINALIZING" = "JOB_FINALIZING",
+                    "JOB_IMAGE_INSPECT_ERROR" = "JOB_IMAGE_INSPECT_ERROR",
+                    "JOB_IMAGE_PULL" = "JOB_IMAGE_PULL",
+                    "JOB_IMAGE_PULL_BACKOFF" = "JOB_IMAGE_PULL_BACKOFF",
+                    "JOB_INITIALIZING" = "JOB_INITIALIZING",
+                    "JOB_INTERRUPTED" = "JOB_INTERRUPTED",
+                    "JOB_INTERRUPTED_BY_PLATFORM" = "JOB_INTERRUPTED_BY_PLATFORM",
+                    "JOB_INTERRUPTING" = "JOB_INTERRUPTING",
+                    "JOB_INVALID_IMAGE_NAME" = "JOB_INVALID_IMAGE_NAME",
+                    "JOB_PENDING" = "JOB_PENDING",
+                    "JOB_QUEUED" = "JOB_QUEUED",
+                    "JOB_REGISTRY_UNAVAILABLE" = "JOB_REGISTRY_UNAVAILABLE",
+                    "JOB_RUNNING" = "JOB_RUNNING",
+                    "JOB_SYNC_FAILED" = "JOB_SYNC_FAILED",
+                    "JOB_TIMEOUT" = "JOB_TIMEOUT",
+                    "NOTEBOOK_FAILED" = "NOTEBOOK_FAILED",
+                    "NOTEBOOK_FAILED_WITH_MESSAGE" = "NOTEBOOK_FAILED_WITH_MESSAGE",
+                    "NOTEBOOK_FINALIZING" = "NOTEBOOK_FINALIZING",
+                    "NOTEBOOK_INITIALIZING" = "NOTEBOOK_INITIALIZING",
+                    "NOTEBOOK_PENDING" = "NOTEBOOK_PENDING",
+                    "NOTEBOOK_RUNNING" = "NOTEBOOK_RUNNING",
+                    "NOTEBOOK_STARTING" = "NOTEBOOK_STARTING",
+                    "NOTEBOOK_STOPPED" = "NOTEBOOK_STOPPED",
+                    "NOTEBOOK_STOPPING" = "NOTEBOOK_STOPPING",
+                    "NOTEBOOK_SYNC_FAILED" = "NOTEBOOK_SYNC_FAILED"
                 }
                 /** AI Solutions Label Object */
-                interface Label {
+                export interface Label {
                     /** Name of the label to update/add */
                     name: string;
                     /** Value of the label to update/add, is there is no value the label is deleted */
                     value ? : string;
                 }
                 /** Log line */
-                interface LogLine {
+                export interface LogLine {
                     /** Content of the log */
                     content ? : string;
                     /** Datetime of the log */
                     timestamp ? : string;
                 }
                 /** Instance Logs */
-                interface Logs {
+                export interface Logs {
                     /** Last activity date */
                     lastActivity ? : string;
                     /** Logs lines */
                     logs: cloud.project.ai.LogLine[];
                 }
                 /** Possible value to order result */
-                enum OrderEnum {
-                    "asc",
-                    "desc"
+                export enum OrderEnum {
+                    "asc" = "asc",
+                    "desc" = "desc"
                 }
                 /** AI Solutions Resource Object */
-                interface Resources {
+                export interface Resources {
                     /** Number of vCPU resources requested */
                     cpu: number;
                     /** The amount of ephemeral storage in bytes */
@@ -3850,7 +3851,7 @@ declare namespace ovhapi {
                     publicNetwork: number;
                 }
                 /** AI Solutions Resource Object */
-                interface ResourcesInput {
+                export interface ResourcesInput {
                     /** Number of vCPU resources requested */
                     cpu ? : number;
                     /** The amount of ephemeral storage in bytes */
@@ -3873,7 +3874,7 @@ declare namespace ovhapi {
                     publicNetwork ? : number;
                 }
                 /** AI Solutions S3 credentials */
-                interface S3CredentialsInput {
+                export interface S3CredentialsInput {
                     /** S3 Access Key */
                     accessKey: string;
                     /** S3 Region */
@@ -3882,56 +3883,56 @@ declare namespace ovhapi {
                     secretKey: string;
                 }
                 /** Shutdown strategy of an instance */
-                enum ShutdownStrategyEnum {
-                    "Stop"
+                export enum ShutdownStrategyEnum {
+                    "Stop" = "Stop"
                 }
                 /** AI Solutions SSH credentials input */
-                interface SshCredentialsInput {
+                export interface SshCredentialsInput {
                     /** SSH private key */
                     privateKey: string;
                     /** SSH public key */
                     publicKey: string;
                 }
                 /** Role granted with an application token */
-                enum TokenRoleEnum {
-                    "ai_training_operator",
-                    "ai_training_read"
+                export enum TokenRoleEnum {
+                    "ai_training_operator" = "ai_training_operator",
+                    "ai_training_read" = "ai_training_read"
                 }
                 /** Permissions to apply on a volume */
-                enum VolumePermissionEnum {
-                    "RO",
-                    "RW",
-                    "RWD"
+                export enum VolumePermissionEnum {
+                    "RO" = "RO",
+                    "RW" = "RW",
+                    "RWD" = "RWD"
                 }
             }
-            namespace certificate {
+            export namespace certificate {
                 /** Import external certificate */
-                interface Import {
+                export interface Import {
                     /** PEM encoded certificate */
-                    cert: text;
+                    cert: string;
                     /** Optional PEM encoded certificate chain */
-                    chain ? : text;
+                    chain ? : string;
                     /** PEM encoded certificate private key */
                     key: string;
                 }
                 /** Certificate SAN */
-                interface ServerAlternativeName {
+                export interface ServerAlternativeName {
                     /** SAN kind */
                     kind: cloud.project.certificate.ServerAlternativeNameKindEnum;
                     /** Name of the given kind */
                     name: string;
                 }
                 /** SAN kind */
-                enum ServerAlternativeNameKindEnum {
-                    "DNS",
-                    "EMAIL",
-                    "IP",
-                    "URI"
+                export enum ServerAlternativeNameKindEnum {
+                    "DNS" = "DNS",
+                    "EMAIL" = "EMAIL",
+                    "IP" = "IP",
+                    "URI" = "URI"
                 }
             }
-            namespace dataIntegration {
+            export namespace dataIntegration {
                 /** Connector's availability */
-                interface Availability {
+                export interface Availability {
                     /** End of life of the connector */
                     endOfLife ? : string;
                     /** Release date of the connector */
@@ -3940,7 +3941,7 @@ declare namespace ovhapi {
                     status: cloud.project.database.availability.StatusEnum;
                 }
                 /** Connector parameters */
-                interface CapabilitiesConnectorParameter {
+                export interface CapabilitiesConnectorParameter {
                     /** Default value of parameter */
                     default ? : string;
                     /** Description of parameter */
@@ -3955,20 +3956,20 @@ declare namespace ovhapi {
                     validator: cloud.project.dataIntegration.ParameterValidator;
                 }
                 /** Connection information */
-                interface Connection {
+                export interface Connection {
                     /** Last date of the connection */
                     date ? : string;
                     /** Connection status */
                     status: cloud.project.dataIntegration.ConnectionStatusEnum;
                 }
                 /** Possible state of connection */
-                enum ConnectionStatusEnum {
-                    "CONNECTION_FAILED",
-                    "CONNECTION_RUNNING",
-                    "CONNECTION_SUCCEED"
+                export enum ConnectionStatusEnum {
+                    "CONNECTION_FAILED" = "CONNECTION_FAILED",
+                    "CONNECTION_RUNNING" = "CONNECTION_RUNNING",
+                    "CONNECTION_SUCCEED" = "CONNECTION_SUCCEED"
                 }
                 /** Connector information */
-                interface Connector {
+                export interface Connector {
                     /** Connector's availability */
                     availability: cloud.project.dataIntegration.Availability;
                     /** Description of the connector */
@@ -3985,7 +3986,7 @@ declare namespace ovhapi {
                     version: string;
                 }
                 /** Destination information */
-                interface Destination {
+                export interface Destination {
                     /** Uuid of the connector destination type */
                     connectorId: string;
                     /** Creation date of the destination */
@@ -4002,7 +4003,7 @@ declare namespace ovhapi {
                     status: cloud.project.dataIntegration.ConnectionStatusEnum;
                 }
                 /** Editable destination properties */
-                interface DestinationUpdate {
+                export interface DestinationUpdate {
                     /** Destination Id */
                     id: string;
                     /** Name of the destination */
@@ -4011,7 +4012,7 @@ declare namespace ovhapi {
                     parameters ? : cloud.project.dataIntegration.Parameter[];
                 }
                 /** Job information */
-                interface Job {
+                export interface Job {
                     /** Creation date of the job */
                     createdAt: string;
                     /** End date of the job */
@@ -4024,62 +4025,67 @@ declare namespace ovhapi {
                     status: cloud.project.dataIntegration.StatusEnum;
                 }
                 /** Input to start a job */
-                interface JobStart {
+                export interface JobStart {
                     /** List of parameters to use for this job */
                     parameters ? : cloud.project.dataIntegration.Parameter[];
                 }
                 /** Metadata from source */
-                interface Metadata {
+                export interface Metadata {
                     /** End date of the metadata extraction */
                     endedAt ? : string;
+                    /** Error detail of the metadata extraction */
+                    error ? : string;
+                    /** Error code of the metadata extraction */
+                    errorCode ? : string;
                     /** All metadatas fields from the table */
                     metadata ? : cloud.project.dataIntegration.MetadataDescription[];
                     /** Start date of the metadata extraction */
-                    startedAt: string;
+                    startedAt ? : string;
                     /** Last status of the metadata extraction */
                     status: cloud.project.dataIntegration.MetadataStatusEnum;
                     /** Table name */
                     tableName: string;
                 }
                 /** Metadata description */
-                interface MetadataDescription {
+                export interface MetadataDescription {
                     /** Cardinality of the field description */
                     cardinality: number;
                     /** Maximum field value */
-                    max: double;
+                    max: number;
                     /** Minimum field value */
-                    min: double;
+                    min: number;
                     /** Field name */
                     name: string;
                     /** Field type */
                     type: string;
                 }
                 /** Possible state of the metadata extraction */
-                enum MetadataStatusEnum {
-                    "FAILED",
-                    "PROCESSING",
-                    "STOP",
-                    "SUCCESS",
-                    "UNKNOWN"
+                export enum MetadataStatusEnum {
+                    "FAILED" = "FAILED",
+                    "NOT_EXTRACTED" = "NOT_EXTRACTED",
+                    "PROCESSING" = "PROCESSING",
+                    "STOP" = "STOP",
+                    "SUCCESS" = "SUCCESS",
+                    "UNKNOWN" = "UNKNOWN"
                 }
                 /** Parameters of the connector */
-                interface Parameter {
+                export interface Parameter {
                     /** Name of parameter */
                     name: string;
                     /** Value of parameter */
                     value: string;
                 }
                 /** Conditions to which the value of parameter must conform */
-                interface ParameterValidator {
+                export interface ParameterValidator {
                     /** Maximal value of parameter */
-                    max ? : double;
+                    max ? : number;
                     /** Minimal value of parameter */
-                    min ? : double;
+                    min ? : number;
                     /** Regex to match value of parameter */
                     regex ? : string;
                 }
                 /** Source information */
-                interface Source {
+                export interface Source {
                     /** Uuid of the connector source type */
                     connectorId: string;
                     /** Creation date of the source */
@@ -4096,7 +4102,7 @@ declare namespace ovhapi {
                     status: cloud.project.dataIntegration.ConnectionStatusEnum;
                 }
                 /** Editable source properties */
-                interface SourceUpdate {
+                export interface SourceUpdate {
                     /** Uuid of the source */
                     id: string;
                     /** Name of the source */
@@ -4105,24 +4111,24 @@ declare namespace ovhapi {
                     parameters ? : cloud.project.dataIntegration.Parameter[];
                 }
                 /** Possible state of the connector */
-                enum StatusEnum {
-                    "COMPLETED",
-                    "DELETED",
-                    "FAILED",
-                    "PROVISIONING",
-                    "RUNNING",
-                    "SUBMITTED",
-                    "TERMINATED",
-                    "UNKNOWN"
+                export enum StatusEnum {
+                    "COMPLETED" = "COMPLETED",
+                    "DELETED" = "DELETED",
+                    "FAILED" = "FAILED",
+                    "PROVISIONING" = "PROVISIONING",
+                    "RUNNING" = "RUNNING",
+                    "SUBMITTED" = "SUBMITTED",
+                    "TERMINATED" = "TERMINATED",
+                    "UNKNOWN" = "UNKNOWN"
                 }
                 /** Workflow information */
-                interface Workflow {
+                export interface Workflow {
                     /** Description of the workflow */
                     description ? : string;
                     /** Uuid of the destination to use */
-                    destinationId: string;
+                    destinationId ? : string;
                     /** Name of the destination to use */
-                    destinationName: string;
+                    destinationName ? : string;
                     /** Whether workflow is enabled */
                     enabled: boolean;
                     /** Uuid of the workflow */
@@ -4138,14 +4144,14 @@ declare namespace ovhapi {
                     /** Schedule of the workflow in cron format */
                     schedule ? : string;
                     /** Uuid of the source to use */
-                    sourceId: string;
+                    sourceId ? : string;
                     /** Name of the source to use */
-                    sourceName: string;
+                    sourceName ? : string;
                     /** Status of the workflow */
                     status: cloud.project.dataIntegration.WorkflowStatusEnum;
                 }
                 /** Workflow capabilities */
-                interface WorkflowCapabilities {
+                export interface WorkflowCapabilities {
                     /** Name of the destination connector */
                     destinationConnector: string;
                     /** Uuid of the destination connector */
@@ -4158,7 +4164,7 @@ declare namespace ovhapi {
                     sourceConnectorId: string;
                 }
                 /** Workflow available parameters */
-                interface WorkflowCapabilitiesParameter {
+                export interface WorkflowCapabilitiesParameter {
                     /** Default value of parameter */
                     default ? : string;
                     /** Description of parameter */
@@ -4175,13 +4181,13 @@ declare namespace ovhapi {
                     validator: cloud.project.dataIntegration.ParameterValidator;
                 }
                 /** Possible state of the worfklow */
-                enum WorkflowStatusEnum {
-                    "CREATING",
-                    "ERROR",
-                    "READY"
+                export enum WorkflowStatusEnum {
+                    "CREATING" = "CREATING",
+                    "ERROR" = "ERROR",
+                    "READY" = "READY"
                 }
                 /** Editable workflow properties */
-                interface WorkflowUpdate {
+                export interface WorkflowUpdate {
                     /** Description of the workflow */
                     description ? : string;
                     /** Whether workflow is enabled */
@@ -4194,10 +4200,10 @@ declare namespace ovhapi {
                     schedule ? : string;
                 }
             }
-            namespace dataProcessing {
-                namespace notebook {
+            export namespace dataProcessing {
+                export namespace notebook {
                     /** Capabilities of data processing service */
-                    interface Capability {
+                    export interface Capability {
                         /** Available versions of the engine */
                         availableVersions: cloud.project.dataProcessing.EngineVersion[];
                         /** Name of the engine */
@@ -4206,7 +4212,7 @@ declare namespace ovhapi {
                         templates: cloud.project.dataProcessing.CapabilitiesNotebookTemplate[];
                     }
                     /** Data Processing Notebook Object */
-                    interface Notebook {
+                    export interface Notebook {
                         /** Notebook Id */
                         id: string;
                         /** Notebook spec */
@@ -4217,14 +4223,14 @@ declare namespace ovhapi {
                         updatedAt: string;
                     }
                     /** Data Processing Object to create a notebook */
-                    interface NotebookEnv {
+                    export interface NotebookEnv {
                         /** Engine name to use */
                         engineName ? : string;
                         /** Engine version to use */
                         engineVersion ? : string;
                     }
                     /** Data Processing Notebook Spec Object to create a notebook */
-                    interface NotebookSpec {
+                    export interface NotebookSpec {
                         /** Environment to deploy in this notebook */
                         env: cloud.project.dataProcessing.notebook.NotebookEnv;
                         /** Notebook name */
@@ -4233,16 +4239,16 @@ declare namespace ovhapi {
                         region: string;
                     }
                     /** State of the notebook */
-                    enum NotebookStateEnum {
-                        "DELETED",
-                        "FAILED",
-                        "RUNNING",
-                        "STARTING",
-                        "STOPPED",
-                        "STOPPING"
+                    export enum NotebookStateEnum {
+                        "DELETED" = "DELETED",
+                        "FAILED" = "FAILED",
+                        "RUNNING" = "RUNNING",
+                        "STARTING" = "STARTING",
+                        "STOPPED" = "STOPPED",
+                        "STOPPING" = "STOPPING"
                     }
                     /** Data Processing Notebook Status Object */
-                    interface NotebookStatus {
+                    export interface NotebookStatus {
                         /** Duration of the notebook in seconds */
                         duration ? : number;
                         /** Information about the notebook */
@@ -4257,12 +4263,12 @@ declare namespace ovhapi {
                         url ? : string;
                     }
                 } /** Authorization status */
-                interface AuthorizationStatus {
+                export interface AuthorizationStatus {
                     /** True is project is authorized to use Data Processing service */
                     authorized: boolean;
                 }
                 /** Engine parameters */
-                interface CapabilitiesEngineParameter {
+                export interface CapabilitiesEngineParameter {
                     /** Default value of parameter */
                     default ? : string;
                     /** Description of parameter */
@@ -4277,7 +4283,7 @@ declare namespace ovhapi {
                     validator: cloud.project.dataProcessing.ParameterValidator;
                 }
                 /** Engine Template */
-                interface CapabilitiesNotebookTemplate {
+                export interface CapabilitiesNotebookTemplate {
                     /** Number of driver cores of the template */
                     driverCores: number;
                     /** Driver memory in bytes of the template */
@@ -4298,7 +4304,7 @@ declare namespace ovhapi {
                     name: string;
                 }
                 /** Engine Template */
-                interface CapabilitiesTemplate {
+                export interface CapabilitiesTemplate {
                     /** Number of cores of the template */
                     cores: number;
                     /** ID of the template */
@@ -4307,7 +4313,7 @@ declare namespace ovhapi {
                     memory: number;
                 }
                 /** Capabilities of data processing service */
-                interface Capability {
+                export interface Capability {
                     /** Available versions of the engine */
                     availableVersions: cloud.project.dataProcessing.EngineVersion[];
                     /** Name of the engine */
@@ -4318,14 +4324,14 @@ declare namespace ovhapi {
                     templates: cloud.project.dataProcessing.CapabilitiesTemplate[];
                 }
                 /** Parameters of the engine */
-                interface EngineParameter {
+                export interface EngineParameter {
                     /** Name of parameters */
                     name: string;
                     /** Value of parameters */
                     value: string;
                 }
                 /** Engine version */
-                interface EngineVersion {
+                export interface EngineVersion {
                     /** List of region available of the version */
                     availableRegions: string[];
                     /** Description of the engine */
@@ -4334,67 +4340,67 @@ declare namespace ovhapi {
                     name: string;
                 }
                 /** Information about the state of this entity */
-                interface Info {
+                export interface Info {
                     /** Info code identifier */
                     code: cloud.project.dataProcessing.InfoCodeEnum;
                     /** Formatted message */
                     message: string;
                 }
                 /** Code enum for Info object */
-                enum InfoCodeEnum {
-                    "APP_CREATE_ERROR",
-                    "APP_ERROR",
-                    "APP_FAILED",
-                    "APP_INITIALIZING",
-                    "APP_INTERRUPTED_BY_PLATFORM",
-                    "APP_QUEUED",
-                    "APP_RUNNING",
-                    "APP_SCALING",
-                    "APP_STOPPED",
-                    "APP_STOPPING",
-                    "COMPATIBILITY",
-                    "DATASYNC_AUTHENTICATE_FAILED",
-                    "DATASYNC_DONE",
-                    "DATASYNC_ERROR",
-                    "DATASYNC_FAILED",
-                    "DATASYNC_INTERRUPTED",
-                    "DATASYNC_INVALID_CONTAINER",
-                    "DATASYNC_QUEUED",
-                    "DATASYNC_RETRY_ERROR",
-                    "DATASYNC_RUNNING",
-                    "JOB_CREATE_CONTAINER_CONFIG_ERROR",
-                    "JOB_CREATE_CONTAINER_ERROR",
-                    "JOB_DONE",
-                    "JOB_ERROR",
-                    "JOB_EVICTED",
-                    "JOB_FAILED",
-                    "JOB_FAILED_WITH_MESSAGE",
-                    "JOB_FINALIZING",
-                    "JOB_IMAGE_INSPECT_ERROR",
-                    "JOB_IMAGE_PULL",
-                    "JOB_IMAGE_PULL_BACKOFF",
-                    "JOB_INITIALIZING",
-                    "JOB_INTERRUPTED",
-                    "JOB_INTERRUPTED_BY_PLATFORM",
-                    "JOB_INTERRUPTING",
-                    "JOB_INVALID_IMAGE_NAME",
-                    "JOB_PENDING",
-                    "JOB_QUEUED",
-                    "JOB_REGISTRY_UNAVAILABLE",
-                    "JOB_RUNNING",
-                    "JOB_TIMEOUT",
-                    "NOTEBOOK_FAILED",
-                    "NOTEBOOK_FAILED_WITH_MESSAGE",
-                    "NOTEBOOK_FINALIZING",
-                    "NOTEBOOK_INITIALIZING",
-                    "NOTEBOOK_PENDING",
-                    "NOTEBOOK_RUNNING",
-                    "NOTEBOOK_STARTING",
-                    "NOTEBOOK_STOPPED",
-                    "NOTEBOOK_STOPPING"
+                export enum InfoCodeEnum {
+                    "APP_CREATE_ERROR" = "APP_CREATE_ERROR",
+                    "APP_ERROR" = "APP_ERROR",
+                    "APP_FAILED" = "APP_FAILED",
+                    "APP_INITIALIZING" = "APP_INITIALIZING",
+                    "APP_INTERRUPTED_BY_PLATFORM" = "APP_INTERRUPTED_BY_PLATFORM",
+                    "APP_QUEUED" = "APP_QUEUED",
+                    "APP_RUNNING" = "APP_RUNNING",
+                    "APP_SCALING" = "APP_SCALING",
+                    "APP_STOPPED" = "APP_STOPPED",
+                    "APP_STOPPING" = "APP_STOPPING",
+                    "COMPATIBILITY" = "COMPATIBILITY",
+                    "DATASYNC_AUTHENTICATE_FAILED" = "DATASYNC_AUTHENTICATE_FAILED",
+                    "DATASYNC_DONE" = "DATASYNC_DONE",
+                    "DATASYNC_ERROR" = "DATASYNC_ERROR",
+                    "DATASYNC_FAILED" = "DATASYNC_FAILED",
+                    "DATASYNC_INTERRUPTED" = "DATASYNC_INTERRUPTED",
+                    "DATASYNC_INVALID_CONTAINER" = "DATASYNC_INVALID_CONTAINER",
+                    "DATASYNC_QUEUED" = "DATASYNC_QUEUED",
+                    "DATASYNC_RETRY_ERROR" = "DATASYNC_RETRY_ERROR",
+                    "DATASYNC_RUNNING" = "DATASYNC_RUNNING",
+                    "JOB_CREATE_CONTAINER_CONFIG_ERROR" = "JOB_CREATE_CONTAINER_CONFIG_ERROR",
+                    "JOB_CREATE_CONTAINER_ERROR" = "JOB_CREATE_CONTAINER_ERROR",
+                    "JOB_DONE" = "JOB_DONE",
+                    "JOB_ERROR" = "JOB_ERROR",
+                    "JOB_EVICTED" = "JOB_EVICTED",
+                    "JOB_FAILED" = "JOB_FAILED",
+                    "JOB_FAILED_WITH_MESSAGE" = "JOB_FAILED_WITH_MESSAGE",
+                    "JOB_FINALIZING" = "JOB_FINALIZING",
+                    "JOB_IMAGE_INSPECT_ERROR" = "JOB_IMAGE_INSPECT_ERROR",
+                    "JOB_IMAGE_PULL" = "JOB_IMAGE_PULL",
+                    "JOB_IMAGE_PULL_BACKOFF" = "JOB_IMAGE_PULL_BACKOFF",
+                    "JOB_INITIALIZING" = "JOB_INITIALIZING",
+                    "JOB_INTERRUPTED" = "JOB_INTERRUPTED",
+                    "JOB_INTERRUPTED_BY_PLATFORM" = "JOB_INTERRUPTED_BY_PLATFORM",
+                    "JOB_INTERRUPTING" = "JOB_INTERRUPTING",
+                    "JOB_INVALID_IMAGE_NAME" = "JOB_INVALID_IMAGE_NAME",
+                    "JOB_PENDING" = "JOB_PENDING",
+                    "JOB_QUEUED" = "JOB_QUEUED",
+                    "JOB_REGISTRY_UNAVAILABLE" = "JOB_REGISTRY_UNAVAILABLE",
+                    "JOB_RUNNING" = "JOB_RUNNING",
+                    "JOB_TIMEOUT" = "JOB_TIMEOUT",
+                    "NOTEBOOK_FAILED" = "NOTEBOOK_FAILED",
+                    "NOTEBOOK_FAILED_WITH_MESSAGE" = "NOTEBOOK_FAILED_WITH_MESSAGE",
+                    "NOTEBOOK_FINALIZING" = "NOTEBOOK_FINALIZING",
+                    "NOTEBOOK_INITIALIZING" = "NOTEBOOK_INITIALIZING",
+                    "NOTEBOOK_PENDING" = "NOTEBOOK_PENDING",
+                    "NOTEBOOK_RUNNING" = "NOTEBOOK_RUNNING",
+                    "NOTEBOOK_STARTING" = "NOTEBOOK_STARTING",
+                    "NOTEBOOK_STOPPED" = "NOTEBOOK_STOPPED",
+                    "NOTEBOOK_STOPPING" = "NOTEBOOK_STOPPING"
                 }
                 /** Job information */
-                interface Job {
+                export interface Job {
                     /** Name of the container where the code and the log of the job is */
                     containerName: string;
                     /** Creation date of the job */
@@ -4422,10 +4428,10 @@ declare namespace ovhapi {
                     /** Current state of the job */
                     status: cloud.project.dataProcessing.StatusEnum;
                     /** Maximum "Time To Live" (in RFC3339 (duration)) of this job, after which it will be automatically terminated */
-                    ttl ? : duration;
+                    ttl ? : string;
                 }
                 /** Job Logs */
-                interface JobLogs {
+                export interface JobLogs {
                     /** Logs lines */
                     logs: cloud.project.dataProcessing.LogLine[];
                     /** Address log url */
@@ -4434,7 +4440,7 @@ declare namespace ovhapi {
                     startDate: string;
                 }
                 /** Log line */
-                interface LogLine {
+                export interface LogLine {
                     /** Content of the log */
                     content: string;
                     /** Id of the log */
@@ -4442,75 +4448,61 @@ declare namespace ovhapi {
                     /** Datetime of the log */
                     timestamp: string;
                 }
-                /** Metrics information */
-                interface Metrics {
-                    /** Metrics endpoint query platforms */
-                    endpoints: cloud.project.dataProcessing.MetricsEndpoint[];
-                    /** Metrics token linked to the project */
-                    token: string;
-                }
-                /** Job Logs */
-                interface MetricsEndpoint {
-                    /** Name of endpoint */
-                    name: string;
-                    /** URL of endpoint */
-                    url: string;
-                }
                 /** Conditions to which the value of parameter must conform */
-                interface ParameterValidator {
+                export interface ParameterValidator {
                     /** Maximal value of parameter */
-                    max ? : double;
+                    max ? : number;
                     /** Minimal value of parameter */
-                    min ? : double;
+                    min ? : number;
                     /** Regex to match value of parameter */
                     regex ? : string;
                 }
                 /** Possible state of the job */
-                enum StatusEnum {
-                    "CANCELLING",
-                    "COMPLETED",
-                    "FAILED",
-                    "PENDING",
-                    "RUNNING",
-                    "SUBMITTED",
-                    "TERMINATED",
-                    "UNKNOWN"
+                export enum StatusEnum {
+                    "CANCELLING" = "CANCELLING",
+                    "COMPLETED" = "COMPLETED",
+                    "FAILED" = "FAILED",
+                    "PENDING" = "PENDING",
+                    "RUNNING" = "RUNNING",
+                    "SUBMITTED" = "SUBMITTED",
+                    "TERMINATED" = "TERMINATED",
+                    "UNKNOWN" = "UNKNOWN"
                 }
             }
-            namespace database {
-                namespace availability {
+            export namespace database {
+                export namespace availability {
                     /** Possible status for the availability */
-                    enum StatusEnum {
-                        "BETA",
-                        "DEPRECATED",
-                        "STABLE"
+                    export enum StatusEnum {
+                        "BETA" = "BETA",
+                        "DEPRECATED" = "DEPRECATED",
+                        "STABLE" = "STABLE"
                     }
                 }
-                namespace backup {
+                export namespace backup {
                     /** Cloud database backup region definition */
-                    interface Region {
+                    export interface Region {
                         /** Name of the region where the backup is stored */
                         name: string;
                     }
                 }
-                namespace capabilities {
-                    namespace advancedConfiguration {
-                        namespace property {
+                export namespace capabilities {
+                    export namespace advancedConfiguration {
+                        export namespace property {
                             /** Possible type of the advanced configuration properties */
-                            enum TypeEnum {
-                                "boolean",
-                                "double",
-                                "long",
-                                "string"
+                            export enum TypeEnum {
+                                "boolean" = "boolean",
+                                "double" = "double",
+                                "long" = "long",
+                                "string" = "string"
                             }
                         } /** Specific database engine capability */
-                        interface Property {
+                        export interface Property {
                             /** Description of the property */
                             description: string;
                             /** Maximum value for the property if numeric and applicable */
-                            maximum ? : double;
+                            maximum ? : number;
                             /** Minimum value for the property if numeric and applicable */
-                            minimum ? : double;
+                            minimum ? : number;
                             /** Property name */
                             name: string;
                             /** Data type of the property */
@@ -4519,32 +4511,32 @@ declare namespace ovhapi {
                             values ? : string[];
                         }
                     }
-                    namespace engine {
-                        namespace storage {
+                    export namespace engine {
+                        export namespace storage {
                             /** Possible storage strategy for an engine */
-                            enum StrategyEnum {
-                                "distributed",
-                                "n/a",
-                                "replicated"
+                            export enum StrategyEnum {
+                                "distributed" = "distributed",
+                                "n/a" = "n/a",
+                                "replicated" = "replicated"
                             }
                         }
                     }
-                    namespace integration {
-                        namespace parameter {
+                    export namespace integration {
+                        export namespace parameter {
                             /** Possible type of an integration capability parameter */
-                            enum TypeEnum {
-                                "integer",
-                                "string"
+                            export enum TypeEnum {
+                                "integer" = "integer",
+                                "string" = "string"
                             }
                         } /** Integration capability parameter */
-                        interface Parameter {
+                        export interface Parameter {
                             /** Name of the integration parameter */
                             name: string;
                             /** Type of the integration parameter */
                             type: cloud.project.database.capabilities.integration.parameter.TypeEnum;
                         }
                     } /** Specific database engine capability */
-                    interface Engine {
+                    export interface Engine {
                         /** Default version used for the engine */
                         defaultVersion: string;
                         /** Description of the engine */
@@ -4559,7 +4551,7 @@ declare namespace ovhapi {
                         versions: string[];
                     }
                     /** Cloud Database flavor definition */
-                    interface Flavor {
+                    export interface Flavor {
                         /** Flavor core number */
                         core: number;
                         /** Flavor ram size in GB */
@@ -4570,7 +4562,7 @@ declare namespace ovhapi {
                         storage: number;
                     }
                     /** Integration capability between database engines */
-                    interface Integration {
+                    export interface Integration {
                         /** Destination engine for the integration */
                         destinationEngine: cloud.project.database.EngineEnum;
                         /** Parameters for the integration capability */
@@ -4581,33 +4573,33 @@ declare namespace ovhapi {
                         type: cloud.project.database.service.integration.TypeEnum;
                     }
                     /** Cloud Database option definition */
-                    interface Option {
+                    export interface Option {
                         /** Name of the option */
                         name: string;
                         /** Type of the option */
                         type: cloud.project.database.TypeEnum;
                     }
                     /** Cloud Database plan definition */
-                    interface Plan {
+                    export interface Plan {
                         /** Automatic backup retention duration */
-                        backupRetention: duration;
+                        backupRetention: string;
                         /** Description of the plan */
                         description: string;
                         /** Name of the plan */
                         name: string;
                     }
                 }
-                namespace kafka {
-                    namespace user {
+                export namespace kafka {
+                    export namespace user {
                         /** Cloud databases kafka user access definition */
-                        interface Access {
+                        export interface Access {
                             /** User cert */
-                            cert: text;
+                            cert: string;
                             /** User key for the cert */
                             key: string;
                         }
                     } /** Cloud databases kafka acl definition */
-                    interface Acl {
+                    export interface Acl {
                         /** Acl ID */
                         id: string;
                         /** Permission to give to this username on this topic */
@@ -4618,12 +4610,12 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** Cloud databases kafka permissions definition */
-                    interface Permissions {
+                    export interface Permissions {
                         /** Names of the permissions */
                         names: string[];
                     }
                     /** Cloud database kafka service definition */
-                    interface Service {
+                    export interface Service {
                         /** Time on which backups start every day */
                         backupTime: string;
                         /** Date of the creation of the cluster */
@@ -4664,7 +4656,7 @@ declare namespace ovhapi {
                         version: string;
                     }
                     /** Cloud database kafka topic definition */
-                    interface Topic {
+                    export interface Topic {
                         /** Topic ID */
                         id: string;
                         /** Minimum insync replica accepted for this topic */
@@ -4681,7 +4673,7 @@ declare namespace ovhapi {
                         retentionHours: number;
                     }
                     /** Cloud database kafka topic creation definition */
-                    interface TopicCreation {
+                    export interface TopicCreation {
                         /** Topic ID */
                         id: string;
                         /** Minimum insync replica accepted for this topic */
@@ -4698,12 +4690,12 @@ declare namespace ovhapi {
                         retentionHours: number;
                     }
                 }
-                namespace kafkaConnect {
-                    namespace capabilities {
-                        namespace connector {
-                            namespace configuration {
+                export namespace kafkaConnect {
+                    export namespace capabilities {
+                        export namespace connector {
+                            export namespace configuration {
                                 /** KafkaConnect connector config property definition */
-                                interface Property {
+                                export interface Property {
                                     /** Defines the default value is exists */
                                     defaultValue ? : string;
                                     /** Description of the property */
@@ -4724,15 +4716,15 @@ declare namespace ovhapi {
                                     values ? : string[];
                                 }
                             }
-                            namespace property {
+                            export namespace property {
                                 /** Possible importance for the kafka connectors properties */
-                                enum ImportanceEnum {
-                                    "high",
-                                    "low",
-                                    "medium"
+                                export enum ImportanceEnum {
+                                    "high" = "high",
+                                    "low" = "low",
+                                    "medium" = "medium"
                                 }
                             } /** KafkaConnect connector transform definition */
-                            interface Transform {
+                            export interface Transform {
                                 /** Description of the transform */
                                 description: string;
                                 /** Pretty name of the transform */
@@ -4749,12 +4741,12 @@ declare namespace ovhapi {
                                 values ? : string[];
                             }
                             /** Possible types for the kafka connectors */
-                            enum TypeEnum {
-                                "sink",
-                                "source"
+                            export enum TypeEnum {
+                                "sink" = "sink",
+                                "source" = "source"
                             }
                         } /** KafkaConnect connector capability definition */
-                        interface Connector {
+                        export interface Connector {
                             /** Name of the connector's author */
                             author: string;
                             /** URL of the official documentation of the connector */
@@ -4773,48 +4765,48 @@ declare namespace ovhapi {
                             version: string;
                         }
                     }
-                    namespace connector {
-                        namespace property {
+                    export namespace connector {
+                        export namespace property {
                             /** Possible types for the kafka connectors properties */
-                            enum TypeEnum {
-                                "boolean",
-                                "class",
-                                "double",
-                                "int16",
-                                "int32",
-                                "int64",
-                                "list",
-                                "password",
-                                "string",
-                                "transform"
+                            export enum TypeEnum {
+                                "boolean" = "boolean",
+                                "class" = "class",
+                                "double" = "double",
+                                "int16" = "int16",
+                                "int32" = "int32",
+                                "int64" = "int64",
+                                "list" = "list",
+                                "password" = "password",
+                                "string" = "string",
+                                "transform" = "transform"
                             }
                         }
-                        namespace task {
+                        export namespace task {
                             /** Possible state of connector task */
-                            enum StatusEnum {
-                                "FAILED",
-                                "PAUSED",
-                                "RUNNING"
+                            export enum StatusEnum {
+                                "FAILED" = "FAILED",
+                                "PAUSED" = "PAUSED",
+                                "RUNNING" = "RUNNING"
                             }
                         } /** Possible state of connector */
-                        enum StatusEnum {
-                            "CREATING",
-                            "FAILED",
-                            "PAUSED",
-                            "RUNNING",
-                            "UNASSIGNED"
+                        export enum StatusEnum {
+                            "CREATING" = "CREATING",
+                            "FAILED" = "FAILED",
+                            "PAUSED" = "PAUSED",
+                            "RUNNING" = "RUNNING",
+                            "UNASSIGNED" = "UNASSIGNED"
                         }
                         /** KafkaConnect connector definition */
-                        interface Task {
+                        export interface Task {
                             /** Task ID */
                             id: number;
                             /** Status of the task */
                             status: cloud.project.database.kafkaConnect.connector.task.StatusEnum;
                             /** Trace of the task */
-                            trace: text;
+                            trace: string;
                         }
                     } /** KafkaConnect connector definition */
-                    interface Connector {
+                    export interface Connector {
                         /** Configuration of the connector */
                         configuration: Record < string,
                         string > ;
@@ -4828,7 +4820,7 @@ declare namespace ovhapi {
                         status: cloud.project.database.kafkaConnect.connector.StatusEnum;
                     }
                     /** KafkaConnect connector definition */
-                    interface ConnectorCreation {
+                    export interface ConnectorCreation {
                         /** Configuration of the connector */
                         configuration: Record < string,
                         string > ;
@@ -4838,34 +4830,34 @@ declare namespace ovhapi {
                         name: string;
                     }
                 }
-                namespace m3db {
-                    namespace namespace {
+                export namespace m3db {
+                    export namespace namespace {
                         /** M3db namespace retention definition */
-                        interface Retention {
+                        export interface Retention {
                             /** Controls how long we wait before expiring stale data */
-                            blockDataExpirationDuration ? : duration;
+                            blockDataExpirationDuration ? : string;
                             /** Controls how long to keep a block in memory before flushing to a fileset on disk */
-                            blockSizeDuration ? : duration;
+                            blockSizeDuration ? : string;
                             /** Controls how far into the future writes to the namespace will be accepted */
-                            bufferFutureDuration ? : duration;
+                            bufferFutureDuration ? : string;
                             /** Controls how far into the past writes to the namespace will be accepted */
-                            bufferPastDuration ? : duration;
+                            bufferPastDuration ? : string;
                             /** Controls the duration of time that M3DB will retain data for the namespace */
-                            periodDuration: duration;
+                            periodDuration: string;
                         }
                         /** Possible type of the service integration */
-                        enum TypeEnum {
-                            "aggregated",
-                            "unaggregated"
+                        export enum TypeEnum {
+                            "aggregated" = "aggregated",
+                            "unaggregated" = "unaggregated"
                         }
                     } /** M3db Namespace definition */
-                    interface Namespace {
+                    export interface Namespace {
                         /** Namespace ID */
                         id: string;
                         /** Name of the namespace */
                         name: string;
                         /** Resolution for an aggregated namespace */
-                        resolution ? : duration;
+                        resolution ? : string;
                         /** Retention configuration */
                         retention: cloud.project.database.m3db.namespace.Retention;
                         /** Defines whether M3db will create snapshot files for this namespace */
@@ -4876,13 +4868,13 @@ declare namespace ovhapi {
                         writesToCommitLogEnabled: boolean;
                     }
                     /** M3db Namespace creation definition */
-                    interface NamespaceCreation {
+                    export interface NamespaceCreation {
                         /** Namespace ID */
                         id: string;
                         /** Name of the namespace */
                         name: string;
                         /** Resolution for an aggregated namespace */
-                        resolution: duration;
+                        resolution: string;
                         /** Retention configuration */
                         retention: cloud.project.database.m3db.namespace.Retention;
                         /** Defines whether M3db will create snapshot files for this namespace */
@@ -4893,7 +4885,7 @@ declare namespace ovhapi {
                         writesToCommitLogEnabled: boolean;
                     }
                     /** M3db User definition */
-                    interface User {
+                    export interface User {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** Group of the user */
@@ -4906,14 +4898,14 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** User creation definition */
-                    interface UserCreation {
+                    export interface UserCreation {
                         /** Group of the user */
                         group: string;
                         /** Name of the user */
                         name: string;
                     }
                     /** M3db User definition */
-                    interface UserWithPassword {
+                    export interface UserWithPassword {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** Group of the user */
@@ -4928,10 +4920,10 @@ declare namespace ovhapi {
                         username: string;
                     }
                 }
-                namespace mysql {
-                    namespace querystatistics {
+                export namespace mysql {
+                    export namespace querystatistics {
                         /** Cloud database mysql single query statistic definition */
-                        interface Query {
+                        export interface Query {
                             /** Average wait time of the summarized timed events */
                             avgTimerWait: number;
                             /** Number of summarized events. This value includes all events, whether timed or nontimed */
@@ -4939,7 +4931,7 @@ declare namespace ovhapi {
                             /** Digest of the summarized events */
                             digest: string;
                             /** Text of the summarized digest events */
-                            digestText: text;
+                            digestText: string;
                             /** First appearance of the events */
                             firstSeen: string;
                             /** Last appearance of the events */
@@ -4957,7 +4949,7 @@ declare namespace ovhapi {
                             /** Datetime when the querySampleText column was seen */
                             querySampleSeen: string;
                             /** Sample SQL statement that produces the digest value in the row */
-                            querySampleText: text;
+                            querySampleText: string;
                             /** Wait time for the sample statement in the querySampleText column */
                             querySampleTimerWait: number;
                             /** SchemaName of the summarized events */
@@ -5004,14 +4996,14 @@ declare namespace ovhapi {
                             sumWarnings: number;
                         }
                     } /** Cloud database mysql query statistics response body definition */
-                    interface QueryStatistics {
+                    export interface QueryStatistics {
                         /** Statistics of the queries */
                         queries: cloud.project.database.mysql.querystatistics.Query[];
                     }
                 }
-                namespace opensearch {
+                export namespace opensearch {
                     /** Cloud database opensearch index definition */
-                    interface Index {
+                    export interface Index {
                         /** Date of the creation of the index */
                         createdAt: string;
                         /** Number of documents hold by the index */
@@ -5028,7 +5020,7 @@ declare namespace ovhapi {
                         size: number;
                     }
                     /** Cloud database opensearch pattern definition */
-                    interface Pattern {
+                    export interface Pattern {
                         /** Pattern ID */
                         id: string;
                         /** Maximum number of index for this pattern */
@@ -5037,12 +5029,12 @@ declare namespace ovhapi {
                         pattern: string;
                     }
                     /** Cloud database opensearch permissions definition */
-                    interface Permissions {
+                    export interface Permissions {
                         /** Possible values for the permissions */
                         names: string[];
                     }
                     /** Cloud database opensearch service definition */
-                    interface Service {
+                    export interface Service {
                         /** Defines whether the acls are enabled on the cluster */
                         aclsEnabled: boolean;
                         /** Time on which backups start every day. DEPRECATED: use backups.time */
@@ -5083,7 +5075,7 @@ declare namespace ovhapi {
                         version: string;
                     }
                     /** Opensearch user definition */
-                    interface User {
+                    export interface User {
                         /** Acls of the user */
                         acls: cloud.project.database.opensearch.UserAcl[];
                         /** Date of the creation of the user */
@@ -5096,21 +5088,21 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** Opensearch user acl definition */
-                    interface UserAcl {
+                    export interface UserAcl {
                         /** Pattern of the ACL */
                         pattern: string;
                         /** Permission of the ACL */
                         permission: string;
                     }
                     /** Opensearch user creation definition */
-                    interface UserCreation {
+                    export interface UserCreation {
                         /** Acls of the user */
                         acls: cloud.project.database.opensearch.UserAcl[];
                         /** Name of the user */
                         name: string;
                     }
                     /** Opensearch user definition */
-                    interface UserWithPassword {
+                    export interface UserWithPassword {
                         /** Acls of the user */
                         acls: cloud.project.database.opensearch.UserAcl[];
                         /** Date of the creation of the user */
@@ -5125,26 +5117,26 @@ declare namespace ovhapi {
                         username: string;
                     }
                 }
-                namespace postgresql {
-                    namespace connectionpool {
+                export namespace postgresql {
+                    export namespace connectionpool {
                         /** Possible modes for the connection pools */
-                        enum ModeEnum {
-                            "session",
-                            "statement",
-                            "transaction"
+                        export enum ModeEnum {
+                            "session" = "session",
+                            "statement" = "statement",
+                            "transaction" = "transaction"
                         }
                         /** Possible ssl modes for the connection pools */
-                        enum SslModeEnum {
-                            "require"
+                        export enum SslModeEnum {
+                            "require" = "require"
                         }
                     }
-                    namespace querystatistics {
+                    export namespace querystatistics {
                         /** Cloud database postgresql single query statistic definition */
-                        interface Query {
+                        export interface Query {
                             /** Time spent reading data file blocks by backends in this database, in milliseconds */
-                            blkReadTime: double;
+                            blkReadTime: number;
                             /** Time spent writing data file blocks by backends in this database, in milliseconds */
-                            blkWriteTime: double;
+                            blkWriteTime: number;
                             /** Number of times this function has been called */
                             calls: number;
                             /** Name of the database */
@@ -5158,19 +5150,19 @@ declare namespace ovhapi {
                             /** Total number of local blocks written by the statement */
                             localBlksWritten: number;
                             /** Maximum time spent planning the statement, in milliseconds */
-                            maxPlanTime: double;
+                            maxPlanTime: number;
                             /** Maximum time spent for the statement, in milliseconds */
-                            maxTime: double;
+                            maxTime: number;
                             /** Mean time spent planning the statement, in milliseconds */
-                            meanPlanTime: double;
+                            meanPlanTime: number;
                             /** Mean time spent for the statement, in milliseconds */
-                            meanTime: double;
+                            meanTime: number;
                             /** Minimum time spent planning the statement, in milliseconds */
-                            minPlanTime: double;
+                            minPlanTime: number;
                             /** Minimum time spent for the statement, in milliseconds */
-                            minTime: double;
+                            minTime: number;
                             /** Text of a representative statement */
-                            query: text;
+                            query: string;
                             /** Total number of rows retrieved or affected by the statement */
                             rows: number;
                             /** Total number of shared blocks dirtied by the statement */
@@ -5182,17 +5174,17 @@ declare namespace ovhapi {
                             /** Total number of shared blocks written by the statement */
                             sharedBlksWritten: number;
                             /** Population standard deviation of time spent planning the statement, in milliseconds */
-                            stddevPlanTime: double;
+                            stddevPlanTime: number;
                             /** Population standard deviation of time spent for the statement, in milliseconds */
-                            stddevTime: double;
+                            stddevTime: number;
                             /** Total number of temp blocks read by the statement */
                             tempBlksRead: number;
                             /** Total number of temp blocks written by the statement */
                             tempBlksWritten: number;
                             /** Total time spent planning the statement, in milliseconds */
-                            totalPlanTime: double;
+                            totalPlanTime: number;
                             /** Total time spent for the statement, in milliseconds */
-                            totalTime: double;
+                            totalTime: number;
                             /** Name of the user who executed the statement */
                             username: string;
                             /** Total amount of WAL generated by the statement in bytes */
@@ -5203,7 +5195,7 @@ declare namespace ovhapi {
                             walRecords: number;
                         }
                     } /** Cloud database postgresql connection pool response body definition */
-                    interface ConnectionPool {
+                    export interface ConnectionPool {
                         /** Database used for the connection pool */
                         databaseId: string;
                         /** ID of the connection pool */
@@ -5224,7 +5216,7 @@ declare namespace ovhapi {
                         userId ? : string;
                     }
                     /** Cloud database postgresql connection pool creation body definition */
-                    interface ConnectionPoolCreation {
+                    export interface ConnectionPoolCreation {
                         /** Database used for the connection pool */
                         databaseId: string;
                         /** Connection mode to the connection pool */
@@ -5237,14 +5229,14 @@ declare namespace ovhapi {
                         userId ? : string;
                     }
                     /** Cloud database postgresql query statistics response body definition */
-                    interface QueryStatistics {
+                    export interface QueryStatistics {
                         /** Statistics of the queries */
                         queries: cloud.project.database.postgresql.querystatistics.Query[];
                     }
                 }
-                namespace redis {
+                export namespace redis {
                     /** Redis user definition */
-                    interface User {
+                    export interface User {
                         /** Categories of the user */
                         categories: string[];
                         /** Channels of the user */
@@ -5263,7 +5255,7 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** Redis user definition */
-                    interface UserCreation {
+                    export interface UserCreation {
                         /** Categories of the user */
                         categories: string[];
                         /** Channels of the user */
@@ -5276,7 +5268,7 @@ declare namespace ovhapi {
                         name: string;
                     }
                     /** Redis user with password definition */
-                    interface UserWithPassword {
+                    export interface UserWithPassword {
                         /** Categories of the user */
                         categories: string[];
                         /** Channels of the user */
@@ -5297,10 +5289,10 @@ declare namespace ovhapi {
                         username: string;
                     }
                 }
-                namespace service {
-                    namespace creation {
+                export namespace service {
+                    export namespace creation {
                         /** Defines the source to fork a cluster from a backup. DEPRECATED: use forkFrom */
-                        interface BackupFork {
+                        export interface BackupFork {
                             /** Backup ID (not compatible with pointInTime) */
                             id: string;
                             /** Point in time to restore from (not compatible with id) */
@@ -5309,7 +5301,7 @@ declare namespace ovhapi {
                             serviceId: string;
                         }
                         /** Defines the source to fork a cluster from a backup */
-                        interface ForkFrom {
+                        export interface ForkFrom {
                             /** Backup ID (not compatible with pointInTime) */
                             backupId: string;
                             /** Point in time to restore from (not compatible with id) */
@@ -5318,22 +5310,22 @@ declare namespace ovhapi {
                             serviceId: string;
                         }
                     }
-                    namespace currentqueries {
-                        namespace query {
+                    export namespace currentqueries {
+                        export namespace query {
                             /** Cloud database service current queries query cancel request */
-                            interface CancelRequest {
+                            export interface CancelRequest {
                                 /** Database server connection ID */
                                 pid: number;
                                 /** Request immediate termination instead of soft cancel */
                                 terminate: boolean;
                             }
                             /** Cloud database service current queries query cancel response */
-                            interface CancelResponse {
+                            export interface CancelResponse {
                                 /** Status reported by the database server */
                                 success: boolean;
                             }
                         } /** Cloud database service current queries query definition */
-                        interface Query {
+                        export interface Query {
                             /** Application name */
                             applicationName: string;
                             /** Backend start timestamp */
@@ -5361,7 +5353,7 @@ declare namespace ovhapi {
                             /** Current query running on this connection */
                             query: string;
                             /** Duration of the query in seconds */
-                            queryDuration: double;
+                            queryDuration: number;
                             /** Query start timestamp */
                             queryStart ? : string;
                             /** Connection state */
@@ -5380,124 +5372,124 @@ declare namespace ovhapi {
                             waitEventType ? : cloud.project.database.service.currentqueries.WaitEventTypeEnum;
                         }
                         /** Possible state of a query */
-                        enum StateEnum {
-                            "ACTIVE",
-                            "DISABLED",
-                            "FASTPATH_FUNCTION_CALL",
-                            "IDLE",
-                            "IDLE_IN_TRANSACTION",
-                            "IDLE_IN_TRANSACTION_ABORTED"
+                        export enum StateEnum {
+                            "ACTIVE" = "ACTIVE",
+                            "DISABLED" = "DISABLED",
+                            "FASTPATH_FUNCTION_CALL" = "FASTPATH_FUNCTION_CALL",
+                            "IDLE" = "IDLE",
+                            "IDLE_IN_TRANSACTION" = "IDLE_IN_TRANSACTION",
+                            "IDLE_IN_TRANSACTION_ABORTED" = "IDLE_IN_TRANSACTION_ABORTED"
                         }
                         /** Possible event type on which the backend is waiting */
-                        enum WaitEventTypeEnum {
-                            "ACTIVITY",
-                            "BUFFER_PIN",
-                            "CLIENT",
-                            "EXTENSION",
-                            "IO",
-                            "IPC",
-                            "LOCK",
-                            "LWLOCK",
-                            "TIMEOUT"
+                        export enum WaitEventTypeEnum {
+                            "ACTIVITY" = "ACTIVITY",
+                            "BUFFER_PIN" = "BUFFER_PIN",
+                            "CLIENT" = "CLIENT",
+                            "EXTENSION" = "EXTENSION",
+                            "IO" = "IO",
+                            "IPC" = "IPC",
+                            "LOCK" = "LOCK",
+                            "LWLOCK" = "LWLOCK",
+                            "TIMEOUT" = "TIMEOUT"
                         }
                     }
-                    namespace endpoint {
+                    export namespace endpoint {
                         /** Defines all the values for the component in the service endpoints */
-                        enum ComponentEnum {
-                            "cassandra",
-                            "grafana",
-                            "graphite",
-                            "influxdb",
-                            "kafka",
-                            "kafkaConnect",
-                            "kafkaRestApi",
-                            "kafkaSASL",
-                            "kafkaSchemaRegistry",
-                            "kibana",
-                            "m3coordinator",
-                            "mongodb",
-                            "mongodbAnalytics",
-                            "mongodbSrv",
-                            "mongodbSrvAnalytics",
-                            "mysql",
-                            "mysqlRead",
-                            "mysqlx",
-                            "opensearch",
-                            "postgresql",
-                            "postgresqlRead",
-                            "postgresqlReadReplica",
-                            "prometheusRead",
-                            "prometheusWrite",
-                            "redis"
+                        export enum ComponentEnum {
+                            "cassandra" = "cassandra",
+                            "grafana" = "grafana",
+                            "graphite" = "graphite",
+                            "influxdb" = "influxdb",
+                            "kafka" = "kafka",
+                            "kafkaConnect" = "kafkaConnect",
+                            "kafkaRestApi" = "kafkaRestApi",
+                            "kafkaSASL" = "kafkaSASL",
+                            "kafkaSchemaRegistry" = "kafkaSchemaRegistry",
+                            "kibana" = "kibana",
+                            "m3coordinator" = "m3coordinator",
+                            "mongodb" = "mongodb",
+                            "mongodbAnalytics" = "mongodbAnalytics",
+                            "mongodbSrv" = "mongodbSrv",
+                            "mongodbSrvAnalytics" = "mongodbSrvAnalytics",
+                            "mysql" = "mysql",
+                            "mysqlRead" = "mysqlRead",
+                            "mysqlx" = "mysqlx",
+                            "opensearch" = "opensearch",
+                            "postgresql" = "postgresql",
+                            "postgresqlRead" = "postgresqlRead",
+                            "postgresqlReadReplica" = "postgresqlReadReplica",
+                            "prometheusRead" = "prometheusRead",
+                            "prometheusWrite" = "prometheusWrite",
+                            "redis" = "redis"
                         }
                     }
-                    namespace integration {
+                    export namespace integration {
                         /** Possible state of the integration */
-                        enum StatusEnum {
-                            "READY"
+                        export enum StatusEnum {
+                            "READY" = "READY"
                         }
                         /** Possible type of the service integration */
-                        enum TypeEnum {
-                            "grafanaDashboard",
-                            "grafanaDatasource",
-                            "kafkaConnect",
-                            "kafkaLogs",
-                            "kafkaMirrorMaker",
-                            "m3aggregator",
-                            "m3dbMetrics",
-                            "opensearchLogs",
-                            "postgresqlMetrics"
+                        export enum TypeEnum {
+                            "grafanaDashboard" = "grafanaDashboard",
+                            "grafanaDatasource" = "grafanaDatasource",
+                            "kafkaConnect" = "kafkaConnect",
+                            "kafkaLogs" = "kafkaLogs",
+                            "kafkaMirrorMaker" = "kafkaMirrorMaker",
+                            "m3aggregator" = "m3aggregator",
+                            "m3dbMetrics" = "m3dbMetrics",
+                            "opensearchLogs" = "opensearchLogs",
+                            "postgresqlMetrics" = "postgresqlMetrics"
                         }
                     }
-                    namespace maintenance {
+                    export namespace maintenance {
                         /** Possible status of a service maintenance */
-                        enum StatusEnum {
-                            "APPLIED",
-                            "APPLYING",
-                            "ERROR",
-                            "PENDING",
-                            "SCHEDULED"
+                        export enum StatusEnum {
+                            "APPLIED" = "APPLIED",
+                            "APPLYING" = "APPLYING",
+                            "ERROR" = "ERROR",
+                            "PENDING" = "PENDING",
+                            "SCHEDULED" = "SCHEDULED"
                         }
                     }
-                    namespace node {
+                    export namespace node {
                         /** Node role values */
-                        enum RoleEnum {
-                            "ANALYTICS",
-                            "STANDARD"
+                        export enum RoleEnum {
+                            "ANALYTICS" = "ANALYTICS",
+                            "STANDARD" = "STANDARD"
                         }
                     }
-                    namespace replication {
+                    export namespace replication {
                         /** Possible type of the service integration */
-                        enum PolicyClassEnum {
-                            "org.apache.kafka.connect.mirror.DefaultReplicationPolicy",
-                            "org.apache.kafka.connect.mirror.IdentityReplicationPolicy"
+                        export enum PolicyClassEnum {
+                            "org.apache.kafka.connect.mirror.DefaultReplicationPolicy" = "org.apache.kafka.connect.mirror.DefaultReplicationPolicy",
+                            "org.apache.kafka.connect.mirror.IdentityReplicationPolicy" = "org.apache.kafka.connect.mirror.IdentityReplicationPolicy"
                         }
                     } /** Cloud database service backups definition */
-                    interface Backup {
+                    export interface Backup {
                         /** Regions on which the backups are stored */
                         regions: string[];
                         /** Time on which backups start every day */
                         time: string;
                     }
                     /** Certificates definition for cloud project databases */
-                    interface Certificates {
+                    export interface Certificates {
                         /** CA certificate used for the service */
-                        ca: text;
+                        ca: string;
                     }
                     /** Cloud database current queries */
-                    interface CurrentQueries {
+                    export interface CurrentQueries {
                         /** Current queries list */
                         queries: cloud.project.database.service.currentqueries.Query[];
                     }
                     /** A single value from a metric */
-                    interface DataPoint {
+                    export interface DataPoint {
                         /** Timestamp in seconds since epoch time */
                         timestamp: number;
                         /** Value of this datapoint */
-                        value: double;
+                        value: number;
                     }
                     /** Defines the database object in a cluster */
-                    interface Database {
+                    export interface Database {
                         /** Defines if the database has been created by default */
                         default: boolean;
                         /** Database ID */
@@ -5506,14 +5498,14 @@ declare namespace ovhapi {
                         name: string;
                     }
                     /** Defines the disk attributes of a service */
-                    interface Disk {
+                    export interface Disk {
                         /** Service disk size  */
                         size: number;
                         /** Service disk size  */
                         type: string;
                     }
                     /** Defines the endpoint object in a cluster */
-                    interface Endpoint {
+                    export interface Endpoint {
                         /** Type of component the URI relates to */
                         component: cloud.project.database.service.endpoint.ComponentEnum;
                         /** Domain of the cluster */
@@ -5532,14 +5524,14 @@ declare namespace ovhapi {
                         uri ? : string;
                     }
                     /** Metrics datapoints from a specific host */
-                    interface HostMetric {
+                    export interface HostMetric {
                         /** List of metric's samples */
                         dataPoints: cloud.project.database.service.DataPoint[];
                         /** Name of the originating host */
                         hostname: string;
                     }
                     /** Cloud database service integration definition */
-                    interface Integration {
+                    export interface Integration {
                         /** ID of the destination service */
                         destinationServiceId: string;
                         /** Service ID */
@@ -5555,7 +5547,7 @@ declare namespace ovhapi {
                         type: cloud.project.database.service.integration.TypeEnum;
                     }
                     /** Ip Restriction definition for cloud project databases */
-                    interface IpRestriction {
+                    export interface IpRestriction {
                         /** Description of the ip restriction */
                         description: string;
                         /** Whitelisted IP */
@@ -5564,7 +5556,7 @@ declare namespace ovhapi {
                         status: cloud.project.database.StatusEnum;
                     }
                     /** A single log entry */
-                    interface LogEntry {
+                    export interface LogEntry {
                         /** Host from which the log is coming from */
                         hostname: string;
                         /** The log message */
@@ -5573,7 +5565,7 @@ declare namespace ovhapi {
                         timestamp: number;
                     }
                     /** Cloud database service maintenance definition */
-                    interface Maintenance {
+                    export interface Maintenance {
                         /** Date of the application of the maintenance */
                         appliedAt ? : string;
                         /** Description of the maintenance */
@@ -5586,7 +5578,7 @@ declare namespace ovhapi {
                         status: cloud.project.database.service.maintenance.StatusEnum;
                     }
                     /** Metric definition for cloud project databases */
-                    interface Metric {
+                    export interface Metric {
                         /** Metric values for each cluster's host */
                         metrics: cloud.project.database.service.HostMetric[];
                         /** Name of the metric */
@@ -5595,30 +5587,30 @@ declare namespace ovhapi {
                         units: cloud.project.database.service.MetricUnitEnum;
                     }
                     /** Supported metrics query period */
-                    enum MetricPeriodEnum {
-                        "lastDay",
-                        "lastHour",
-                        "lastMonth",
-                        "lastWeek",
-                        "lastYear"
+                    export enum MetricPeriodEnum {
+                        "lastDay" = "lastDay",
+                        "lastHour" = "lastHour",
+                        "lastMonth" = "lastMonth",
+                        "lastWeek" = "lastWeek",
+                        "lastYear" = "lastYear"
                     }
                     /** Supported unit types for metrics */
-                    enum MetricUnitEnum {
-                        "BYTES",
-                        "BYTES_PER_SECOND",
-                        "GIGABYTES",
-                        "GIGABYTES_PER_HOUR",
-                        "MEGABYTES",
-                        "MEGABYTES_PER_SECOND",
-                        "MILLISECONDS",
-                        "PERCENT",
-                        "SCALAR",
-                        "SCALAR_PER_SECOND",
-                        "SECONDS",
-                        "UNKNOWN"
+                    export enum MetricUnitEnum {
+                        "BYTES" = "BYTES",
+                        "BYTES_PER_SECOND" = "BYTES_PER_SECOND",
+                        "GIGABYTES" = "GIGABYTES",
+                        "GIGABYTES_PER_HOUR" = "GIGABYTES_PER_HOUR",
+                        "MEGABYTES" = "MEGABYTES",
+                        "MEGABYTES_PER_SECOND" = "MEGABYTES_PER_SECOND",
+                        "MILLISECONDS" = "MILLISECONDS",
+                        "PERCENT" = "PERCENT",
+                        "SCALAR" = "SCALAR",
+                        "SCALAR_PER_SECOND" = "SCALAR_PER_SECOND",
+                        "SECONDS" = "SECONDS",
+                        "UNKNOWN" = "UNKNOWN"
                     }
                     /** Cloud databases cluster node definition */
-                    interface Node {
+                    export interface Node {
                         /** Date of the creation of the node */
                         createdAt: string;
                         /** Flavor of the node */
@@ -5637,7 +5629,7 @@ declare namespace ovhapi {
                         status: cloud.project.database.StatusEnum;
                     }
                     /** Cloud databases cluster new node definition */
-                    interface NodeCreation {
+                    export interface NodeCreation {
                         /** Date of the creation of the node */
                         createdAt: string;
                         /** Flavor of the node */
@@ -5656,7 +5648,7 @@ declare namespace ovhapi {
                         status: cloud.project.database.StatusEnum;
                     }
                     /** Node pattern definition */
-                    interface NodePattern {
+                    export interface NodePattern {
                         /** Flavor of the nodes */
                         flavor: string;
                         /** Number of nodes to create */
@@ -5665,7 +5657,7 @@ declare namespace ovhapi {
                         region: string;
                     }
                     /** Cloud database service replication definition */
-                    interface Replication {
+                    export interface Replication {
                         /** Defines whether heartbeats are emitted */
                         emitHeartbeats: boolean;
                         /** Defines whether the replication is actived */
@@ -5688,7 +5680,7 @@ declare namespace ovhapi {
                         topics: string[];
                     }
                     /** Cloud database service replication definition */
-                    interface ReplicationCreation {
+                    export interface ReplicationCreation {
                         /** Defines whether heartbeats are emitted */
                         emitHeartbeats: boolean;
                         /** Defines whether the replication is actived */
@@ -5709,12 +5701,12 @@ declare namespace ovhapi {
                         topics: string[];
                     }
                     /** Cloud database service restore specification */
-                    interface Restore {
+                    export interface Restore {
                         /** point in time to restore from */
                         pointInTime: string;
                     }
                     /** User definition */
-                    interface User {
+                    export interface User {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** User ID */
@@ -5725,12 +5717,12 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** User creation definition */
-                    interface UserCreation {
+                    export interface UserCreation {
                         /** Name of the user */
                         name: string;
                     }
                     /** User with password definition */
-                    interface UserWithPassword {
+                    export interface UserWithPassword {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** User ID */
@@ -5743,7 +5735,7 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** User with password definition */
-                    interface UserWithPasswordAndRoles {
+                    export interface UserWithPasswordAndRoles {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** User ID */
@@ -5758,7 +5750,7 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** User definition */
-                    interface UserWithRoles {
+                    export interface UserWithRoles {
                         /** Date of the creation of the user */
                         createdAt: string;
                         /** User ID */
@@ -5771,14 +5763,14 @@ declare namespace ovhapi {
                         username: string;
                     }
                     /** User creation definition */
-                    interface UserWithRolesCreation {
+                    export interface UserWithRolesCreation {
                         /** Name of the user */
                         name: string;
                         /** Roles the user belongs to */
                         roles: string[];
                     }
                 } /** Availability of databases engines on cloud projects */
-                interface Availability {
+                export interface Availability {
                     /** Defines the type of backup */
                     backup: cloud.project.database.BackupTypeEnum;
                     /** Backup retention time of the availability in days */
@@ -5817,7 +5809,7 @@ declare namespace ovhapi {
                     version: string;
                 }
                 /** Cloud database backup definition */
-                interface Backup {
+                export interface Backup {
                     /** Date of the creation of the backup */
                     createdAt: string;
                     /** Description of the backup */
@@ -5836,12 +5828,12 @@ declare namespace ovhapi {
                     type: cloud.project.database.BackupTypeEnum;
                 }
                 /** Type of backup for the cluster */
-                enum BackupTypeEnum {
-                    "automatic",
-                    "manual"
+                export enum BackupTypeEnum {
+                    "automatic" = "automatic",
+                    "manual" = "manual"
                 }
                 /** Capabilities available for the databases engines on cloud projects */
-                interface Capabilities {
+                export interface Capabilities {
                     /** Disks available */
                     disks: string[];
                     /** Database engines available */
@@ -5856,22 +5848,22 @@ declare namespace ovhapi {
                     regions: string[];
                 }
                 /** Possible names of the engines */
-                enum EngineEnum {
-                    "cassandra",
-                    "grafana",
-                    "kafka",
-                    "kafkaConnect",
-                    "kafkaMirrorMaker",
-                    "m3aggregator",
-                    "m3db",
-                    "mongodb",
-                    "mysql",
-                    "opensearch",
-                    "postgresql",
-                    "redis"
+                export enum EngineEnum {
+                    "cassandra" = "cassandra",
+                    "grafana" = "grafana",
+                    "kafka" = "kafka",
+                    "kafkaConnect" = "kafkaConnect",
+                    "kafkaMirrorMaker" = "kafkaMirrorMaker",
+                    "m3aggregator" = "m3aggregator",
+                    "m3db" = "m3db",
+                    "mongodb" = "mongodb",
+                    "mysql" = "mysql",
+                    "opensearch" = "opensearch",
+                    "postgresql" = "postgresql",
+                    "redis" = "redis"
                 }
                 /** Ip Restriction definition for cloud project databases (DEPRECATED) */
-                interface IpRestriction {
+                export interface IpRestriction {
                     /** Description of the ip restriction */
                     description: string;
                     /** Whitelisted IP */
@@ -5880,19 +5872,19 @@ declare namespace ovhapi {
                     status: cloud.project.database.StatusEnum;
                 }
                 /** Ip Restriction creation definition for cloud project databases (DEPRECATED) */
-                interface IpRestrictionCreation {
+                export interface IpRestrictionCreation {
                     /** Description of the ip restriction */
                     description: string;
                     /** Whitelisted IP */
                     ip: string;
                 }
                 /** Type of network in which the databases cluster are */
-                enum NetworkTypeEnum {
-                    "private",
-                    "public"
+                export enum NetworkTypeEnum {
+                    "private" = "private",
+                    "public" = "public"
                 }
                 /** Cloud database service definition */
-                interface Service {
+                export interface Service {
                     /** Time on which backups start every day. DEPRECATED: use backups.time */
                     backupTime: string;
                     /** Information related to the backups, null if the engine does not support backups */
@@ -5931,7 +5923,7 @@ declare namespace ovhapi {
                     version: string;
                 }
                 /** Cloud databases cluster definition */
-                interface ServiceCreation {
+                export interface ServiceCreation {
                     /** Backup from which the new service is created. DEPRECATED: use forkFrom */
                     backup ? : cloud.project.database.service.creation.BackupFork;
                     /** Time on which backups start every day. DEPRECATED: use backups.time */
@@ -5962,44 +5954,44 @@ declare namespace ovhapi {
                     version: string;
                 }
                 /** Possible state of the job */
-                enum StatusEnum {
-                    "CREATING",
-                    "DELETING",
-                    "ERROR",
-                    "ERROR_INCONSISTENT_SPEC",
-                    "LOCKED",
-                    "LOCKED_PENDING",
-                    "LOCKED_UPDATING",
-                    "PENDING",
-                    "READY",
-                    "UPDATING"
+                export enum StatusEnum {
+                    "CREATING" = "CREATING",
+                    "DELETING" = "DELETING",
+                    "ERROR" = "ERROR",
+                    "ERROR_INCONSISTENT_SPEC" = "ERROR_INCONSISTENT_SPEC",
+                    "LOCKED" = "LOCKED",
+                    "LOCKED_PENDING" = "LOCKED_PENDING",
+                    "LOCKED_UPDATING" = "LOCKED_UPDATING",
+                    "PENDING" = "PENDING",
+                    "READY" = "READY",
+                    "UPDATING" = "UPDATING"
                 }
                 /** Cloud databases temporary write deadline definition */
-                interface TemporaryWriteDeadline {
+                export interface TemporaryWriteDeadline {
                     /** Date on which the temporary write permissions would be lifted */
                     until: string;
                 }
                 /** Type of data returned in the capabilities options */
-                enum TypeEnum {
-                    "boolean",
-                    "double",
-                    "duration",
-                    "long",
-                    "string"
+                export enum TypeEnum {
+                    "boolean" = "boolean",
+                    "double" = "double",
+                    "duration" = "duration",
+                    "long" = "long",
+                    "string" = "string"
                 }
             }
-            namespace floatingIp {
-                namespace associatedEntity {
+            export namespace floatingIp {
+                export namespace associatedEntity {
                     /** Type of the associated entity */
-                    enum TypeEnum {
-                        "dhcp",
-                        "instance",
-                        "loadbalancer",
-                        "routerInterface",
-                        "unknown"
+                    export enum TypeEnum {
+                        "dhcp" = "dhcp",
+                        "instance" = "instance",
+                        "loadbalancer" = "loadbalancer",
+                        "routerInterface" = "routerInterface",
+                        "unknown" = "unknown"
                     }
                 } /** Associated entity with a floating ip */
-                interface AssociatedEntity {
+                export interface AssociatedEntity {
                     /** ID of the gateway */
                     gatewayId: string;
                     /** ID of the port */
@@ -6010,28 +6002,28 @@ declare namespace ovhapi {
                     type: cloud.project.floatingIp.associatedEntity.TypeEnum;
                 }
                 /** Status of a floating ip */
-                enum StatusEnum {
-                    "active",
-                    "down",
-                    "error"
+                export enum StatusEnum {
+                    "active" = "active",
+                    "down" = "down",
+                    "error" = "error"
                 }
             }
-            namespace io {
-                namespace stream {
+            export namespace io {
+                export namespace stream {
                     /** Region information */
-                    interface Region {
+                    export interface Region {
                         /** Endpoint of the region */
                         endpoint: cloud.project.io.stream.RegionEndpoint;
                         /** Region name */
                         region: string;
                     }
                     /** Region information */
-                    interface RegionEndpoint {
+                    export interface RegionEndpoint {
                         /** Pulsar endpoint of the stream */
                         pulsar: string;
                     }
                     /** Create a consumer on a stream */
-                    interface Subscription {
+                    export interface Subscription {
                         /** ID of the subscription */
                         id: string;
                         /** Kind of the subscription */
@@ -6040,24 +6032,24 @@ declare namespace ovhapi {
                         name: string;
                     }
                     /** Create a subscription on a stream */
-                    interface SubscriptionCreation {
+                    export interface SubscriptionCreation {
                         /** Name of the subscription */
                         name: string;
                     }
                     /** Kind of the subscription */
-                    enum SubscriptionKindEnum {
-                        "EXCLUSIVE",
-                        "FAILOVER",
-                        "KEY_SHARED",
-                        "SHARED"
+                    export enum SubscriptionKindEnum {
+                        "EXCLUSIVE" = "EXCLUSIVE",
+                        "FAILOVER" = "FAILOVER",
+                        "KEY_SHARED" = "KEY_SHARED",
+                        "SHARED" = "SHARED"
                     }
                     /** Get statistic of a subscription */
-                    interface SubscriptionStats {
+                    export interface SubscriptionStats {
                         /** Messages waiting to be consumed */
                         lag: number;
                     }
                     /** Token to access a stream */
-                    interface Token {
+                    export interface Token {
                         /** Action of the token */
                         action: cloud.project.io.stream.TokenActionEnum;
                         /** ID of the token */
@@ -6066,20 +6058,20 @@ declare namespace ovhapi {
                         token: string;
                     }
                     /** Action of the token */
-                    enum TokenActionEnum {
-                        "BOTH",
-                        "CONSUME",
-                        "PRODUCE"
+                    export enum TokenActionEnum {
+                        "BOTH" = "BOTH",
+                        "CONSUME" = "CONSUME",
+                        "PRODUCE" = "PRODUCE"
                     }
                     /** Create a token to access a stream */
-                    interface TokenCreation {
+                    export interface TokenCreation {
                         /** Action of the token */
                         action: cloud.project.io.stream.TokenActionEnum;
                     }
                 } /** A stream to send data */
-                interface Stream {
+                export interface Stream {
                     /** Backlog of the stream in RFC3339 (duration) */
-                    backlog: duration;
+                    backlog: string;
                     /** Description of the stream */
                     description ? : string;
                     /** ID of the stream */
@@ -6091,14 +6083,14 @@ declare namespace ovhapi {
                     /** Regions where the stream is available */
                     regions: string[];
                     /** Retention of the stream in RFC3339 (duration) */
-                    retention: duration;
+                    retention: string;
                     /** Status of the stream. */
                     status: cloud.project.io.StreamStatusEnum;
                     /** Throttling of the stream (number of message allowed per second for the stream) */
                     throttling: number;
                 }
                 /** Create a stream of data */
-                interface StreamCreation {
+                export interface StreamCreation {
                     /** Description of the stream */
                     description: string;
                     /** Kind of the stream */
@@ -6109,99 +6101,99 @@ declare namespace ovhapi {
                     region: string;
                 }
                 /** Kind of persistence for the stream */
-                enum StreamKindEnum {
-                    "NON_PERSISTENT",
-                    "PERSISTENT"
+                export enum StreamKindEnum {
+                    "NON_PERSISTENT" = "NON_PERSISTENT",
+                    "PERSISTENT" = "PERSISTENT"
                 }
                 /** Get statistics of a stream */
-                interface StreamStats {
+                export interface StreamStats {
                     /** Number of messages per second */
-                    usage: double;
+                    usage: number;
                 }
                 /** Status of the stream */
-                enum StreamStatusEnum {
-                    "ERROR",
-                    "INSTALLING",
-                    "RUNNING"
+                export enum StreamStatusEnum {
+                    "ERROR" = "ERROR",
+                    "INSTALLING" = "INSTALLING",
+                    "RUNNING" = "RUNNING"
                 }
             }
-            namespace loadbalancer {
-                namespace action {
+            export namespace loadbalancer {
+                export namespace action {
                     /** Available status code for Redirect action */
-                    enum RedirectStatusCodeEnum {
-                        "301",
-                        "302",
-                        "303",
-                        "307",
-                        "308"
+                    export enum RedirectStatusCodeEnum {
+                        "301" = "301",
+                        "302" = "302",
+                        "303" = "303",
+                        "307" = "307",
+                        "308" = "308"
                     }
                     /** Available status code for Reject action */
-                    enum RejectStatusCodeEnum {
-                        "200",
-                        "400",
-                        "403",
-                        "405",
-                        "408",
-                        "429",
-                        "500",
-                        "502",
-                        "503",
-                        "504"
+                    export enum RejectStatusCodeEnum {
+                        "200" = "200",
+                        "400" = "400",
+                        "403" = "403",
+                        "405" = "405",
+                        "408" = "408",
+                        "429" = "429",
+                        "500" = "500",
+                        "502" = "502",
+                        "503" = "503",
+                        "504" = "504"
                     }
                 }
-                namespace backend {
+                export namespace backend {
                     /** Available load balancer backend balancer algorithm */
-                    enum BalancerAlgorithmEnum {
-                        "first",
-                        "leastconn",
-                        "roundrobin",
-                        "source",
-                        "static-rr"
+                    export enum BalancerAlgorithmEnum {
+                        "first" = "first",
+                        "leastconn" = "leastconn",
+                        "roundrobin" = "roundrobin",
+                        "source" = "source",
+                        "static-rr" = "static-rr"
                     }
                     /** Available load balancer backend proxy-protocol */
-                    enum ProxyProtocolEnum {
-                        "v1",
-                        "v2",
-                        "v2-cn",
-                        "v2-ssl"
+                    export enum ProxyProtocolEnum {
+                        "v1" = "v1",
+                        "v2" = "v2",
+                        "v2-cn" = "v2-cn",
+                        "v2-ssl" = "v2-ssl"
                     }
                 }
-                namespace condition {
+                export namespace condition {
                     /** Matching operator */
-                    enum MatchEnum {
-                        "end-with",
-                        "exists",
-                        "is",
-                        "regex",
-                        "start-with"
+                    export enum MatchEnum {
+                        "end-with" = "end-with",
+                        "exists" = "exists",
+                        "is" = "is",
+                        "regex" = "regex",
+                        "start-with" = "start-with"
                     }
                     /** Matching field */
-                    enum TypeEnum {
-                        "cookie",
-                        "header",
-                        "host",
-                        "method",
-                        "path",
-                        "query-param",
-                        "source"
+                    export enum TypeEnum {
+                        "cookie" = "cookie",
+                        "header" = "header",
+                        "host" = "host",
+                        "method" = "method",
+                        "path" = "path",
+                        "query-param" = "query-param",
+                        "source" = "source"
                     }
                 }
-                namespace configuration {
-                    namespace networking {
+                export namespace configuration {
+                    export namespace networking {
                         /** Networking configuration egress definition */
-                        interface Egress {
+                        export interface Egress {
                             /** vrack networking id */
                             id ? : string;
                             /** networking egress kind definition */
                             kind: cloud.project.loadbalancer.networking.egress.KindEnum;
                         }
                         /** Networking configuration ingress definition */
-                        interface Ingress {
+                        export interface Ingress {
                             /** networking configuration ingress kind definition */
                             kind: cloud.project.loadbalancer.networking.ingress.KindEnum;
                         }
                         /** Networking configuration object */
-                        interface Networking {
+                        export interface Networking {
                             /** Networking configuration definition for egress */
                             egress ? : cloud.project.loadbalancer.configuration.networking.Egress;
                             /** Networking configuration definition for ingress */
@@ -6209,129 +6201,129 @@ declare namespace ovhapi {
                         }
                     }
                 }
-                namespace frontend {
+                export namespace frontend {
                     /** Available load balancer frontend mode */
-                    enum ModeEnum {
-                        "TCP"
+                    export enum ModeEnum {
+                        "TCP" = "TCP"
                     }
                 }
-                namespace networking {
-                    namespace egress {
+                export namespace networking {
+                    export namespace egress {
                         /** Networking kind */
-                        enum KindEnum {
-                            "public",
-                            "vrack"
+                        export enum KindEnum {
+                            "public" = "public",
+                            "vrack" = "vrack"
                         }
                     }
-                    namespace ingress {
+                    export namespace ingress {
                         /** Networking kind */
-                        enum KindEnum {
-                            "public"
+                        export enum KindEnum {
+                            "public" = "public"
                         }
                     } /** Networking Egress definition */
-                    interface Egress {
+                    export interface Egress {
                         /** vrack networking id */
                         id ? : string;
                         /** networking egress kind definition */
                         kind: cloud.project.loadbalancer.networking.egress.KindEnum;
                     }
                     /** Networking Egress definition */
-                    interface EgressCreation {
+                    export interface EgressCreation {
                         /** networking egress kind definition */
                         kind: cloud.project.loadbalancer.networking.egress.KindEnum;
                     }
                     /** Networking Ingress definition */
-                    interface Ingress {
+                    export interface Ingress {
                         /** networking ingress kind definition */
                         kind: cloud.project.loadbalancer.networking.ingress.KindEnum;
                     }
                     /** Networking Ingress definition */
-                    interface IngressCreation {
+                    export interface IngressCreation {
                         /** networking ingress kind definition */
                         kind: cloud.project.loadbalancer.networking.ingress.KindEnum;
                     }
                     /** Networking object */
-                    interface Networking {
+                    export interface Networking {
                         /** Networking definition for egress */
                         egress: cloud.project.loadbalancer.networking.Egress;
                         /** Networking definition for ingress */
                         ingress: cloud.project.loadbalancer.networking.Ingress;
                     }
                     /** Networking creation object */
-                    interface NetworkingCreation {
+                    export interface NetworkingCreation {
                         /** Networking definition for egress */
                         egress ? : cloud.project.loadbalancer.networking.EgressCreation;
                         /** Networking definition for ingress */
                         ingress ? : cloud.project.loadbalancer.networking.IngressCreation;
                     }
                 }
-                namespace stats {
-                    namespace target {
-                        namespace server {
+                export namespace stats {
+                    export namespace target {
+                        export namespace server {
                             /** Status of target's server */
-                            enum StatusEnum {
-                                "ERROR",
-                                "HEALTHY",
-                                "INIT",
-                                "L4_CONNECTION_ERROR",
-                                "L4_TIMEOUT_ERROR",
-                                "L7_PROTOCOL_ERROR",
-                                "L7_RESPONSE_ERROR",
-                                "L7_TIMEOUT",
-                                "UNKNOWN"
+                            export enum StatusEnum {
+                                "ERROR" = "ERROR",
+                                "HEALTHY" = "HEALTHY",
+                                "INIT" = "INIT",
+                                "L4_CONNECTION_ERROR" = "L4_CONNECTION_ERROR",
+                                "L4_TIMEOUT_ERROR" = "L4_TIMEOUT_ERROR",
+                                "L7_PROTOCOL_ERROR" = "L7_PROTOCOL_ERROR",
+                                "L7_RESPONSE_ERROR" = "L7_RESPONSE_ERROR",
+                                "L7_TIMEOUT" = "L7_TIMEOUT",
+                                "UNKNOWN" = "UNKNOWN"
                             }
                         } /** Loadbalancer target server stats */
-                        interface Server {
+                        export interface Server {
                             /** Target name */
                             name: string;
                             /** Server status */
                             status: cloud.project.loadbalancer.stats.target.server.StatusEnum;
                         }
                     } /** Status of availability of loadbalancer */
-                    enum StatusEnum {
-                        "HEALTHY",
-                        "NOT_AVAILABLE"
+                    export enum StatusEnum {
+                        "HEALTHY" = "HEALTHY",
+                        "NOT_AVAILABLE" = "NOT_AVAILABLE"
                     }
                     /** Loadbalancer target stats */
-                    interface Target {
+                    export interface Target {
                         /** Target name */
                         name: string;
                         /** Concurrent connections */
                         servers: cloud.project.loadbalancer.stats.target.Server[];
                     }
                     /** Loadbalancer bandwidth stats */
-                    interface Throughput {
+                    export interface Throughput {
                         /** Consumed inbound bandwidth (bytes/s) */
-                        in: double;
+                        in: number;
                         /** Consumed outbound bandwidth (bytes/s) */
-                        out: double;
+                        out: number;
                     }
                 }
-                namespace target {
+                export namespace target {
                     /** Available load balancer target balancer algorithm */
-                    enum BalancerAlgorithmEnum {
-                        "first",
-                        "leastconn",
-                        "roundrobin",
-                        "source",
-                        "static-rr"
+                    export enum BalancerAlgorithmEnum {
+                        "first" = "first",
+                        "leastconn" = "leastconn",
+                        "roundrobin" = "roundrobin",
+                        "source" = "source",
+                        "static-rr" = "static-rr"
                     }
                     /** Available load balancer target proxy-protocol */
-                    enum ProxyProtocolEnum {
-                        "v1",
-                        "v2",
-                        "v2-cn",
-                        "v2-ssl"
+                    export enum ProxyProtocolEnum {
+                        "v1" = "v1",
+                        "v2" = "v2",
+                        "v2-cn" = "v2-cn",
+                        "v2-ssl" = "v2-ssl"
                     }
                 } /** HTTP load balancer dispatch action */
-                interface ActionDispatch {
+                export interface ActionDispatch {
                     /** The backend name */
                     name: string;
                     /** Target name */
                     target: string;
                 }
                 /** HTTP load balancer redirect action */
-                interface ActionRedirect {
+                export interface ActionRedirect {
                     /** Location url */
                     location: string;
                     /** The backend name */
@@ -6340,21 +6332,21 @@ declare namespace ovhapi {
                     statusCode: cloud.project.loadbalancer.action.RedirectStatusCodeEnum;
                 }
                 /** HTTP load balancer reject action */
-                interface ActionReject {
+                export interface ActionReject {
                     /** The action name */
                     name: string;
                     /** StatusCode for reject action */
                     statusCode: cloud.project.loadbalancer.action.RejectStatusCodeEnum;
                 }
                 /** HTTP load balancer rewrite action */
-                interface ActionRewrite {
+                export interface ActionRewrite {
                     /** Location url */
                     location: string;
                     /** The backend name */
                     name: string;
                 }
                 /** HTTP load balancer actions */
-                interface Actions {
+                export interface Actions {
                     /** List of dispatch actions */
                     dispatch ? : cloud.project.loadbalancer.ActionDispatch[];
                     /** List of redirect actions */
@@ -6365,21 +6357,21 @@ declare namespace ovhapi {
                     rewrite ? : cloud.project.loadbalancer.ActionRewrite[];
                 }
                 /** Address to reach the load balancer */
-                interface Address {
+                export interface Address {
                     /** IP version 4 */
-                    ipv4: ipv4;
+                    ipv4: string;
                     /** IP version 6 */
                     ipv6 ? : ipv6;
                 }
                 /** IP list split in version 4 and 6 */
-                interface Addresses {
+                export interface Addresses {
                     /** IP version 4 list */
-                    ipv4: ipv4Block[];
+                    ipv4: string[];
                     /** IP version 6 list */
                     ipv6 ? : ipv6Block[];
                 }
                 /** An application load balancer configuration */
-                interface ApplicationConfiguration {
+                export interface ApplicationConfiguration {
                     /** All actions */
                     actions ? : cloud.project.loadbalancer.Actions;
                     /** List of certificate ID */
@@ -6396,7 +6388,7 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** An application load balancer configuration */
-                interface ApplicationConfigurationCreation {
+                export interface ApplicationConfigurationCreation {
                     /** All actions */
                     actions ? : cloud.project.loadbalancer.Actions;
                     /** List of certificate ID */
@@ -6413,7 +6405,7 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** Application load balancer size capability */
-                interface ApplicationLoadBalancerSizeCapability {
+                export interface ApplicationLoadBalancerSizeCapability {
                     /** Bandwidth allowed in Mb/s */
                     bandwidth: number;
                     /** Maximum connection allowed on the load balancer */
@@ -6424,7 +6416,7 @@ declare namespace ovhapi {
                     size: cloud.project.loadbalancer.SizeEnum;
                 }
                 /** A load balancer backend */
-                interface Backend {
+                export interface Backend {
                     /** Use a specific balancer algorithm */
                     balancer ? : cloud.project.loadbalancer.backend.BalancerAlgorithmEnum;
                     /** The backend name */
@@ -6437,12 +6429,12 @@ declare namespace ovhapi {
                     sticky ? : boolean;
                 }
                 /** Select a load balancer backend */
-                interface BackendSelector {
+                export interface BackendSelector {
                     /** The backend name */
                     name: string;
                 }
                 /** A condition */
-                interface Condition {
+                export interface Condition {
                     /** The condition name */
                     key ? : string;
                     /** Criterion matching operation */
@@ -6457,7 +6449,7 @@ declare namespace ovhapi {
                     values: string[];
                 }
                 /** A load balancer configuration */
-                interface Configuration {
+                export interface Configuration {
                     /** List of backends */
                     backends: cloud.project.loadbalancer.Backend[];
                     /** List of certificate ID */
@@ -6470,7 +6462,7 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** A load balancer configuration */
-                interface ConfigurationCreation {
+                export interface ConfigurationCreation {
                     /** List of backends */
                     backends: cloud.project.loadbalancer.Backend[];
                     /** List of certificate ID */
@@ -6483,14 +6475,14 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** Information about version of the configuration */
-                interface ConfigurationVersion {
+                export interface ConfigurationVersion {
                     /** Applied version of the configuration */
                     applied: number;
                     /** Latest version of the configuration */
                     latest: number;
                 }
                 /** A load balancer entryPoint */
-                interface EntryPoint {
+                export interface EntryPoint {
                     /** The default target name */
                     defaultTarget ? : string;
                     /** Disable HTTP2 */
@@ -6507,7 +6499,7 @@ declare namespace ovhapi {
                     tls: boolean;
                 }
                 /** A load balancer frontend */
-                interface Frontend {
+                export interface Frontend {
                     /** Selector for backend */
                     backends: cloud.project.loadbalancer.BackendSelector[];
                     /** Load balancing mode */
@@ -6526,7 +6518,7 @@ declare namespace ovhapi {
                     whitelist: string[];
                 }
                 /** Network load balancer size capability */
-                interface LoadBalancerSizeCapability {
+                export interface LoadBalancerSizeCapability {
                     /** Bandwidth allowed in Mb/s */
                     bandwidth: number;
                     /** Maximum connection allowed on the load balancer */
@@ -6537,26 +6529,26 @@ declare namespace ovhapi {
                     size: cloud.project.loadbalancer.SizeEnum;
                 }
                 /** A port range */
-                interface PortRange {
+                export interface PortRange {
                     /** Port range end */
                     end: number;
                     /** Port range start */
                     start: number;
                 }
                 /** Region information */
-                interface Region {
+                export interface Region {
                     /** Region name */
                     region: string;
                 }
                 /** A entrypoint rule */
-                interface Rule {
+                export interface Rule {
                     /** The action name */
                     action: string;
                     /** The list of condition to match */
                     conditions ? : string[];
                 }
                 /** A load balancer backend server */
-                interface Server {
+                export interface Server {
                     /** IP address of a server */
                     ip: string;
                     /** Server name */
@@ -6569,37 +6561,37 @@ declare namespace ovhapi {
                     weight ? : number;
                 }
                 /** Size of the load balancer */
-                enum SizeEnum {
-                    "L",
-                    "M",
-                    "S"
+                export enum SizeEnum {
+                    "L" = "L",
+                    "M" = "M",
+                    "S" = "S"
                 }
                 /** Loadbalancer stats */
-                interface Stats {
+                export interface Stats {
                     /** Concurrent connections */
-                    concurrentFlows: double;
+                    concurrentFlows: number;
                     /** HTTP requests made */
-                    httpRequestsPerSecond ? : double;
+                    httpRequestsPerSecond ? : number;
                     /** Main loadbalancer status */
                     status: cloud.project.loadbalancer.stats.StatusEnum;
                     /** Targets state */
                     targets: cloud.project.loadbalancer.stats.Target[];
                     /** New connections opened per second */
-                    tcpConnectionsPerSecond: double;
+                    tcpConnectionsPerSecond: number;
                     /** Throughput consumed on the entrypoints */
                     throughput: cloud.project.loadbalancer.stats.Throughput;
                 }
                 /** Status of a load balancer */
-                enum StatusEnum {
-                    "APPLYING",
-                    "CREATED",
-                    "DELETING",
-                    "ERROR",
-                    "FROZEN",
-                    "RUNNING"
+                export enum StatusEnum {
+                    "APPLYING" = "APPLYING",
+                    "CREATED" = "CREATED",
+                    "DELETING" = "DELETING",
+                    "ERROR" = "ERROR",
+                    "FROZEN" = "FROZEN",
+                    "RUNNING" = "RUNNING"
                 }
                 /** A load balancer target */
-                interface Target {
+                export interface Target {
                     /** Use a specific balancer algorithm */
                     balancer ? : cloud.project.loadbalancer.target.BalancerAlgorithmEnum;
                     /** The backend name */
@@ -6612,35 +6604,35 @@ declare namespace ovhapi {
                     sticky ? : boolean;
                 }
             }
-            namespace networkloadbalancer {
-                namespace action {
+            export namespace networkloadbalancer {
+                export namespace action {
                     /** Available type of Reject action */
-                    enum RejectTypeEnum {
-                        "deny",
-                        "drop"
+                    export enum RejectTypeEnum {
+                        "deny" = "deny",
+                        "drop" = "drop"
                     }
                 }
-                namespace condition {
+                export namespace condition {
                     /** Matching field */
-                    enum TypeEnum {
-                        "source"
+                    export enum TypeEnum {
+                        "source" = "source"
                     }
                 } /** network load balancer reject action */
-                interface ActionReject {
+                export interface ActionReject {
                     /** The action name */
                     name: string;
                     /** type of reject action */
                     type: cloud.project.networkloadbalancer.action.RejectTypeEnum;
                 }
                 /** Network Loadbalancer action */
-                interface Actions {
+                export interface Actions {
                     /** List of dispatch actions */
                     dispatch ? : cloud.project.loadbalancer.ActionDispatch[];
                     /** List of reject actions */
                     reject ? : cloud.project.networkloadbalancer.ActionReject[];
                 }
                 /** A condition */
-                interface Condition {
+                export interface Condition {
                     /** The condition name */
                     key ? : string;
                     /** Criterion matching operation */
@@ -6655,7 +6647,7 @@ declare namespace ovhapi {
                     values: string[];
                 }
                 /** A network load balancer configuration */
-                interface Configuration {
+                export interface Configuration {
                     /** All actions */
                     actions ? : cloud.project.networkloadbalancer.Actions;
                     /** List of conditions */
@@ -6670,7 +6662,7 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** A network load balancer configuration */
-                interface ConfigurationCreation {
+                export interface ConfigurationCreation {
                     /** All actions */
                     actions ? : cloud.project.networkloadbalancer.Actions;
                     /** List of conditions */
@@ -6685,7 +6677,7 @@ declare namespace ovhapi {
                     version: number;
                 }
                 /** A network load balancer entryPoint */
-                interface EntryPoint {
+                export interface EntryPoint {
                     /** The default target name */
                     defaultTarget ? : string;
                     /** The frontend name */
@@ -6698,7 +6690,7 @@ declare namespace ovhapi {
                     rules: cloud.project.loadbalancer.Rule[];
                 }
                 /** Network load balancer size capability */
-                interface LoadBalancerSizeCapability {
+                export interface LoadBalancerSizeCapability {
                     /** Bandwidth allowed in Mb/s */
                     bandwidth: number;
                     /** Maximum connection allowed on the load balancer */
@@ -6709,14 +6701,14 @@ declare namespace ovhapi {
                     size: cloud.project.loadbalancer.SizeEnum;
                 }
             } /** AllocationPool */
-            interface AllocationPool {
+            export interface AllocationPool {
                 /** Last IP for the pool (eg: 192.168.1.24) */
                 end: string;
                 /** First IP for the pool (eg: 192.168.1.12) */
                 start: string;
             }
             /** A load balancer to handle application workload */
-            interface ApplicationLoadBalancer {
+            export interface ApplicationLoadBalancer {
                 /** Address to reach the load balancer */
                 address: cloud.project.loadbalancer.Address;
                 /** Information about version of the configuration */
@@ -6741,7 +6733,7 @@ declare namespace ovhapi {
                 status: cloud.project.loadbalancer.StatusEnum;
             }
             /** A load balancer to handle application workload */
-            interface ApplicationLoadBalancerCreation {
+            export interface ApplicationLoadBalancerCreation {
                 /** Description of the load balancer */
                 description ? : string;
                 /** ID of the load balancer */
@@ -6758,7 +6750,7 @@ declare namespace ovhapi {
                 size ? : cloud.project.loadbalancer.SizeEnum;
             }
             /** Usage information for current month on your project */
-            interface BandwidthStorageUsage {
+            export interface BandwidthStorageUsage {
                 /** Downloaded bytes from your containers */
                 downloadedBytes: number;
                 /** Region */
@@ -6767,20 +6759,20 @@ declare namespace ovhapi {
                 total: order.Price;
             }
             /** Project bill */
-            interface Bill {
+            export interface Bill {
                 /** Bill id */
                 billId: string;
                 /** Bill type */
                 type: cloud.project.BillTypeEnum;
             }
             /** Possible values for bill type */
-            enum BillTypeEnum {
-                "creditPurchased",
-                "monthlyConsumption",
-                "monthlyInstanceActivation"
+            export enum BillTypeEnum {
+                "creditPurchased" = "creditPurchased",
+                "monthlyConsumption" = "monthlyConsumption",
+                "monthlyInstanceActivation" = "monthlyInstanceActivation"
             }
             /** A Certificate to use in your NFVs */
-            interface Certificate {
+            export interface Certificate {
                 /** Date after when the certificate is not valid */
                 expireAt: string;
                 /** Fingerprint of the cert (prefixed by hashing algorithm used) */
@@ -6807,25 +6799,25 @@ declare namespace ovhapi {
                 version: number;
             }
             /** Add a new certificate */
-            interface CertificateAdd {
+            export interface CertificateAdd {
                 /** Import an existing certificate */
                 import ? : cloud.project.certificate.Import;
                 /** Name of the certificate */
                 name: string;
             }
             /** Certificate kind */
-            enum CertificateKindEnum {
-                "IMPORTED"
+            export enum CertificateKindEnum {
+                "IMPORTED" = "IMPORTED"
             }
             /** Certificate status */
-            enum CertificateStatusEnum {
-                "EXPIRED",
-                "NOT_YET_VALID",
-                "OK",
-                "REVOKED"
+            export enum CertificateStatusEnum {
+                "EXPIRED" = "EXPIRED",
+                "NOT_YET_VALID" = "NOT_YET_VALID",
+                "OK" = "OK",
+                "REVOKED" = "REVOKED"
             }
             /** Usage information for current month on your project */
-            interface CurrentUsage {
+            export interface CurrentUsage {
                 /** Instances usage */
                 instances: cloud.project.InstancesUsage;
                 /** Snapshots usage */
@@ -6840,14 +6832,14 @@ declare namespace ovhapi {
                 volumes: cloud.project.VolumesUsage;
             }
             /** Possible eligibility actions */
-            enum EligibilityAction {
-                "addPaymentMethod",
-                "askIncreaseProjectsQuota",
-                "challengePaymentMethod",
-                "verifyPaypal"
+            export enum EligibilityAction {
+                "addPaymentMethod" = "addPaymentMethod",
+                "askIncreaseProjectsQuota" = "askIncreaseProjectsQuota",
+                "challengePaymentMethod" = "challengePaymentMethod",
+                "verifyPaypal" = "verifyPaypal"
             }
             /** Eligibility information */
-            interface EligibilityInfo {
+            export interface EligibilityInfo {
                 /** Actions to perform to be eligible */
                 actionsRequired ? : cloud.project.EligibilityAction[];
                 /** Cloud project order */
@@ -6858,7 +6850,7 @@ declare namespace ovhapi {
                 voucher ? : cloud.project.NewProjectInfoVoucher;
             }
             /** A floating ip */
-            interface FloatingIp {
+            export interface FloatingIp {
                 /** Associated entity with the floating ip */
                 associatedEntity ? : cloud.project.floatingIp.AssociatedEntity;
                 /** ID of the floating ip */
@@ -6873,14 +6865,14 @@ declare namespace ovhapi {
                 status: cloud.project.floatingIp.StatusEnum;
             }
             /** Instance monthly billing details */
-            interface InstanceMonthlyBilling {
+            export interface InstanceMonthlyBilling {
                 /** Monthly billing activation date */
                 activatedOn: string;
                 /** Cost */
                 cost: order.Price;
             }
             /** Instance usage */
-            interface InstanceUsageDetail {
+            export interface InstanceUsageDetail {
                 /** Hourly price */
                 hourly ? : order.Price;
                 /** Instance id */
@@ -6893,14 +6885,14 @@ declare namespace ovhapi {
                 reference: string;
             }
             /** Instances usage for current month */
-            interface InstancesUsage {
+            export interface InstancesUsage {
                 /** Instance usage details */
                 detail: cloud.project.InstanceUsageDetail[];
                 /** Total cost for the instances */
                 total: order.Price;
             }
             /** A load balancer to handle workload */
-            interface LoadBalancer {
+            export interface LoadBalancer {
                 /** Address to reach the load balancer */
                 address: cloud.project.loadbalancer.Address;
                 /** Information about version of the configuration */
@@ -6927,7 +6919,7 @@ declare namespace ovhapi {
                 status: cloud.project.loadbalancer.StatusEnum;
             }
             /** A load balancer to handle workload */
-            interface LoadBalancerCreation {
+            export interface LoadBalancerCreation {
                 /** Description of the load balancer */
                 description ? : string;
                 /** ID of the load balancer */
@@ -6944,7 +6936,7 @@ declare namespace ovhapi {
                 size ? : cloud.project.loadbalancer.SizeEnum;
             }
             /** Network */
-            interface Network {
+            export interface Network {
                 /** Network id */
                 id: string;
                 /** Network name */
@@ -6957,7 +6949,7 @@ declare namespace ovhapi {
                 vlanId ? : number;
             }
             /** A network load balancer for TCP/UDP workloads */
-            interface NetworkLoadBalancer {
+            export interface NetworkLoadBalancer {
                 /** Address to reach the load balancer */
                 address: cloud.project.loadbalancer.Address;
                 /** Information about version of the configuration */
@@ -6982,7 +6974,7 @@ declare namespace ovhapi {
                 status: cloud.project.loadbalancer.StatusEnum;
             }
             /** A network load balancer for TCP/UDP workloads */
-            interface NetworkLoadBalancerCreation {
+            export interface NetworkLoadBalancerCreation {
                 /** Description of the load balancer */
                 description ? : string;
                 /** ID of the load balancer */
@@ -6999,54 +6991,54 @@ declare namespace ovhapi {
                 size ? : cloud.project.loadbalancer.SizeEnum;
             }
             /** Information about voucher */
-            interface NewProjectInfoVoucher {
+            export interface NewProjectInfoVoucher {
                 /** Credit added thanks to the voucher */
                 credit: order.Price;
                 /** A valid registered payment method is required to use the voucher */
                 paymentMethodRequired: boolean;
             }
             /** List of accepted payment methods */
-            enum PaymentMethodAuthorized {
-                "bankAccount",
-                "credit",
-                "creditCard",
-                "paypal",
-                "sepaDirectDebit"
+            export enum PaymentMethodAuthorized {
+                "bankAccount" = "bankAccount",
+                "credit" = "credit",
+                "creditCard" = "creditCard",
+                "paypal" = "paypal",
+                "sepaDirectDebit" = "sepaDirectDebit"
             }
             /** Product agreements */
-            interface ProductAgreements {
+            export interface ProductAgreements {
                 /** Agreements to validate */
                 agreementsToValidate ? : number[];
                 /** Agreements already validated */
                 agreementsValidated ? : number[];
             }
             /** Possible values for cloud project product name */
-            enum ProductNameEnum {
-                "registry"
+            export enum ProductNameEnum {
+                "registry" = "registry"
             }
             /** Possible values for project status */
-            enum ProjectStatus {
-                "creating",
-                "deleted",
-                "deleting",
-                "ok",
-                "suspended"
+            export enum ProjectStatus {
+                "creating" = "creating",
+                "deleted" = "deleted",
+                "deleting" = "deleting",
+                "ok" = "ok",
+                "suspended" = "suspended"
             }
             /** Possible values for project status */
-            enum ProjectStatusEnum {
-                "creating",
-                "deleted",
-                "deleting",
-                "ok",
-                "suspended"
+            export enum ProjectStatusEnum {
+                "creating" = "creating",
+                "deleted" = "deleted",
+                "deleting" = "deleting",
+                "ok" = "ok",
+                "suspended" = "suspended"
             }
             /** Usage information on your project */
-            interface ProjectUsage {
+            export interface ProjectUsage {
                 /** Current usage details */
                 current: cloud.project.CurrentUsage;
             }
             /** Snapshot usage */
-            interface SnapshotUsageDetail {
+            export interface SnapshotUsageDetail {
                 /** Snapshot price */
                 price: order.Price;
                 /** Snapshot region */
@@ -7055,14 +7047,14 @@ declare namespace ovhapi {
                 storedSize: complexType.UnitAndValue < double > ;
             }
             /** Snapshots usage for current month */
-            interface SnapshotsUsage {
+            export interface SnapshotsUsage {
                 /** Snapshots usage details */
                 detail: cloud.project.SnapshotUsageDetail[];
                 /** Total cost for the snapshots */
                 total: order.Price;
             }
             /** Usage information for current month on your project */
-            interface StorageUsage {
+            export interface StorageUsage {
                 /** Storage bandwidth usage */
                 bandwidth: cloud.project.BandwidthStorageUsage[];
                 /** Cost for your storage in all your containers */
@@ -7071,7 +7063,7 @@ declare namespace ovhapi {
                 volume: cloud.project.StorageVolumeUsage[];
             }
             /** Storage volume used on your project */
-            interface StorageVolumeUsage {
+            export interface StorageVolumeUsage {
                 /** Region */
                 region: string;
                 /** Bytes stored in your containers */
@@ -7080,7 +7072,7 @@ declare namespace ovhapi {
                 total: order.Price;
             }
             /** Subnet */
-            interface Subnet {
+            export interface Subnet {
                 /** List of ip pools allocated in subnet */
                 allocationPools: cloud.project.AllocationPool[];
                 /** Subnet CIDR */
@@ -7097,12 +7089,12 @@ declare namespace ovhapi {
                 name: string;
             }
             /** Possible values for volume type */
-            enum VolumeType {
-                "classic",
-                "high-speed"
+            export enum VolumeType {
+                "classic" = "classic",
+                "high-speed" = "high-speed"
             }
             /** Volume usage */
-            interface VolumeUsageDetail {
+            export interface VolumeUsageDetail {
                 /** Volume price */
                 price: order.Price;
                 /** Volume capacity in gigabytes */
@@ -7113,17 +7105,17 @@ declare namespace ovhapi {
                 volumeType: cloud.project.VolumeType;
             }
             /** Volumes usage for current month */
-            interface VolumesUsage {
+            export interface VolumesUsage {
                 /** Volume usage details */
                 detail: cloud.project.VolumeUsageDetail[];
                 /** Total cost for the volumes */
                 total: order.Price;
             }
         }
-        namespace quota {
-            namespace storage {
+        export namespace quota {
+            export namespace storage {
                 /** Cloud Storage Quota */
-                interface Quota {
+                export interface Quota {
                     /** Quota used in bytes */
                     bytesUsed: number;
                     /** Number of containers on account */
@@ -7134,12 +7126,12 @@ declare namespace ovhapi {
                     quotaBytes ? : number;
                 }
                 /** Update storage quota */
-                interface QuotaUpdate {
+                export interface QuotaUpdate {
                     /** New quota in bytes */
                     quotaBytes: number;
                 }
             } /** Quotas */
-            interface AllowedQuota {
+            export interface AllowedQuota {
                 /** Quotas for compute */
                 compute: cloud.quota.ComputeQuota;
                 /** Name */
@@ -7150,7 +7142,7 @@ declare namespace ovhapi {
                 volume: cloud.quota.VolumeQuota;
             }
             /** Quotas for compute */
-            interface ComputeQuota {
+            export interface ComputeQuota {
                 /** Maximum total cores allowed in your project */
                 cores: number;
                 /** Maximum number of instances allowed in your project */
@@ -7159,7 +7151,7 @@ declare namespace ovhapi {
                 ram: number;
             }
             /** Quotas on instances */
-            interface InstanceUsageQuotas {
+            export interface InstanceUsageQuotas {
                 /** Maximum total cores allowed in your project */
                 maxCores: number;
                 /** Maximum total cores allowed in your project */
@@ -7174,26 +7166,26 @@ declare namespace ovhapi {
                 usedRAM: number;
             }
             /** Quotas on keymanager */
-            interface KeymanagerQuotas {
+            export interface KeymanagerQuotas {
                 /** Maximum number of secrets allowed in your project */
                 maxSecrets: number;
                 /** Current number of used secrets */
                 usedSecrets: number;
             }
             /** Quotas on keypairs */
-            interface KeypairQuotas {
+            export interface KeypairQuotas {
                 /** Maximum keypairs count allowed in your project */
                 maxCount: number;
             }
             /** Quotas on loadbalancer */
-            interface LoadbalancerQuotas {
+            export interface LoadbalancerQuotas {
                 /** Maximum number of loadbalancers allowed in your project */
                 maxLoadbalancers: number;
                 /** Current number of used loadbalancers */
                 usedLoadbalancers: number;
             }
             /** Quotas for network */
-            interface NetworkQuota {
+            export interface NetworkQuota {
                 /** Maximum number of networks allowed in your project */
                 networks: number;
                 /** Maximum number of ports allowed in your project */
@@ -7202,7 +7194,7 @@ declare namespace ovhapi {
                 subnets: number;
             }
             /** Quotas on network */
-            interface NetworkQuotas {
+            export interface NetworkQuotas {
                 /** Maximum number of floating ips allowed in your project */
                 maxFloatingIPs: number;
                 /** Maximum number of gateways allowed in your project */
@@ -7221,7 +7213,7 @@ declare namespace ovhapi {
                 usedSubnets: number;
             }
             /** Quotas */
-            interface Quotas {
+            export interface Quotas {
                 /** Quotas on instances */
                 instance ? : cloud.quota.InstanceUsageQuotas;
                 /** Quotas on keymanager */
@@ -7238,7 +7230,7 @@ declare namespace ovhapi {
                 volume ? : cloud.quota.VolumeUsageQuotas;
             }
             /** Quotas for volume */
-            interface VolumeQuota {
+            export interface VolumeQuota {
                 /** Maximum total volume capacity allowed in your project */
                 gigabytes: number;
                 /** Maximum number of snapshots allowed in your project */
@@ -7247,7 +7239,7 @@ declare namespace ovhapi {
                 volumes: number;
             }
             /** Quotas on volumes */
-            interface VolumeUsageQuotas {
+            export interface VolumeUsageQuotas {
                 /** Maximum total volume backup capacity allowed in your project */
                 maxBackupGigabytes: number;
                 /** Maximum total volume capacity allowed in your project */
@@ -7266,16 +7258,16 @@ declare namespace ovhapi {
                 volumeCount: number;
             }
         }
-        namespace role {
+        export namespace role {
             /** Role permissions */
-            interface Permission {
+            export interface Permission {
                 /** Permission label */
                 label: string;
                 /** Roles having this permission */
                 roles: string[];
             }
             /** Role */
-            interface Role {
+            export interface Role {
                 /** Role Description */
                 description: string;
                 /** Role id */
@@ -7286,23 +7278,23 @@ declare namespace ovhapi {
                 permissions: string[];
             }
             /** OpenStack role */
-            interface Roles {
+            export interface Roles {
                 /** OpenStack roles */
                 roles: cloud.role.Role[];
                 /** OpenStack services */
                 services: cloud.role.Service[];
             }
             /** OpenStack service */
-            interface Service {
+            export interface Service {
                 /** Name of the service */
                 name: string;
                 /** List of permissions */
                 permissions: cloud.role.Permission[];
             }
         }
-        namespace sshkey {
+        export namespace sshkey {
             /** SshKey */
-            interface SshKey {
+            export interface SshKey {
                 /** SSH key id */
                 id: string;
                 /** SSH key name */
@@ -7313,7 +7305,7 @@ declare namespace ovhapi {
                 regions: string[];
             }
             /** SshKeyDetail */
-            interface SshKeyDetail {
+            export interface SshKeyDetail {
                 /** SSH key fingerprint */
                 fingerPrint: string;
                 /** SSH key id */
@@ -7326,16 +7318,16 @@ declare namespace ovhapi {
                 regions: string[];
             }
         }
-        namespace stack {
+        export namespace stack {
             /** Content */
-            interface Content {
+            export interface Content {
                 /** Content */
                 content: string;
                 /** Type of the content */
                 type: string;
             }
             /** InstructionGuide */
-            interface InstructionGuide {
+            export interface InstructionGuide {
                 /** Guide introduction content */
                 content: cloud.stack.Content[];
                 /** Guide language */
@@ -7346,7 +7338,7 @@ declare namespace ovhapi {
                 title: string;
             }
             /** Section */
-            interface Section {
+            export interface Section {
                 /** Content of the guide section */
                 content: cloud.stack.Content[];
                 /** Steps to follow */
@@ -7355,7 +7347,7 @@ declare namespace ovhapi {
                 title: string;
             }
             /** Stack */
-            interface Stack {
+            export interface Stack {
                 /** Stack last commit */
                 commit: string;
                 /** Stack description */
@@ -7372,23 +7364,23 @@ declare namespace ovhapi {
                 uuid: string;
             }
             /** Step */
-            interface Step {
+            export interface Step {
                 /** Content of the step */
                 content: cloud.stack.Content[];
                 /** Title of the step */
                 title: string;
             }
         }
-        namespace storage {
+        export namespace storage {
             /** Add storage policy for container */
-            interface AddContainerPolicy {
+            export interface AddContainerPolicy {
                 /** Container object key */
                 objectKey: string;
                 /** Policy role */
                 roleName: cloud.storage.PolicyRoleEnum;
             }
             /** Container */
-            interface Container {
+            export interface Container {
                 /** Storage id */
                 id: string;
                 /** Storage name */
@@ -7401,14 +7393,14 @@ declare namespace ovhapi {
                 storedObjects: number;
             }
             /** ContainerAccess */
-            interface ContainerAccess {
+            export interface ContainerAccess {
                 /** Storage access endpoints */
                 endpoints: cloud.storage.Endpoint[];
                 /** Storage access token */
                 token: string;
             }
             /** ContainerDetail */
-            interface ContainerDetail {
+            export interface ContainerDetail {
                 /** Whether this is an archive container or not */
                 archive: boolean;
                 /** Container type */
@@ -7431,7 +7423,7 @@ declare namespace ovhapi {
                 storedObjects: number;
             }
             /** ContainerObject */
-            interface ContainerObject {
+            export interface ContainerObject {
                 /** Object content type */
                 contentType: string;
                 /** Last modification date */
@@ -7446,40 +7438,40 @@ declare namespace ovhapi {
                 size: number;
             }
             /** ContainerObjectTempURL */
-            interface ContainerObjectTempURL {
+            export interface ContainerObjectTempURL {
                 /** Temporary URL expiration date */
                 expirationDate: string;
                 /** Temporary URL to get object */
                 getURL: string;
             }
             /** Endpoint */
-            interface Endpoint {
+            export interface Endpoint {
                 /** Endpoint region */
                 region: string;
                 /** Endpoint URL */
                 url: string;
             }
             /** Raw storage policy */
-            interface PolicyRaw {
+            export interface PolicyRaw {
                 /** Raw storage policy */
                 policy: string;
             }
             /** Storage policy role */
-            enum PolicyRoleEnum {
-                "admin",
-                "deny",
-                "readOnly",
-                "readWrite"
+            export enum PolicyRoleEnum {
+                "admin" = "admin",
+                "deny" = "deny",
+                "readOnly" = "readOnly",
+                "readWrite" = "readWrite"
             }
             /** Presigned URL */
-            interface PresignedURL {
+            export interface PresignedURL {
                 /** Presigned URL method */
                 method: cloud.storage.PresignedURLMethodEnum;
                 /** Presigned URL */
                 url: string;
             }
             /** Inputs to generate a presigned URL */
-            interface PresignedURLInput {
+            export interface PresignedURLInput {
                 /** URL expiration in seconds */
                 expire: number;
                 /** Presigned URL method */
@@ -7488,64 +7480,64 @@ declare namespace ovhapi {
                 object: string;
             }
             /** Presigned URL method */
-            enum PresignedURLMethodEnum {
-                "GET",
-                "PUT"
+            export enum PresignedURLMethodEnum {
+                "GET" = "GET",
+                "PUT" = "PUT"
             }
             /** Cloud Storage Quota */
-            interface Quota {
+            export interface Quota {
                 /** Current number of buckets */
                 buckets: number;
                 /** Maximum number of buckets */
                 maxBuckets: number;
             }
             /** RetrievalStateEnum */
-            enum RetrievalStateEnum {
-                "sealed",
-                "unsealed",
-                "unsealing"
+            export enum RetrievalStateEnum {
+                "sealed" = "sealed",
+                "unsealed" = "unsealed",
+                "unsealing" = "unsealing"
             }
             /** RightEnum */
-            enum RightEnum {
-                "all",
-                "read",
-                "write"
+            export enum RightEnum {
+                "all" = "all",
+                "read" = "read",
+                "write" = "write"
             }
             /** TypeEnum */
-            enum TypeEnum {
-                "private",
-                "public",
-                "static"
+            export enum TypeEnum {
+                "private" = "private",
+                "public" = "public",
+                "static" = "static"
             }
         }
-        namespace usage {
+        export namespace usage {
             /** PaymentTypeEnum */
-            enum PaymentTypeEnum {
-                "post",
-                "pre"
+            export enum PaymentTypeEnum {
+                "post" = "post",
+                "pre" = "pre"
             }
             /** Period */
-            interface Period {
+            export interface Period {
                 /** Usage from */
                 from: string;
                 /** Usage to */
                 to: string;
             }
             /** UsageBill */
-            interface UsageBill {
+            export interface UsageBill {
                 /** ID of the bill */
                 bill_id: string;
                 /** Amount of credits used in this bill (not necessarily on part) */
-                credit: double;
+                credit: number;
                 /** Amount of the bill that accounts for services for the usage period, credits not taken into account */
-                part: double;
+                part: number;
                 /** Payment type */
                 payment_type: cloud.usage.PaymentTypeEnum;
                 /** Total amount of the bill, credits not taken into account */
-                total: double;
+                total: number;
             }
             /** UsageCurrent */
-            interface UsageCurrent {
+            export interface UsageCurrent {
                 /** Hourly usage */
                 hourlyUsage ? : cloud.billingView.HourlyResources;
                 /** Entry last update */
@@ -7558,12 +7550,12 @@ declare namespace ovhapi {
                 resourcesUsage ? : cloud.billingView.TypedResources[];
             }
             /** UsageCurrentBills */
-            interface UsageCurrentBills {
+            export interface UsageCurrentBills {
                 /** Bills related to the current usage */
                 bills: cloud.usage.UsageBill[];
             }
             /** UsageForecast */
-            interface UsageForecast {
+            export interface UsageForecast {
                 /** Hourly forecast */
                 hourlyUsage ? : cloud.billingView.HourlyResources;
                 /** Entry last update */
@@ -7578,7 +7570,7 @@ declare namespace ovhapi {
                 usableCredits ? : cloud.billingView.UsedCredits;
             }
             /** UsageHistory */
-            interface UsageHistory {
+            export interface UsageHistory {
                 /** Usage id */
                 id: string;
                 /** Entry last update */
@@ -7587,7 +7579,7 @@ declare namespace ovhapi {
                 period: cloud.usage.Period;
             }
             /** UsageHistoryDetail */
-            interface UsageHistoryDetail {
+            export interface UsageHistoryDetail {
                 /** Hourly usage */
                 hourlyUsage ? : cloud.billingView.HourlyResources;
                 /** Usage id */
@@ -7602,60 +7594,60 @@ declare namespace ovhapi {
                 resourcesUsage ? : cloud.billingView.TypedResources[];
             }
             /** UsageHistoryDetailBills */
-            interface UsageHistoryDetailBills {
+            export interface UsageHistoryDetailBills {
                 /** Bills related to the usage */
                 bills: cloud.usage.UsageBill[];
             }
         }
-        namespace user {
+        export namespace user {
             /** Client Cloud Configuration */
-            interface Configuration {
+            export interface Configuration {
                 /** Client configuration */
                 content: string;
             }
             /** Openrc */
-            interface Openrc {
+            export interface Openrc {
                 /** openrc file */
                 content: string;
             }
             /** OpenrcVersionEnum */
-            enum OpenrcVersionEnum {
-                "v2.0",
-                "v3"
+            export enum OpenrcVersionEnum {
+                "v2.0" = "v2.0",
+                "v3" = "v3"
             }
             /** RCloneServiceEnum */
-            enum RCloneServiceEnum {
-                "storage",
-                "storage-s3"
+            export enum RCloneServiceEnum {
+                "storage" = "storage",
+                "storage-s3" = "storage-s3"
             }
             /** Rclone */
-            interface Rclone {
+            export interface Rclone {
                 /** rclone configuration file */
                 content: string;
             }
             /** RoleEnum */
-            enum RoleEnum {
-                "admin",
-                "administrator",
-                "ai_training_operator",
-                "ai_training_read",
-                "authentication",
-                "backup_operator",
-                "compute_operator",
-                "image_operator",
-                "infrastructure_supervisor",
-                "network_operator",
-                "network_security_operator",
-                "objectstore_operator",
-                "volume_operator"
+            export enum RoleEnum {
+                "admin" = "admin",
+                "administrator" = "administrator",
+                "ai_training_operator" = "ai_training_operator",
+                "ai_training_read" = "ai_training_read",
+                "authentication" = "authentication",
+                "backup_operator" = "backup_operator",
+                "compute_operator" = "compute_operator",
+                "image_operator" = "image_operator",
+                "infrastructure_supervisor" = "infrastructure_supervisor",
+                "network_operator" = "network_operator",
+                "network_security_operator" = "network_security_operator",
+                "objectstore_operator" = "objectstore_operator",
+                "volume_operator" = "volume_operator"
             }
             /** S3CredentialsSecretOnly */
-            interface S3CredentialsSecretOnly {
+            export interface S3CredentialsSecretOnly {
                 /** S3 Access key secret */
                 secret: string;
             }
             /** S3CredentialsWithSecret */
-            interface S3CredentialsWithSecret {
+            export interface S3CredentialsWithSecret {
                 /** S3 Access key */
                 access: string;
                 /** S3 Access key secret */
@@ -7666,7 +7658,7 @@ declare namespace ovhapi {
                 userId: string;
             }
             /** User */
-            interface User {
+            export interface User {
                 /** User creation date */
                 creationDate: string;
                 /** User description */
@@ -7683,7 +7675,7 @@ declare namespace ovhapi {
                 username: string;
             }
             /** UserDetail */
-            interface UserDetail {
+            export interface UserDetail {
                 /** User creation date */
                 creationDate: string;
                 /** User description */
@@ -7702,16 +7694,16 @@ declare namespace ovhapi {
                 username: string;
             }
             /** UserStatusEnum */
-            enum UserStatusEnum {
-                "creating",
-                "deleted",
-                "deleting",
-                "ok"
+            export enum UserStatusEnum {
+                "creating" = "creating",
+                "deleted" = "deleted",
+                "deleting" = "deleting",
+                "ok" = "ok"
             }
         }
-        namespace volume {
+        export namespace volume {
             /** Snapshot */
-            interface Snapshot {
+            export interface Snapshot {
                 /** Snapshot creation date */
                 creationDate: string;
                 /** Snapshot description */
@@ -7732,15 +7724,15 @@ declare namespace ovhapi {
                 volumeId: string;
             }
             /** SnapshotStatusEnum */
-            enum SnapshotStatusEnum {
-                "available",
-                "creating",
-                "deleting",
-                "error",
-                "error_deleting"
+            export enum SnapshotStatusEnum {
+                "available" = "available",
+                "creating" = "creating",
+                "deleting" = "deleting",
+                "error" = "error",
+                "error_deleting" = "error_deleting"
             }
             /** Volume */
-            interface Volume {
+            export interface Volume {
                 /** Volume attached to instances id */
                 attachedTo: string[];
                 /** Volume bootable */
@@ -7765,38 +7757,38 @@ declare namespace ovhapi {
                 type: cloud.volume.VolumeTypeEnum;
             }
             /** VolumeStatusEnum */
-            enum VolumeStatusEnum {
-                "attaching",
-                "available",
-                "awaiting-transfer",
-                "backing-up",
-                "creating",
-                "deleting",
-                "detaching",
-                "downloading",
-                "error",
-                "error_backing-up",
-                "error_deleting",
-                "error_extending",
-                "error_restoring",
-                "extending",
-                "in-use",
-                "maintenance",
-                "reserved",
-                "restoring-backup",
-                "retyping",
-                "uploading"
+            export enum VolumeStatusEnum {
+                "attaching" = "attaching",
+                "available" = "available",
+                "awaiting-transfer" = "awaiting-transfer",
+                "backing-up" = "backing-up",
+                "creating" = "creating",
+                "deleting" = "deleting",
+                "detaching" = "detaching",
+                "downloading" = "downloading",
+                "error" = "error",
+                "error_backing-up" = "error_backing-up",
+                "error_deleting" = "error_deleting",
+                "error_extending" = "error_extending",
+                "error_restoring" = "error_restoring",
+                "extending" = "extending",
+                "in-use" = "in-use",
+                "maintenance" = "maintenance",
+                "reserved" = "reserved",
+                "restoring-backup" = "restoring-backup",
+                "retyping" = "retyping",
+                "uploading" = "uploading"
             }
             /** VolumeTypeEnum */
-            enum VolumeTypeEnum {
-                "classic",
-                "high-speed",
-                "high-speed-gen2"
+            export enum VolumeTypeEnum {
+                "classic" = "classic",
+                "high-speed" = "high-speed",
+                "high-speed-gen2" = "high-speed-gen2"
             }
         }
-        namespace volumeBackup {
+        export namespace volumeBackup {
             /** A volume backup */
-            interface VolumeBackup {
+            export interface VolumeBackup {
                 /** Creation date of the backup */
                 creationDate: string;
                 /** Volume backup id */
@@ -7813,49 +7805,49 @@ declare namespace ovhapi {
                 volumeId: string;
             }
             /** Create a volume backup */
-            interface VolumeBackupCreation {
+            export interface VolumeBackupCreation {
                 /** name of the backup */
                 name: string;
                 /** ID of the volume to backup */
                 volumeId: string;
             }
             /** Restore a volume backup on a volume */
-            interface VolumeBackupRestore {
+            export interface VolumeBackupRestore {
                 /** ID of the volume to restore on */
                 volumeId: string;
             }
             /** VolumeBackupStatusEnum */
-            enum VolumeBackupStatusEnum {
-                "creating",
-                "deleting",
-                "error",
-                "ok",
-                "restoring"
+            export enum VolumeBackupStatusEnum {
+                "creating" = "creating",
+                "deleting" = "deleting",
+                "error" = "error",
+                "ok" = "ok",
+                "restoring" = "restoring"
             }
             /** Create a volume from a volume backup */
-            interface VolumeCreationFromBackup {
+            export interface VolumeCreationFromBackup {
                 /** name of the new volume */
                 name: string;
             }
         } /** Possible values for project access type */
-        enum AccessTypeEnum {
-            "full",
-            "restricted"
+        export enum AccessTypeEnum {
+            "full" = "full",
+            "restricted" = "restricted"
         }
         /** Cloud ACL */
-        interface Acl {
+        export interface Acl {
             /** OVH customer unique identifier */
             accountId: string;
             /** ACL type */
             type: cloud.AclTypeEnum;
         }
         /** Possible values for ACL type */
-        enum AclTypeEnum {
-            "readOnly",
-            "readWrite"
+        export enum AclTypeEnum {
+            "readOnly" = "readOnly",
+            "readWrite" = "readWrite"
         }
         /** Cloud alerting consumption */
-        interface Alerting {
+        export interface Alerting {
             /** Alerting creation date */
             creationDate: string;
             /** Delay between alerts in seconds */
@@ -7870,7 +7862,7 @@ declare namespace ovhapi {
             monthlyThreshold: number;
         }
         /** Cloud alert on your consumption */
-        interface AlertingAlert {
+        export interface AlertingAlert {
             /** Alert date */
             alertDate: string;
             /** Alert id */
@@ -7879,18 +7871,18 @@ declare namespace ovhapi {
             emails: string[];
         }
         /** Possible values for delay between two alerts in seconds */
-        enum AlertingDelayEnum {
-            "10800",
-            "172800",
-            "21600",
-            "259200",
-            "3600",
-            "43200",
-            "604800",
-            "86400"
+        export enum AlertingDelayEnum {
+            "10800" = "10800",
+            "172800" = "172800",
+            "21600" = "21600",
+            "259200" = "259200",
+            "3600" = "3600",
+            "43200" = "43200",
+            "604800" = "604800",
+            "86400" = "86400"
         }
         /** Details about an available region that can be activated on your project */
-        interface AvailableRegion {
+        export interface AvailableRegion {
             /** Region continent code */
             continentCode: cloud.RegionContinentEnum;
             /** Location of the datacenter where the region is */
@@ -7899,7 +7891,7 @@ declare namespace ovhapi {
             name: string;
         }
         /** List your automated backups */
-        interface Backup {
+        export interface Backup {
             /** Backup name */
             backupName: string;
             /** Creation date of the workflow */
@@ -7916,7 +7908,7 @@ declare namespace ovhapi {
             name: string;
         }
         /** Container */
-        interface ColdArchiveContainer {
+        export interface ColdArchiveContainer {
             /** After restoring your archive, date when the restored files will be deleted */
             automaticDeletionAt ? : string;
             /** The date when the resource was created */
@@ -7937,17 +7929,17 @@ declare namespace ovhapi {
             virtualHost: string;
         }
         /** Enum values for Status */
-        enum ColdArchiveContainerStatusEnum {
-            "archived",
-            "archiving",
-            "deleting",
-            "flushed",
-            "none",
-            "restored",
-            "restoring"
+        export enum ColdArchiveContainerStatusEnum {
+            "archived" = "archived",
+            "archiving" = "archiving",
+            "deleting" = "deleting",
+            "flushed" = "flushed",
+            "none" = "none",
+            "restored" = "restored",
+            "restoring" = "restoring"
         }
         /** Information about the different components available in the region */
-        interface Component {
+        export interface Component {
             /** Endpoint URL */
             endpoint: string;
             /** Service name */
@@ -7956,7 +7948,7 @@ declare namespace ovhapi {
             status: cloud.ServiceStatusEnum;
         }
         /** Cloud credit */
-        interface Credit {
+        export interface Credit {
             /** Available credit */
             available_credit: order.Price;
             /** Credit bill id */
@@ -7977,7 +7969,7 @@ declare namespace ovhapi {
             voucher ? : string;
         }
         /** An execution of the backup workflow */
-        interface Execution {
+        export interface Execution {
             /** Last date of cron trigger execution */
             executedAt: string;
             /** Execution state */
@@ -7986,36 +7978,36 @@ declare namespace ovhapi {
             stateInfo: string;
         }
         /** Enum values for State */
-        enum ExecutionStateEnum {
-            "CANCELED",
-            "ERROR",
-            "IDLE",
-            "PAUSED",
-            "RUNNING",
-            "SUCCESS"
+        export enum ExecutionStateEnum {
+            "CANCELED" = "CANCELED",
+            "ERROR" = "ERROR",
+            "IDLE" = "IDLE",
+            "PAUSED" = "PAUSED",
+            "RUNNING" = "RUNNING",
+            "SUCCESS" = "SUCCESS"
         }
         /** Enum values for IpCountry */
-        enum IpCountryEnum {
-            "au",
-            "be",
-            "ca",
-            "cz",
-            "de",
-            "es",
-            "fi",
-            "fr",
-            "ie",
-            "it",
-            "lt",
-            "nl",
-            "pl",
-            "pt",
-            "sg",
-            "uk",
-            "us"
+        export enum IpCountryEnum {
+            "au" = "au",
+            "be" = "be",
+            "ca" = "ca",
+            "cz" = "cz",
+            "de" = "de",
+            "es" = "es",
+            "fi" = "fi",
+            "fr" = "fr",
+            "ie" = "ie",
+            "it" = "it",
+            "lt" = "lt",
+            "nl" = "nl",
+            "pl" = "pl",
+            "pt" = "pt",
+            "sg" = "sg",
+            "uk" = "uk",
+            "us" = "us"
         }
         /** A public cloud lab permits to activate a feature in beta */
-        interface Lab {
+        export interface Lab {
             /** Lab ID */
             id: string;
             /** Lab name */
@@ -8024,21 +8016,21 @@ declare namespace ovhapi {
             status: cloud.LabStatusEnum;
         }
         /** List of required agreements to activate the lab */
-        interface LabAgreements {
+        export interface LabAgreements {
             /** List of agreements already accepted to activate the lab */
             accepted: number[];
             /** List of agreements to accept before activate the lab */
             toAccept: number[];
         }
         /** Enum values for Status */
-        enum LabStatusEnum {
-            "activated",
-            "activating",
-            "closed",
-            "open"
+        export enum LabStatusEnum {
+            "activated" = "activated",
+            "activating" = "activating",
+            "closed" = "closed",
+            "open" = "open"
         }
         /** An operation is an async process on your Project */
-        interface Operation {
+        export interface Operation {
             /** The action of the operation */
             action: string;
             /** The completed date of the operation */
@@ -8061,15 +8053,15 @@ declare namespace ovhapi {
             subOperations ? : cloud.SubOperation[];
         }
         /** Enum values for Status */
-        enum OperationStatusEnum {
-            "completed",
-            "created",
-            "in-error",
-            "in-progress",
-            "unknown"
+        export enum OperationStatusEnum {
+            "completed" = "completed",
+            "created" = "created",
+            "in-error" = "in-error",
+            "in-progress" = "in-progress",
+            "unknown" = "unknown"
         }
         /** Project */
-        interface Project {
+        export interface Project {
             /** Project access */
             access: cloud.AccessTypeEnum;
             /** Project creation date */
@@ -8094,12 +8086,12 @@ declare namespace ovhapi {
             unleash: boolean;
         }
         /** Missing description */
-        interface ProjectActivateMonthlyBillingCreation {
+        export interface ProjectActivateMonthlyBillingCreation {
             /** Instance ids and regions */
             instances: cloud.instance.MonthlyInstanceBulkParams[];
         }
         /** Missing description */
-        interface ProjectContainerRegistryCreation {
+        export interface ProjectContainerRegistryCreation {
             /** Name of the new registry */
             name: string;
             /** ID of the plan to use for the new registry */
@@ -8108,19 +8100,19 @@ declare namespace ovhapi {
             region: string;
         }
         /** Missing description */
-        interface ProjectContainerRegistryUpdate {
+        export interface ProjectContainerRegistryUpdate {
             /** New registry name */
             name: string;
         }
         /** Missing description */
-        interface ProjectContainerRegistryUsersCreation {
+        export interface ProjectContainerRegistryUsersCreation {
             /** New user email */
             email ? : string;
             /** New user login */
             login ? : string;
         }
         /** Missing description */
-        interface ProjectInstanceBulkCreation {
+        export interface ProjectInstanceBulkCreation {
             /** Create an autobackup workflow after instance start up */
             autobackup ? : cloud.instance.AutoBackup;
             /** Instance flavor id */
@@ -8142,12 +8134,12 @@ declare namespace ovhapi {
             /** SSH keypair id */
             sshKeyId ? : string;
             /** Configuration information or scripts to use upon launch */
-            userData ? : text;
+            userData ? : string;
             /** Specify a volume id to boot from it */
             volumeId ? : string;
         }
         /** Missing description */
-        interface ProjectInstanceCreation {
+        export interface ProjectInstanceCreation {
             /** Create an autobackup workflow after instance start up */
             autobackup ? : cloud.instance.AutoBackup;
             /** Instance flavor id */
@@ -8167,12 +8159,12 @@ declare namespace ovhapi {
             /** SSH keypair id */
             sshKeyId ? : string;
             /** Configuration information or scripts to use upon launch */
-            userData ? : text;
+            userData ? : string;
             /** Specify a volume id to boot from it */
             volumeId ? : string;
         }
         /** Missing description */
-        interface ProjectInstanceGroupCreation {
+        export interface ProjectInstanceGroupCreation {
             /** instance group name */
             name: string;
             /** Instance region */
@@ -8181,51 +8173,51 @@ declare namespace ovhapi {
             type: cloud.instancegroup.InstanceGroupTypeEnum;
         }
         /** Missing description */
-        interface ProjectInstanceInterfaceCreation {
+        export interface ProjectInstanceInterfaceCreation {
             /** Static ip (Can only be defined for private networks) */
             ip ? : string;
             /** Network id */
             networkId: string;
         }
         /** Missing description */
-        interface ProjectInstanceRebootCreation {
+        export interface ProjectInstanceRebootCreation {
             /** Reboot type (default soft) */
             type: cloud.instance.RebootTypeEnum;
         }
         /** Missing description */
-        interface ProjectInstanceReinstallCreation {
+        export interface ProjectInstanceReinstallCreation {
             /** Image to reinstall */
             imageId: string;
         }
         /** Missing description */
-        interface ProjectInstanceRescueModeCreation {
+        export interface ProjectInstanceRescueModeCreation {
             /** Image to boot on */
             imageId ? : string;
             /** Enable rescue mode */
             rescue: boolean;
         }
         /** Missing description */
-        interface ProjectInstanceResizeCreation {
+        export interface ProjectInstanceResizeCreation {
             /** Flavor id */
             flavorId: string;
         }
         /** Missing description */
-        interface ProjectInstanceSnapshotCreation {
+        export interface ProjectInstanceSnapshotCreation {
             /** Snapshot name */
             snapshotName: string;
         }
         /** Missing description */
-        interface ProjectInstanceUpdate {
+        export interface ProjectInstanceUpdate {
             /** Instance new name */
             instanceName: string;
         }
         /** Missing description */
-        interface ProjectIpFailoverAttachCreation {
+        export interface ProjectIpFailoverAttachCreation {
             /** Attach failover ip to instance */
             instanceId: string;
         }
         /** Missing description */
-        interface ProjectKubeCreation {
+        export interface ProjectKubeCreation {
             /** Kubernetes cluster customization */
             customization ? : cloud.ProjectKubeCustomization;
             /** Selected mode for kube-proxy */
@@ -8246,7 +8238,7 @@ declare namespace ovhapi {
             version: cloud.kube.VersionEnum;
         }
         /** Missing description */
-        interface ProjectKubeCreationNodePool {
+        export interface ProjectKubeCreationNodePool {
             /** Enable anti affinity groups for nodes in the pool */
             antiAffinity ? : boolean;
             /** Enable the auto-scaling on the pool */
@@ -8267,74 +8259,74 @@ declare namespace ovhapi {
             template: cloud.kube.NodePoolTemplate;
         }
         /** Cluster customization */
-        interface ProjectKubeCustomization {
+        export interface ProjectKubeCustomization {
             /** Kubernetes cluster api server customization */
             apiServer ? : cloud.ProjectKubeCustomizationAPIServer;
             /** Kubernetes cluster kube-proxy customization */
             kubeProxy ? : cloud.ProjectKubeCustomizationKubeProxy;
         }
         /** Cluster API server customization */
-        interface ProjectKubeCustomizationAPIServer {
+        export interface ProjectKubeCustomizationAPIServer {
             /** Kubernetes cluster api server admission plugins customization */
             admissionPlugins ? : cloud.ProjectKubeCustomizationAPIServerAdmissionPlugins;
         }
         /** Cluster API server admission plugins customization */
-        interface ProjectKubeCustomizationAPIServerAdmissionPlugins {
+        export interface ProjectKubeCustomizationAPIServerAdmissionPlugins {
             /** Array of disabled admission plugins */
             disabled ? : cloud.ProjectKubeCustomizationAPIServerAdmissionPluginsEnum[];
             /** Array of enabled admission plugins */
             enabled ? : cloud.ProjectKubeCustomizationAPIServerAdmissionPluginsEnum[];
         }
         /** Enum admission plugins */
-        enum ProjectKubeCustomizationAPIServerAdmissionPluginsEnum {
-            "AlwaysPullImages",
-            "NodeRestriction"
+        export enum ProjectKubeCustomizationAPIServerAdmissionPluginsEnum {
+            "AlwaysPullImages" = "AlwaysPullImages",
+            "NodeRestriction" = "NodeRestriction"
         }
         /** Cluster kube-proxy customization: iptables and ipvs configurations can both be set at the same time, kube-proxy will use the one according to the cluster's kubeProxyMode value */
-        interface ProjectKubeCustomizationKubeProxy {
+        export interface ProjectKubeCustomizationKubeProxy {
             /** Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. 'PT60S') */
             iptables ? : cloud.ProjectKubeCustomizationKubeProxyIptables;
             /** Kubernetes cluster kube-proxy customization of ipvs specific config (durations format is RFC3339 duration, e.g. 'PT60S') */
             ipvs ? : cloud.ProjectKubeCustomizationKubeProxyIpvs;
         }
         /** Configuration used when kube-proxy is configured with iptables mode (durations format is RFC3339 duration, e.g. 'PT60S') */
-        interface ProjectKubeCustomizationKubeProxyIptables {
+        export interface ProjectKubeCustomizationKubeProxyIptables {
             /** minSyncPeriod is the minimum period that iptables rules are refreshed, in RFC3339 duration format (e.g. 'PT60S') */
-            minSyncPeriod ? : duration;
+            minSyncPeriod ? : string;
             /** syncPeriod is the period that iptables rules are refreshed, in RFC3339 duration format (e.g. 'PT60S'). Must be greater than 0 */
-            syncPeriod ? : duration;
+            syncPeriod ? : string;
         }
         /** Configuration used when kube-proxy is configured with ipvs mode (durations format is RFC3339 duration, e.g. 'PT60S') */
-        interface ProjectKubeCustomizationKubeProxyIpvs {
+        export interface ProjectKubeCustomizationKubeProxyIpvs {
             /** minSyncPeriod is the minimum period that ipvs rules are refreshed in RFC3339 duration format (e.g. 'PT60S') */
-            minSyncPeriod ? : duration;
+            minSyncPeriod ? : string;
             /** ipvs scheduler */
             scheduler ? : cloud.kube.KubeProxyIpvsSchedulerEnum;
             /** syncPeriod is the period that ipvs rules are refreshed in RFC3339 duration format (e.g. 'PT60S'). Must be greater than 0 */
-            syncPeriod ? : duration;
+            syncPeriod ? : string;
             /** tcpFinTimeout is the timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration format (e.g. 'PT60S'). The default value is 'PT0S', which preserves the current timeout value on the system */
-            tcpFinTimeout ? : duration;
+            tcpFinTimeout ? : string;
             /** tcpTimeout is the timeout value used for idle IPVS TCP sessions in RFC3339 duration format (e.g. 'PT60S'). The default value is 'PT0S', which preserves the current timeout value on the system. Cannot be set between 'PT0S' and 'PT5S', in order to prevent in-cluster networking issues. */
-            tcpTimeout ? : duration;
+            tcpTimeout ? : string;
             /** udpTimeout is the timeout value used for IPVS UDP packets in RFC3339 duration format (e.g. 'PT60S'). The default value is 'PT0S', which preserves the current timeout value on the system */
-            udpTimeout ? : duration;
+            udpTimeout ? : string;
         }
         /** Missing description */
-        interface ProjectKubeIpRestrictionUpsert {
+        export interface ProjectKubeIpRestrictionUpsert {
             /** List of ips to add to the cluster api-server restrictions (format with /subnet available) */
             ips: string[];
         }
         /** Missing description */
-        interface ProjectKubeNodePoolAutoscalingParams {
+        export interface ProjectKubeNodePoolAutoscalingParams {
             /** How long a node should be unneeded before it is eligible for scale down */
             scaleDownUnneededTimeSeconds: number;
             /** How long an unready node should be unneeded before it is eligible for scale down */
             scaleDownUnreadyTimeSeconds: number;
             /** Sum of cpu or memory of all pods running on the node divided by node's corresponding allocatable resource, below which a node can be considered for scale down */
-            scaleDownUtilizationThreshold: double;
+            scaleDownUtilizationThreshold: number;
         }
         /** Missing description */
-        interface ProjectKubeNodePoolCreation {
+        export interface ProjectKubeNodePoolCreation {
             /** Enable anti affinity groups for nodes in the pool */
             antiAffinity ? : boolean;
             /** Enable the auto-scaling on the pool */
@@ -8357,7 +8349,7 @@ declare namespace ovhapi {
             template: cloud.kube.NodePoolTemplate;
         }
         /** Missing description */
-        interface ProjectKubeNodePoolUpdate {
+        export interface ProjectKubeNodePoolUpdate {
             /** Enable the auto-scaling on the pool */
             autoscale ? : boolean;
             /** Autoscaling customization parameters */
@@ -8374,7 +8366,7 @@ declare namespace ovhapi {
             template: cloud.kube.NodePoolTemplate;
         }
         /** Creation model for OIDC */
-        interface ProjectKubeOpenIdConnectCreation {
+        export interface ProjectKubeOpenIdConnectCreation {
             /** Content of the certificate for the CA, in base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs. */
             caContent ? : string;
             /** Client ID */
@@ -8395,7 +8387,7 @@ declare namespace ovhapi {
             usernamePrefix ? : string;
         }
         /** Update model for OIDC */
-        interface ProjectKubeOpenIdConnectUpdate {
+        export interface ProjectKubeOpenIdConnectUpdate {
             /** Content of the certificate for the CA, in base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs. */
             caContent ? : string;
             /** Client ID */
@@ -8416,7 +8408,7 @@ declare namespace ovhapi {
             usernamePrefix ? : string;
         }
         /** Model object to reset kube cluster */
-        interface ProjectKubeResetCreation {
+        export interface ProjectKubeResetCreation {
             /** Kubernetes cluster customization */
             customization: cloud.ProjectKubeCustomization;
             /** Selected mode for kube-proxy */
@@ -8435,36 +8427,36 @@ declare namespace ovhapi {
             workerNodesPolicy: cloud.kube.ResetWorkerNodesPolicyEnum;
         }
         /** Missing description */
-        interface ProjectKubeRestart {
+        export interface ProjectKubeRestart {
             /** Force restarting control plane apiserver (will create a slight downtime) */
             force ? : boolean;
         }
         /** Missing description */
-        interface ProjectKubeUpdate {
+        export interface ProjectKubeUpdate {
             /** Cluster new name */
             name: string;
             /** Enum values for UpdatePolicy */
             updatePolicy: cloud.kube.UpdatePolicyEnum;
         }
         /** Missing description */
-        interface ProjectKubeUpdateCreation {
+        export interface ProjectKubeUpdateCreation {
             /** Force redeploying the control plane / reinstalling the nodes regardless of their current version */
             force ? : boolean;
             /** The update strategy to apply on your service (next patch or minor version) */
             strategy: cloud.kube.UpdateStrategyEnum;
         }
         /** Missing description */
-        interface ProjectKubeUpdatePolicyUpdate {
+        export interface ProjectKubeUpdatePolicyUpdate {
             /** Update policy */
             updatePolicy: cloud.kube.UpdatePolicyEnum;
         }
         /** Missing description */
-        interface ProjectMigrationUpdate {
+        export interface ProjectMigrationUpdate {
             /** Migration date (RFC3339) */
             date: string;
         }
         /** Missing description */
-        interface ProjectNetworkPrivateCreation {
+        export interface ProjectNetworkPrivateCreation {
             /** Network name */
             name: string;
             /** Region where to activate private network. No parameters means all region */
@@ -8473,12 +8465,12 @@ declare namespace ovhapi {
             vlanId ? : number;
         }
         /** Missing description */
-        interface ProjectNetworkPrivateRegionCreation {
+        export interface ProjectNetworkPrivateRegionCreation {
             /** Region to active on your network */
             region: string;
         }
         /** Missing description */
-        interface ProjectNetworkPrivateSubnetCreation {
+        export interface ProjectNetworkPrivateSubnetCreation {
             /** Enable DHCP */
             dhcp: boolean;
             /** Last IP for this region (eg: 192.168.1.24) */
@@ -8493,7 +8485,7 @@ declare namespace ovhapi {
             start: string;
         }
         /** Missing description */
-        interface ProjectNetworkPrivateSubnetUpdate {
+        export interface ProjectNetworkPrivateSubnetUpdate {
             /** Set to true if you don't want to set a default gateway IP */
             dhcp: boolean;
             /** Set to true if you want to disable the default gateway */
@@ -8502,22 +8494,22 @@ declare namespace ovhapi {
             gatewayIp ? : string;
         }
         /** Missing description */
-        interface ProjectNetworkPrivateUpdate {
+        export interface ProjectNetworkPrivateUpdate {
             /** name */
             name: string;
         }
         /** Missing description */
-        interface ProjectRegionCreation {
+        export interface ProjectRegionCreation {
             /** Region to add on your project */
             region: string;
         }
         /** Missing description */
-        interface ProjectRegionQuotaCreation {
+        export interface ProjectRegionQuotaCreation {
             /** Name of the new quota */
             name: string;
         }
         /** Missing description */
-        interface ProjectRegionWorkflowBackupCreation {
+        export interface ProjectRegionWorkflowBackupCreation {
             /** Unix Cron pattern (eg: '* * * * *') */
             cron: string;
             /** Instance ID to backup */
@@ -8530,7 +8522,7 @@ declare namespace ovhapi {
             rotation: number;
         }
         /** Missing description */
-        interface ProjectSshkeyCreation {
+        export interface ProjectSshkeyCreation {
             /** SSH key name */
             name: string;
             /** SSH public key */
@@ -8539,12 +8531,12 @@ declare namespace ovhapi {
             region ? : string;
         }
         /** Missing description */
-        interface ProjectStorageCorsCreation {
+        export interface ProjectStorageCorsCreation {
             /** Allow this origin */
             origin: string;
         }
         /** Missing description */
-        interface ProjectStorageCreation {
+        export interface ProjectStorageCreation {
             /** Archive container flag */
             archive: boolean;
             /** Container name */
@@ -8553,26 +8545,26 @@ declare namespace ovhapi {
             region: string;
         }
         /** Missing description */
-        interface ProjectStoragePublicUrlCreation {
+        export interface ProjectStoragePublicUrlCreation {
             /** Temporary URL expiration */
             expirationDate: string;
             /** Object name */
             objectName: string;
         }
         /** Missing description */
-        interface ProjectStorageUpdate {
+        export interface ProjectStorageUpdate {
             /** Container type */
             containerType ? : cloud.storage.TypeEnum;
         }
         /** Missing description */
-        interface ProjectStorageUserCreation {
+        export interface ProjectStorageUserCreation {
             /** User description */
             description ? : string;
             /** User right (all, read, write) */
             right: cloud.storage.RightEnum;
         }
         /** Missing description */
-        interface ProjectUserCreation {
+        export interface ProjectUserCreation {
             /** User description */
             description ? : string;
             /** Openstack keystone role name */
@@ -8581,27 +8573,27 @@ declare namespace ovhapi {
             roles ? : cloud.user.RoleEnum[];
         }
         /** Missing description */
-        interface ProjectUserRoleCreation {
+        export interface ProjectUserRoleCreation {
             /** Role id */
             roleId: string;
         }
         /** Missing description */
-        interface ProjectUserRoleUpdate {
+        export interface ProjectUserRoleUpdate {
             /** Roles ids */
             rolesIds: string[];
         }
         /** Missing description */
-        interface ProjectUserTokenCreation {
+        export interface ProjectUserTokenCreation {
             /** User password */
             password: string;
         }
         /** Missing description */
-        interface ProjectVolumeAttachCreation {
+        export interface ProjectVolumeAttachCreation {
             /** Instance id */
             instanceId: string;
         }
         /** Missing description */
-        interface ProjectVolumeCreation {
+        export interface ProjectVolumeCreation {
             /** Volume description */
             description ? : string;
             /** Id of image to create a bootable volume */
@@ -8618,31 +8610,31 @@ declare namespace ovhapi {
             type: cloud.volume.VolumeTypeEnum;
         }
         /** Missing description */
-        interface ProjectVolumeDetachCreation {
+        export interface ProjectVolumeDetachCreation {
             /** Instance id */
             instanceId: string;
         }
         /** Missing description */
-        interface ProjectVolumeSnapshotCreation {
+        export interface ProjectVolumeSnapshotCreation {
             /** Snapshot description */
             description ? : string;
             /** Snapshot name */
             name ? : string;
         }
         /** Missing description */
-        interface ProjectVolumeUpdate {
+        export interface ProjectVolumeUpdate {
             /** Volume description */
             description ? : string;
             /** Volume name */
             name ? : string;
         }
         /** Missing description */
-        interface ProjectVolumeUpsizeCreation {
+        export interface ProjectVolumeUpsizeCreation {
             /** New volume size (in GiB) (must be greater than current one) */
             size: number;
         }
         /** Details about your region */
-        interface Region {
+        export interface Region {
             /** Region continent code */
             continentCode: cloud.RegionContinentEnum;
             /** Location of the datacenter where the region is */
@@ -8657,25 +8649,25 @@ declare namespace ovhapi {
             status: cloud.RegionStatusEnum;
         }
         /** Enum values for ContinentCode */
-        enum RegionContinentEnum {
-            "ASIA",
-            "EU",
-            "NA",
-            "US"
+        export enum RegionContinentEnum {
+            "ASIA" = "ASIA",
+            "EU" = "EU",
+            "NA" = "NA",
+            "US" = "US"
         }
         /** Enum values for Status */
-        enum RegionStatusEnum {
-            "DOWN",
-            "MAINTENANCE",
-            "UP"
+        export enum RegionStatusEnum {
+            "DOWN" = "DOWN",
+            "MAINTENANCE" = "MAINTENANCE",
+            "UP" = "UP"
         }
         /** Enum values for Status */
-        enum ServiceStatusEnum {
-            "DOWN",
-            "UP"
+        export enum ServiceStatusEnum {
+            "DOWN" = "DOWN",
+            "UP" = "UP"
         }
         /** Container */
-        interface StorageContainer {
+        export interface StorageContainer {
             /** The date and timestamp when the resource was created */
             createdAt: string;
             /** Container name */
@@ -8694,14 +8686,14 @@ declare namespace ovhapi {
             virtualHost: string;
         }
         /** Create a container */
-        interface StorageContainerCreation {
+        export interface StorageContainerCreation {
             /** Container name */
             name: string;
             /** Container owner user ID */
             ownerId ? : number;
         }
         /** Object */
-        interface StorageObject {
+        export interface StorageObject {
             /** ETag */
             etag: string;
             /** Key */
@@ -8712,7 +8704,7 @@ declare namespace ovhapi {
             size: number;
         }
         /** A sub-operation is a child of an operation on your Project */
-        interface SubOperation {
+        export interface SubOperation {
             /** The action of the sub-operation */
             action: string;
             /** The completed date of the sub-operation */
@@ -8731,7 +8723,7 @@ declare namespace ovhapi {
             status: cloud.OperationStatusEnum;
         }
         /** A vRack allows to connect your OVH infrastructures accross products and datacenters */
-        interface Vrack {
+        export interface Vrack {
             /** Description of your vRack */
             description: string;
             /** Vrack ID */
@@ -8740,33 +8732,33 @@ declare namespace ovhapi {
             name: string;
         }
     }
-    namespace complexType {
+    export namespace complexType {
         /** A numeric value tagged with its unit */
-        interface UnitAndValue {
+        export interface UnitAndValue {
             /** unit */
             unit: string;
             /** value */
             value: T;
         }
         /** Key and value, with proper key strings */
-        interface SafeKeyValue {
+        export interface SafeKeyValue {
             /** key */
             key: string;
             /** value */
             value: T;
         }
     }
-    namespace nichandle {
-        namespace Authentication {
+    export namespace nichandle {
+        export namespace Authentication {
             /** X509 Certificate */
-            interface Certificate {
+            export interface Certificate {
                 /** Certificate's expiration */
                 expiration: string;
                 /** Certificate's subject */
                 subject: string;
             }
             /** A group */
-            interface Group {
+            export interface Group {
                 /** Creation date of this group */
                 creation: string;
                 /** True if it is an default group. This kind of group can't be edited or deleted */
@@ -8781,7 +8773,7 @@ declare namespace ovhapi {
                 role: nichandle.Authentication.RoleEnum;
             }
             /** A SAML 2.0 provider */
-            interface Provider {
+            export interface Provider {
                 /** Creation date of the identity provider */
                 creation: string;
                 /** SAML Extensions to embed inside the SAML requests */
@@ -8796,12 +8788,12 @@ declare namespace ovhapi {
                 ssoServiceUrl: string;
             }
             /** A SAML 2.0 Extension that should be added to SAML requests when using this provider */
-            interface ProviderExtensions {
+            export interface ProviderExtensions {
                 /** List of SAML RequestedAttribute to add to SAML requestes */
                 requestedAttributes ? : nichandle.Authentication.RequestedAttribute[];
             }
             /** A SAML 2.0 requested attribute that should be added to SAML requests when using this provider */
-            interface RequestedAttribute {
+            export interface RequestedAttribute {
                 /** Expresses that this RequestedAttribute is mandatory (remains advisory) */
                 isRequired: boolean;
                 /** Name of the SAML RequestedAttribute */
@@ -8812,14 +8804,14 @@ declare namespace ovhapi {
                 values ? : string[];
             }
         }
-        namespace accessRestriction {
+        export namespace accessRestriction {
             /** Accept or deny IP access */
-            enum IpRestrictionRuleEnum {
-                "accept",
-                "deny"
+            export enum IpRestrictionRuleEnum {
+                "accept" = "accept",
+                "deny" = "deny"
             }
             /** SOTP Two-Factor Authentication */
-            interface SOTPAccount {
+            export interface SOTPAccount {
                 /** Creation date */
                 creationDate: string;
                 /** Last used date */
@@ -8830,24 +8822,24 @@ declare namespace ovhapi {
                 status: nichandle.accessRestriction.SOTPStatusEnum;
             }
             /** Describe SOTP secret keys */
-            interface SOTPSecret {
+            export interface SOTPSecret {
                 /** codes */
                 codes: string[];
             }
             /** Status of SOTP account */
-            enum SOTPStatusEnum {
-                "disabled",
-                "enabled",
-                "needCodeValidation",
-                "needEmailValidation"
+            export enum SOTPStatusEnum {
+                "disabled" = "disabled",
+                "enabled" = "enabled",
+                "needCodeValidation" = "needCodeValidation",
+                "needEmailValidation" = "needEmailValidation"
             }
             /** Describe SOTP validation status */
-            interface SOTPValidate {
+            export interface SOTPValidate {
                 /** remainingCodes */
                 remainingCodes: number;
             }
             /** Sms Two-Factor Authentication */
-            interface SmsAccount {
+            export interface SmsAccount {
                 /** Creation date */
                 creationDate: string;
                 /** Description of this phone */
@@ -8862,26 +8854,26 @@ declare namespace ovhapi {
                 status: nichandle.accessRestriction.SmsStatusEnum;
             }
             /** Send secret code */
-            interface SmsCode {
+            export interface SmsCode {
                 /** challenge */
                 challenge: string;
             }
             /** Describe secret key */
-            interface SmsSecret {
+            export interface SmsSecret {
                 /** id */
                 id: number;
                 /** remainingTry */
                 remainingTry: number;
             }
             /** Status of the Sms account */
-            enum SmsStatusEnum {
-                "disabled",
-                "enabled",
-                "needCodeValidation",
-                "needEmailValidation"
+            export enum SmsStatusEnum {
+                "disabled" = "disabled",
+                "enabled" = "enabled",
+                "needCodeValidation" = "needCodeValidation",
+                "needEmailValidation" = "needEmailValidation"
             }
             /** TOTP Two-Factor Authentication */
-            interface TOTPAccount {
+            export interface TOTPAccount {
                 /** Creation date */
                 creationDate: string;
                 /** Description of this TOTP */
@@ -8894,7 +8886,7 @@ declare namespace ovhapi {
                 status: nichandle.accessRestriction.TOTPStatusEnum;
             }
             /** Describe TOTP secret keys */
-            interface TOTPSecret {
+            export interface TOTPSecret {
                 /** id */
                 id: number;
                 /** qrcodeHelper */
@@ -8903,14 +8895,14 @@ declare namespace ovhapi {
                 secret: string;
             }
             /** Status of TOTP account */
-            enum TOTPStatusEnum {
-                "disabled",
-                "enabled",
-                "needCodeValidation",
-                "needEmailValidation"
+            export enum TOTPStatusEnum {
+                "disabled" = "disabled",
+                "enabled" = "enabled",
+                "needCodeValidation" = "needCodeValidation",
+                "needEmailValidation" = "needEmailValidation"
             }
             /** U2F Two-Factor Authentication */
-            interface U2FAccount {
+            export interface U2FAccount {
                 /** Creation date */
                 creationDate: string;
                 /** Description of this U2F key */
@@ -8923,7 +8915,7 @@ declare namespace ovhapi {
                 status: nichandle.accessRestriction.U2FStatusEnum;
             }
             /** U2F Register Request */
-            interface U2FRegisterChallenge {
+            export interface U2FRegisterChallenge {
                 /** applicationId */
                 applicationId: string;
                 /** id */
@@ -8932,21 +8924,21 @@ declare namespace ovhapi {
                 request: nichandle.accessRestriction.U2FRegistrationRequest;
             }
             /** Describe U2F RegistrationRequest */
-            interface U2FRegistrationRequest {
+            export interface U2FRegistrationRequest {
                 /** challenge */
                 challenge: string;
                 /** version */
                 version: string;
             }
             /** U2F Register Request */
-            interface U2FSignChallenge {
+            export interface U2FSignChallenge {
                 /** applicationId */
                 applicationId: string;
                 /** request */
                 request: nichandle.accessRestriction.U2FSignRequest;
             }
             /** Describe U2F SignRequest */
-            interface U2FSignRequest {
+            export interface U2FSignRequest {
                 /** challenge */
                 challenge: string;
                 /** keyHandle */
@@ -8955,44 +8947,44 @@ declare namespace ovhapi {
                 version: string;
             }
             /** Status of U2F account */
-            enum U2FStatusEnum {
-                "disabled",
-                "enabled",
-                "needCodeValidation"
+            export enum U2FStatusEnum {
+                "disabled" = "disabled",
+                "enabled" = "enabled",
+                "needCodeValidation" = "needCodeValidation"
             }
         }
-        namespace changeContact {
+        export namespace changeContact {
             /** Allowed types of contact who can be changed by change contact task */
-            enum ContactTypeEnum {
-                "contactAdmin",
-                "contactBilling",
-                "contactTech"
+            export enum ContactTypeEnum {
+                "contactAdmin" = "contactAdmin",
+                "contactBilling" = "contactBilling",
+                "contactTech" = "contactTech"
             }
             /** State of contact change task */
-            enum TaskStateEnum {
-                "aborted",
-                "checkValidity",
-                "doing",
-                "done",
-                "error",
-                "expired",
-                "refused",
-                "todo",
-                "validatingByCustomers"
+            export enum TaskStateEnum {
+                "aborted" = "aborted",
+                "checkValidity" = "checkValidity",
+                "doing" = "doing",
+                "done" = "done",
+                "error" = "error",
+                "expired" = "expired",
+                "refused" = "refused",
+                "todo" = "todo",
+                "validatingByCustomers" = "validatingByCustomers"
             }
         }
-        namespace changeEmail {
+        export namespace changeEmail {
             /** State of email change task */
-            enum TaskStateEnum {
-                "aborted",
-                "done",
-                "refused",
-                "todo"
+            export enum TaskStateEnum {
+                "aborted" = "aborted",
+                "done" = "done",
+                "refused" = "refused",
+                "todo" = "todo"
             }
         }
-        namespace contactChange {
+        export namespace contactChange {
             /** Task running a contact change on a service */
-            interface Task {
+            export interface Task {
                 /** Account who asked the contact change */
                 askingAccount ? : string;
                 /** Contacts to be changed */
@@ -9013,9 +9005,9 @@ declare namespace ovhapi {
                 toAccount: string;
             }
         }
-        namespace document {
+        export namespace document {
             /** List of documents added on your account */
-            interface Document {
+            export interface Document {
                 /** Document creation */
                 creationDate: string;
                 /** Document expiration */
@@ -9036,9 +9028,9 @@ declare namespace ovhapi {
                 validationDate ? : string;
             }
         }
-        namespace emailChange {
+        export namespace emailChange {
             /** Task running an email change on an account */
-            interface Task {
+            export interface Task {
                 /** End date of that request */
                 dateDone ? : string;
                 /** Creation date of that request */
@@ -9051,33 +9043,33 @@ declare namespace ovhapi {
                 state: nichandle.changeEmail.TaskStateEnum;
             }
         } /** OVH subsidiaries */
-        enum OvhSubsidiaryEnum {
-            "CZ",
-            "DE",
-            "ES",
-            "EU",
-            "FI",
-            "FR",
-            "GB",
-            "IE",
-            "IT",
-            "LT",
-            "MA",
-            "NL",
-            "PL",
-            "PT",
-            "SN",
-            "TN"
+        export enum OvhSubsidiaryEnum {
+            "CZ" = "CZ",
+            "DE" = "DE",
+            "ES" = "ES",
+            "EU" = "EU",
+            "FI" = "FI",
+            "FR" = "FR",
+            "GB" = "GB",
+            "IE" = "IE",
+            "IT" = "IT",
+            "LT" = "LT",
+            "MA" = "MA",
+            "NL" = "NL",
+            "PL" = "PL",
+            "PT" = "PT",
+            "SN" = "SN",
+            "TN" = "TN"
         }
         /** Permission given on the account */
-        enum RoleEnum {
-            "REGULAR",
-            "ADMIN",
-            "UNPRIVILEGED",
-            "NONE"
+        export enum RoleEnum {
+            "REGULAR" = "REGULAR",
+            "ADMIN" = "ADMIN",
+            "UNPRIVILEGED" = "UNPRIVILEGED",
+            "NONE" = "NONE"
         }
         /** Internal customer billing capacities for customer control panel */
-        interface BillingCapacities {
+        export interface BillingCapacities {
             /** Indicates if the debt system has been enabled on the customer account */
             canUseDebtSystem: boolean;
             /** Indicates customer's ability to use postal mailing for invoices */
@@ -9086,276 +9078,276 @@ declare namespace ovhapi {
             requiredPaymentMethod: nichandle.RequiredPaymentMethodEnum;
         }
         /** Countries a nichandle can choose */
-        enum CountryEnum {
-            "AC",
-            "AD",
-            "AE",
-            "AF",
-            "AG",
-            "AI",
-            "AL",
-            "AM",
-            "AO",
-            "AQ",
-            "AR",
-            "AS",
-            "AT",
-            "AU",
-            "AW",
-            "AX",
-            "AZ",
-            "BA",
-            "BB",
-            "BD",
-            "BE",
-            "BF",
-            "BG",
-            "BH",
-            "BI",
-            "BJ",
-            "BL",
-            "BM",
-            "BN",
-            "BO",
-            "BQ",
-            "BR",
-            "BS",
-            "BT",
-            "BW",
-            "BY",
-            "BZ",
-            "CA",
-            "CC",
-            "CD",
-            "CF",
-            "CG",
-            "CH",
-            "CI",
-            "CK",
-            "CL",
-            "CM",
-            "CN",
-            "CO",
-            "CR",
-            "CU",
-            "CV",
-            "CW",
-            "CX",
-            "CY",
-            "CZ",
-            "DE",
-            "DG",
-            "DJ",
-            "DK",
-            "DM",
-            "DO",
-            "DZ",
-            "EA",
-            "EC",
-            "EE",
-            "EG",
-            "EH",
-            "ER",
-            "ES",
-            "ET",
-            "FI",
-            "FJ",
-            "FK",
-            "FM",
-            "FO",
-            "FR",
-            "GA",
-            "GB",
-            "GD",
-            "GE",
-            "GF",
-            "GG",
-            "GH",
-            "GI",
-            "GL",
-            "GM",
-            "GN",
-            "GP",
-            "GQ",
-            "GR",
-            "GS",
-            "GT",
-            "GU",
-            "GW",
-            "GY",
-            "HK",
-            "HN",
-            "HR",
-            "HT",
-            "HU",
-            "IC",
-            "ID",
-            "IE",
-            "IL",
-            "IM",
-            "IN",
-            "IO",
-            "IQ",
-            "IR",
-            "IS",
-            "IT",
-            "JE",
-            "JM",
-            "JO",
-            "JP",
-            "KE",
-            "KG",
-            "KH",
-            "KI",
-            "KM",
-            "KN",
-            "KP",
-            "KR",
-            "KW",
-            "KY",
-            "KZ",
-            "LA",
-            "LB",
-            "LC",
-            "LI",
-            "LK",
-            "LR",
-            "LS",
-            "LT",
-            "LU",
-            "LV",
-            "LY",
-            "MA",
-            "MC",
-            "MD",
-            "ME",
-            "MF",
-            "MG",
-            "MH",
-            "MK",
-            "ML",
-            "MM",
-            "MN",
-            "MO",
-            "MP",
-            "MQ",
-            "MR",
-            "MS",
-            "MT",
-            "MU",
-            "MV",
-            "MW",
-            "MX",
-            "MY",
-            "MZ",
-            "NA",
-            "NC",
-            "NE",
-            "NF",
-            "NG",
-            "NI",
-            "NL",
-            "NO",
-            "NP",
-            "NR",
-            "NU",
-            "NZ",
-            "OM",
-            "PA",
-            "PE",
-            "PF",
-            "PG",
-            "PH",
-            "PK",
-            "PL",
-            "PM",
-            "PN",
-            "PR",
-            "PS",
-            "PT",
-            "PW",
-            "PY",
-            "QA",
-            "RE",
-            "RO",
-            "RS",
-            "RU",
-            "RW",
-            "SA",
-            "SB",
-            "SC",
-            "SD",
-            "SE",
-            "SG",
-            "SH",
-            "SI",
-            "SJ",
-            "SK",
-            "SL",
-            "SM",
-            "SN",
-            "SO",
-            "SR",
-            "SS",
-            "ST",
-            "SV",
-            "SX",
-            "SY",
-            "SZ",
-            "TA",
-            "TC",
-            "TD",
-            "TF",
-            "TG",
-            "TH",
-            "TJ",
-            "TK",
-            "TL",
-            "TM",
-            "TN",
-            "TO",
-            "TR",
-            "TT",
-            "TV",
-            "TW",
-            "TZ",
-            "UA",
-            "UG",
-            "UM",
-            "UNKNOWN",
-            "US",
-            "UY",
-            "UZ",
-            "VA",
-            "VC",
-            "VE",
-            "VG",
-            "VI",
-            "VN",
-            "VU",
-            "WF",
-            "WS",
-            "XK",
-            "YE",
-            "YT",
-            "ZA",
-            "ZM",
-            "ZW"
+        export enum CountryEnum {
+            "AC" = "AC",
+            "AD" = "AD",
+            "AE" = "AE",
+            "AF" = "AF",
+            "AG" = "AG",
+            "AI" = "AI",
+            "AL" = "AL",
+            "AM" = "AM",
+            "AO" = "AO",
+            "AQ" = "AQ",
+            "AR" = "AR",
+            "AS" = "AS",
+            "AT" = "AT",
+            "AU" = "AU",
+            "AW" = "AW",
+            "AX" = "AX",
+            "AZ" = "AZ",
+            "BA" = "BA",
+            "BB" = "BB",
+            "BD" = "BD",
+            "BE" = "BE",
+            "BF" = "BF",
+            "BG" = "BG",
+            "BH" = "BH",
+            "BI" = "BI",
+            "BJ" = "BJ",
+            "BL" = "BL",
+            "BM" = "BM",
+            "BN" = "BN",
+            "BO" = "BO",
+            "BQ" = "BQ",
+            "BR" = "BR",
+            "BS" = "BS",
+            "BT" = "BT",
+            "BW" = "BW",
+            "BY" = "BY",
+            "BZ" = "BZ",
+            "CA" = "CA",
+            "CC" = "CC",
+            "CD" = "CD",
+            "CF" = "CF",
+            "CG" = "CG",
+            "CH" = "CH",
+            "CI" = "CI",
+            "CK" = "CK",
+            "CL" = "CL",
+            "CM" = "CM",
+            "CN" = "CN",
+            "CO" = "CO",
+            "CR" = "CR",
+            "CU" = "CU",
+            "CV" = "CV",
+            "CW" = "CW",
+            "CX" = "CX",
+            "CY" = "CY",
+            "CZ" = "CZ",
+            "DE" = "DE",
+            "DG" = "DG",
+            "DJ" = "DJ",
+            "DK" = "DK",
+            "DM" = "DM",
+            "DO" = "DO",
+            "DZ" = "DZ",
+            "EA" = "EA",
+            "EC" = "EC",
+            "EE" = "EE",
+            "EG" = "EG",
+            "EH" = "EH",
+            "ER" = "ER",
+            "ES" = "ES",
+            "ET" = "ET",
+            "FI" = "FI",
+            "FJ" = "FJ",
+            "FK" = "FK",
+            "FM" = "FM",
+            "FO" = "FO",
+            "FR" = "FR",
+            "GA" = "GA",
+            "GB" = "GB",
+            "GD" = "GD",
+            "GE" = "GE",
+            "GF" = "GF",
+            "GG" = "GG",
+            "GH" = "GH",
+            "GI" = "GI",
+            "GL" = "GL",
+            "GM" = "GM",
+            "GN" = "GN",
+            "GP" = "GP",
+            "GQ" = "GQ",
+            "GR" = "GR",
+            "GS" = "GS",
+            "GT" = "GT",
+            "GU" = "GU",
+            "GW" = "GW",
+            "GY" = "GY",
+            "HK" = "HK",
+            "HN" = "HN",
+            "HR" = "HR",
+            "HT" = "HT",
+            "HU" = "HU",
+            "IC" = "IC",
+            "ID" = "ID",
+            "IE" = "IE",
+            "IL" = "IL",
+            "IM" = "IM",
+            "IN" = "IN",
+            "IO" = "IO",
+            "IQ" = "IQ",
+            "IR" = "IR",
+            "IS" = "IS",
+            "IT" = "IT",
+            "JE" = "JE",
+            "JM" = "JM",
+            "JO" = "JO",
+            "JP" = "JP",
+            "KE" = "KE",
+            "KG" = "KG",
+            "KH" = "KH",
+            "KI" = "KI",
+            "KM" = "KM",
+            "KN" = "KN",
+            "KP" = "KP",
+            "KR" = "KR",
+            "KW" = "KW",
+            "KY" = "KY",
+            "KZ" = "KZ",
+            "LA" = "LA",
+            "LB" = "LB",
+            "LC" = "LC",
+            "LI" = "LI",
+            "LK" = "LK",
+            "LR" = "LR",
+            "LS" = "LS",
+            "LT" = "LT",
+            "LU" = "LU",
+            "LV" = "LV",
+            "LY" = "LY",
+            "MA" = "MA",
+            "MC" = "MC",
+            "MD" = "MD",
+            "ME" = "ME",
+            "MF" = "MF",
+            "MG" = "MG",
+            "MH" = "MH",
+            "MK" = "MK",
+            "ML" = "ML",
+            "MM" = "MM",
+            "MN" = "MN",
+            "MO" = "MO",
+            "MP" = "MP",
+            "MQ" = "MQ",
+            "MR" = "MR",
+            "MS" = "MS",
+            "MT" = "MT",
+            "MU" = "MU",
+            "MV" = "MV",
+            "MW" = "MW",
+            "MX" = "MX",
+            "MY" = "MY",
+            "MZ" = "MZ",
+            "NA" = "NA",
+            "NC" = "NC",
+            "NE" = "NE",
+            "NF" = "NF",
+            "NG" = "NG",
+            "NI" = "NI",
+            "NL" = "NL",
+            "NO" = "NO",
+            "NP" = "NP",
+            "NR" = "NR",
+            "NU" = "NU",
+            "NZ" = "NZ",
+            "OM" = "OM",
+            "PA" = "PA",
+            "PE" = "PE",
+            "PF" = "PF",
+            "PG" = "PG",
+            "PH" = "PH",
+            "PK" = "PK",
+            "PL" = "PL",
+            "PM" = "PM",
+            "PN" = "PN",
+            "PR" = "PR",
+            "PS" = "PS",
+            "PT" = "PT",
+            "PW" = "PW",
+            "PY" = "PY",
+            "QA" = "QA",
+            "RE" = "RE",
+            "RO" = "RO",
+            "RS" = "RS",
+            "RU" = "RU",
+            "RW" = "RW",
+            "SA" = "SA",
+            "SB" = "SB",
+            "SC" = "SC",
+            "SD" = "SD",
+            "SE" = "SE",
+            "SG" = "SG",
+            "SH" = "SH",
+            "SI" = "SI",
+            "SJ" = "SJ",
+            "SK" = "SK",
+            "SL" = "SL",
+            "SM" = "SM",
+            "SN" = "SN",
+            "SO" = "SO",
+            "SR" = "SR",
+            "SS" = "SS",
+            "ST" = "ST",
+            "SV" = "SV",
+            "SX" = "SX",
+            "SY" = "SY",
+            "SZ" = "SZ",
+            "TA" = "TA",
+            "TC" = "TC",
+            "TD" = "TD",
+            "TF" = "TF",
+            "TG" = "TG",
+            "TH" = "TH",
+            "TJ" = "TJ",
+            "TK" = "TK",
+            "TL" = "TL",
+            "TM" = "TM",
+            "TN" = "TN",
+            "TO" = "TO",
+            "TR" = "TR",
+            "TT" = "TT",
+            "TV" = "TV",
+            "TW" = "TW",
+            "TZ" = "TZ",
+            "UA" = "UA",
+            "UG" = "UG",
+            "UM" = "UM",
+            "UNKNOWN" = "UNKNOWN",
+            "US" = "US",
+            "UY" = "UY",
+            "UZ" = "UZ",
+            "VA" = "VA",
+            "VC" = "VC",
+            "VE" = "VE",
+            "VG" = "VG",
+            "VI" = "VI",
+            "VN" = "VN",
+            "VU" = "VU",
+            "WF" = "WF",
+            "WS" = "WS",
+            "XK" = "XK",
+            "YE" = "YE",
+            "YT" = "YT",
+            "ZA" = "ZA",
+            "ZM" = "ZM",
+            "ZW" = "ZW"
         }
         /** Customer currency */
-        interface Currency {
+        export interface Currency {
             /** Currency code */
             code: string;
             /** Currency symbol */
             symbol: string;
         }
         /** Login restrictions on a development version of the Manager */
-        interface DeveloperModeRestriction {
+        export interface DeveloperModeRestriction {
             /** Allow login on your account on a development version of the Manager */
             enabled: boolean;
         }
         /** Domain operation argument */
-        interface DomainTaskArgument {
+        export interface DomainTaskArgument {
             /** List of accepted formats */
             acceptedFormats ? : domain.DocumentFormatsEnum[];
             /** List of accepted values */
@@ -9380,7 +9372,7 @@ declare namespace ovhapi {
             value ? : string;
         }
         /** Domain operation progress */
-        interface DomainTaskProgressBar {
+        export interface DomainTaskProgressBar {
             /** Current step of the operation */
             currentStep: domain.OperationStep;
             /** The estimated end date of the task */
@@ -9397,7 +9389,7 @@ declare namespace ovhapi {
             taskStatus: domain.OperationStatusEnum;
         }
         /** Email notification received */
-        interface EmailNotification {
+        export interface EmailNotification {
             /** Content of the email */
             body: string;
             /** Date at which the email was sent */
@@ -9408,17 +9400,17 @@ declare namespace ovhapi {
             subject: string;
         }
         /** All genders a person can choose */
-        enum GenderEnum {
-            "female",
-            "male"
+        export enum GenderEnum {
+            "female" = "female",
+            "male" = "male"
         }
         /** Ip registries */
-        enum IpRegistryEnum {
-            "ARIN",
-            "RIPE"
+        export enum IpRegistryEnum {
+            "ARIN" = "ARIN",
+            "RIPE" = "RIPE"
         }
         /** List of all IP Restrictions */
-        interface IpRestriction {
+        export interface IpRestriction {
             /** The Id of the restriction */
             id: number;
             /** An IP range where we will apply the rule */
@@ -9429,14 +9421,14 @@ declare namespace ovhapi {
             warning: boolean;
         }
         /** IP Restriction default rule */
-        interface IpRestrictionDefaultRule {
+        export interface IpRestrictionDefaultRule {
             /** Accept or deny access */
             rule: nichandle.accessRestriction.IpRestrictionRuleEnum;
             /** Send an email if someone try to access */
             warning: boolean;
         }
         /** Details about an IP block organisation */
-        interface Ipv4Org {
+        export interface Ipv4Org {
             /** abuse_mailbox */
             abuse_mailbox: string;
             /** address */
@@ -9452,7 +9444,7 @@ declare namespace ovhapi {
             /** organisationId */
             organisationId: string;
             /** phone */
-            phone: phoneNumber;
+            phone: string;
             /** registry */
             registry: nichandle.IpRegistryEnum;
             /** state */
@@ -9461,45 +9453,45 @@ declare namespace ovhapi {
             zip ? : string;
         }
         /** Languages a nichandle can choose */
-        enum LanguageEnum {
-            "cs_CZ",
-            "de_DE",
-            "en_AU",
-            "en_CA",
-            "en_GB",
-            "en_IE",
-            "en_US",
-            "es_ES",
-            "fi_FI",
-            "fr_CA",
-            "fr_FR",
-            "fr_MA",
-            "fr_SN",
-            "fr_TN",
-            "it_IT",
-            "lt_LT",
-            "nl_NL",
-            "pl_PL",
-            "pt_PT"
+        export enum LanguageEnum {
+            "cs_CZ" = "cs_CZ",
+            "de_DE" = "de_DE",
+            "en_AU" = "en_AU",
+            "en_CA" = "en_CA",
+            "en_GB" = "en_GB",
+            "en_IE" = "en_IE",
+            "en_US" = "en_US",
+            "es_ES" = "es_ES",
+            "fi_FI" = "fi_FI",
+            "fr_CA" = "fr_CA",
+            "fr_FR" = "fr_FR",
+            "fr_MA" = "fr_MA",
+            "fr_SN" = "fr_SN",
+            "fr_TN" = "fr_TN",
+            "it_IT" = "it_IT",
+            "lt_LT" = "lt_LT",
+            "nl_NL" = "nl_NL",
+            "pl_PL" = "pl_PL",
+            "pt_PT" = "pt_PT"
         }
         /** Legal forms a nichandle can be registered as */
-        enum LegalFormEnum {
-            "administration",
-            "association",
-            "corporation",
-            "individual",
-            "other",
-            "personalcorporation"
+        export enum LegalFormEnum {
+            "administration" = "administration",
+            "association" = "association",
+            "corporation" = "corporation",
+            "individual" = "individual",
+            "other" = "other",
+            "personalcorporation" = "personalcorporation"
         }
         /** Manager preference */
-        interface ManagerPreference {
+        export interface ManagerPreference {
             /** This preference key */
             key: string;
             /** This preference value */
-            value: text;
+            value: string;
         }
         /** Auto renewal information */
-        interface NicAutorenewInfos {
+        export interface NicAutorenewInfos {
             /** Renewal active or not */
             active: boolean;
             /** give the last renew */
@@ -9508,7 +9500,7 @@ declare namespace ovhapi {
             renewDay: number;
         }
         /** Details about your OVH identifier */
-        interface Nichandle {
+        export interface Nichandle {
             /** Address of nichandle */
             address ? : string;
             /** Area of nichandle */
@@ -9571,7 +9563,7 @@ declare namespace ovhapi {
             zip ? : string;
         }
         /** SMS notifications */
-        interface NichandleSmsNotification {
+        export interface NichandleSmsNotification {
             /** Receive notification for abuse reports */
             abuse: boolean;
             /** Creation date */
@@ -9584,29 +9576,29 @@ declare namespace ovhapi {
             updateDate ? : string;
         }
         /** Status of your notification */
-        enum NotificationStatusEnum {
-            "ok",
-            "waitingForValidation"
+        export enum NotificationStatusEnum {
+            "ok" = "ok",
+            "waitingForValidation" = "waitingForValidation"
         }
         /** OVH companies */
-        enum OvhCompanyEnum {
-            "kimsufi",
-            "ovh",
-            "soyoustart"
+        export enum OvhCompanyEnum {
+            "kimsufi" = "kimsufi",
+            "ovh" = "ovh",
+            "soyoustart" = "soyoustart"
         }
         /** Indicates the mandatory nature of having a valid payment method */
-        enum RequiredPaymentMethodEnum {
-            "mandatoryForAutorenew",
-            "mandatoryForPostpaid",
-            "notMandatory"
+        export enum RequiredPaymentMethodEnum {
+            "mandatoryForAutorenew" = "mandatoryForAutorenew",
+            "mandatoryForPostpaid" = "mandatoryForPostpaid",
+            "notMandatory" = "notMandatory"
         }
         /** States a nichandle can be in */
-        enum StateEnum {
-            "complete",
-            "incomplete"
+        export enum StateEnum {
+            "complete" = "complete",
+            "incomplete" = "incomplete"
         }
         /** Sub Account */
-        interface SubAccount {
+        export interface SubAccount {
             /** Creation date */
             creationDate: string;
             /** This sub-account description */
@@ -9615,19 +9607,19 @@ declare namespace ovhapi {
             id: number;
         }
         /** Credentials to interact with the api on behalf of the sub-account */
-        interface SubAccountConsumerKey {
+        export interface SubAccountConsumerKey {
             /** The consumer key */
             consumerKey: string;
         }
         /** List of all OVH things you can subscribe to */
-        interface Subscription {
+        export interface Subscription {
             /** Determine whether you are registered or not */
             registered ? : boolean;
             /** The type of subscription */
             type: string;
         }
         /** A user */
-        interface User {
+        export interface User {
             /** Creation date of this user */
             creation: string;
             /** User's description */
@@ -9646,13 +9638,13 @@ declare namespace ovhapi {
             status: nichandle.UserStatus;
         }
         /** Status of a User */
-        enum UserStatus {
-            "OK",
-            "DISABLED",
-            "PASSWORD_CHANGE_REQUIRED"
+        export enum UserStatus {
+            "OK" = "OK",
+            "DISABLED" = "DISABLED",
+            "PASSWORD_CHANGE_REQUIRED" = "PASSWORD_CHANGE_REQUIRED"
         }
         /** VIP Status by Universe */
-        interface VipStatus {
+        export interface VipStatus {
             /** Is account VIP for Cloud Universe */
             cloud: boolean;
             /** Is account VIP for Dedicated Universe */
@@ -9663,14 +9655,14 @@ declare namespace ovhapi {
             web: boolean;
         }
         /** Voucher Status and Information */
-        interface VoucherStatus {
+        export interface VoucherStatus {
             /** Is voucher valid */
             validity: boolean;
         }
         /** Email notification */
-        interface emailNotification {
+        export interface emailNotification {
             /** This email body */
-            body: text;
+            body: string;
             /** This email date */
             date: string;
             /** This email Id */
@@ -9679,14 +9671,14 @@ declare namespace ovhapi {
             subject: string;
         }
         /** Customer IPXE scripts */
-        interface ipxe {
+        export interface ipxe {
             /** Name of this script */
             name: string;
             /** Content of your IPXE script */
-            script: text;
+            script: string;
         }
         /** Customer public SSH key, can be used for rescue netboot or server access after reinstallation */
-        interface sshKey {
+        export interface sshKey {
             /** True when this public SSH key is used for rescue mode and reinstallations */
             default: boolean;
             /** ASCII encoded public SSH key */
@@ -9695,10 +9687,10 @@ declare namespace ovhapi {
             keyName: string;
         }
     }
-    namespace order {
-        namespace cart {
+    export namespace order {
+        export namespace cart {
             /** Representation of a generic product */
-            interface GenericProductDefinition {
+            export interface GenericProductDefinition {
                 /** Product offer identifier */
                 planCode: string;
                 /** Prices of the product offer */
@@ -9709,13 +9701,13 @@ declare namespace ovhapi {
                 productType: order.cart.GenericProductTypeEnum;
             }
             /** Representation of a product pricing */
-            interface GenericProductPricing {
+            export interface GenericProductPricing {
                 /** Capacities of the pricing (type of pricing) */
                 capacities: order.cart.GenericProductPricingCapacitiesEnum[];
                 /** Description of the pricing */
                 description: string;
                 /** Duration for ordering the product */
-                duration: duration;
+                duration: string;
                 /** Interval of renewal */
                 interval: number;
                 /** Maximum quantity that can be ordered */
@@ -9736,70 +9728,70 @@ declare namespace ovhapi {
                 pricingType: order.cart.GenericProductPricingTypeEnum;
             }
             /** Capacity of a pricing (type) */
-            enum GenericProductPricingCapacitiesEnum {
-                "consumption",
-                "detach",
-                "downgrade",
-                "dynamic",
-                "installation",
-                "renew",
-                "upgrade"
+            export enum GenericProductPricingCapacitiesEnum {
+                "consumption" = "consumption",
+                "detach" = "detach",
+                "downgrade" = "downgrade",
+                "dynamic" = "dynamic",
+                "installation" = "installation",
+                "renew" = "renew",
+                "upgrade" = "upgrade"
             }
             /** Type of a pricing */
-            enum GenericProductPricingTypeEnum {
-                "consumption",
-                "purchase",
-                "rental"
+            export enum GenericProductPricingTypeEnum {
+                "consumption" = "consumption",
+                "purchase" = "purchase",
+                "rental" = "rental"
             }
             /** Type of a product */
-            enum GenericProductTypeEnum {
-                "cloud_service",
-                "delivery",
-                "deposit",
-                "domain",
-                "implementation_services",
-                "saas_license",
-                "shipping",
-                "storage"
+            export enum GenericProductTypeEnum {
+                "cloud_service" = "cloud_service",
+                "delivery" = "delivery",
+                "deposit" = "deposit",
+                "domain" = "domain",
+                "implementation_services" = "implementation_services",
+                "saas_license" = "saas_license",
+                "shipping" = "shipping",
+                "storage" = "storage"
             }
         } /** Currency code */
-        enum CurrencyCodeEnum {
-            "AUD",
-            "CAD",
-            "CZK",
-            "EUR",
-            "GBP",
-            "INR",
-            "LTL",
-            "MAD",
-            "N/A",
-            "PLN",
-            "SGD",
-            "TND",
-            "USD",
-            "XOF",
-            "points"
+        export enum CurrencyCodeEnum {
+            "AUD" = "AUD",
+            "CAD" = "CAD",
+            "CZK" = "CZK",
+            "EUR" = "EUR",
+            "GBP" = "GBP",
+            "INR" = "INR",
+            "LTL" = "LTL",
+            "MAD" = "MAD",
+            "N/A" = "N/A",
+            "PLN" = "PLN",
+            "SGD" = "SGD",
+            "TND" = "TND",
+            "USD" = "USD",
+            "XOF" = "XOF",
+            "points" = "points"
         }
         /** Price with its currency and textual representation */
-        interface Price {
+        export interface Price {
             /** Currency code */
             currencyCode: order.CurrencyCodeEnum;
             /** Textual representation */
             text: string;
             /** The effective price */
-            value: double;
+            value: number;
         }
         /** A contract */
-        interface Contract {
+        export interface Contract {
             /** Terms of the contract */
-            content: text;
+            content: string;
             /** Name of the contract */
             name: string;
             /** URL to download the contract */
             url: string;
         }
         /** An order */
-        interface Order {
+        export interface Order {
             /** List of contracts related to the order */
             contracts: order.Contract[];
             /** Details of the order */
@@ -9812,7 +9804,7 @@ declare namespace ovhapi {
             url ? : string;
         }
         /** Detail of an order */
-        interface OrderDetail {
+        export interface OrderDetail {
             /** Cart Item ID the details is related to */
             cartItemID ? : number;
             /** Description of the detail */
@@ -9835,30 +9827,30 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** Product type of item in order */
-        enum OrderDetailTypeEnum {
-            "ACCESSORY",
-            "CAUTION",
-            "CHOOSED",
-            "CONSUMPTION",
-            "CREATION",
-            "DELIVERY",
-            "DURATION",
-            "GIFT",
-            "INSTALLATION",
-            "LICENSE",
-            "MUTE",
-            "OTHER",
-            "OUTPLAN",
-            "QUANTITY",
-            "REFUND",
-            "RENEW",
-            "SPECIAL",
-            "SWITCH",
-            "TRANSFER",
-            "VOUCHER"
+        export enum OrderDetailTypeEnum {
+            "ACCESSORY" = "ACCESSORY",
+            "CAUTION" = "CAUTION",
+            "CHOOSED" = "CHOOSED",
+            "CONSUMPTION" = "CONSUMPTION",
+            "CREATION" = "CREATION",
+            "DELIVERY" = "DELIVERY",
+            "DURATION" = "DURATION",
+            "GIFT" = "GIFT",
+            "INSTALLATION" = "INSTALLATION",
+            "LICENSE" = "LICENSE",
+            "MUTE" = "MUTE",
+            "OTHER" = "OTHER",
+            "OUTPLAN" = "OUTPLAN",
+            "QUANTITY" = "QUANTITY",
+            "REFUND" = "REFUND",
+            "RENEW" = "RENEW",
+            "SPECIAL" = "SPECIAL",
+            "SWITCH" = "SWITCH",
+            "TRANSFER" = "TRANSFER",
+            "VOUCHER" = "VOUCHER"
         }
         /** Prices of an order */
-        interface OrderPrices {
+        export interface OrderPrices {
             /** Price before reduction application */
             originalWithoutTax ? : order.Price;
             /** Price concerning the reduced amount */
@@ -9871,7 +9863,7 @@ declare namespace ovhapi {
             withoutTax: order.Price;
         }
         /** Order detail reduction */
-        interface Reduction {
+        export interface Reduction {
             /** In which context the reduction is applied */
             context: order.ReductionContextEnum;
             /** Promotion description */
@@ -9886,20 +9878,20 @@ declare namespace ovhapi {
             value: order.Price;
         }
         /** Context of the reduction */
-        enum ReductionContextEnum {
-            "promotion",
-            "voucher"
+        export enum ReductionContextEnum {
+            "promotion" = "promotion",
+            "voucher" = "voucher"
         }
         /** Type of reduction */
-        enum ReductionTypeEnum {
-            "fixed_amount",
-            "forced_amount",
-            "percentage"
+        export enum ReductionTypeEnum {
+            "fixed_amount" = "fixed_amount",
+            "forced_amount" = "forced_amount",
+            "percentage" = "percentage"
         }
     }
-    namespace service {
+    export namespace service {
         /** Map a possible renew for a specific service */
-        interface RenewType {
+        export interface RenewType {
             /** The service is automatically renewed */
             automatic: boolean;
             /** The service will be deleted at expiration */
@@ -9912,53 +9904,53 @@ declare namespace ovhapi {
             period ? : number;
         }
         /** Detailed renewal type of a service */
-        enum RenewalTypeEnum {
-            "automaticForcedProduct",
-            "automaticV2012",
-            "automaticV2014",
-            "automaticV2016",
-            "manual",
-            "oneShot",
-            "option"
+        export enum RenewalTypeEnum {
+            "automaticForcedProduct" = "automaticForcedProduct",
+            "automaticV2012" = "automaticV2012",
+            "automaticV2014" = "automaticV2014",
+            "automaticV2016" = "automaticV2016",
+            "manual" = "manual",
+            "oneShot" = "oneShot",
+            "option" = "option"
         }
         /** StateEnum */
-        enum StateEnum {
-            "expired",
-            "inCreation",
-            "ok",
-            "pendingDebt",
-            "unPaid"
+        export enum StateEnum {
+            "expired" = "expired",
+            "inCreation" = "inCreation",
+            "ok" = "ok",
+            "pendingDebt" = "pendingDebt",
+            "unPaid" = "unPaid"
         }
         /** All future uses you can provide for a service termination */
-        enum TerminationFutureUseEnum {
-            "NOT_REPLACING_SERVICE",
-            "OTHER",
-            "SUBSCRIBE_AN_OTHER_SERVICE",
-            "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
-            "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+        export enum TerminationFutureUseEnum {
+            "NOT_REPLACING_SERVICE" = "NOT_REPLACING_SERVICE",
+            "OTHER" = "OTHER",
+            "SUBSCRIBE_AN_OTHER_SERVICE" = "SUBSCRIBE_AN_OTHER_SERVICE",
+            "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR" = "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR",
+            "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR" = "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
         }
         /** All reasons you can provide for a service termination */
-        enum TerminationReasonEnum {
-            "FEATURES_DONT_SUIT_ME",
-            "LACK_OF_PERFORMANCES",
-            "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
-            "MIGRATED_TO_COMPETITOR",
-            "NOT_ENOUGH_RECOGNITION",
-            "NOT_NEEDED_ANYMORE",
-            "NOT_RELIABLE",
-            "NO_ANSWER",
-            "OTHER",
-            "PRODUCT_DIMENSION_DONT_SUIT_ME",
-            "PRODUCT_TOOLS_DONT_SUIT_ME",
-            "TOO_EXPENSIVE",
-            "TOO_HARD_TO_USE",
-            "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+        export enum TerminationReasonEnum {
+            "FEATURES_DONT_SUIT_ME" = "FEATURES_DONT_SUIT_ME",
+            "LACK_OF_PERFORMANCES" = "LACK_OF_PERFORMANCES",
+            "MIGRATED_TO_ANOTHER_OVH_PRODUCT" = "MIGRATED_TO_ANOTHER_OVH_PRODUCT",
+            "MIGRATED_TO_COMPETITOR" = "MIGRATED_TO_COMPETITOR",
+            "NOT_ENOUGH_RECOGNITION" = "NOT_ENOUGH_RECOGNITION",
+            "NOT_NEEDED_ANYMORE" = "NOT_NEEDED_ANYMORE",
+            "NOT_RELIABLE" = "NOT_RELIABLE",
+            "NO_ANSWER" = "NO_ANSWER",
+            "OTHER" = "OTHER",
+            "PRODUCT_DIMENSION_DONT_SUIT_ME" = "PRODUCT_DIMENSION_DONT_SUIT_ME",
+            "PRODUCT_TOOLS_DONT_SUIT_ME" = "PRODUCT_TOOLS_DONT_SUIT_ME",
+            "TOO_EXPENSIVE" = "TOO_EXPENSIVE",
+            "TOO_HARD_TO_USE" = "TOO_HARD_TO_USE",
+            "UNSATIFIED_BY_CUSTOMER_SUPPORT" = "UNSATIFIED_BY_CUSTOMER_SUPPORT"
         }
     }
-    namespace services {
-        namespace expanded {
+    export namespace services {
+        export namespace expanded {
             /** Route of the service */
-            interface Route {
+            export interface Route {
                 /** Path to use in API */
                 path ? : string;
                 /** Path with variables applied */
@@ -9967,7 +9959,7 @@ declare namespace ovhapi {
                 vars: complexType.SafeKeyValue < string > [];
             }
         } /** Details about a Service */
-        interface Service {
+        export interface Service {
             /** Indicates that the service can be set up to be deleted at expiration */
             canDeleteAtExpiration: boolean;
             /** contactAdmin */
@@ -9996,16 +9988,16 @@ declare namespace ovhapi {
             status: service.StateEnum;
         }
     }
-    namespace agreements {
+    export namespace agreements {
         /** The current state of a contract agreement */
-        enum AgreementStateEnum {
-            "ko",
-            "obsolete",
-            "ok",
-            "todo"
+        export enum AgreementStateEnum {
+            "ko" = "ko",
+            "obsolete" = "obsolete",
+            "ok" = "ok",
+            "todo" = "todo"
         }
         /** Contract of service */
-        interface Contract {
+        export interface Contract {
             /** Is this contract currently active or not ? */
             active: boolean;
             /** Date the contract was created on */
@@ -10018,7 +10010,7 @@ declare namespace ovhapi {
             text: string;
         }
         /** Contract agreement */
-        interface ContractAgreement {
+        export interface ContractAgreement {
             /** State of the agreement */
             agreed: agreements.AgreementStateEnum;
             /** Id of the agreed contract */
@@ -10029,9 +10021,9 @@ declare namespace ovhapi {
             id: number;
         }
     }
-    namespace api {
+    export namespace api {
         /** API Application */
-        interface Application {
+        export interface Application {
             /** applicationId */
             applicationId: number;
             /** applicationKey */
@@ -10044,14 +10036,14 @@ declare namespace ovhapi {
             status: api.ApplicationStatusEnum;
         }
         /** List of state of an Api Application */
-        enum ApplicationStatusEnum {
-            "active",
-            "blocked",
-            "inactive",
-            "trusted"
+        export enum ApplicationStatusEnum {
+            "active" = "active",
+            "blocked" = "blocked",
+            "inactive" = "inactive",
+            "trusted" = "trusted"
         }
         /** API Credential */
-        interface Credential {
+        export interface Credential {
             /** If defined, list of ip blocks which are allowed to call API with this credential */
             allowedIPs ? : string[];
             /** applicationId */
@@ -10072,7 +10064,7 @@ declare namespace ovhapi {
             status: auth.CredentialStateEnum;
         }
         /** API Log */
-        interface Log {
+        export interface Log {
             /** Account which did the Request */
             account: string;
             /** Date of the request */
@@ -10089,9 +10081,9 @@ declare namespace ovhapi {
             route: string;
         }
     }
-    namespace audit {
+    export namespace audit {
         /** An audit Log */
-        interface Log {
+        export interface Log {
             /** authentication details */
             authDetails ? : audit.LogAuthDetails;
             /** event's date */
@@ -10104,55 +10096,55 @@ declare namespace ovhapi {
             type: audit.LogTypeEnum;
         }
         /** Authentication details */
-        interface LogAuthDetails {
+        export interface LogAuthDetails {
             /** authenticated user details */
             userDetails: audit.LogAuthUserDetails;
         }
         /** Authentication MFA type */
-        enum LogAuthMFATypeEnum {
-            "BACKUP_CODE",
-            "MAIL",
-            "NONE",
-            "SMS",
-            "TOTP",
-            "U2F",
-            "UNKNOWN"
+        export enum LogAuthMFATypeEnum {
+            "BACKUP_CODE" = "BACKUP_CODE",
+            "MAIL" = "MAIL",
+            "NONE" = "NONE",
+            "SMS" = "SMS",
+            "TOTP" = "TOTP",
+            "U2F" = "U2F",
+            "UNKNOWN" = "UNKNOWN"
         }
         /** Authenticated user details */
-        interface LogAuthUserDetails {
+        export interface LogAuthUserDetails {
             /** authentication type */
             type: audit.LogAuthUserTypeEnum;
             /** authenticated user name */
             user ? : string;
         }
         /** Authentication type */
-        enum LogAuthUserTypeEnum {
-            "ACCOUNT",
-            "PROVIDER",
-            "USER"
+        export enum LogAuthUserTypeEnum {
+            "ACCOUNT" = "ACCOUNT",
+            "PROVIDER" = "PROVIDER",
+            "USER" = "USER"
         }
         /** specific fields for LOGIN_SUCCESS events */
-        interface LogLoginSuccessDetails {
+        export interface LogLoginSuccessDetails {
             /** Used MFA while login */
             mfaType ? : audit.LogAuthMFATypeEnum;
             /** Browser's user agent */
             userAgent: string;
         }
         /** Audit event type */
-        enum LogTypeEnum {
-            "LOGIN_SUCCESS"
+        export enum LogTypeEnum {
+            "LOGIN_SUCCESS" = "LOGIN_SUCCESS"
         }
     }
-    namespace auth {
+    export namespace auth {
         /** Access rule allowed to an application */
-        interface AccessRule {
+        export interface AccessRule {
             /** Allowed Method */
             method: auth.HTTPMethodEnum;
             /** Allowed path */
             path: string;
         }
         /** API Application */
-        interface ApiApplication {
+        export interface ApiApplication {
             /** ID of this Application */
             applicationId: number;
             /** Key of this application */
@@ -10165,7 +10157,7 @@ declare namespace ovhapi {
             status: auth.ApplicationStatusEnum;
         }
         /** API Credential */
-        interface ApiCredential {
+        export interface ApiCredential {
             /** If defined, list of ip blocks which are allowed to call API with this credential */
             allowedIPs ? : string[];
             /** ID of associated API Application */
@@ -10186,31 +10178,31 @@ declare namespace ovhapi {
             status: auth.CredentialStateEnum;
         }
         /** All states an API Application can be in */
-        enum ApplicationStatusEnum {
-            "active",
-            "blocked",
-            "inactive",
-            "trusted"
+        export enum ApplicationStatusEnum {
+            "active" = "active",
+            "blocked" = "blocked",
+            "inactive" = "inactive",
+            "trusted" = "trusted"
         }
         /** All states a Credential can be in */
-        enum CredentialStateEnum {
-            "expired",
-            "pendingValidation",
-            "refused",
-            "validated"
+        export enum CredentialStateEnum {
+            "expired" = "expired",
+            "pendingValidation" = "pendingValidation",
+            "refused" = "refused",
+            "validated" = "validated"
         }
         /** All HTTP methods available */
-        enum HTTPMethodEnum {
-            "DELETE",
-            "GET",
-            "POST",
-            "PUT"
+        export enum HTTPMethodEnum {
+            "DELETE" = "DELETE",
+            "GET" = "GET",
+            "POST" = "POST",
+            "PUT" = "PUT"
         }
     }
-    namespace billing {
-        namespace ItemDetail {
+    export namespace billing {
+        export namespace ItemDetail {
             /** Order data for this Detail */
-            interface Order {
+            export interface Order {
                 /** The meaning of this order detail */
                 action ? : billing.ItemDetail.OrderActionEnum;
                 /** Configurations chosen during the order */
@@ -10221,28 +10213,28 @@ declare namespace ovhapi {
                 type ? : billing.ItemDetail.OrderDetailTypeEnum;
             }
             /** List of order actions */
-            enum OrderActionEnum {
-                "consumption",
-                "detach",
-                "installation",
-                "renew",
-                "revert",
-                "upgrade"
+            export enum OrderActionEnum {
+                "consumption" = "consumption",
+                "detach" = "detach",
+                "installation" = "installation",
+                "renew" = "renew",
+                "revert" = "revert",
+                "upgrade" = "upgrade"
             }
             /** Configuration of order */
-            interface OrderConfiguration {
+            export interface OrderConfiguration {
                 /** Label of the configuration */
                 label: string;
                 /** Value of the configuration */
                 value: string;
             }
             /** List of order detail types */
-            enum OrderDetailTypeEnum {
-                "plan",
-                "product"
+            export enum OrderDetailTypeEnum {
+                "plan" = "plan",
+                "product" = "product"
             }
             /** Plan data from order */
-            interface OrderPlan {
+            export interface OrderPlan {
                 /** Plan code used when ordering through /order/cart */
                 code ? : string;
                 /** Duration chosen when ordering through /order/cart (ISO 8601) */
@@ -10255,37 +10247,37 @@ declare namespace ovhapi {
                 quantity ? : number;
             }
             /** Product data from order */
-            interface OrderPlanProduct {
+            export interface OrderPlanProduct {
                 /** Name of the product used when ordering through /order/cart */
                 name ? : string;
             }
         }
-        namespace credit {
-            namespace balance {
-                namespace movement {
+        export namespace credit {
+            export namespace balance {
+                export namespace movement {
                     /** Movement sub object */
-                    interface SubObject {
+                    export interface SubObject {
                         /** Sub object ID */
                         id ? : string;
                         /** Sub object name */
                         name ? : string;
                     }
                 } /** Part of a balance */
-                interface BalanceDetail {
+                export interface BalanceDetail {
                     /** Balance part amount */
                     amount: order.Price;
                     /** Service ID of this balance part */
                     serviceId ? : long;
                 }
                 /** Movement already booked on orders */
-                interface BookedMovement {
+                export interface BookedMovement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Order ID */
                     orderId: number;
                 }
                 /** Movement expiring soon */
-                interface ExpiringMovement {
+                export interface ExpiringMovement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Movement creation date */
@@ -10298,7 +10290,7 @@ declare namespace ovhapi {
                     sourceObject: billing.credit.balance.movement.SubObject;
                 }
                 /** Credit balance */
-                interface Movement {
+                export interface Movement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Balance name */
@@ -10321,14 +10313,14 @@ declare namespace ovhapi {
                     type: string;
                 }
                 /** Balance type */
-                enum Type {
-                    "PREPAID_ACCOUNT",
-                    "VOUCHER",
-                    "DEPOSIT",
-                    "BONUS"
+                export enum Type {
+                    "PREPAID_ACCOUNT" = "PREPAID_ACCOUNT",
+                    "VOUCHER" = "VOUCHER",
+                    "DEPOSIT" = "DEPOSIT",
+                    "BONUS" = "BONUS"
                 }
             } /** Credit balance */
-            interface Balance {
+            export interface Balance {
                 /** Balance amount */
                 amount: order.Price;
                 /** Balance details, amounts by serviceID */
@@ -10349,34 +10341,34 @@ declare namespace ovhapi {
                 type: billing.credit.balance.Type;
             }
         }
-        namespace fidelityAccount {
+        export namespace fidelityAccount {
             /** Operations a fidelity account movement can represent */
-            enum OperationEnum {
-                "bonus",
-                "cancel-bonus",
-                "cancel-credit",
-                "cancel-debit",
-                "cancel-pre-debit",
-                "credit",
-                "debit",
-                "pre-credit",
-                "pre-debit"
+            export enum OperationEnum {
+                "bonus" = "bonus",
+                "cancel-bonus" = "cancel-bonus",
+                "cancel-credit" = "cancel-credit",
+                "cancel-debit" = "cancel-debit",
+                "cancel-pre-debit" = "cancel-pre-debit",
+                "credit" = "credit",
+                "debit" = "debit",
+                "pre-credit" = "pre-credit",
+                "pre-debit" = "pre-debit"
             }
         }
-        namespace order {
-            namespace associatedObject {
+        export namespace order {
+            export namespace associatedObject {
                 /** Type of objects an order can be linked to */
-                enum TypeEnum {
-                    "Bill",
-                    "Deposit",
-                    "Refund",
-                    "ReverseBill",
-                    "Withdrawal"
+                export enum TypeEnum {
+                    "Bill" = "Bill",
+                    "Deposit" = "Deposit",
+                    "Refund" = "Refund",
+                    "ReverseBill" = "ReverseBill",
+                    "Withdrawal" = "Withdrawal"
                 }
             }
-            namespace followUp {
+            export namespace followUp {
                 /** Step history of order follow-up */
-                interface History {
+                export interface History {
                     /** History date of order follow-up */
                     date: string;
                     /** History description of order follow-up */
@@ -10385,39 +10377,39 @@ declare namespace ovhapi {
                     label: billing.order.followUp.HistoryStatusEnum;
                 }
                 /** History label of order follow-up */
-                enum HistoryStatusEnum {
-                    "DELIVERY",
-                    "FRAUD_CHECK",
-                    "FRAUD_DOCS_REQUESTED",
-                    "FRAUD_MANUAL_REVIEW",
-                    "FRAUD_REFUSED",
-                    "INVOICE_IN_PROGRESS",
-                    "INVOICE_SENT",
-                    "ORDER_ACCEPTED",
-                    "ORDER_STARTED",
-                    "PAYMENT_CONFIRMED",
-                    "PAYMENT_INITIATED",
-                    "PAYMENT_RECEIVED",
-                    "REGISTERED_PAYMENT_INITIATED"
+                export enum HistoryStatusEnum {
+                    "DELIVERY" = "DELIVERY",
+                    "FRAUD_CHECK" = "FRAUD_CHECK",
+                    "FRAUD_DOCS_REQUESTED" = "FRAUD_DOCS_REQUESTED",
+                    "FRAUD_MANUAL_REVIEW" = "FRAUD_MANUAL_REVIEW",
+                    "FRAUD_REFUSED" = "FRAUD_REFUSED",
+                    "INVOICE_IN_PROGRESS" = "INVOICE_IN_PROGRESS",
+                    "INVOICE_SENT" = "INVOICE_SENT",
+                    "ORDER_ACCEPTED" = "ORDER_ACCEPTED",
+                    "ORDER_STARTED" = "ORDER_STARTED",
+                    "PAYMENT_CONFIRMED" = "PAYMENT_CONFIRMED",
+                    "PAYMENT_INITIATED" = "PAYMENT_INITIATED",
+                    "PAYMENT_RECEIVED" = "PAYMENT_RECEIVED",
+                    "REGISTERED_PAYMENT_INITIATED" = "REGISTERED_PAYMENT_INITIATED"
                 }
                 /** Step status of order follow-up */
-                enum StatusEnum {
-                    "DOING",
-                    "DONE",
-                    "ERROR",
-                    "TODO"
+                export enum StatusEnum {
+                    "DOING" = "DOING",
+                    "DONE" = "DONE",
+                    "ERROR" = "ERROR",
+                    "TODO" = "TODO"
                 }
                 /** Status of order follow-up */
-                enum StepEnum {
-                    "AVAILABLE",
-                    "DELIVERING",
-                    "VALIDATED",
-                    "VALIDATING"
+                export enum StepEnum {
+                    "AVAILABLE" = "AVAILABLE",
+                    "DELIVERING" = "DELIVERING",
+                    "VALIDATED" = "VALIDATED",
+                    "VALIDATING" = "VALIDATING"
                 }
             }
-            namespace paymentMean {
+            export namespace paymentMean {
                 /** Parameter to give to a payment page */
-                interface HttpParameter {
+                export interface HttpParameter {
                     /** choice */
                     choice ? : billing.order.paymentMean.HttpParameterChoice[];
                     /** name */
@@ -10426,21 +10418,21 @@ declare namespace ovhapi {
                     value ? : string;
                 }
                 /** Choice for an HTTP multi value parameter */
-                interface HttpParameterChoice {
+                export interface HttpParameterChoice {
                     /** name */
                     name: string;
                     /** value */
                     value: string;
                 }
             } /** The object the processing of the order leaded to */
-            interface AssociatedObject {
+            export interface AssociatedObject {
                 /** id */
                 id ? : string;
                 /** type */
                 type ? : billing.order.associatedObject.TypeEnum;
             }
             /** All data needed to use a payment mean */
-            interface AvailablePaymentMean {
+            export interface AvailablePaymentMean {
                 /** fields */
                 fields ? : billing.order.AvailablePaymentMeanField[];
                 /** integration */
@@ -10451,7 +10443,7 @@ declare namespace ovhapi {
                 url ? : string;
             }
             /** All fields needed for a payment mean integration */
-            interface AvailablePaymentMeanField {
+            export interface AvailablePaymentMeanField {
                 /** key */
                 key: string;
                 /** options */
@@ -10462,7 +10454,7 @@ declare namespace ovhapi {
                 value ? : string;
             }
             /** Detailed consumption's retrieval information */
-            interface ConsumptionDetails {
+            export interface ConsumptionDetails {
                 /** Format of the file */
                 fileFormat ? : consumption.ConsumptionExportFormatsEnum;
                 /** Temporary URL to download detailed consumption */
@@ -10475,7 +10467,7 @@ declare namespace ovhapi {
                 taskStatus: consumption.ConsumptionExportTaskStatusEnum;
             }
             /** Follow up history of an order */
-            interface FollowUp {
+            export interface FollowUp {
                 /** Step history of order follow-up */
                 history: billing.order.followUp.History[];
                 /** Step status of order follow-up */
@@ -10484,27 +10476,27 @@ declare namespace ovhapi {
                 step: billing.order.followUp.StepEnum;
             }
             /** All possible order status */
-            enum OrderStatusEnum {
-                "cancelled",
-                "cancelling",
-                "checking",
-                "delivered",
-                "delivering",
-                "documentsRequested",
-                "notPaid",
-                "unknown"
+            export enum OrderStatusEnum {
+                "cancelled" = "cancelled",
+                "cancelling" = "cancelling",
+                "checking" = "checking",
+                "delivered" = "delivered",
+                "delivering" = "delivering",
+                "documentsRequested" = "documentsRequested",
+                "notPaid" = "notPaid",
+                "unknown" = "unknown"
             }
             /** Pay with payment method parameter */
-            interface PayWithPaymentMethod {
+            export interface PayWithPaymentMethod {
                 /** ID of payment method for pay this order */
                 id: number;
             }
             /** All data needed to use a payment mean */
-            interface PaymentMean {
+            export interface PaymentMean {
                 /** fee */
-                fee: double;
+                fee: number;
                 /** htmlForm */
-                htmlForm ? : text;
+                htmlForm ? : string;
                 /** httpMethod */
                 httpMethod: string;
                 /** logo */
@@ -10517,19 +10509,19 @@ declare namespace ovhapi {
                 url: string;
             }
             /** Field type of a payment mean */
-            enum PaymentMeanFieldTypeEnum {
-                "hidden",
-                "select",
-                "text"
+            export enum PaymentMeanFieldTypeEnum {
+                "hidden" = "hidden",
+                "select" = "select",
+                "text" = "text"
             }
             /** Integration payment mean type */
-            enum PaymentMeanIntegrationEnum {
-                "GET_FORM",
-                "POST_FORM",
-                "REDIRECT"
+            export enum PaymentMeanIntegrationEnum {
+                "GET_FORM" = "GET_FORM",
+                "POST_FORM" = "POST_FORM",
+                "REDIRECT" = "REDIRECT"
             }
             /** TODO */
-            interface PaymentMeans {
+            export interface PaymentMeans {
                 /** creditCard */
                 creditCard ? : billing.order.PaymentMean[];
                 /** edinar */
@@ -10548,7 +10540,7 @@ declare namespace ovhapi {
                 promotion ? : billing.order.PaymentMean[];
             }
             /** Payment methods */
-            interface PaymentMethods {
+            export interface PaymentMethods {
                 /** Payment method available on this order */
                 available: payment.method.AvailablePaymentMethod[];
                 /** List of registered Payment methods usable on this order */
@@ -10557,51 +10549,51 @@ declare namespace ovhapi {
                 registered: number[];
             }
             /** A registered payment mean */
-            interface RegisteredPaymentMean {
+            export interface RegisteredPaymentMean {
                 /** paymentMean */
                 paymentMean: billing.ReusablePaymentMeanEnum;
             }
             /** Retraction reason type */
-            enum RetractionReasonEnum {
-                "competitor",
-                "difficulty",
-                "expensive",
-                "other",
-                "performance",
-                "reliability",
-                "unused"
+            export enum RetractionReasonEnum {
+                "competitor" = "competitor",
+                "difficulty" = "difficulty",
+                "expensive" = "expensive",
+                "other" = "other",
+                "performance" = "performance",
+                "reliability" = "reliability",
+                "unused" = "unused"
             }
         }
-        namespace ovhAccount {
+        export namespace ovhAccount {
             /** Operations an OVH account movement can represent */
-            enum OperationEnum {
-                "cancel-credit",
-                "cancel-debit",
-                "cancel-pre-debit",
-                "credit",
-                "debit",
-                "pre-credit",
-                "pre-debit"
+            export enum OperationEnum {
+                "cancel-credit" = "cancel-credit",
+                "cancel-debit" = "cancel-debit",
+                "cancel-pre-debit" = "cancel-pre-debit",
+                "credit" = "credit",
+                "debit" = "debit",
+                "pre-credit" = "pre-credit",
+                "pre-debit" = "pre-debit"
             }
         }
-        namespace voucherAccount {
+        export namespace voucherAccount {
             /** Operations a voucher account movement can represent */
-            enum OperationEnum {
-                "cancel-credit",
-                "cancel-debit",
-                "cancel-pre-debit",
-                "credit",
-                "debit",
-                "pre-credit",
-                "pre-debit"
+            export enum OperationEnum {
+                "cancel-credit" = "cancel-credit",
+                "cancel-debit" = "cancel-debit",
+                "cancel-pre-debit" = "cancel-pre-debit",
+                "credit" = "credit",
+                "debit" = "debit",
+                "pre-credit" = "pre-credit",
+                "pre-debit" = "pre-debit"
             }
         } /** List of available archive types */
-        enum ArchiveTypeEnum {
-            "csv",
-            "zip"
+        export enum ArchiveTypeEnum {
+            "csv" = "csv",
+            "zip" = "zip"
         }
         /** Available automatic payment means */
-        interface AutomaticPaymentMean {
+        export interface AutomaticPaymentMean {
             /** Bank Account */
             bankAccount: boolean;
             /** Credit Card */
@@ -10612,7 +10604,7 @@ declare namespace ovhapi {
             paypal: boolean;
         }
         /** Details about a Bill */
-        interface Bill {
+        export interface Bill {
             /** billId */
             billId: string;
             /** category */
@@ -10635,7 +10627,7 @@ declare namespace ovhapi {
             url: string;
         }
         /** Information about a Bill entry */
-        interface BillDetail {
+        export interface BillDetail {
             /** billDetailId */
             billDetailId: string;
             /** description */
@@ -10654,34 +10646,34 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** billing task status */
-        enum BillingTaskStatusEnum {
-            "cancelled",
-            "customerError",
-            "doing",
-            "done",
-            "init",
-            "ovhError",
-            "todo"
+        export enum BillingTaskStatusEnum {
+            "cancelled" = "cancelled",
+            "customerError" = "customerError",
+            "doing" = "doing",
+            "done" = "done",
+            "init" = "init",
+            "ovhError" = "ovhError",
+            "todo" = "todo"
         }
         /** Types of plans */
-        enum CategoryEnum {
-            "autorenew",
-            "earlyrenewal",
-            "purchase",
-            "purchase-cloud",
-            "purchase-servers",
-            "purchase-telecom",
-            "purchase-web"
+        export enum CategoryEnum {
+            "autorenew" = "autorenew",
+            "earlyrenewal" = "earlyrenewal",
+            "purchase" = "purchase",
+            "purchase-cloud" = "purchase-cloud",
+            "purchase-servers" = "purchase-servers",
+            "purchase-telecom" = "purchase-telecom",
+            "purchase-web" = "purchase-web"
         }
         /** Credit balance applied on an Order */
-        interface CreditBalance {
+        export interface CreditBalance {
             /** Amount applied from the balance */
             amount: order.Price;
             /** Credit balance name */
             balanceName: string;
         }
         /** Details about a deposit */
-        interface Deposit {
+        export interface Deposit {
             /** amount */
             amount: order.Price;
             /** date */
@@ -10700,7 +10692,7 @@ declare namespace ovhapi {
             url: string;
         }
         /** Information about a Deposit entry */
-        interface DepositDetail {
+        export interface DepositDetail {
             /** depositDetailId */
             depositDetailId: string;
             /** description */
@@ -10715,7 +10707,7 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** Balance of the fidelity account */
-        interface FidelityAccount {
+        export interface FidelityAccount {
             /** alertThreshold */
             alertThreshold ? : number;
             /** balance */
@@ -10728,7 +10720,7 @@ declare namespace ovhapi {
             openDate: string;
         }
         /** Details about a fidelity account */
-        interface FidelityMovement {
+        export interface FidelityMovement {
             /** amount */
             amount: number;
             /** balance */
@@ -10747,12 +10739,12 @@ declare namespace ovhapi {
             previousBalance: number;
         }
         /** Extensions of a detail */
-        interface ItemDetail {
+        export interface ItemDetail {
             /** order */
             order: billing.ItemDetail.Order;
         }
         /** Status of your manual domain payment migration */
-        interface ManualDomainPaymentStatus {
+        export interface ManualDomainPaymentStatus {
             /** Total number of domains that needs to be migrated to manual renew mode */
             domainsToMigrate ? : number;
             /** Total number of domains successfully migrated to manual renew mode */
@@ -10761,7 +10753,7 @@ declare namespace ovhapi {
             status: billing.BillingTaskStatusEnum;
         }
         /** Details about an OVH account */
-        interface Movement {
+        export interface Movement {
             /** amount */
             amount: order.Price;
             /** balance */
@@ -10782,7 +10774,7 @@ declare namespace ovhapi {
             retrievableAmount: order.Price;
         }
         /** Details about an Order */
-        interface Order {
+        export interface Order {
             /** date */
             date ? : string;
             /** expirationDate */
@@ -10805,7 +10797,7 @@ declare namespace ovhapi {
             url: string;
         }
         /** Information about a Bill entry */
-        interface OrderDetail {
+        export interface OrderDetail {
             /** cancelled */
             cancelled: boolean;
             /** description */
@@ -10824,7 +10816,7 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** Details about an OVH account */
-        interface OvhAccount {
+        export interface OvhAccount {
             /** alertThreshold */
             alertThreshold ? : number;
             /** balance */
@@ -10841,7 +10833,7 @@ declare namespace ovhapi {
             ovhAccountId: string;
         }
         /** Details about a payment */
-        interface Payment {
+        export interface Payment {
             /** paymentDate */
             paymentDate: string;
             /** paymentIdentifier */
@@ -10850,36 +10842,36 @@ declare namespace ovhapi {
             paymentType: billing.PaymentMeanEnum;
         }
         /** All payment means you might have use on an OVH order */
-        enum PaymentMeanEnum {
-            "cash",
-            "chargeback",
-            "check",
-            "cheque",
-            "creditAccount",
-            "creditCard",
-            "debtAccount",
-            "deposit",
-            "digitalLaunchPad",
-            "edinar",
-            "fidelityPoints",
-            "free",
-            "ideal",
-            "incubatorAccount",
-            "mandat",
-            "multibanco",
-            "none",
-            "ovhAccount",
-            "paymentMandate",
-            "paypal",
-            "payu",
-            "platnosci",
-            "refund",
-            "rupay",
-            "transfer",
-            "withdrawal"
+        export enum PaymentMeanEnum {
+            "cash" = "cash",
+            "chargeback" = "chargeback",
+            "check" = "check",
+            "cheque" = "cheque",
+            "creditAccount" = "creditAccount",
+            "creditCard" = "creditCard",
+            "debtAccount" = "debtAccount",
+            "deposit" = "deposit",
+            "digitalLaunchPad" = "digitalLaunchPad",
+            "edinar" = "edinar",
+            "fidelityPoints" = "fidelityPoints",
+            "free" = "free",
+            "ideal" = "ideal",
+            "incubatorAccount" = "incubatorAccount",
+            "mandat" = "mandat",
+            "multibanco" = "multibanco",
+            "none" = "none",
+            "ovhAccount" = "ovhAccount",
+            "paymentMandate" = "paymentMandate",
+            "paypal" = "paypal",
+            "payu" = "payu",
+            "platnosci" = "platnosci",
+            "refund" = "refund",
+            "rupay" = "rupay",
+            "transfer" = "transfer",
+            "withdrawal" = "withdrawal"
         }
         /** Details about a Refund */
-        interface Refund {
+        export interface Refund {
             /** date */
             date: string;
             /** orderId */
@@ -10902,7 +10894,7 @@ declare namespace ovhapi {
             url: string;
         }
         /** Information about a Bill entry */
-        interface RefundDetail {
+        export interface RefundDetail {
             /** description */
             description: string;
             /** domain */
@@ -10921,25 +10913,25 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** Reusable payment mean type */
-        enum ReusablePaymentMeanEnum {
-            "CREDIT_CARD",
-            "CURRENT_ACCOUNT",
-            "DEFERRED_PAYMENT_ACCOUNT",
-            "DOMESTIC_CARD",
-            "ENTERPRISE",
-            "INTERNAL_TRUSTED_ACCOUNT",
-            "PAYPAL",
-            "RUPAY",
-            "SEPA_DIRECT_DEBIT",
-            "bankAccount",
-            "creditCard",
-            "deferredPaymentAccount",
-            "fidelityAccount",
-            "ovhAccount",
-            "paypal"
+        export enum ReusablePaymentMeanEnum {
+            "CREDIT_CARD" = "CREDIT_CARD",
+            "CURRENT_ACCOUNT" = "CURRENT_ACCOUNT",
+            "DEFERRED_PAYMENT_ACCOUNT" = "DEFERRED_PAYMENT_ACCOUNT",
+            "DOMESTIC_CARD" = "DOMESTIC_CARD",
+            "ENTERPRISE" = "ENTERPRISE",
+            "INTERNAL_TRUSTED_ACCOUNT" = "INTERNAL_TRUSTED_ACCOUNT",
+            "PAYPAL" = "PAYPAL",
+            "RUPAY" = "RUPAY",
+            "SEPA_DIRECT_DEBIT" = "SEPA_DIRECT_DEBIT",
+            "bankAccount" = "bankAccount",
+            "creditCard" = "creditCard",
+            "deferredPaymentAccount" = "deferredPaymentAccount",
+            "fidelityAccount" = "fidelityAccount",
+            "ovhAccount" = "ovhAccount",
+            "paypal" = "paypal"
         }
         /** Information about withdrawal entry */
-        interface ReversableBillDetail {
+        export interface ReversableBillDetail {
             /** description */
             description: string;
             /** domain */
@@ -10958,7 +10950,7 @@ declare namespace ovhapi {
             unitPrice: order.Price;
         }
         /** Details about a bill from customer */
-        interface ReverseBill {
+        export interface ReverseBill {
             /** date */
             date: string;
             /** orderId */
@@ -10979,7 +10971,7 @@ declare namespace ovhapi {
             url: string;
         }
         /** SLA properties */
-        interface SlaOperation {
+        export interface SlaOperation {
             /** Date of the event that led to SLA */
             date: string;
             /** Description of the SLA operation for this incident */
@@ -10994,7 +10986,7 @@ declare namespace ovhapi {
             startDate: string;
         }
         /** Describe all services impacted by SLA */
-        interface SlaOperationService {
+        export interface SlaOperationService {
             /** Service description */
             description: string;
             /** Impacted service name */
@@ -11005,7 +10997,7 @@ declare namespace ovhapi {
             slaPlan: string;
         }
         /** Details about a Voucher account */
-        interface VoucherAccount {
+        export interface VoucherAccount {
             /** balance */
             balance: order.Price;
             /** lastUpdate */
@@ -11016,7 +11008,7 @@ declare namespace ovhapi {
             voucherAccountId: string;
         }
         /** Details about a voucher account */
-        interface VoucherMovement {
+        export interface VoucherMovement {
             /** amount */
             amount: order.Price;
             /** balance */
@@ -11035,7 +11027,7 @@ declare namespace ovhapi {
             previousBalance: order.Price;
         }
         /** Details about a withdrawal */
-        interface Withdrawal {
+        export interface Withdrawal {
             /** amount */
             amount: order.Price;
             /** country */
@@ -11054,7 +11046,7 @@ declare namespace ovhapi {
             withdrawalId: string;
         }
         /** Information about a Withdrawal entry */
-        interface WithdrawalDetail {
+        export interface WithdrawalDetail {
             /** description */
             description: string;
             /** domain */
@@ -11069,26 +11061,26 @@ declare namespace ovhapi {
             withdrawalDetailId: string;
         }
     }
-    namespace carbonCalculator {
-        namespace Task {
+    export namespace carbonCalculator {
+        export namespace Task {
             /** Status of a calculation task */
-            enum TaskStatusEnum {
-                "ERROR",
-                "IN_PROGRESS",
-                "SUCCESS"
+            export enum TaskStatusEnum {
+                "ERROR" = "ERROR",
+                "IN_PROGRESS" = "IN_PROGRESS",
+                "SUCCESS" = "SUCCESS"
             }
         } /** Request body for the calculation of customer's carbon impact */
-        interface CalculationRequest {
+        export interface CalculationRequest {
             /** Month of the requested document (day is ignored) */
             date: string;
         }
         /** Response for request of customer's carbon impact */
-        interface CalculationResponse {
+        export interface CalculationResponse {
             /** ID of the calculation task */
             taskID: string;
         }
         /** Task to generate a carbon impact document */
-        interface Task {
+        export interface Task {
             /** Link to the document */
             link ? : string;
             /** Status of the task */
@@ -11097,22 +11089,22 @@ declare namespace ovhapi {
             taskID: string;
         }
     }
-    namespace consumption {
+    export namespace consumption {
         /** Export file format */
-        enum ConsumptionExportFormatsEnum {
-            "csv"
+        export enum ConsumptionExportFormatsEnum {
+            "csv" = "csv"
         }
         /** Export task status */
-        enum ConsumptionExportTaskStatusEnum {
-            "DOING",
-            "DONE",
-            "ERROR",
-            "TODO"
+        export enum ConsumptionExportTaskStatusEnum {
+            "DOING" = "DOING",
+            "DONE" = "DONE",
+            "ERROR" = "ERROR",
+            "TODO" = "TODO"
         }
     }
-    namespace contact {
+    export namespace contact {
         /** Representation of an Address */
-        interface Address {
+        export interface Address {
             /** City */
             city: string;
             /** Country */
@@ -11131,7 +11123,7 @@ declare namespace ovhapi {
             zip: string;
         }
         /** Representation of a Contact */
-        interface Contact {
+        export interface Contact {
             /** Address for this contact */
             address: contact.Address;
             /** Birth city */
@@ -11143,13 +11135,13 @@ declare namespace ovhapi {
             /** Birth Zipcode */
             birthZip ? : string;
             /** Cellphone number */
-            cellPhone ? : phoneNumber;
+            cellPhone ? : string;
             /** National identification number of your company */
             companyNationalIdentificationNumber ? : string;
             /** Email address */
             email: string;
             /** Fax number */
-            fax ? : phoneNumber;
+            fax ? : string;
             /** First name */
             firstName: string;
             /** Gender */
@@ -11171,14 +11163,14 @@ declare namespace ovhapi {
             /** Organisation type */
             organisationType ? : string;
             /** Telephone number */
-            phone ? : phoneNumber;
+            phone ? : string;
             /** Spare email address */
             spareEmail ? : string;
             /** VAT number */
             vat ? : string;
         }
         /** Extras informations about a field */
-        interface FieldInformation {
+        export interface FieldInformation {
             /** Name of the field concerned by restrictions */
             fieldName: string;
             /** Indicates if the field is mandatory when editing */
@@ -11187,10 +11179,10 @@ declare namespace ovhapi {
             readOnly: boolean;
         }
     }
-    namespace debt {
-        namespace associatedObject {
+    export namespace debt {
+        export namespace associatedObject {
             /** The payment infos linked to this debt entry */
-            interface PaymentInfo {
+            export interface PaymentInfo {
                 /** Optional customer description */
                 description ? : string;
                 /** Payment mean used for this debt operation */
@@ -11199,19 +11191,19 @@ declare namespace ovhapi {
                 publicLabel ? : string;
             }
             /** Type of objects an order can be linked to */
-            enum TypeEnum {
-                "Bill",
-                "DebtOperation",
-                "Deposit",
-                "Order",
-                "OvhAccountMovement",
-                "Refund",
-                "Withdrawal"
+            export enum TypeEnum {
+                "Bill" = "Bill",
+                "DebtOperation" = "DebtOperation",
+                "Deposit" = "Deposit",
+                "Order" = "Order",
+                "OvhAccountMovement" = "OvhAccountMovement",
+                "Refund" = "Refund",
+                "Withdrawal" = "Withdrawal"
             }
         }
-        namespace entry {
+        export namespace entry {
             /** The object linked to this debt entry */
-            interface AssociatedObject {
+            export interface AssociatedObject {
                 /** id */
                 id ? : string;
                 /** paymentInfo */
@@ -11222,99 +11214,99 @@ declare namespace ovhapi {
                 type ? : debt.associatedObject.TypeEnum;
             }
             /** All operations a debt entry can represent */
-            enum OperationEnum {
-                "BANK_TRANSFER_MANUAL",
-                "CANCEL",
-                "CASH_MANUAL",
-                "CHECK_MANUAL",
-                "CREDITCARD",
-                "CREDITCARD_AUTOMATIC",
-                "CREDITCARD_MANUAL",
-                "CREDIT_ACCOUNT_AUTOMATIC",
-                "CREDIT_CARD_AUTOMATIC",
-                "CREDIT_CARD_MANUAL",
-                "CURRENT_ACCOUNT_AUTOMATIC",
-                "CURRENT_ACCOUNT_MANUAL",
-                "DOMESTIC_CARD_AUTOMATIC",
-                "DOMESTIC_CARD_MANUAL",
-                "EDINAR_MANUAL",
-                "ENTERPRISE_AUTOMATIC",
-                "ENTERPRISE_MANUAL",
-                "IDEAL_AUTOMATIC",
-                "IDEAL_MANUAL",
-                "INTERNAL_TRUSTED_ACCOUNT_AUTOMATIC",
-                "INTERNAL_TRUSTED_ACCOUNT_MANUAL",
-                "MULTIBANCO_AUTOMATIC",
-                "MULTIBANCO_MANUAL",
-                "ORDER",
-                "PAYPAL_AUTOMATIC",
-                "PAYPAL_MANUAL",
-                "PAYU_AUTOMATIC",
-                "PAYU_MANUAL",
-                "RECOVERY_TRANSFER_AUTOMATIC",
-                "REFUND",
-                "REFUND_CHECK",
-                "REFUND_CREDITCARD",
-                "REFUND_CREDIT_ACCOUNT",
-                "REFUND_CREDIT_CARD",
-                "REFUND_CURRENT_ACCOUNT",
-                "REFUND_DOMESTIC_CARD",
-                "REFUND_ENTERPRISE",
-                "REFUND_IDEAL",
-                "REFUND_INTERNAL_TRUSTED_ACCOUNT",
-                "REFUND_LOSS",
-                "REFUND_MULTIBANCO",
-                "REFUND_PAYPAL",
-                "REFUND_PAYU",
-                "REFUND_RUPAY",
-                "REFUND_SEPA",
-                "REFUND_SEPA_DIRECT_DEBIT",
-                "REFUND_TRANSFER",
-                "REFUND_UNKNOWN",
-                "RUPAY_AUTOMATIC",
-                "RUPAY_MANUAL",
-                "SEPA_AUTOMATIC",
-                "SEPA_DIRECT_DEBIT_AUTOMATIC",
-                "SEPA_DIRECT_DEBIT_MANUAL",
-                "TRANSFER_MANUAL",
-                "UNPAID_CHECK",
-                "UNPAID_CREDITCARD",
-                "UNPAID_CREDIT_ACCOUNT",
-                "UNPAID_CREDIT_CARD",
-                "UNPAID_CURRENT_ACCOUNT",
-                "UNPAID_DOMESTIC_CARD",
-                "UNPAID_ENTERPRISE",
-                "UNPAID_IDEAL",
-                "UNPAID_INTERNAL_TRUSTED_ACCOUNT",
-                "UNPAID_MULTIBANCO",
-                "UNPAID_PAYPAL",
-                "UNPAID_PAYU",
-                "UNPAID_RUPAY",
-                "UNPAID_SEPA",
-                "UNPAID_SEPA_DIRECT_DEBIT",
-                "UNPAID_WITHDRAW",
-                "WARRANT_MANUAL",
-                "WITHDRAW_AUTOMATIC"
+            export enum OperationEnum {
+                "BANK_TRANSFER_MANUAL" = "BANK_TRANSFER_MANUAL",
+                "CANCEL" = "CANCEL",
+                "CASH_MANUAL" = "CASH_MANUAL",
+                "CHECK_MANUAL" = "CHECK_MANUAL",
+                "CREDITCARD" = "CREDITCARD",
+                "CREDITCARD_AUTOMATIC" = "CREDITCARD_AUTOMATIC",
+                "CREDITCARD_MANUAL" = "CREDITCARD_MANUAL",
+                "CREDIT_ACCOUNT_AUTOMATIC" = "CREDIT_ACCOUNT_AUTOMATIC",
+                "CREDIT_CARD_AUTOMATIC" = "CREDIT_CARD_AUTOMATIC",
+                "CREDIT_CARD_MANUAL" = "CREDIT_CARD_MANUAL",
+                "CURRENT_ACCOUNT_AUTOMATIC" = "CURRENT_ACCOUNT_AUTOMATIC",
+                "CURRENT_ACCOUNT_MANUAL" = "CURRENT_ACCOUNT_MANUAL",
+                "DOMESTIC_CARD_AUTOMATIC" = "DOMESTIC_CARD_AUTOMATIC",
+                "DOMESTIC_CARD_MANUAL" = "DOMESTIC_CARD_MANUAL",
+                "EDINAR_MANUAL" = "EDINAR_MANUAL",
+                "ENTERPRISE_AUTOMATIC" = "ENTERPRISE_AUTOMATIC",
+                "ENTERPRISE_MANUAL" = "ENTERPRISE_MANUAL",
+                "IDEAL_AUTOMATIC" = "IDEAL_AUTOMATIC",
+                "IDEAL_MANUAL" = "IDEAL_MANUAL",
+                "INTERNAL_TRUSTED_ACCOUNT_AUTOMATIC" = "INTERNAL_TRUSTED_ACCOUNT_AUTOMATIC",
+                "INTERNAL_TRUSTED_ACCOUNT_MANUAL" = "INTERNAL_TRUSTED_ACCOUNT_MANUAL",
+                "MULTIBANCO_AUTOMATIC" = "MULTIBANCO_AUTOMATIC",
+                "MULTIBANCO_MANUAL" = "MULTIBANCO_MANUAL",
+                "ORDER" = "ORDER",
+                "PAYPAL_AUTOMATIC" = "PAYPAL_AUTOMATIC",
+                "PAYPAL_MANUAL" = "PAYPAL_MANUAL",
+                "PAYU_AUTOMATIC" = "PAYU_AUTOMATIC",
+                "PAYU_MANUAL" = "PAYU_MANUAL",
+                "RECOVERY_TRANSFER_AUTOMATIC" = "RECOVERY_TRANSFER_AUTOMATIC",
+                "REFUND" = "REFUND",
+                "REFUND_CHECK" = "REFUND_CHECK",
+                "REFUND_CREDITCARD" = "REFUND_CREDITCARD",
+                "REFUND_CREDIT_ACCOUNT" = "REFUND_CREDIT_ACCOUNT",
+                "REFUND_CREDIT_CARD" = "REFUND_CREDIT_CARD",
+                "REFUND_CURRENT_ACCOUNT" = "REFUND_CURRENT_ACCOUNT",
+                "REFUND_DOMESTIC_CARD" = "REFUND_DOMESTIC_CARD",
+                "REFUND_ENTERPRISE" = "REFUND_ENTERPRISE",
+                "REFUND_IDEAL" = "REFUND_IDEAL",
+                "REFUND_INTERNAL_TRUSTED_ACCOUNT" = "REFUND_INTERNAL_TRUSTED_ACCOUNT",
+                "REFUND_LOSS" = "REFUND_LOSS",
+                "REFUND_MULTIBANCO" = "REFUND_MULTIBANCO",
+                "REFUND_PAYPAL" = "REFUND_PAYPAL",
+                "REFUND_PAYU" = "REFUND_PAYU",
+                "REFUND_RUPAY" = "REFUND_RUPAY",
+                "REFUND_SEPA" = "REFUND_SEPA",
+                "REFUND_SEPA_DIRECT_DEBIT" = "REFUND_SEPA_DIRECT_DEBIT",
+                "REFUND_TRANSFER" = "REFUND_TRANSFER",
+                "REFUND_UNKNOWN" = "REFUND_UNKNOWN",
+                "RUPAY_AUTOMATIC" = "RUPAY_AUTOMATIC",
+                "RUPAY_MANUAL" = "RUPAY_MANUAL",
+                "SEPA_AUTOMATIC" = "SEPA_AUTOMATIC",
+                "SEPA_DIRECT_DEBIT_AUTOMATIC" = "SEPA_DIRECT_DEBIT_AUTOMATIC",
+                "SEPA_DIRECT_DEBIT_MANUAL" = "SEPA_DIRECT_DEBIT_MANUAL",
+                "TRANSFER_MANUAL" = "TRANSFER_MANUAL",
+                "UNPAID_CHECK" = "UNPAID_CHECK",
+                "UNPAID_CREDITCARD" = "UNPAID_CREDITCARD",
+                "UNPAID_CREDIT_ACCOUNT" = "UNPAID_CREDIT_ACCOUNT",
+                "UNPAID_CREDIT_CARD" = "UNPAID_CREDIT_CARD",
+                "UNPAID_CURRENT_ACCOUNT" = "UNPAID_CURRENT_ACCOUNT",
+                "UNPAID_DOMESTIC_CARD" = "UNPAID_DOMESTIC_CARD",
+                "UNPAID_ENTERPRISE" = "UNPAID_ENTERPRISE",
+                "UNPAID_IDEAL" = "UNPAID_IDEAL",
+                "UNPAID_INTERNAL_TRUSTED_ACCOUNT" = "UNPAID_INTERNAL_TRUSTED_ACCOUNT",
+                "UNPAID_MULTIBANCO" = "UNPAID_MULTIBANCO",
+                "UNPAID_PAYPAL" = "UNPAID_PAYPAL",
+                "UNPAID_PAYU" = "UNPAID_PAYU",
+                "UNPAID_RUPAY" = "UNPAID_RUPAY",
+                "UNPAID_SEPA" = "UNPAID_SEPA",
+                "UNPAID_SEPA_DIRECT_DEBIT" = "UNPAID_SEPA_DIRECT_DEBIT",
+                "UNPAID_WITHDRAW" = "UNPAID_WITHDRAW",
+                "WARRANT_MANUAL" = "WARRANT_MANUAL",
+                "WITHDRAW_AUTOMATIC" = "WITHDRAW_AUTOMATIC"
             }
             /** All status a debt HistoryOrder entry can be in */
-            enum StatusDebtOrderEnum {
-                "PAID",
-                "REFUNDED",
-                "TO_BE_PAID",
-                "UNMATURED",
-                "UNPAID"
+            export enum StatusDebtOrderEnum {
+                "PAID" = "PAID",
+                "REFUNDED" = "REFUNDED",
+                "TO_BE_PAID" = "TO_BE_PAID",
+                "UNMATURED" = "UNMATURED",
+                "UNPAID" = "UNPAID"
             }
             /** All status a debt entry can be in */
-            enum StatusEnum {
-                "CANCELLED",
-                "DONE",
-                "FAILED",
-                "PAID",
-                "PENDING",
-                "TODO"
+            export enum StatusEnum {
+                "CANCELLED" = "CANCELLED",
+                "DONE" = "DONE",
+                "FAILED" = "FAILED",
+                "PAID" = "PAID",
+                "PENDING" = "PENDING",
+                "TODO" = "TODO"
             }
         } /** Debt balance of the account */
-        interface Balance {
+        export interface Balance {
             /** active */
             active: boolean;
             /** Amount of debts the account has */
@@ -11327,7 +11319,7 @@ declare namespace ovhapi {
             unmaturedAmount: order.Price;
         }
         /** State of a debt */
-        interface Debt {
+        export interface Debt {
             /** Original amount of the debt */
             amount: order.Price;
             /** Date the debt was created on */
@@ -11350,7 +11342,7 @@ declare namespace ovhapi {
             unmaturedAmount: order.Price;
         }
         /** Operation that happend on a debt */
-        interface Operation {
+        export interface Operation {
             /** Amount of the operation */
             amount: order.Price;
             /** Date the operation took place on */
@@ -11365,10 +11357,10 @@ declare namespace ovhapi {
             type ? : debt.entry.OperationEnum;
         }
     }
-    namespace dedicated {
-        namespace installationTemplate {
+    export namespace dedicated {
+        export namespace installationTemplate {
             /** Available installation templates */
-            interface Templates {
+            export interface Templates {
                 /** list of all language available for this template */
                 availableLanguages: dedicated.TemplateOsLanguageEnum[];
                 /** this template bit format */
@@ -11407,8 +11399,6 @@ declare namespace ovhapi {
                 subfamily: dedicated.TemplateOsSubfamilyEnum;
                 /** This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel */
                 supportsDistributionKernel ? : boolean;
-                /** This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2 TB */
-                supportsGptLabel ? : boolean;
                 /** This distribution supports RTM software */
                 supportsRTM: boolean;
                 /** This distribution supports the microsoft SQL server */
@@ -11417,7 +11407,7 @@ declare namespace ovhapi {
                 templateName: string;
             }
             /** Hardware RAID defined in this partitioning scheme */
-            interface hardwareRaid {
+            export interface hardwareRaid {
                 /** Disk list */
                 disks: string[];
                 /** RAID mode */
@@ -11428,14 +11418,14 @@ declare namespace ovhapi {
                 step: number;
             }
             /** Partitioning schemes available on this template */
-            interface templatePartitioningSchemes {
+            export interface templatePartitioningSchemes {
                 /** This partitioning scheme name */
                 name: string;
                 /** on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications) */
                 priority: number;
             }
             /**  Partitions defined in this partitioning scheme */
-            interface templatePartitions {
+            export interface templatePartitions {
                 /** Partition filesytem */
                 filesystem: dedicated.server.FileSystemEnum;
                 /** Partition mount point */
@@ -11452,498 +11442,498 @@ declare namespace ovhapi {
                 volumeName ? : string;
             }
         }
-        namespace server {
+        export namespace server {
             /** Available os bit format */
-            enum BitFormatEnum {
-                "32",
-                "64"
+            export enum BitFormatEnum {
+                "32" = "32",
+                "64" = "64"
             }
             /** FileSystems */
-            enum FileSystemEnum {
-                "btrfs",
-                "ext3",
-                "ext4",
-                "fat16",
-                "none",
-                "ntfs",
-                "reiserfs",
-                "swap",
-                "ufs",
-                "vmfs5",
-                "vmfs6",
-                "vmfsl",
-                "xfs",
-                "zfs"
+            export enum FileSystemEnum {
+                "btrfs" = "btrfs",
+                "ext3" = "ext3",
+                "ext4" = "ext4",
+                "fat16" = "fat16",
+                "none" = "none",
+                "ntfs" = "ntfs",
+                "reiserfs" = "reiserfs",
+                "swap" = "swap",
+                "ufs" = "ufs",
+                "vmfs5" = "vmfs5",
+                "vmfs6" = "vmfs6",
+                "vmfsl" = "vmfsl",
+                "xfs" = "xfs",
+                "zfs" = "zfs"
             }
             /** partition raid type */
-            enum PartitionRaidEnum {
-                "0",
-                "1",
-                "10",
-                "5",
-                "6",
-                "7"
+            export enum PartitionRaidEnum {
+                "0" = "0",
+                "1" = "1",
+                "10" = "10",
+                "5" = "5",
+                "6" = "6",
+                "7" = "7"
             }
         } /** Hardware RAID enum */
-        enum TemplateOsHardwareRaidEnum {
-            "raid0",
-            "raid1",
-            "raid10",
-            "raid5",
-            "raid50",
-            "raid6",
-            "raid60"
+        export enum TemplateOsHardwareRaidEnum {
+            "raid0" = "raid0",
+            "raid1" = "raid1",
+            "raid10" = "raid10",
+            "raid5" = "raid5",
+            "raid50" = "raid50",
+            "raid6" = "raid6",
+            "raid60" = "raid60"
         }
         /** A structure describing some interesting facts about an OS template licensing */
-        interface TemplateOsInfoLicense {
+        export interface TemplateOsInfoLicense {
             /** OS template license OS details */
             os ? : dedicated.TemplateOsInfoLicenseItem;
             /** OS template license usage details */
             usage ? : dedicated.TemplateOsInfoLicenseItem;
         }
         /** A structure describing some interesting facts about an OS template license item */
-        interface TemplateOsInfoLicenseItem {
+        export interface TemplateOsInfoLicenseItem {
             /** OS template license item names */
             name ? : dedicated.TemplateOsInfoLicenseItemEnum[];
             /** OS template license item url */
             url ? : string;
         }
         /** Standard license name according to SPDX */
-        enum TemplateOsInfoLicenseItemEnum {
-            "0BSD",
-            "AAL",
-            "ADSL",
-            "AFL-1.1",
-            "AFL-1.2",
-            "AFL-2.0",
-            "AFL-2.1",
-            "AFL-3.0",
-            "AGPL-1.0-only",
-            "AGPL-1.0-or-later",
-            "AGPL-3.0-only",
-            "AGPL-3.0-or-later",
-            "AMDPLPA",
-            "AML",
-            "AMPAS",
-            "ANTLR-PD",
-            "ANTLR-PD-fallback",
-            "APAFML",
-            "APL-1.0",
-            "APSL-1.0",
-            "APSL-1.1",
-            "APSL-1.2",
-            "APSL-2.0",
-            "Abstyles",
-            "Adobe-2006",
-            "Adobe-Glyph",
-            "Afmparse",
-            "Aladdin",
-            "Apache-1.0",
-            "Apache-1.1",
-            "Apache-2.0",
-            "Artistic-1.0",
-            "Artistic-1.0-Perl",
-            "Artistic-1.0-cl8",
-            "Artistic-2.0",
-            "BSD-1-Clause",
-            "BSD-2-Clause",
-            "BSD-2-Clause-Patent",
-            "BSD-2-Clause-Views",
-            "BSD-3-Clause",
-            "BSD-3-Clause-Attribution",
-            "BSD-3-Clause-Clear",
-            "BSD-3-Clause-LBNL",
-            "BSD-3-Clause-Modification",
-            "BSD-3-Clause-No-Nuclear-License",
-            "BSD-3-Clause-No-Nuclear-License-2014",
-            "BSD-3-Clause-No-Nuclear-Warranty",
-            "BSD-3-Clause-Open-MPI",
-            "BSD-4-Clause",
-            "BSD-4-Clause-Shortened",
-            "BSD-4-Clause-UC",
-            "BSD-Protection",
-            "BSD-Source-Code",
-            "BSL-1.0",
-            "BUSL-1.1",
-            "Bahyph",
-            "Barr",
-            "Beerware",
-            "BitTorrent-1.0",
-            "BitTorrent-1.1",
-            "BlueOak-1.0.0",
-            "Borceux",
-            "C-UDA-1.0",
-            "CAL-1.0",
-            "CAL-1.0-Combined-Work-Exception",
-            "CATOSL-1.1",
-            "CC-BY-1.0",
-            "CC-BY-2.0",
-            "CC-BY-2.5",
-            "CC-BY-3.0",
-            "CC-BY-4.0",
-            "CC-BY-NC-1.0",
-            "CC-BY-NC-2.0",
-            "CC-BY-NC-2.5",
-            "CC-BY-NC-3.0",
-            "CC-BY-NC-4.0",
-            "CC-BY-NC-ND-1.0",
-            "CC-BY-NC-ND-2.0",
-            "CC-BY-NC-ND-2.5",
-            "CC-BY-NC-ND-3.0",
-            "CC-BY-NC-ND-4.0",
-            "CC-BY-NC-SA-1.0",
-            "CC-BY-NC-SA-2.0",
-            "CC-BY-NC-SA-2.5",
-            "CC-BY-NC-SA-3.0",
-            "CC-BY-NC-SA-4.0",
-            "CC-BY-ND-1.0",
-            "CC-BY-ND-2.0",
-            "CC-BY-ND-2.5",
-            "CC-BY-ND-3.0",
-            "CC-BY-ND-4.0",
-            "CC-BY-SA-1.0",
-            "CC-BY-SA-2.0",
-            "CC-BY-SA-2.5",
-            "CC-BY-SA-3.0",
-            "CC-BY-SA-4.0",
-            "CC-PDDC",
-            "CC0-1.0",
-            "CDDL-1.0",
-            "CDDL-1.1",
-            "CDLA-Permissive-1.0",
-            "CDLA-Sharing-1.0",
-            "CECILL-1.0",
-            "CECILL-1.1",
-            "CECILL-2.0",
-            "CECILL-2.1",
-            "CECILL-B",
-            "CECILL-C",
-            "CERN-OHL-1.1",
-            "CERN-OHL-1.2",
-            "CERN-OHL-P-2.0",
-            "CERN-OHL-S-2.0",
-            "CERN-OHL-W-2.0",
-            "CNRI-Jython",
-            "CNRI-Python",
-            "CNRI-Python-GPL-Compatible",
-            "CPAL-1.0",
-            "CPL-1.0",
-            "CPOL-1.02",
-            "CUA-OPL-1.0",
-            "Caldera",
-            "ClArtistic",
-            "Condor-1.1",
-            "Crossword",
-            "CrystalStacker",
-            "Cube",
-            "D-FSL-1.0",
-            "DFSG",
-            "DOC",
-            "DRL-1.0",
-            "DSDP",
-            "Dotseqn",
-            "ECL-1.0",
-            "ECL-2.0",
-            "EFL-1.0",
-            "EFL-2.0",
-            "EPICS",
-            "EPL-1.0",
-            "EPL-2.0",
-            "EUDatagrid",
-            "EUPL-1.0",
-            "EUPL-1.1",
-            "EUPL-1.2",
-            "Entessa",
-            "ErlPL-1.1",
-            "Eurosym",
-            "FSFAP",
-            "FSFUL",
-            "FSFULLR",
-            "FTL",
-            "Fair",
-            "Frameworx-1.0",
-            "FreeBSD-DOC",
-            "FreeImage",
-            "GD",
-            "GFDL-1.1-invariants-only",
-            "GFDL-1.1-invariants-or-later",
-            "GFDL-1.1-no-invariants-only",
-            "GFDL-1.1-no-invariants-or-later",
-            "GFDL-1.1-only",
-            "GFDL-1.1-or-later",
-            "GFDL-1.2-invariants-only",
-            "GFDL-1.2-invariants-or-later",
-            "GFDL-1.2-no-invariants-only",
-            "GFDL-1.2-no-invariants-or-later",
-            "GFDL-1.2-only",
-            "GFDL-1.2-or-later",
-            "GFDL-1.3-invariants-only",
-            "GFDL-1.3-invariants-or-later",
-            "GFDL-1.3-no-invariants-only",
-            "GFDL-1.3-no-invariants-or-later",
-            "GFDL-1.3-only",
-            "GFDL-1.3-or-later",
-            "GL2PS",
-            "GLWTPL",
-            "GPL-1.0-only",
-            "GPL-1.0-or-later",
-            "GPL-2.0-only",
-            "GPL-2.0-or-later",
-            "GPL-3.0-only",
-            "GPL-3.0-or-later",
-            "Giftware",
-            "Glide",
-            "Glulxe",
-            "HPND",
-            "HPND-sell-variant",
-            "HTMLTIDY",
-            "HaskellReport",
-            "Hippocratic-2.1",
-            "IBM-pibs",
-            "ICU",
-            "IJG",
-            "IPA",
-            "IPL-1.0",
-            "ISC",
-            "ImageMagick",
-            "Imlib2",
-            "Info-ZIP",
-            "Intel",
-            "Intel-ACPI",
-            "Interbase-1.0",
-            "JPNIC",
-            "JSON",
-            "JasPer-2.0",
-            "LAL-1.2",
-            "LAL-1.3",
-            "LGPL-2.0-only",
-            "LGPL-2.0-or-later",
-            "LGPL-2.1-only",
-            "LGPL-2.1-or-later",
-            "LGPL-3.0-only",
-            "LGPL-3.0-or-later",
-            "LGPLLR",
-            "LPL-1.0",
-            "LPL-1.02",
-            "LPPL-1.0",
-            "LPPL-1.1",
-            "LPPL-1.2",
-            "LPPL-1.3a",
-            "LPPL-1.3c",
-            "Latex2e",
-            "Leptonica",
-            "LiLiQ-P-1.1",
-            "LiLiQ-R-1.1",
-            "LiLiQ-Rplus-1.1",
-            "Libpng",
-            "Linux-OpenIB",
-            "MIT",
-            "MIT-0",
-            "MIT-CMU",
-            "MIT-Modern-Variant",
-            "MIT-advertising",
-            "MIT-enna",
-            "MIT-feh",
-            "MIT-open-group",
-            "MITNFA",
-            "MPL-1.0",
-            "MPL-1.1",
-            "MPL-2.0",
-            "MPL-2.0-no-copyleft-exception",
-            "MS-PL",
-            "MS-RL",
-            "MTLL",
-            "MakeIndex",
-            "MirOS",
-            "Motosoto",
-            "MulanPSL-1.0",
-            "MulanPSL-2.0",
-            "Multics",
-            "Mup",
-            "NAIST-2003",
-            "NASA-1.3",
-            "NBPL-1.0",
-            "NCGL-UK-2.0",
-            "NCSA",
-            "NGPL",
-            "NIST-PD",
-            "NIST-PD-fallback",
-            "NLOD-1.0",
-            "NLPL",
-            "NOSL",
-            "NPL-1.0",
-            "NPL-1.1",
-            "NPOSL-3.0",
-            "NRL",
-            "NTP",
-            "NTP-0",
-            "Naumen",
-            "Net-SNMP",
-            "NetCDF",
-            "Newsletr",
-            "Nokia",
-            "Noweb",
-            "O-UDA-1.0",
-            "OCCT-PL",
-            "OCLC-2.0",
-            "ODC-By-1.0",
-            "ODbL-1.0",
-            "OFL-1.0",
-            "OFL-1.0-RFN",
-            "OFL-1.0-no-RFN",
-            "OFL-1.1",
-            "OFL-1.1-RFN",
-            "OFL-1.1-no-RFN",
-            "OGC-1.0",
-            "OGDL-Taiwan-1.0",
-            "OGL-Canada-2.0",
-            "OGL-UK-1.0",
-            "OGL-UK-2.0",
-            "OGL-UK-3.0",
-            "OGTSL",
-            "OLDAP-1.1",
-            "OLDAP-1.2",
-            "OLDAP-1.3",
-            "OLDAP-1.4",
-            "OLDAP-2.0",
-            "OLDAP-2.0.1",
-            "OLDAP-2.1",
-            "OLDAP-2.2",
-            "OLDAP-2.2.1",
-            "OLDAP-2.2.2",
-            "OLDAP-2.3",
-            "OLDAP-2.4",
-            "OLDAP-2.5",
-            "OLDAP-2.6",
-            "OLDAP-2.7",
-            "OLDAP-2.8",
-            "OML",
-            "OPL-1.0",
-            "OSET-PL-2.1",
-            "OSL-1.0",
-            "OSL-1.1",
-            "OSL-2.0",
-            "OSL-2.1",
-            "OSL-3.0",
-            "OpenSSL",
-            "PDDL-1.0",
-            "PHP-3.0",
-            "PHP-3.01",
-            "PSF-2.0",
-            "Parity-6.0.0",
-            "Parity-7.0.0",
-            "Plexus",
-            "PolyForm-Noncommercial-1.0.0",
-            "PolyForm-Small-Business-1.0.0",
-            "PostgreSQL",
-            "Python-2.0",
-            "QPL-1.0",
-            "Qhull",
-            "RHeCos-1.1",
-            "RPL-1.1",
-            "RPL-1.5",
-            "RPSL-1.0",
-            "RSA-MD",
-            "RSCPL",
-            "Rdisc",
-            "Ruby",
-            "SAX-PD",
-            "SCEA",
-            "SGI-B-1.0",
-            "SGI-B-1.1",
-            "SGI-B-2.0",
-            "SHL-0.5",
-            "SHL-0.51",
-            "SISSL",
-            "SISSL-1.2",
-            "SMLNJ",
-            "SMPPL",
-            "SNIA",
-            "SPL-1.0",
-            "SSH-OpenSSH",
-            "SSH-short",
-            "SSPL-1.0",
-            "SWL",
-            "Saxpath",
-            "Sendmail",
-            "Sendmail-8.23",
-            "SimPL-2.0",
-            "Sleepycat",
-            "Spencer-86",
-            "Spencer-94",
-            "Spencer-99",
-            "SugarCRM-1.1.3",
-            "TAPR-OHL-1.0",
-            "TCL",
-            "TCP-wrappers",
-            "TMate",
-            "TORQUE-1.1",
-            "TOSL",
-            "TU-Berlin-1.0",
-            "TU-Berlin-2.0",
-            "UCL-1.0",
-            "UPL-1.0",
-            "Unicode-DFS-2015",
-            "Unicode-DFS-2016",
-            "Unicode-TOU",
-            "Unlicense",
-            "VOSTROM",
-            "VSL-1.0",
-            "Vim",
-            "W3C",
-            "W3C-19980720",
-            "W3C-20150513",
-            "WTFPL",
-            "Watcom-1.0",
-            "Wsuipa",
-            "X11",
-            "XFree86-1.1",
-            "XSkat",
-            "Xerox",
-            "Xnet",
-            "ZPL-1.1",
-            "ZPL-2.0",
-            "ZPL-2.1",
-            "Zed",
-            "Zend-2.0",
-            "Zimbra-1.3",
-            "Zimbra-1.4",
-            "Zlib",
-            "blessing",
-            "bzip2-1.0.5",
-            "bzip2-1.0.6",
-            "copyleft-next-0.3.0",
-            "copyleft-next-0.3.1",
-            "curl",
-            "diffmark",
-            "dvipdfm",
-            "eGenix",
-            "etalab-2.0",
-            "freeware",
-            "gSOAP-1.3b",
-            "gnuplot",
-            "iMatix",
-            "libpng-2.0",
-            "libselinux-1.0",
-            "libtiff",
-            "mpich2",
-            "proprietary",
-            "psfrag",
-            "psutils",
-            "unknown",
-            "xinetd",
-            "xpp",
-            "zlib-acknowledgement"
+        export enum TemplateOsInfoLicenseItemEnum {
+            "0BSD" = "0BSD",
+            "AAL" = "AAL",
+            "ADSL" = "ADSL",
+            "AFL-1.1" = "AFL-1.1",
+            "AFL-1.2" = "AFL-1.2",
+            "AFL-2.0" = "AFL-2.0",
+            "AFL-2.1" = "AFL-2.1",
+            "AFL-3.0" = "AFL-3.0",
+            "AGPL-1.0-only" = "AGPL-1.0-only",
+            "AGPL-1.0-or-later" = "AGPL-1.0-or-later",
+            "AGPL-3.0-only" = "AGPL-3.0-only",
+            "AGPL-3.0-or-later" = "AGPL-3.0-or-later",
+            "AMDPLPA" = "AMDPLPA",
+            "AML" = "AML",
+            "AMPAS" = "AMPAS",
+            "ANTLR-PD" = "ANTLR-PD",
+            "ANTLR-PD-fallback" = "ANTLR-PD-fallback",
+            "APAFML" = "APAFML",
+            "APL-1.0" = "APL-1.0",
+            "APSL-1.0" = "APSL-1.0",
+            "APSL-1.1" = "APSL-1.1",
+            "APSL-1.2" = "APSL-1.2",
+            "APSL-2.0" = "APSL-2.0",
+            "Abstyles" = "Abstyles",
+            "Adobe-2006" = "Adobe-2006",
+            "Adobe-Glyph" = "Adobe-Glyph",
+            "Afmparse" = "Afmparse",
+            "Aladdin" = "Aladdin",
+            "Apache-1.0" = "Apache-1.0",
+            "Apache-1.1" = "Apache-1.1",
+            "Apache-2.0" = "Apache-2.0",
+            "Artistic-1.0" = "Artistic-1.0",
+            "Artistic-1.0-Perl" = "Artistic-1.0-Perl",
+            "Artistic-1.0-cl8" = "Artistic-1.0-cl8",
+            "Artistic-2.0" = "Artistic-2.0",
+            "BSD-1-Clause" = "BSD-1-Clause",
+            "BSD-2-Clause" = "BSD-2-Clause",
+            "BSD-2-Clause-Patent" = "BSD-2-Clause-Patent",
+            "BSD-2-Clause-Views" = "BSD-2-Clause-Views",
+            "BSD-3-Clause" = "BSD-3-Clause",
+            "BSD-3-Clause-Attribution" = "BSD-3-Clause-Attribution",
+            "BSD-3-Clause-Clear" = "BSD-3-Clause-Clear",
+            "BSD-3-Clause-LBNL" = "BSD-3-Clause-LBNL",
+            "BSD-3-Clause-Modification" = "BSD-3-Clause-Modification",
+            "BSD-3-Clause-No-Nuclear-License" = "BSD-3-Clause-No-Nuclear-License",
+            "BSD-3-Clause-No-Nuclear-License-2014" = "BSD-3-Clause-No-Nuclear-License-2014",
+            "BSD-3-Clause-No-Nuclear-Warranty" = "BSD-3-Clause-No-Nuclear-Warranty",
+            "BSD-3-Clause-Open-MPI" = "BSD-3-Clause-Open-MPI",
+            "BSD-4-Clause" = "BSD-4-Clause",
+            "BSD-4-Clause-Shortened" = "BSD-4-Clause-Shortened",
+            "BSD-4-Clause-UC" = "BSD-4-Clause-UC",
+            "BSD-Protection" = "BSD-Protection",
+            "BSD-Source-Code" = "BSD-Source-Code",
+            "BSL-1.0" = "BSL-1.0",
+            "BUSL-1.1" = "BUSL-1.1",
+            "Bahyph" = "Bahyph",
+            "Barr" = "Barr",
+            "Beerware" = "Beerware",
+            "BitTorrent-1.0" = "BitTorrent-1.0",
+            "BitTorrent-1.1" = "BitTorrent-1.1",
+            "BlueOak-1.0.0" = "BlueOak-1.0.0",
+            "Borceux" = "Borceux",
+            "C-UDA-1.0" = "C-UDA-1.0",
+            "CAL-1.0" = "CAL-1.0",
+            "CAL-1.0-Combined-Work-Exception" = "CAL-1.0-Combined-Work-Exception",
+            "CATOSL-1.1" = "CATOSL-1.1",
+            "CC-BY-1.0" = "CC-BY-1.0",
+            "CC-BY-2.0" = "CC-BY-2.0",
+            "CC-BY-2.5" = "CC-BY-2.5",
+            "CC-BY-3.0" = "CC-BY-3.0",
+            "CC-BY-4.0" = "CC-BY-4.0",
+            "CC-BY-NC-1.0" = "CC-BY-NC-1.0",
+            "CC-BY-NC-2.0" = "CC-BY-NC-2.0",
+            "CC-BY-NC-2.5" = "CC-BY-NC-2.5",
+            "CC-BY-NC-3.0" = "CC-BY-NC-3.0",
+            "CC-BY-NC-4.0" = "CC-BY-NC-4.0",
+            "CC-BY-NC-ND-1.0" = "CC-BY-NC-ND-1.0",
+            "CC-BY-NC-ND-2.0" = "CC-BY-NC-ND-2.0",
+            "CC-BY-NC-ND-2.5" = "CC-BY-NC-ND-2.5",
+            "CC-BY-NC-ND-3.0" = "CC-BY-NC-ND-3.0",
+            "CC-BY-NC-ND-4.0" = "CC-BY-NC-ND-4.0",
+            "CC-BY-NC-SA-1.0" = "CC-BY-NC-SA-1.0",
+            "CC-BY-NC-SA-2.0" = "CC-BY-NC-SA-2.0",
+            "CC-BY-NC-SA-2.5" = "CC-BY-NC-SA-2.5",
+            "CC-BY-NC-SA-3.0" = "CC-BY-NC-SA-3.0",
+            "CC-BY-NC-SA-4.0" = "CC-BY-NC-SA-4.0",
+            "CC-BY-ND-1.0" = "CC-BY-ND-1.0",
+            "CC-BY-ND-2.0" = "CC-BY-ND-2.0",
+            "CC-BY-ND-2.5" = "CC-BY-ND-2.5",
+            "CC-BY-ND-3.0" = "CC-BY-ND-3.0",
+            "CC-BY-ND-4.0" = "CC-BY-ND-4.0",
+            "CC-BY-SA-1.0" = "CC-BY-SA-1.0",
+            "CC-BY-SA-2.0" = "CC-BY-SA-2.0",
+            "CC-BY-SA-2.5" = "CC-BY-SA-2.5",
+            "CC-BY-SA-3.0" = "CC-BY-SA-3.0",
+            "CC-BY-SA-4.0" = "CC-BY-SA-4.0",
+            "CC-PDDC" = "CC-PDDC",
+            "CC0-1.0" = "CC0-1.0",
+            "CDDL-1.0" = "CDDL-1.0",
+            "CDDL-1.1" = "CDDL-1.1",
+            "CDLA-Permissive-1.0" = "CDLA-Permissive-1.0",
+            "CDLA-Sharing-1.0" = "CDLA-Sharing-1.0",
+            "CECILL-1.0" = "CECILL-1.0",
+            "CECILL-1.1" = "CECILL-1.1",
+            "CECILL-2.0" = "CECILL-2.0",
+            "CECILL-2.1" = "CECILL-2.1",
+            "CECILL-B" = "CECILL-B",
+            "CECILL-C" = "CECILL-C",
+            "CERN-OHL-1.1" = "CERN-OHL-1.1",
+            "CERN-OHL-1.2" = "CERN-OHL-1.2",
+            "CERN-OHL-P-2.0" = "CERN-OHL-P-2.0",
+            "CERN-OHL-S-2.0" = "CERN-OHL-S-2.0",
+            "CERN-OHL-W-2.0" = "CERN-OHL-W-2.0",
+            "CNRI-Jython" = "CNRI-Jython",
+            "CNRI-Python" = "CNRI-Python",
+            "CNRI-Python-GPL-Compatible" = "CNRI-Python-GPL-Compatible",
+            "CPAL-1.0" = "CPAL-1.0",
+            "CPL-1.0" = "CPL-1.0",
+            "CPOL-1.02" = "CPOL-1.02",
+            "CUA-OPL-1.0" = "CUA-OPL-1.0",
+            "Caldera" = "Caldera",
+            "ClArtistic" = "ClArtistic",
+            "Condor-1.1" = "Condor-1.1",
+            "Crossword" = "Crossword",
+            "CrystalStacker" = "CrystalStacker",
+            "Cube" = "Cube",
+            "D-FSL-1.0" = "D-FSL-1.0",
+            "DFSG" = "DFSG",
+            "DOC" = "DOC",
+            "DRL-1.0" = "DRL-1.0",
+            "DSDP" = "DSDP",
+            "Dotseqn" = "Dotseqn",
+            "ECL-1.0" = "ECL-1.0",
+            "ECL-2.0" = "ECL-2.0",
+            "EFL-1.0" = "EFL-1.0",
+            "EFL-2.0" = "EFL-2.0",
+            "EPICS" = "EPICS",
+            "EPL-1.0" = "EPL-1.0",
+            "EPL-2.0" = "EPL-2.0",
+            "EUDatagrid" = "EUDatagrid",
+            "EUPL-1.0" = "EUPL-1.0",
+            "EUPL-1.1" = "EUPL-1.1",
+            "EUPL-1.2" = "EUPL-1.2",
+            "Entessa" = "Entessa",
+            "ErlPL-1.1" = "ErlPL-1.1",
+            "Eurosym" = "Eurosym",
+            "FSFAP" = "FSFAP",
+            "FSFUL" = "FSFUL",
+            "FSFULLR" = "FSFULLR",
+            "FTL" = "FTL",
+            "Fair" = "Fair",
+            "Frameworx-1.0" = "Frameworx-1.0",
+            "FreeBSD-DOC" = "FreeBSD-DOC",
+            "FreeImage" = "FreeImage",
+            "GD" = "GD",
+            "GFDL-1.1-invariants-only" = "GFDL-1.1-invariants-only",
+            "GFDL-1.1-invariants-or-later" = "GFDL-1.1-invariants-or-later",
+            "GFDL-1.1-no-invariants-only" = "GFDL-1.1-no-invariants-only",
+            "GFDL-1.1-no-invariants-or-later" = "GFDL-1.1-no-invariants-or-later",
+            "GFDL-1.1-only" = "GFDL-1.1-only",
+            "GFDL-1.1-or-later" = "GFDL-1.1-or-later",
+            "GFDL-1.2-invariants-only" = "GFDL-1.2-invariants-only",
+            "GFDL-1.2-invariants-or-later" = "GFDL-1.2-invariants-or-later",
+            "GFDL-1.2-no-invariants-only" = "GFDL-1.2-no-invariants-only",
+            "GFDL-1.2-no-invariants-or-later" = "GFDL-1.2-no-invariants-or-later",
+            "GFDL-1.2-only" = "GFDL-1.2-only",
+            "GFDL-1.2-or-later" = "GFDL-1.2-or-later",
+            "GFDL-1.3-invariants-only" = "GFDL-1.3-invariants-only",
+            "GFDL-1.3-invariants-or-later" = "GFDL-1.3-invariants-or-later",
+            "GFDL-1.3-no-invariants-only" = "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-no-invariants-or-later" = "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-only" = "GFDL-1.3-only",
+            "GFDL-1.3-or-later" = "GFDL-1.3-or-later",
+            "GL2PS" = "GL2PS",
+            "GLWTPL" = "GLWTPL",
+            "GPL-1.0-only" = "GPL-1.0-only",
+            "GPL-1.0-or-later" = "GPL-1.0-or-later",
+            "GPL-2.0-only" = "GPL-2.0-only",
+            "GPL-2.0-or-later" = "GPL-2.0-or-later",
+            "GPL-3.0-only" = "GPL-3.0-only",
+            "GPL-3.0-or-later" = "GPL-3.0-or-later",
+            "Giftware" = "Giftware",
+            "Glide" = "Glide",
+            "Glulxe" = "Glulxe",
+            "HPND" = "HPND",
+            "HPND-sell-variant" = "HPND-sell-variant",
+            "HTMLTIDY" = "HTMLTIDY",
+            "HaskellReport" = "HaskellReport",
+            "Hippocratic-2.1" = "Hippocratic-2.1",
+            "IBM-pibs" = "IBM-pibs",
+            "ICU" = "ICU",
+            "IJG" = "IJG",
+            "IPA" = "IPA",
+            "IPL-1.0" = "IPL-1.0",
+            "ISC" = "ISC",
+            "ImageMagick" = "ImageMagick",
+            "Imlib2" = "Imlib2",
+            "Info-ZIP" = "Info-ZIP",
+            "Intel" = "Intel",
+            "Intel-ACPI" = "Intel-ACPI",
+            "Interbase-1.0" = "Interbase-1.0",
+            "JPNIC" = "JPNIC",
+            "JSON" = "JSON",
+            "JasPer-2.0" = "JasPer-2.0",
+            "LAL-1.2" = "LAL-1.2",
+            "LAL-1.3" = "LAL-1.3",
+            "LGPL-2.0-only" = "LGPL-2.0-only",
+            "LGPL-2.0-or-later" = "LGPL-2.0-or-later",
+            "LGPL-2.1-only" = "LGPL-2.1-only",
+            "LGPL-2.1-or-later" = "LGPL-2.1-or-later",
+            "LGPL-3.0-only" = "LGPL-3.0-only",
+            "LGPL-3.0-or-later" = "LGPL-3.0-or-later",
+            "LGPLLR" = "LGPLLR",
+            "LPL-1.0" = "LPL-1.0",
+            "LPL-1.02" = "LPL-1.02",
+            "LPPL-1.0" = "LPPL-1.0",
+            "LPPL-1.1" = "LPPL-1.1",
+            "LPPL-1.2" = "LPPL-1.2",
+            "LPPL-1.3a" = "LPPL-1.3a",
+            "LPPL-1.3c" = "LPPL-1.3c",
+            "Latex2e" = "Latex2e",
+            "Leptonica" = "Leptonica",
+            "LiLiQ-P-1.1" = "LiLiQ-P-1.1",
+            "LiLiQ-R-1.1" = "LiLiQ-R-1.1",
+            "LiLiQ-Rplus-1.1" = "LiLiQ-Rplus-1.1",
+            "Libpng" = "Libpng",
+            "Linux-OpenIB" = "Linux-OpenIB",
+            "MIT" = "MIT",
+            "MIT-0" = "MIT-0",
+            "MIT-CMU" = "MIT-CMU",
+            "MIT-Modern-Variant" = "MIT-Modern-Variant",
+            "MIT-advertising" = "MIT-advertising",
+            "MIT-enna" = "MIT-enna",
+            "MIT-feh" = "MIT-feh",
+            "MIT-open-group" = "MIT-open-group",
+            "MITNFA" = "MITNFA",
+            "MPL-1.0" = "MPL-1.0",
+            "MPL-1.1" = "MPL-1.1",
+            "MPL-2.0" = "MPL-2.0",
+            "MPL-2.0-no-copyleft-exception" = "MPL-2.0-no-copyleft-exception",
+            "MS-PL" = "MS-PL",
+            "MS-RL" = "MS-RL",
+            "MTLL" = "MTLL",
+            "MakeIndex" = "MakeIndex",
+            "MirOS" = "MirOS",
+            "Motosoto" = "Motosoto",
+            "MulanPSL-1.0" = "MulanPSL-1.0",
+            "MulanPSL-2.0" = "MulanPSL-2.0",
+            "Multics" = "Multics",
+            "Mup" = "Mup",
+            "NAIST-2003" = "NAIST-2003",
+            "NASA-1.3" = "NASA-1.3",
+            "NBPL-1.0" = "NBPL-1.0",
+            "NCGL-UK-2.0" = "NCGL-UK-2.0",
+            "NCSA" = "NCSA",
+            "NGPL" = "NGPL",
+            "NIST-PD" = "NIST-PD",
+            "NIST-PD-fallback" = "NIST-PD-fallback",
+            "NLOD-1.0" = "NLOD-1.0",
+            "NLPL" = "NLPL",
+            "NOSL" = "NOSL",
+            "NPL-1.0" = "NPL-1.0",
+            "NPL-1.1" = "NPL-1.1",
+            "NPOSL-3.0" = "NPOSL-3.0",
+            "NRL" = "NRL",
+            "NTP" = "NTP",
+            "NTP-0" = "NTP-0",
+            "Naumen" = "Naumen",
+            "Net-SNMP" = "Net-SNMP",
+            "NetCDF" = "NetCDF",
+            "Newsletr" = "Newsletr",
+            "Nokia" = "Nokia",
+            "Noweb" = "Noweb",
+            "O-UDA-1.0" = "O-UDA-1.0",
+            "OCCT-PL" = "OCCT-PL",
+            "OCLC-2.0" = "OCLC-2.0",
+            "ODC-By-1.0" = "ODC-By-1.0",
+            "ODbL-1.0" = "ODbL-1.0",
+            "OFL-1.0" = "OFL-1.0",
+            "OFL-1.0-RFN" = "OFL-1.0-RFN",
+            "OFL-1.0-no-RFN" = "OFL-1.0-no-RFN",
+            "OFL-1.1" = "OFL-1.1",
+            "OFL-1.1-RFN" = "OFL-1.1-RFN",
+            "OFL-1.1-no-RFN" = "OFL-1.1-no-RFN",
+            "OGC-1.0" = "OGC-1.0",
+            "OGDL-Taiwan-1.0" = "OGDL-Taiwan-1.0",
+            "OGL-Canada-2.0" = "OGL-Canada-2.0",
+            "OGL-UK-1.0" = "OGL-UK-1.0",
+            "OGL-UK-2.0" = "OGL-UK-2.0",
+            "OGL-UK-3.0" = "OGL-UK-3.0",
+            "OGTSL" = "OGTSL",
+            "OLDAP-1.1" = "OLDAP-1.1",
+            "OLDAP-1.2" = "OLDAP-1.2",
+            "OLDAP-1.3" = "OLDAP-1.3",
+            "OLDAP-1.4" = "OLDAP-1.4",
+            "OLDAP-2.0" = "OLDAP-2.0",
+            "OLDAP-2.0.1" = "OLDAP-2.0.1",
+            "OLDAP-2.1" = "OLDAP-2.1",
+            "OLDAP-2.2" = "OLDAP-2.2",
+            "OLDAP-2.2.1" = "OLDAP-2.2.1",
+            "OLDAP-2.2.2" = "OLDAP-2.2.2",
+            "OLDAP-2.3" = "OLDAP-2.3",
+            "OLDAP-2.4" = "OLDAP-2.4",
+            "OLDAP-2.5" = "OLDAP-2.5",
+            "OLDAP-2.6" = "OLDAP-2.6",
+            "OLDAP-2.7" = "OLDAP-2.7",
+            "OLDAP-2.8" = "OLDAP-2.8",
+            "OML" = "OML",
+            "OPL-1.0" = "OPL-1.0",
+            "OSET-PL-2.1" = "OSET-PL-2.1",
+            "OSL-1.0" = "OSL-1.0",
+            "OSL-1.1" = "OSL-1.1",
+            "OSL-2.0" = "OSL-2.0",
+            "OSL-2.1" = "OSL-2.1",
+            "OSL-3.0" = "OSL-3.0",
+            "OpenSSL" = "OpenSSL",
+            "PDDL-1.0" = "PDDL-1.0",
+            "PHP-3.0" = "PHP-3.0",
+            "PHP-3.01" = "PHP-3.01",
+            "PSF-2.0" = "PSF-2.0",
+            "Parity-6.0.0" = "Parity-6.0.0",
+            "Parity-7.0.0" = "Parity-7.0.0",
+            "Plexus" = "Plexus",
+            "PolyForm-Noncommercial-1.0.0" = "PolyForm-Noncommercial-1.0.0",
+            "PolyForm-Small-Business-1.0.0" = "PolyForm-Small-Business-1.0.0",
+            "PostgreSQL" = "PostgreSQL",
+            "Python-2.0" = "Python-2.0",
+            "QPL-1.0" = "QPL-1.0",
+            "Qhull" = "Qhull",
+            "RHeCos-1.1" = "RHeCos-1.1",
+            "RPL-1.1" = "RPL-1.1",
+            "RPL-1.5" = "RPL-1.5",
+            "RPSL-1.0" = "RPSL-1.0",
+            "RSA-MD" = "RSA-MD",
+            "RSCPL" = "RSCPL",
+            "Rdisc" = "Rdisc",
+            "Ruby" = "Ruby",
+            "SAX-PD" = "SAX-PD",
+            "SCEA" = "SCEA",
+            "SGI-B-1.0" = "SGI-B-1.0",
+            "SGI-B-1.1" = "SGI-B-1.1",
+            "SGI-B-2.0" = "SGI-B-2.0",
+            "SHL-0.5" = "SHL-0.5",
+            "SHL-0.51" = "SHL-0.51",
+            "SISSL" = "SISSL",
+            "SISSL-1.2" = "SISSL-1.2",
+            "SMLNJ" = "SMLNJ",
+            "SMPPL" = "SMPPL",
+            "SNIA" = "SNIA",
+            "SPL-1.0" = "SPL-1.0",
+            "SSH-OpenSSH" = "SSH-OpenSSH",
+            "SSH-short" = "SSH-short",
+            "SSPL-1.0" = "SSPL-1.0",
+            "SWL" = "SWL",
+            "Saxpath" = "Saxpath",
+            "Sendmail" = "Sendmail",
+            "Sendmail-8.23" = "Sendmail-8.23",
+            "SimPL-2.0" = "SimPL-2.0",
+            "Sleepycat" = "Sleepycat",
+            "Spencer-86" = "Spencer-86",
+            "Spencer-94" = "Spencer-94",
+            "Spencer-99" = "Spencer-99",
+            "SugarCRM-1.1.3" = "SugarCRM-1.1.3",
+            "TAPR-OHL-1.0" = "TAPR-OHL-1.0",
+            "TCL" = "TCL",
+            "TCP-wrappers" = "TCP-wrappers",
+            "TMate" = "TMate",
+            "TORQUE-1.1" = "TORQUE-1.1",
+            "TOSL" = "TOSL",
+            "TU-Berlin-1.0" = "TU-Berlin-1.0",
+            "TU-Berlin-2.0" = "TU-Berlin-2.0",
+            "UCL-1.0" = "UCL-1.0",
+            "UPL-1.0" = "UPL-1.0",
+            "Unicode-DFS-2015" = "Unicode-DFS-2015",
+            "Unicode-DFS-2016" = "Unicode-DFS-2016",
+            "Unicode-TOU" = "Unicode-TOU",
+            "Unlicense" = "Unlicense",
+            "VOSTROM" = "VOSTROM",
+            "VSL-1.0" = "VSL-1.0",
+            "Vim" = "Vim",
+            "W3C" = "W3C",
+            "W3C-19980720" = "W3C-19980720",
+            "W3C-20150513" = "W3C-20150513",
+            "WTFPL" = "WTFPL",
+            "Watcom-1.0" = "Watcom-1.0",
+            "Wsuipa" = "Wsuipa",
+            "X11" = "X11",
+            "XFree86-1.1" = "XFree86-1.1",
+            "XSkat" = "XSkat",
+            "Xerox" = "Xerox",
+            "Xnet" = "Xnet",
+            "ZPL-1.1" = "ZPL-1.1",
+            "ZPL-2.0" = "ZPL-2.0",
+            "ZPL-2.1" = "ZPL-2.1",
+            "Zed" = "Zed",
+            "Zend-2.0" = "Zend-2.0",
+            "Zimbra-1.3" = "Zimbra-1.3",
+            "Zimbra-1.4" = "Zimbra-1.4",
+            "Zlib" = "Zlib",
+            "blessing" = "blessing",
+            "bzip2-1.0.5" = "bzip2-1.0.5",
+            "bzip2-1.0.6" = "bzip2-1.0.6",
+            "copyleft-next-0.3.0" = "copyleft-next-0.3.0",
+            "copyleft-next-0.3.1" = "copyleft-next-0.3.1",
+            "curl" = "curl",
+            "diffmark" = "diffmark",
+            "dvipdfm" = "dvipdfm",
+            "eGenix" = "eGenix",
+            "etalab-2.0" = "etalab-2.0",
+            "freeware" = "freeware",
+            "gSOAP-1.3b" = "gSOAP-1.3b",
+            "gnuplot" = "gnuplot",
+            "iMatix" = "iMatix",
+            "libpng-2.0" = "libpng-2.0",
+            "libselinux-1.0" = "libselinux-1.0",
+            "libtiff" = "libtiff",
+            "mpich2" = "mpich2",
+            "proprietary" = "proprietary",
+            "psfrag" = "psfrag",
+            "psutils" = "psutils",
+            "unknown" = "unknown",
+            "xinetd" = "xinetd",
+            "xpp" = "xpp",
+            "zlib-acknowledgement" = "zlib-acknowledgement"
         }
         /** A structure describing some interesting facts about an OS template project */
-        interface TemplateOsInfoProject {
+        export interface TemplateOsInfoProject {
             /** OS template project OS details */
             os ? : dedicated.TemplateOsInfoProjectItem;
             /** OS template project usage details */
             usage ? : dedicated.TemplateOsInfoProjectItem;
         }
         /** A structure describing some interesting facts about an OS template project item */
-        interface TemplateOsInfoProjectItem {
+        export interface TemplateOsInfoProjectItem {
             /** OS template project item governance */
             governance ? : string[];
             /** OS template project item release notes */
@@ -11954,7 +11944,7 @@ declare namespace ovhapi {
             version ? : string;
         }
         /** A structure describing input questions for the specific OS template */
-        interface TemplateOsInput {
+        export interface TemplateOsInput {
             /** Default value */
             default ? : string;
             /** Input question description */
@@ -11969,62 +11959,62 @@ declare namespace ovhapi {
             type: dedicated.TemplateOsInputTypeEnum;
         }
         /** Template OS Input type enum */
-        enum TemplateOsInputTypeEnum {
-            "boolean",
-            "date",
-            "email",
-            "enum",
-            "hexstring",
-            "ip",
-            "keyValue",
-            "number",
-            "string",
-            "text",
-            "time",
-            "url",
-            "uuid"
+        export enum TemplateOsInputTypeEnum {
+            "boolean" = "boolean",
+            "date" = "date",
+            "email" = "email",
+            "enum" = "enum",
+            "hexstring" = "hexstring",
+            "ip" = "ip",
+            "keyValue" = "keyValue",
+            "number" = "number",
+            "string" = "string",
+            "text" = "text",
+            "time" = "time",
+            "url" = "url",
+            "uuid" = "uuid"
         }
         /** all language available */
-        enum TemplateOsLanguageEnum {
-            "ar",
-            "bg",
-            "cs",
-            "da",
-            "de",
-            "el",
-            "en",
-            "es",
-            "et",
-            "fi",
-            "fr",
-            "he",
-            "hr",
-            "hu",
-            "it",
-            "ja",
-            "ko",
-            "lt",
-            "lv",
-            "nb",
-            "nl",
-            "no",
-            "pl",
-            "pt",
-            "ro",
-            "ru",
-            "sk",
-            "sl",
-            "sr",
-            "sv",
-            "th",
-            "tr",
-            "tu",
-            "uk",
-            "zh-Hans-CN",
-            "zh-Hans-HK"
+        export enum TemplateOsLanguageEnum {
+            "ar" = "ar",
+            "bg" = "bg",
+            "cs" = "cs",
+            "da" = "da",
+            "de" = "de",
+            "el" = "el",
+            "en" = "en",
+            "es" = "es",
+            "et" = "et",
+            "fi" = "fi",
+            "fr" = "fr",
+            "he" = "he",
+            "hr" = "hr",
+            "hu" = "hu",
+            "it" = "it",
+            "ja" = "ja",
+            "ko" = "ko",
+            "lt" = "lt",
+            "lv" = "lv",
+            "nb" = "nb",
+            "nl" = "nl",
+            "no" = "no",
+            "pl" = "pl",
+            "pt" = "pt",
+            "ro" = "ro",
+            "ru" = "ru",
+            "sk" = "sk",
+            "sl" = "sl",
+            "sr" = "sr",
+            "sv" = "sv",
+            "th" = "th",
+            "tr" = "tr",
+            "tu" = "tu",
+            "uk" = "uk",
+            "zh-Hans-CN" = "zh-Hans-CN",
+            "zh-Hans-HK" = "zh-Hans-HK"
         }
         /** A structure describing properties customizables about this dedicated installation template */
-        interface TemplateOsProperties {
+        export interface TemplateOsProperties {
             /** Set up the server using the provided hostname instead of the default hostname */
             customHostname ? : string;
             /** Indicate the URL where your postinstall customisation script is located */
@@ -12037,134 +12027,134 @@ declare namespace ovhapi {
             useDistributionKernel ? : boolean;
         }
         /** Os subfamily definition */
-        enum TemplateOsSubfamilyEnum {
-            "alma",
-            "aos",
-            "arch",
-            "byoi",
-            "centos",
-            "cloudlinux",
-            "coreos",
-            "debian",
-            "dgx",
-            "esxi",
-            "fedora",
-            "freebsd",
-            "gentoo",
-            "hyperv",
-            "omnios",
-            "openio",
-            "openmediavault",
-            "opensuse",
-            "ovh",
-            "pcs",
-            "power",
-            "proxmox",
-            "rhel",
-            "rocky",
-            "slackware",
-            "sles-sap",
-            "smartos",
-            "solusvm",
-            "ubuntu",
-            "windows-server-core",
-            "windows-server-desktop-exp",
-            "xcp",
-            "xen"
+        export enum TemplateOsSubfamilyEnum {
+            "alma" = "alma",
+            "aos" = "aos",
+            "arch" = "arch",
+            "byoi" = "byoi",
+            "centos" = "centos",
+            "cloudlinux" = "cloudlinux",
+            "coreos" = "coreos",
+            "debian" = "debian",
+            "dgx" = "dgx",
+            "esxi" = "esxi",
+            "fedora" = "fedora",
+            "freebsd" = "freebsd",
+            "gentoo" = "gentoo",
+            "hyperv" = "hyperv",
+            "omnios" = "omnios",
+            "openio" = "openio",
+            "openmediavault" = "openmediavault",
+            "opensuse" = "opensuse",
+            "ovh" = "ovh",
+            "pcs" = "pcs",
+            "power" = "power",
+            "proxmox" = "proxmox",
+            "rhel" = "rhel",
+            "rocky" = "rocky",
+            "slackware" = "slackware",
+            "sles-sap" = "sles-sap",
+            "smartos" = "smartos",
+            "solusvm" = "solusvm",
+            "ubuntu" = "ubuntu",
+            "windows-server-core" = "windows-server-core",
+            "windows-server-desktop-exp" = "windows-server-desktop-exp",
+            "xcp" = "xcp",
+            "xen" = "xen"
         }
         /** Os type */
-        enum TemplateOsTypeEnum {
-            "bsd",
-            "custom",
-            "ibm",
-            "linux",
-            "solaris",
-            "unix",
-            "windows"
+        export enum TemplateOsTypeEnum {
+            "bsd" = "bsd",
+            "custom" = "custom",
+            "ibm" = "ibm",
+            "linux" = "linux",
+            "solaris" = "solaris",
+            "unix" = "unix",
+            "windows" = "windows"
         }
         /** Os usage definition */
-        enum TemplateOsUsageEnum {
-            "backup",
-            "basic",
-            "customer",
-            "database",
-            "erp",
-            "hosting",
-            "management",
-            "other",
-            "readyToUse",
-            "virtualisation",
-            "virtualization"
+        export enum TemplateOsUsageEnum {
+            "backup" = "backup",
+            "basic" = "basic",
+            "customer" = "customer",
+            "database" = "database",
+            "erp" = "erp",
+            "hosting" = "hosting",
+            "management" = "management",
+            "other" = "other",
+            "readyToUse" = "readyToUse",
+            "virtualisation" = "virtualisation",
+            "virtualization" = "virtualization"
         }
         /** partition type */
-        enum TemplatePartitionTypeEnum {
-            "logical",
-            "lv",
-            "primary"
+        export enum TemplatePartitionTypeEnum {
+            "logical" = "logical",
+            "lv" = "lv",
+            "primary" = "primary"
         }
     }
-    namespace domain {
+    export namespace domain {
         /** Document file format */
-        enum DocumentFormatsEnum {
-            "gif",
-            "jpeg",
-            "jpg",
-            "pdf",
-            "png"
+        export enum DocumentFormatsEnum {
+            "gif" = "gif",
+            "jpeg" = "jpeg",
+            "jpg" = "jpg",
+            "pdf" = "pdf",
+            "png" = "png"
         }
         /** Operation actions */
-        enum OperationActionEnum {
-            "canCancel",
-            "canCorrect",
-            "canRelaunch",
-            "canReset"
+        export enum OperationActionEnum {
+            "canCancel" = "canCancel",
+            "canCorrect" = "canCorrect",
+            "canRelaunch" = "canRelaunch",
+            "canReset" = "canReset"
         }
         /** Operation functions */
-        enum OperationFunctionEnum {
-            "ContactControl",
-            "DnsAnycastActivate",
-            "DnsAnycastDeactivate",
-            "DnssecDisable",
-            "DnssecEnable",
-            "DnssecResigning",
-            "DnssecRollKsk",
-            "DnssecRollZsk",
-            "DomainAfterMarket",
-            "DomainContactControl",
-            "DomainContactUpdate",
-            "DomainControl",
-            "DomainCreate",
-            "DomainDelete",
-            "DomainDnsUpdate",
-            "DomainDsUpdate",
-            "DomainEmailRedirectionsCreate",
-            "DomainEmailRedirectionsDelete",
-            "DomainHold",
-            "DomainHostCreate",
-            "DomainHostDelete",
-            "DomainHostUpdate",
-            "DomainIncomingTransfer",
-            "DomainLock",
-            "DomainOutgoingTransfer",
-            "DomainRegistryDelete",
-            "DomainRenew",
-            "DomainResourceDelete",
-            "DomainRestore",
-            "DomainTrade",
-            "DomainUnhold",
-            "DomainUnlock",
-            "ZoneImport"
+        export enum OperationFunctionEnum {
+            "ContactControl" = "ContactControl",
+            "DnsAnycastActivate" = "DnsAnycastActivate",
+            "DnsAnycastDeactivate" = "DnsAnycastDeactivate",
+            "DnssecDisable" = "DnssecDisable",
+            "DnssecEnable" = "DnssecEnable",
+            "DnssecResigning" = "DnssecResigning",
+            "DnssecRollKsk" = "DnssecRollKsk",
+            "DnssecRollZsk" = "DnssecRollZsk",
+            "DomainAfterMarket" = "DomainAfterMarket",
+            "DomainContactControl" = "DomainContactControl",
+            "DomainContactUpdate" = "DomainContactUpdate",
+            "DomainControl" = "DomainControl",
+            "DomainCreate" = "DomainCreate",
+            "DomainDelete" = "DomainDelete",
+            "DomainDnsUpdate" = "DomainDnsUpdate",
+            "DomainDsUpdate" = "DomainDsUpdate",
+            "DomainEmailRedirectionsCreate" = "DomainEmailRedirectionsCreate",
+            "DomainEmailRedirectionsDelete" = "DomainEmailRedirectionsDelete",
+            "DomainHold" = "DomainHold",
+            "DomainHostCreate" = "DomainHostCreate",
+            "DomainHostDelete" = "DomainHostDelete",
+            "DomainHostUpdate" = "DomainHostUpdate",
+            "DomainIncomingTransfer" = "DomainIncomingTransfer",
+            "DomainLock" = "DomainLock",
+            "DomainOutgoingTransfer" = "DomainOutgoingTransfer",
+            "DomainRegistryDelete" = "DomainRegistryDelete",
+            "DomainRenew" = "DomainRenew",
+            "DomainResourceDelete" = "DomainResourceDelete",
+            "DomainRestore" = "DomainRestore",
+            "DomainTrade" = "DomainTrade",
+            "DomainUnhold" = "DomainUnhold",
+            "DomainUnlock" = "DomainUnlock",
+            "ZoneImport" = "ZoneImport"
         }
         /** Operation status */
-        enum OperationStatusEnum {
-            "cancelled",
-            "doing",
-            "done",
-            "error",
-            "todo"
+        export enum OperationStatusEnum {
+            "cancelled" = "cancelled",
+            "doing" = "doing",
+            "done" = "done",
+            "error" = "error",
+            "todo" = "todo"
         }
         /** One step from an operation */
-        interface OperationStep {
+        export interface OperationStep {
             /** Description of the step */
             description: string;
             /** Execution time of the step */
@@ -12173,7 +12163,7 @@ declare namespace ovhapi {
             step: string;
         }
         /** Tasks associated to domain */
-        interface Task {
+        export interface Task {
             /** Can accelerate the task */
             canAccelerate: boolean;
             /** Can cancel the task */
@@ -12200,18 +12190,18 @@ declare namespace ovhapi {
             todoDate: string;
         }
     }
-    namespace http {
+    export namespace http {
         /** All HTTP methods available */
-        enum MethodEnum {
-            "DELETE",
-            "GET",
-            "POST",
-            "PUT"
+        export enum MethodEnum {
+            "DELETE" = "DELETE",
+            "GET" = "GET",
+            "POST" = "POST",
+            "PUT" = "PUT"
         }
     }
-    namespace insight {
+    export namespace insight {
         /** Insight access token */
-        interface Access {
+        export interface Access {
             /** Access token */
             access: string;
             /** Token creation date */
@@ -12220,43 +12210,43 @@ declare namespace ovhapi {
             expireAt: string;
         }
     }
-    namespace ip {
+    export namespace ip {
         /** Possible values for IP campuses' names */
-        enum CampusEnum {
-            "BHS",
-            "ERI",
-            "GRA",
-            "HIL",
-            "LIM",
-            "RBX",
-            "SBG",
-            "SGP",
-            "SY2",
-            "SYD",
-            "VIN",
-            "WAW",
-            "YNM"
+        export enum CampusEnum {
+            "BHS" = "BHS",
+            "ERI" = "ERI",
+            "GRA" = "GRA",
+            "HIL" = "HIL",
+            "LIM" = "LIM",
+            "RBX" = "RBX",
+            "SBG" = "SBG",
+            "SGP" = "SGP",
+            "SY2" = "SY2",
+            "SYD" = "SYD",
+            "VIN" = "VIN",
+            "WAW" = "WAW",
+            "YNM" = "YNM"
         }
     }
-    namespace me {
-        namespace SupportLevel {
+    export namespace me {
+        export namespace SupportLevel {
             /** Support level of an account */
-            interface Level {
+            export interface Level {
                 /** Level of support */
                 level: me.SupportLevel.LevelTypeEnum;
             }
             /** Type of level */
-            enum LevelTypeEnum {
-                "business",
-                "enterprise",
-                "premium",
-                "premium-accredited",
-                "standard"
+            export enum LevelTypeEnum {
+                "business" = "business",
+                "enterprise" = "enterprise",
+                "premium" = "premium",
+                "premium-accredited" = "premium-accredited",
+                "standard" = "standard"
             }
         }
-        namespace abuse {
+        export namespace abuse {
             /** Get report API response */
-            interface Abuse {
+            export interface Abuse {
                 /** Abuse category */
                 category: me.abuse.AbuseCategoryEnum;
                 /** Creation date of the abuse */
@@ -12269,40 +12259,40 @@ declare namespace ovhapi {
                 status: me.abuse.AbuseStatusEnum;
             }
             /** The abuse categories */
-            enum AbuseCategoryEnum {
-                "Compromised",
-                "Copyright",
-                "Illegal",
-                "Intrusion",
-                "Malware",
-                "Network Attack",
-                "Other",
-                "Phishing",
-                "Spam"
+            export enum AbuseCategoryEnum {
+                "Compromised" = "Compromised",
+                "Copyright" = "Copyright",
+                "Illegal" = "Illegal",
+                "Intrusion" = "Intrusion",
+                "Malware" = "Malware",
+                "Network Attack" = "Network Attack",
+                "Other" = "Other",
+                "Phishing" = "Phishing",
+                "Spam" = "Spam"
             }
             /** The abuse status */
-            enum AbuseStatusEnum {
-                "Answered",
-                "Claimed",
-                "Closed",
-                "Escalated",
-                "Open",
-                "Paused",
-                "Reopened",
-                "Updated",
-                "WaitingAnswer"
+            export enum AbuseStatusEnum {
+                "Answered" = "Answered",
+                "Claimed" = "Claimed",
+                "Closed" = "Closed",
+                "Escalated" = "Escalated",
+                "Open" = "Open",
+                "Paused" = "Paused",
+                "Reopened" = "Reopened",
+                "Updated" = "Updated",
+                "WaitingAnswer" = "WaitingAnswer"
             }
         }
-        namespace agreements {
+        export namespace agreements {
             /** State of the agreement */
-            enum AgreementStatusEnum {
-                "ko",
-                "obsolete",
-                "ok",
-                "todo"
+            export enum AgreementStatusEnum {
+                "ko" = "ko",
+                "obsolete" = "obsolete",
+                "ok" = "ok",
+                "todo" = "todo"
             }
             /** Contract Agreement */
-            interface ContractAgreement {
+            export interface ContractAgreement {
                 /** State of the agreement */
                 agreed: me.agreements.AgreementStatusEnum;
                 /** Contract ID */
@@ -12313,16 +12303,16 @@ declare namespace ovhapi {
                 id: number;
             }
         }
-        namespace billing {
-            namespace group {
-                namespace service {
+        export namespace billing {
+            export namespace group {
+                export namespace service {
                     /** Missing description */
-                    interface Create {
+                    export interface Create {
                         /** A service ID to associate */
                         serviceId: number;
                     }
                 } /** Missing description */
-                interface BillingGroup {
+                export interface BillingGroup {
                     /** Contact ID from /me/contact */
                     contactId ? : number;
                     /** Creation date */
@@ -12337,16 +12327,16 @@ declare namespace ovhapi {
                     paymentMethodId ? : number;
                 }
                 /** Missing description */
-                interface Service {
+                export interface Service {
                     /** Billing group ID */
                     groupId: number;
                     /** Service ID */
                     serviceId: number;
                 }
             }
-            namespace purchaseOrder {
+            export namespace purchaseOrder {
                 /** Purchase order creation payload */
-                interface Creation {
+                export interface Creation {
                     /** Active */
                     active ? : boolean;
                     /** Billing Group identifier */
@@ -12363,7 +12353,7 @@ declare namespace ovhapi {
                     type: me.billing.purchaseOrder.PurchaseOrderTypeEnum;
                 }
                 /** Purchase Order */
-                interface PurchaseOrder {
+                export interface PurchaseOrder {
                     /** Active */
                     active ? : boolean;
                     /** Billing Group identifier */
@@ -12388,17 +12378,17 @@ declare namespace ovhapi {
                     type: me.billing.purchaseOrder.PurchaseOrderTypeEnum;
                 }
                 /** Type of a purchase order */
-                enum PurchaseOrderTypeEnum {
-                    "PURCHASE_ORDER",
-                    "REFERENCE_ORDER"
+                export enum PurchaseOrderTypeEnum {
+                    "PURCHASE_ORDER" = "PURCHASE_ORDER",
+                    "REFERENCE_ORDER" = "REFERENCE_ORDER"
                 }
                 /** Status of the Purchase Order */
-                enum StatusEnum {
-                    "CREATED",
-                    "DELETED"
+                export enum StatusEnum {
+                    "CREATED" = "CREATED",
+                    "DELETED" = "DELETED"
                 }
                 /** Purchase order update payload */
-                interface Update {
+                export interface Update {
                     /** Active */
                     active ? : boolean;
                     /** Billing group identifier */
@@ -12415,9 +12405,9 @@ declare namespace ovhapi {
                     type ? : me.billing.purchaseOrder.PurchaseOrderTypeEnum;
                 }
             }
-            namespace tasks {
+            export namespace tasks {
                 /** Asynchronous task related to Billing */
-                interface Task {
+                export interface Task {
                     /** Unique identifier of the Task */
                     id: number;
                     /** Metadata linked to the Task. Will help you determine which object it relates to */
@@ -12430,31 +12420,31 @@ declare namespace ovhapi {
                     step: string;
                 }
                 /** Metadatum linked to a Task */
-                interface TaskMetadatum {
+                export interface TaskMetadatum {
                     /** Metadatum key */
                     key: string;
                     /** Metadatum value */
                     value: string;
                 }
                 /** Billing tasks names */
-                enum TaskNameEnum {
-                    "contact/change"
+                export enum TaskNameEnum {
+                    "contact/change" = "contact/change"
                 }
                 /** Billing tasks statuses */
-                enum TaskStatusEnum {
-                    "CANCELLED",
-                    "DOING",
-                    "DONE",
-                    "ERROR",
-                    "INIT",
-                    "PROBLEM",
-                    "TODO"
+                export enum TaskStatusEnum {
+                    "CANCELLED" = "CANCELLED",
+                    "DOING" = "DOING",
+                    "DONE" = "DONE",
+                    "ERROR" = "ERROR",
+                    "INIT" = "INIT",
+                    "PROBLEM" = "PROBLEM",
+                    "TODO" = "TODO"
                 }
             }
         }
-        namespace consent {
+        export namespace consent {
             /** Consent campaign */
-            interface Campaign {
+            export interface Campaign {
                 /** Campaign description */
                 description: string;
                 /** Campaign name */
@@ -12463,12 +12453,12 @@ declare namespace ovhapi {
                 type: me.consent.CampaignTypeEnum;
             }
             /** Campaign type */
-            enum CampaignTypeEnum {
-                "OPTIN",
-                "OPTOUT"
+            export enum CampaignTypeEnum {
+                "OPTIN" = "OPTIN",
+                "OPTOUT" = "OPTOUT"
             }
             /** Customer consent information for a campaign */
-            interface Consent {
+            export interface Consent {
                 /** Campaign name */
                 campaign: string;
                 /** Consent decisions history for this campaign */
@@ -12479,18 +12469,18 @@ declare namespace ovhapi {
                 value: boolean;
             }
             /** Customer consent decision */
-            interface Decision {
+            export interface Decision {
                 /** Consent decision datetime */
                 timestamp: string;
                 /** Consent decision value */
                 value: boolean;
             }
         }
-        namespace consumption {
-            namespace transaction {
-                namespace Element {
+        export namespace consumption {
+            export namespace transaction {
+                export namespace Element {
                     /** Element of consumption for resource */
-                    interface Detail {
+                    export interface Detail {
                         /** Consumption amount price */
                         price: me.consumption.Price;
                         /** Consumption quantity */
@@ -12499,7 +12489,7 @@ declare namespace ovhapi {
                         unique_id ? : string;
                     }
                 } /** Element of consumption for resource */
-                interface Element {
+                export interface Element {
                     /** List of consumption details for this planCode */
                     details: me.consumption.transaction.element.Detail[];
                     /** Identifier of the offer */
@@ -12512,18 +12502,18 @@ declare namespace ovhapi {
                     quantity: number;
                 }
             } /** Price with currency and amount in micro-cents */
-            interface Price {
+            export interface Price {
                 /** currencyCode */
                 currencyCode: order.CurrencyCodeEnum;
                 /** text */
                 text: string;
                 /** value */
-                value: double;
+                value: number;
                 /** valueInUcents */
                 valueInUcents: number;
             }
             /** List of consumptions recorded in a range */
-            interface Transaction {
+            export interface Transaction {
                 /** Begin date */
                 beginDate: string;
                 /** Creation date */
@@ -12542,9 +12532,9 @@ declare namespace ovhapi {
                 serviceId: number;
             }
         }
-        namespace contact {
+        export namespace contact {
             /** Representation of a Contact */
-            interface Address {
+            export interface Address {
                 /** City */
                 city: string;
                 /** Country */
@@ -12563,7 +12553,7 @@ declare namespace ovhapi {
                 zip ? : string;
             }
             /** Contact definition */
-            interface Contact {
+            export interface Contact {
                 /** Address for this contact */
                 address: me.contact.Address;
                 /** Birth city */
@@ -12575,13 +12565,13 @@ declare namespace ovhapi {
                 /** Birth Zipcode */
                 birthZip ? : string;
                 /** Cellphone number */
-                cellPhone ? : phoneNumber;
+                cellPhone ? : string;
                 /** National identification number of your company */
                 companyNationalIdentificationNumber ? : string;
                 /** Email address */
                 email: string;
                 /** Fax number */
-                fax ? : phoneNumber;
+                fax ? : string;
                 /** First name */
                 firstName: string;
                 /** Gender */
@@ -12603,39 +12593,39 @@ declare namespace ovhapi {
                 /** Organisation type */
                 organisationType ? : string;
                 /** Telephone number */
-                phone ? : phoneNumber;
+                phone ? : string;
                 /** Spare email address */
                 spareEmail ? : string;
                 /** VAT number */
                 vat ? : string;
             }
         }
-        namespace credit {
-            namespace balance {
-                namespace movement {
+        export namespace credit {
+            export namespace balance {
+                export namespace movement {
                     /** Missing description */
-                    interface SubObject {
+                    export interface SubObject {
                         /** Sub object ID */
                         id: string;
                         /** Sub object name */
                         name: string;
                     }
                     /** Balance movement type */
-                    enum TypeEnum {
-                        "BONUS",
-                        "CANCEL",
-                        "CREDIT_NOTE",
-                        "EXPIRE",
-                        "GIFT",
-                        "MANUAL",
-                        "ORDER",
-                        "REFUND",
-                        "UNPAID",
-                        "USE",
-                        "VOUCHER"
+                    export enum TypeEnum {
+                        "BONUS" = "BONUS",
+                        "CANCEL" = "CANCEL",
+                        "CREDIT_NOTE" = "CREDIT_NOTE",
+                        "EXPIRE" = "EXPIRE",
+                        "GIFT" = "GIFT",
+                        "MANUAL" = "MANUAL",
+                        "ORDER" = "ORDER",
+                        "REFUND" = "REFUND",
+                        "UNPAID" = "UNPAID",
+                        "USE" = "USE",
+                        "VOUCHER" = "VOUCHER"
                     }
                 } /** Missing description */
-                interface BalanceDetails {
+                export interface BalanceDetails {
                     /** Balance part amount */
                     amount: order.Price;
                     /** Balance sub name */
@@ -12646,7 +12636,7 @@ declare namespace ovhapi {
                     serviceId ? : number;
                 }
                 /** Missing description */
-                interface BookedMovement {
+                export interface BookedMovement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Balance sub name */
@@ -12655,7 +12645,7 @@ declare namespace ovhapi {
                     orderId: number;
                 }
                 /** Missing description */
-                interface ExpiringMovement {
+                export interface ExpiringMovement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Movement creation date */
@@ -12668,7 +12658,7 @@ declare namespace ovhapi {
                     sourceObject: me.credit.balance.movement.SubObject;
                 }
                 /** Missing description */
-                interface Movement {
+                export interface Movement {
                     /** Movement amount */
                     amount: order.Price;
                     /** Balance name */
@@ -12691,23 +12681,23 @@ declare namespace ovhapi {
                     type: me.credit.balance.movement.TypeEnum;
                 }
                 /** Balance type */
-                enum TypeEnum {
-                    "BONUS",
-                    "DEPOSIT",
-                    "PREPAID_ACCOUNT",
-                    "VOUCHER"
+                export enum TypeEnum {
+                    "BONUS" = "BONUS",
+                    "DEPOSIT" = "DEPOSIT",
+                    "PREPAID_ACCOUNT" = "PREPAID_ACCOUNT",
+                    "VOUCHER" = "VOUCHER"
                 }
             }
-            namespace code {
+            export namespace code {
                 /** Missing description */
-                interface Redeem {
+                export interface Redeem {
                     /** Code to validate */
                     inputCode: string;
                     /** Restrict credit to a specific service */
                     serviceId: number;
                 }
             } /** Missing description */
-            interface Balance {
+            export interface Balance {
                 /** Balance amount */
                 amount: order.Price;
                 /** Balance details, amounts by serviceID */
@@ -12726,9 +12716,9 @@ declare namespace ovhapi {
                 type: me.credit.balance.TypeEnum;
             }
         }
-        namespace geolocation {
+        export namespace geolocation {
             /** Representation of country and continent from visitor IP */
-            interface ContinentCountryLocation {
+            export interface ContinentCountryLocation {
                 /** Continent */
                 continent ? : me.geolocation.ContinentEnum;
                 /** Country iso code */
@@ -12737,301 +12727,301 @@ declare namespace ovhapi {
                 ip: string;
             }
             /** Continent */
-            enum ContinentEnum {
-                "africa",
-                "antartica",
-                "asia",
-                "europe",
-                "north-america",
-                "oceania",
-                "south-america"
+            export enum ContinentEnum {
+                "africa" = "africa",
+                "antartica" = "antartica",
+                "asia" = "asia",
+                "europe" = "europe",
+                "north-america" = "north-america",
+                "oceania" = "oceania",
+                "south-america" = "south-america"
             }
             /** Country iso code */
-            enum CountryEnum {
-                "ac",
-                "ad",
-                "ae",
-                "af",
-                "ag",
-                "ai",
-                "al",
-                "am",
-                "an",
-                "ao",
-                "aq",
-                "ar",
-                "as",
-                "at",
-                "au",
-                "aw",
-                "ax",
-                "az",
-                "ba",
-                "bb",
-                "bd",
-                "be",
-                "bf",
-                "bg",
-                "bh",
-                "bi",
-                "bj",
-                "bl",
-                "bm",
-                "bn",
-                "bo",
-                "bq",
-                "br",
-                "bs",
-                "bt",
-                "bv",
-                "bw",
-                "by",
-                "bz",
-                "ca",
-                "cc",
-                "cd",
-                "cf",
-                "cg",
-                "ch",
-                "ci",
-                "ck",
-                "cl",
-                "cm",
-                "cn",
-                "co",
-                "cr",
-                "cs",
-                "cu",
-                "cv",
-                "cw",
-                "cx",
-                "cy",
-                "cz",
-                "de",
-                "dj",
-                "dk",
-                "dm",
-                "do",
-                "dz",
-                "ec",
-                "ee",
-                "eg",
-                "eh",
-                "er",
-                "es",
-                "et",
-                "fc",
-                "fd",
-                "fi",
-                "fj",
-                "fk",
-                "fm",
-                "fo",
-                "fr",
-                "fx",
-                "ga",
-                "gb",
-                "gd",
-                "ge",
-                "gf",
-                "gg",
-                "gh",
-                "gi",
-                "gl",
-                "gm",
-                "gn",
-                "gp",
-                "gq",
-                "gr",
-                "gs",
-                "gt",
-                "gu",
-                "gw",
-                "gy",
-                "hk",
-                "hm",
-                "hn",
-                "hr",
-                "ht",
-                "hu",
-                "id",
-                "ie",
-                "il",
-                "im",
-                "in",
-                "io",
-                "iq",
-                "ir",
-                "is",
-                "it",
-                "je",
-                "jm",
-                "jo",
-                "jp",
-                "ke",
-                "kg",
-                "kh",
-                "ki",
-                "km",
-                "kn",
-                "kp",
-                "kr",
-                "kw",
-                "ky",
-                "kz",
-                "la",
-                "lb",
-                "lc",
-                "li",
-                "lk",
-                "lr",
-                "ls",
-                "lt",
-                "lu",
-                "lv",
-                "ly",
-                "ma",
-                "mc",
-                "md",
-                "me",
-                "mf",
-                "mg",
-                "mh",
-                "mk",
-                "ml",
-                "mm",
-                "mn",
-                "mo",
-                "mp",
-                "mq",
-                "mr",
-                "ms",
-                "mt",
-                "mu",
-                "mv",
-                "mw",
-                "mx",
-                "my",
-                "mz",
-                "na",
-                "nc",
-                "ne",
-                "nf",
-                "ng",
-                "ni",
-                "nl",
-                "no",
-                "np",
-                "nr",
-                "nu",
-                "nz",
-                "om",
-                "pa",
-                "pe",
-                "pf",
-                "pg",
-                "ph",
-                "pk",
-                "pl",
-                "pm",
-                "pn",
-                "pr",
-                "ps",
-                "pt",
-                "pw",
-                "py",
-                "qa",
-                "qc",
-                "re",
-                "ro",
-                "rs",
-                "ru",
-                "rw",
-                "sa",
-                "sb",
-                "sc",
-                "sd",
-                "se",
-                "sg",
-                "sh",
-                "si",
-                "sj",
-                "sk",
-                "sl",
-                "sm",
-                "sn",
-                "so",
-                "sr",
-                "ss",
-                "st",
-                "sv",
-                "sx",
-                "sy",
-                "sz",
-                "tc",
-                "td",
-                "tf",
-                "tg",
-                "th",
-                "tj",
-                "tk",
-                "tl",
-                "tm",
-                "tn",
-                "to",
-                "tp",
-                "tr",
-                "tt",
-                "tv",
-                "tw",
-                "tz",
-                "ua",
-                "ug",
-                "uk",
-                "um",
-                "us",
-                "uy",
-                "uz",
-                "va",
-                "vc",
-                "ve",
-                "vg",
-                "vi",
-                "vn",
-                "vu",
-                "we",
-                "wf",
-                "ws",
-                "ye",
-                "yt",
-                "yu",
-                "za",
-                "zm",
-                "zw"
+            export enum CountryEnum {
+                "ac" = "ac",
+                "ad" = "ad",
+                "ae" = "ae",
+                "af" = "af",
+                "ag" = "ag",
+                "ai" = "ai",
+                "al" = "al",
+                "am" = "am",
+                "an" = "an",
+                "ao" = "ao",
+                "aq" = "aq",
+                "ar" = "ar",
+                "as" = "as",
+                "at" = "at",
+                "au" = "au",
+                "aw" = "aw",
+                "ax" = "ax",
+                "az" = "az",
+                "ba" = "ba",
+                "bb" = "bb",
+                "bd" = "bd",
+                "be" = "be",
+                "bf" = "bf",
+                "bg" = "bg",
+                "bh" = "bh",
+                "bi" = "bi",
+                "bj" = "bj",
+                "bl" = "bl",
+                "bm" = "bm",
+                "bn" = "bn",
+                "bo" = "bo",
+                "bq" = "bq",
+                "br" = "br",
+                "bs" = "bs",
+                "bt" = "bt",
+                "bv" = "bv",
+                "bw" = "bw",
+                "by" = "by",
+                "bz" = "bz",
+                "ca" = "ca",
+                "cc" = "cc",
+                "cd" = "cd",
+                "cf" = "cf",
+                "cg" = "cg",
+                "ch" = "ch",
+                "ci" = "ci",
+                "ck" = "ck",
+                "cl" = "cl",
+                "cm" = "cm",
+                "cn" = "cn",
+                "co" = "co",
+                "cr" = "cr",
+                "cs" = "cs",
+                "cu" = "cu",
+                "cv" = "cv",
+                "cw" = "cw",
+                "cx" = "cx",
+                "cy" = "cy",
+                "cz" = "cz",
+                "de" = "de",
+                "dj" = "dj",
+                "dk" = "dk",
+                "dm" = "dm",
+                "do" = "do",
+                "dz" = "dz",
+                "ec" = "ec",
+                "ee" = "ee",
+                "eg" = "eg",
+                "eh" = "eh",
+                "er" = "er",
+                "es" = "es",
+                "et" = "et",
+                "fc" = "fc",
+                "fd" = "fd",
+                "fi" = "fi",
+                "fj" = "fj",
+                "fk" = "fk",
+                "fm" = "fm",
+                "fo" = "fo",
+                "fr" = "fr",
+                "fx" = "fx",
+                "ga" = "ga",
+                "gb" = "gb",
+                "gd" = "gd",
+                "ge" = "ge",
+                "gf" = "gf",
+                "gg" = "gg",
+                "gh" = "gh",
+                "gi" = "gi",
+                "gl" = "gl",
+                "gm" = "gm",
+                "gn" = "gn",
+                "gp" = "gp",
+                "gq" = "gq",
+                "gr" = "gr",
+                "gs" = "gs",
+                "gt" = "gt",
+                "gu" = "gu",
+                "gw" = "gw",
+                "gy" = "gy",
+                "hk" = "hk",
+                "hm" = "hm",
+                "hn" = "hn",
+                "hr" = "hr",
+                "ht" = "ht",
+                "hu" = "hu",
+                "id" = "id",
+                "ie" = "ie",
+                "il" = "il",
+                "im" = "im",
+                "in" = "in",
+                "io" = "io",
+                "iq" = "iq",
+                "ir" = "ir",
+                "is" = "is",
+                "it" = "it",
+                "je" = "je",
+                "jm" = "jm",
+                "jo" = "jo",
+                "jp" = "jp",
+                "ke" = "ke",
+                "kg" = "kg",
+                "kh" = "kh",
+                "ki" = "ki",
+                "km" = "km",
+                "kn" = "kn",
+                "kp" = "kp",
+                "kr" = "kr",
+                "kw" = "kw",
+                "ky" = "ky",
+                "kz" = "kz",
+                "la" = "la",
+                "lb" = "lb",
+                "lc" = "lc",
+                "li" = "li",
+                "lk" = "lk",
+                "lr" = "lr",
+                "ls" = "ls",
+                "lt" = "lt",
+                "lu" = "lu",
+                "lv" = "lv",
+                "ly" = "ly",
+                "ma" = "ma",
+                "mc" = "mc",
+                "md" = "md",
+                "me" = "me",
+                "mf" = "mf",
+                "mg" = "mg",
+                "mh" = "mh",
+                "mk" = "mk",
+                "ml" = "ml",
+                "mm" = "mm",
+                "mn" = "mn",
+                "mo" = "mo",
+                "mp" = "mp",
+                "mq" = "mq",
+                "mr" = "mr",
+                "ms" = "ms",
+                "mt" = "mt",
+                "mu" = "mu",
+                "mv" = "mv",
+                "mw" = "mw",
+                "mx" = "mx",
+                "my" = "my",
+                "mz" = "mz",
+                "na" = "na",
+                "nc" = "nc",
+                "ne" = "ne",
+                "nf" = "nf",
+                "ng" = "ng",
+                "ni" = "ni",
+                "nl" = "nl",
+                "no" = "no",
+                "np" = "np",
+                "nr" = "nr",
+                "nu" = "nu",
+                "nz" = "nz",
+                "om" = "om",
+                "pa" = "pa",
+                "pe" = "pe",
+                "pf" = "pf",
+                "pg" = "pg",
+                "ph" = "ph",
+                "pk" = "pk",
+                "pl" = "pl",
+                "pm" = "pm",
+                "pn" = "pn",
+                "pr" = "pr",
+                "ps" = "ps",
+                "pt" = "pt",
+                "pw" = "pw",
+                "py" = "py",
+                "qa" = "qa",
+                "qc" = "qc",
+                "re" = "re",
+                "ro" = "ro",
+                "rs" = "rs",
+                "ru" = "ru",
+                "rw" = "rw",
+                "sa" = "sa",
+                "sb" = "sb",
+                "sc" = "sc",
+                "sd" = "sd",
+                "se" = "se",
+                "sg" = "sg",
+                "sh" = "sh",
+                "si" = "si",
+                "sj" = "sj",
+                "sk" = "sk",
+                "sl" = "sl",
+                "sm" = "sm",
+                "sn" = "sn",
+                "so" = "so",
+                "sr" = "sr",
+                "ss" = "ss",
+                "st" = "st",
+                "sv" = "sv",
+                "sx" = "sx",
+                "sy" = "sy",
+                "sz" = "sz",
+                "tc" = "tc",
+                "td" = "td",
+                "tf" = "tf",
+                "tg" = "tg",
+                "th" = "th",
+                "tj" = "tj",
+                "tk" = "tk",
+                "tl" = "tl",
+                "tm" = "tm",
+                "tn" = "tn",
+                "to" = "to",
+                "tp" = "tp",
+                "tr" = "tr",
+                "tt" = "tt",
+                "tv" = "tv",
+                "tw" = "tw",
+                "tz" = "tz",
+                "ua" = "ua",
+                "ug" = "ug",
+                "uk" = "uk",
+                "um" = "um",
+                "us" = "us",
+                "uy" = "uy",
+                "uz" = "uz",
+                "va" = "va",
+                "vc" = "vc",
+                "ve" = "ve",
+                "vg" = "vg",
+                "vi" = "vi",
+                "vn" = "vn",
+                "vu" = "vu",
+                "we" = "we",
+                "wf" = "wf",
+                "ws" = "ws",
+                "ye" = "ye",
+                "yt" = "yt",
+                "yu" = "yu",
+                "za" = "za",
+                "zm" = "zm",
+                "zw" = "zw"
             }
         }
-        namespace incident {
+        export namespace incident {
             /** Original service that can be migrated */
-            interface MigrateServices {
+            export interface MigrateServices {
                 /** If false, the order will be registered; if true, the order will be returned but not registered. Useful to compute prices */
                 dryRun: boolean;
                 /** IDs of the services to migrate */
                 serviceIds: number[];
             }
             /** Order created in order to migrate a service */
-            interface Order {
+            export interface Order {
                 /** Order created in order to migrate a service */
                 order: order.Order;
             }
             /** Commercial gesture applied for the service migration */
-            interface PercentagePromotion {
+            export interface PercentagePromotion {
                 /** Duration applied for the commercial gesture */
-                duration: duration;
+                duration: string;
                 /** Percentage of the discount */
                 value: number;
             }
             /** Commercial offer a customer can migrate his service to */
-            interface ProposedOffer {
+            export interface ProposedOffer {
                 /** List of configurations used for the migration */
                 configurations: me.incident.ProposedOfferConfiguration[];
                 /** Proposed commercial offer */
@@ -13042,14 +13032,14 @@ declare namespace ovhapi {
                 promotion: me.incident.PercentagePromotion;
             }
             /** Config */
-            interface ProposedOfferConfiguration {
+            export interface ProposedOfferConfiguration {
                 /** name */
                 name: string;
                 /** value */
                 value: string;
             }
             /** Service you may migrate to a given offer */
-            interface ServiceMigration {
+            export interface ServiceMigration {
                 /** Options to migrate linked to the original service */
                 addons: me.incident.ServiceMigration[];
                 /** ID of an ongoing migration order */
@@ -13060,7 +13050,7 @@ declare namespace ovhapi {
                 serviceToMigrate ? : me.incident.ServiceToMigrate;
             }
             /** Original service that can be migrated */
-            interface ServiceToMigrate {
+            export interface ServiceToMigrate {
                 /** Description of the offer of the service */
                 description: string;
                 /** Additional information on the service */
@@ -13073,29 +13063,29 @@ declare namespace ovhapi {
                 serviceName: string;
             }
         }
-        namespace migration {
-            namespace step {
+        export namespace migration {
+            export namespace step {
                 /** Country Migration step contracts data */
-                interface Contracts {
+                export interface Contracts {
                     /** Array of contract agreements to accept */
                     agreements: me.agreements.ContractAgreement[];
                 }
                 /** Country Migration step debt data */
-                interface Debt {
+                export interface Debt {
                     /** Balance amount */
                     balanceAmount ? : order.Price;
                     /** OVH Account amount */
                     ovhAccountAmount ? : order.Price;
                 }
                 /** Name of the migration step */
-                enum NameEnum {
-                    "CONTRACTS",
-                    "DEBT",
-                    "NIC",
-                    "ORDERS"
+                export enum NameEnum {
+                    "CONTRACTS" = "CONTRACTS",
+                    "DEBT" = "DEBT",
+                    "NIC" = "NIC",
+                    "ORDERS" = "ORDERS"
                 }
                 /** Country Migration step orders data */
-                interface Orders {
+                export interface Orders {
                     /** Whether there is pending operations */
                     pendingOperations: boolean;
                     /** Whether there is pending promotions */
@@ -13104,12 +13094,12 @@ declare namespace ovhapi {
                     pendingSubscriptions: boolean;
                 }
                 /** Status of the migration step */
-                enum StatusEnum {
-                    "OK",
-                    "PENDING"
+                export enum StatusEnum {
+                    "OK" = "OK",
+                    "PENDING" = "PENDING"
                 }
             } /** contract */
-            interface Contract {
+            export interface Contract {
                 /** Status */
                 active: boolean;
                 /** Date */
@@ -13124,16 +13114,16 @@ declare namespace ovhapi {
                 text: string;
             }
             /** Status of the migration */
-            enum StatusEnum {
-                "CANCELED",
-                "CHECKED",
-                "DOING",
-                "MIGRATED",
-                "TODO",
-                "TO_CHECK"
+            export enum StatusEnum {
+                "CANCELED" = "CANCELED",
+                "CHECKED" = "CHECKED",
+                "DOING" = "DOING",
+                "MIGRATED" = "MIGRATED",
+                "TODO" = "TODO",
+                "TO_CHECK" = "TO_CHECK"
             }
             /** Country Migration Step */
-            interface Step {
+            export interface Step {
                 /** Contracts data */
                 contracts ? : me.migration.step.Contracts;
                 /** Debt data */
@@ -13146,31 +13136,31 @@ declare namespace ovhapi {
                 status: me.migration.step.StatusEnum;
             }
         }
-        namespace partnerLevel {
+        export namespace partnerLevel {
             /** Partner level of an account */
-            interface Level {
+            export interface Level {
                 /** Level of partner */
                 level: me.partnerLevel.LevelTypeEnum;
                 /** Level of Support required */
                 requirement: me.partnerLevel.RequirementLoSEnum;
             }
             /** Type of level */
-            enum LevelTypeEnum {
-                "advanced",
-                "none",
-                "standard"
+            export enum LevelTypeEnum {
+                "advanced" = "advanced",
+                "none" = "none",
+                "standard" = "standard"
             }
             /** Level of Support required */
-            enum RequirementLoSEnum {
-                "none",
-                "premium",
-                "premium-accredited"
+            export enum RequirementLoSEnum {
+                "none" = "none",
+                "premium" = "premium",
+                "premium-accredited" = "premium-accredited"
             }
         }
-        namespace payment {
-            namespace method {
+        export namespace payment {
+            export namespace method {
                 /** Callback URL's to register a new payment method */
-                interface CallbackUrl {
+                export interface CallbackUrl {
                     /** URL when customer cancels the action */
                     cancel: string;
                     /** URL when registration encounters an error */
@@ -13183,12 +13173,12 @@ declare namespace ovhapi {
                     success: string;
                 }
                 /** Payment method Challenge */
-                interface Challenge {
+                export interface Challenge {
                     /** Challenge */
                     challenge: string;
                 }
                 /** Payment method creation payload */
-                interface Creation {
+                export interface Creation {
                     /** Associated billing contact ID */
                     billingContactId ? : number;
                     /** Callback URL's necessary to register */
@@ -13209,14 +13199,14 @@ declare namespace ovhapi {
                     register: boolean;
                 }
                 /** Add details to one payment method challenge */
-                interface Details {
+                export interface Details {
                     /** Details data */
                     details: string;
                     /** Transaction ID */
                     transactionId: number;
                 }
                 /** Payload to finalize payment method registration */
-                interface Finalize {
+                export interface Finalize {
                     /** Expiration month */
                     expirationMonth ? : number;
                     /** Expiration year */
@@ -13227,23 +13217,23 @@ declare namespace ovhapi {
                     registrationId ? : string;
                 }
                 /** Payment method status */
-                enum StatusEnum {
-                    "CANCELED",
-                    "CANCELING",
-                    "CREATED",
-                    "CREATING",
-                    "ERROR",
-                    "EXPIRED",
-                    "FAILED",
-                    "MAINTENANCE",
-                    "PAUSED",
-                    "REJECTED",
-                    "REPLACED",
-                    "VALID",
-                    "VALIDATING"
+                export enum StatusEnum {
+                    "CANCELED" = "CANCELED",
+                    "CANCELING" = "CANCELING",
+                    "CREATED" = "CREATED",
+                    "CREATING" = "CREATING",
+                    "ERROR" = "ERROR",
+                    "EXPIRED" = "EXPIRED",
+                    "FAILED" = "FAILED",
+                    "MAINTENANCE" = "MAINTENANCE",
+                    "PAUSED" = "PAUSED",
+                    "REJECTED" = "REJECTED",
+                    "REPLACED" = "REPLACED",
+                    "VALID" = "VALID",
+                    "VALIDATING" = "VALIDATING"
                 }
                 /** Registration response to validate */
-                interface Validation {
+                export interface Validation {
                     /** Form session ID */
                     formSessionId ? : string;
                     /** Merchant ID */
@@ -13260,25 +13250,25 @@ declare namespace ovhapi {
                     validationType: me.payment.IntegrationEnum;
                 }
             }
-            namespace transaction {
+            export namespace transaction {
                 /** Transaction status */
-                enum StatusEnum {
-                    "CANCELED",
-                    "CANCELING",
-                    "CONFIRMING",
-                    "ERROR",
-                    "EXPIRED",
-                    "FAILED",
-                    "READY",
-                    "SUCCESS"
+                export enum StatusEnum {
+                    "CANCELED" = "CANCELED",
+                    "CANCELING" = "CANCELING",
+                    "CONFIRMING" = "CONFIRMING",
+                    "ERROR" = "ERROR",
+                    "EXPIRED" = "EXPIRED",
+                    "FAILED" = "FAILED",
+                    "READY" = "READY",
+                    "SUCCESS" = "SUCCESS"
                 }
                 /** Transaction type */
-                enum TypeEnum {
-                    "CREDIT",
-                    "DEBIT"
+                export enum TypeEnum {
+                    "CREDIT" = "CREDIT",
+                    "DEBIT" = "DEBIT"
                 }
             } /** Available payment method object */
-            interface AvailablePaymentMethod {
+            export interface AvailablePaymentMethod {
                 /** Form session ID */
                 formSessionId ? : string;
                 /** Payment method type icon */
@@ -13301,30 +13291,30 @@ declare namespace ovhapi {
                 registerableWithTransaction: boolean;
             }
             /** Payment method available sub-type enum */
-            enum AvailableSubTypeEnum {
-                "30_DAYS",
-                "45_DAYS",
-                "60_DAYS",
-                "AMERICAN_EXPRESS",
-                "AURA",
-                "CARTE_BANCAIRE",
-                "CARTE_BLEUE",
-                "CHORUS",
-                "DINERS_CLUB",
-                "DISCOVER",
-                "JCB",
-                "MAESTRO",
-                "MASTERCARD",
-                "NONE",
-                "VISA"
+            export enum AvailableSubTypeEnum {
+                "30_DAYS" = "30_DAYS",
+                "45_DAYS" = "45_DAYS",
+                "60_DAYS" = "60_DAYS",
+                "AMERICAN_EXPRESS" = "AMERICAN_EXPRESS",
+                "AURA" = "AURA",
+                "CARTE_BANCAIRE" = "CARTE_BANCAIRE",
+                "CARTE_BLEUE" = "CARTE_BLEUE",
+                "CHORUS" = "CHORUS",
+                "DINERS_CLUB" = "DINERS_CLUB",
+                "DISCOVER" = "DISCOVER",
+                "JCB" = "JCB",
+                "MAESTRO" = "MAESTRO",
+                "MASTERCARD" = "MASTERCARD",
+                "NONE" = "NONE",
+                "VISA" = "VISA"
             }
             /** Payment method creation sub-type enum */
-            enum CreationSubTypeEnum {
-                "CHORUS",
-                "NONE"
+            export enum CreationSubTypeEnum {
+                "CHORUS" = "CHORUS",
+                "NONE" = "NONE"
             }
             /** Icon */
-            interface Icon {
+            export interface Icon {
                 /** Icon in base64 */
                 data ? : string;
                 /** Icon name */
@@ -13333,16 +13323,16 @@ declare namespace ovhapi {
                 url ? : string;
             }
             /** Register integration type enum */
-            enum IntegrationEnum {
-                "COMPONENT",
-                "IFRAME_VANTIV",
-                "IN_CONTEXT",
-                "NONE",
-                "POST_FORM",
-                "REDIRECT"
+            export enum IntegrationEnum {
+                "COMPONENT" = "COMPONENT",
+                "IFRAME_VANTIV" = "IFRAME_VANTIV",
+                "IN_CONTEXT" = "IN_CONTEXT",
+                "NONE" = "NONE",
+                "POST_FORM" = "POST_FORM",
+                "REDIRECT" = "REDIRECT"
             }
             /** Payment method object */
-            interface PaymentMethod {
+            export interface PaymentMethod {
                 /** Associated billing contact ID */
                 billingContactId ? : number;
                 /** Creation date */
@@ -13379,7 +13369,7 @@ declare namespace ovhapi {
                 status: me.payment.method.StatusEnum;
             }
             /** Transaction object */
-            interface Transaction {
+            export interface Transaction {
                 /** Transaction amount */
                 amount: order.Price;
                 /** Creation date */
@@ -13396,9 +13386,9 @@ declare namespace ovhapi {
                 type: me.payment.transaction.TypeEnum;
             }
         }
-        namespace paymentMean {
+        export namespace paymentMean {
             /** Credit card informations */
-            interface BankAccount {
+            export interface BankAccount {
                 /** bic */
                 bic: string;
                 /** creationDate */
@@ -13427,12 +13417,12 @@ declare namespace ovhapi {
                 validationDocumentLink ? : string;
             }
             /** Missing description */
-            interface BankAccountChallengeCreation {
+            export interface BankAccountChallengeCreation {
                 /** Payload to answer the challenge */
                 challenge: string;
             }
             /** Missing description */
-            interface BankAccountCreation {
+            export interface BankAccountCreation {
                 /** Bank account BIC */
                 bic: string;
                 /** Custom description of this account */
@@ -13447,14 +13437,14 @@ declare namespace ovhapi {
                 setDefault ? : boolean;
             }
             /** State of your bank account */
-            enum BankAccountStateEnum {
-                "blockedForIncidents",
-                "pendingValidation",
-                "replaced",
-                "valid"
+            export enum BankAccountStateEnum {
+                "blockedForIncidents" = "blockedForIncidents",
+                "pendingValidation" = "pendingValidation",
+                "replaced" = "replaced",
+                "valid" = "valid"
             }
             /** A validation required to add a payment mean bank account */
-            interface BankAccountValidation {
+            export interface BankAccountValidation {
                 /** id */
                 id: number;
                 /** submitUrl */
@@ -13465,7 +13455,7 @@ declare namespace ovhapi {
                 validationType: me.paymentMean.ValidationTypeEnum;
             }
             /** Credit card informations */
-            interface CreditCard {
+            export interface CreditCard {
                 /** This credit card is the default payment mean? */
                 defaultPaymentMean: boolean;
                 /** Custom description of this credit card */
@@ -13486,12 +13476,12 @@ declare namespace ovhapi {
                 type: string;
             }
             /** Missing description */
-            interface CreditCardChallengeCreation {
+            export interface CreditCardChallengeCreation {
                 /** Payload to answer the challenge */
                 challenge: string;
             }
             /** Missing description */
-            interface CreditCardCreation {
+            export interface CreditCardCreation {
                 /** Custom description of this account */
                 description ? : string;
                 /** Callback URL where the customer will be redirected to after validation */
@@ -13500,13 +13490,13 @@ declare namespace ovhapi {
                 setDefault ? : boolean;
             }
             /** State of your credit card */
-            enum CreditCardStateEnum {
-                "expired",
-                "tooManyFailures",
-                "valid"
+            export enum CreditCardStateEnum {
+                "expired" = "expired",
+                "tooManyFailures" = "tooManyFailures",
+                "valid" = "valid"
             }
             /** A validation required to add a payment mean credit card */
-            interface CreditCardValidation {
+            export interface CreditCardValidation {
                 /** id */
                 id: number;
                 /** submitUrl */
@@ -13517,7 +13507,7 @@ declare namespace ovhapi {
                 validationType: me.paymentMean.ValidationTypeEnum;
             }
             /** Deferred account informations */
-            interface Deferred {
+            export interface Deferred {
                 /** Creation date of this deferred account */
                 creationDate: string;
                 /** This deferred account is the default payment mean? */
@@ -13534,12 +13524,12 @@ declare namespace ovhapi {
                 state: me.paymentMean.DeferredStateEnum;
             }
             /** State of you deferred account */
-            enum DeferredStateEnum {
-                "failed",
-                "valid"
+            export enum DeferredStateEnum {
+                "failed" = "failed",
+                "valid" = "valid"
             }
             /** Payment mean type icon */
-            interface IconData {
+            export interface IconData {
                 /** Icon in base64 */
                 data ? : string;
                 /** Icon name */
@@ -13548,7 +13538,7 @@ declare namespace ovhapi {
                 url ? : string;
             }
             /** Paypal informations */
-            interface Paypal {
+            export interface Paypal {
                 /** Paypal agreement */
                 agreementId: string;
                 /** Paypal creation date */
@@ -13567,12 +13557,12 @@ declare namespace ovhapi {
                 state: me.paymentMean.PaypalStateEnum;
             }
             /** Missing description */
-            interface PaypalChallengeCreation {
+            export interface PaypalChallengeCreation {
                 /** Payload to answer the challenge */
                 challenge: string;
             }
             /** Missing description */
-            interface PaypalCreation {
+            export interface PaypalCreation {
                 /** Custom description of this account */
                 description ? : string;
                 /** Callback URL where the customer will be redirected to after validation */
@@ -13581,13 +13571,13 @@ declare namespace ovhapi {
                 setDefault ? : boolean;
             }
             /** State of you paypal */
-            enum PaypalStateEnum {
-                "failing",
-                "tooManyFailures",
-                "valid"
+            export enum PaypalStateEnum {
+                "failing" = "failing",
+                "tooManyFailures" = "tooManyFailures",
+                "valid" = "valid"
             }
             /** A validation required to add a payment mean paypal */
-            interface PaypalValidation {
+            export interface PaypalValidation {
                 /** id */
                 id: number;
                 /** submitUrl */
@@ -13598,15 +13588,15 @@ declare namespace ovhapi {
                 validationType: me.paymentMean.ValidationTypeEnum;
             }
             /** All the validation you may have to do */
-            enum ValidationTypeEnum {
-                "creditAccount",
-                "documentToSend",
-                "simpleValidation"
+            export enum ValidationTypeEnum {
+                "creditAccount" = "creditAccount",
+                "documentToSend" = "documentToSend",
+                "simpleValidation" = "simpleValidation"
             }
         }
-        namespace repricing {
+        export namespace repricing {
             /** Description of a service being repricing */
-            interface Service {
+            export interface Service {
                 /** Addons of the Service */
                 addons: me.repricing.Service[];
                 /** Date of application of the repricing */
@@ -13641,47 +13631,47 @@ declare namespace ovhapi {
                 totalPriceBeforeWithoutTax: order.Price;
             }
         }
-        namespace tag {
-            namespace tagKey {
+        export namespace tag {
+            export namespace tagKey {
                 /** Tag key type */
-                enum TypeEnum {
-                    "ARRAY",
-                    "DATE",
-                    "ENUM",
-                    "INTEGER",
-                    "TEXT",
-                    "VARCHAR"
+                export enum TypeEnum {
+                    "ARRAY" = "ARRAY",
+                    "DATE" = "DATE",
+                    "ENUM" = "ENUM",
+                    "INTEGER" = "INTEGER",
+                    "TEXT" = "TEXT",
+                    "VARCHAR" = "VARCHAR"
                 }
             } /** Available tag configuration object for creation */
-            interface AvailableTag {
+            export interface AvailableTag {
                 /** Tag configuration keys */
                 keys: me.tag.TagKey[];
                 /** Tag name */
                 name: string;
             }
             /** Tag creation payload */
-            interface Creation {
+            export interface Creation {
                 /** Reason */
                 reason ? : string;
                 /** Tag name */
                 tagName: string;
             }
             /** Tag status */
-            enum StatusEnum {
-                "CREATED",
-                "CREATING",
-                "DELETED",
-                "DELETING",
-                "ERROR",
-                "MODERATING",
-                "REFUSED",
-                "REFUSING",
-                "REVOCATING",
-                "WAIT_MODERATION",
-                "WAIT_REVOCATION"
+            export enum StatusEnum {
+                "CREATED" = "CREATED",
+                "CREATING" = "CREATING",
+                "DELETED" = "DELETED",
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "MODERATING" = "MODERATING",
+                "REFUSED" = "REFUSED",
+                "REFUSING" = "REFUSING",
+                "REVOCATING" = "REVOCATING",
+                "WAIT_MODERATION" = "WAIT_MODERATION",
+                "WAIT_REVOCATION" = "WAIT_REVOCATION"
             }
             /** Tag */
-            interface Tag {
+            export interface Tag {
                 /** Creation date */
                 creationDate: string;
                 /** Customer code */
@@ -13698,12 +13688,12 @@ declare namespace ovhapi {
                 tag: string;
             }
             /** Tag Extra */
-            interface TagExtra {
+            export interface TagExtra {
                 /** Tax exemption */
                 exemption ? : string;
             }
             /** Tag configuration key */
-            interface TagKey {
+            export interface TagKey {
                 /** Enum values */
                 enum ? : string[];
                 /** Tag key name */
@@ -13720,7 +13710,7 @@ declare namespace ovhapi {
                 type: me.tag.tagKey.TypeEnum;
             }
         } /** Country Migration */
-        interface Migration {
+        export interface Migration {
             /** Billing country to migrate from */
             from: nichandle.OvhSubsidiaryEnum;
             /** Migration Id */
@@ -13733,9 +13723,9 @@ declare namespace ovhapi {
             to: nichandle.OvhSubsidiaryEnum;
         }
     }
-    namespace oauth2 {
+    export namespace oauth2 {
         /** An oAuth2 Client */
-        interface client {
+        export interface client {
             /** allowed callback urls */
             callbackUrls: string[];
             /** client's client_id */
@@ -13748,7 +13738,7 @@ declare namespace ovhapi {
             name: string;
         }
         /** An oAuth2 Client Request */
-        interface clientRequest {
+        export interface clientRequest {
             /** allowed callback urls */
             callbackUrls: string[];
             /** client's description */
@@ -13757,17 +13747,17 @@ declare namespace ovhapi {
             name: string;
         }
         /** An oAuth2 Client Secret */
-        interface clientSecret {
+        export interface clientSecret {
             /** client's client_id */
             clientId: string;
             /** client's client_secret */
             clientSecret: string;
         }
     }
-    namespace payment {
-        namespace method {
+    export namespace payment {
+        export namespace method {
             /** Available payment methods */
-            interface AvailablePaymentMethod {
+            export interface AvailablePaymentMethod {
                 /** Payment method session identifier */
                 formSessionId ? : string;
                 /** Payment method type icon */
@@ -13790,7 +13780,7 @@ declare namespace ovhapi {
                 registerableWithTransaction: boolean;
             }
             /** Payment icon */
-            interface Icon {
+            export interface Icon {
                 /** Icon data in base64 */
                 data ? : string;
                 /** Icon name */
@@ -13799,17 +13789,17 @@ declare namespace ovhapi {
                 url ? : string;
             }
             /** Payment method integration type */
-            enum IntegrationType {
-                "COMPONENT",
-                "DONE",
-                "IFRAME_VANTIV",
-                "IN_CONTEXT",
-                "NONE",
-                "POST_FORM",
-                "REDIRECT"
+            export enum IntegrationType {
+                "COMPONENT" = "COMPONENT",
+                "DONE" = "DONE",
+                "IFRAME_VANTIV" = "IFRAME_VANTIV",
+                "IN_CONTEXT" = "IN_CONTEXT",
+                "NONE" = "NONE",
+                "POST_FORM" = "POST_FORM",
+                "REDIRECT" = "REDIRECT"
             }
             /** payment method */
-            interface PaymentMethod {
+            export interface PaymentMethod {
                 /** Associated billing contact ID */
                 billingContactId ? : number;
                 /** Creation date */
@@ -13846,44 +13836,44 @@ declare namespace ovhapi {
                 status: payment.method.StatusEnum;
             }
             /** Payment method status */
-            enum StatusEnum {
-                "CANCELED",
-                "CANCELING",
-                "CREATED",
-                "CREATING",
-                "ERROR",
-                "EXPIRED",
-                "FAILED",
-                "MAINTENANCE",
-                "PAUSED",
-                "REJECTED",
-                "REPLACED",
-                "VALID",
-                "VALIDATING"
+            export enum StatusEnum {
+                "CANCELED" = "CANCELED",
+                "CANCELING" = "CANCELING",
+                "CREATED" = "CREATED",
+                "CREATING" = "CREATING",
+                "ERROR" = "ERROR",
+                "EXPIRED" = "EXPIRED",
+                "FAILED" = "FAILED",
+                "MAINTENANCE" = "MAINTENANCE",
+                "PAUSED" = "PAUSED",
+                "REJECTED" = "REJECTED",
+                "REPLACED" = "REPLACED",
+                "VALID" = "VALID",
+                "VALIDATING" = "VALIDATING"
             }
             /** Payment method sub-type */
-            enum SubTypeEnum {
-                "30_DAYS",
-                "45_DAYS",
-                "60_DAYS",
-                "AMERICAN_EXPRESS",
-                "AURA",
-                "CARTE_BANCAIRE",
-                "CARTE_BLEUE",
-                "CHORUS",
-                "DINERS_CLUB",
-                "DISCOVER",
-                "JCB",
-                "MAESTRO",
-                "MASTERCARD",
-                "NONE",
-                "VISA"
+            export enum SubTypeEnum {
+                "30_DAYS" = "30_DAYS",
+                "45_DAYS" = "45_DAYS",
+                "60_DAYS" = "60_DAYS",
+                "AMERICAN_EXPRESS" = "AMERICAN_EXPRESS",
+                "AURA" = "AURA",
+                "CARTE_BANCAIRE" = "CARTE_BANCAIRE",
+                "CARTE_BLEUE" = "CARTE_BLEUE",
+                "CHORUS" = "CHORUS",
+                "DINERS_CLUB" = "DINERS_CLUB",
+                "DISCOVER" = "DISCOVER",
+                "JCB" = "JCB",
+                "MAESTRO" = "MAESTRO",
+                "MASTERCARD" = "MASTERCARD",
+                "NONE" = "NONE",
+                "VISA" = "VISA"
             }
         }
     }
-    namespace recommendations {
+    export namespace recommendations {
         /** Recommendation struct */
-        interface Recommendation {
+        export interface Recommendation {
             /** advices */
             advices: recommendations.RecommendationAdvice[];
             /** Recommendation advices introduction and description sentences, indexed by supported locales */
@@ -13893,107 +13883,107 @@ declare namespace ovhapi {
             rank: number;
         }
         /** Recommendation advice struct */
-        interface RecommendationAdvice {
+        export interface RecommendationAdvice {
             /** Product identifier, usually range>line>category>subCategory>marketingName */
             id: string;
             /** Recommendation score */
-            score: double;
+            score: number;
             /** Product page url */
             url: string;
         }
         /** Array of Recommendation objects */
-        interface Recommendations {
+        export interface Recommendations {
             /** recommendations */
             recommendations: recommendations.Recommendation[];
         }
         /** Recommendations product ranges */
-        enum productRangesEnum {
-            "baremetal",
-            "domain",
-            "public_cloud",
-            "saas",
-            "vps",
-            "web"
+        export enum productRangesEnum {
+            "baremetal" = "baremetal",
+            "domain" = "domain",
+            "public_cloud" = "public_cloud",
+            "saas" = "saas",
+            "vps" = "vps",
+            "web" = "web"
         }
     }
-    namespace telephony {
+    export namespace telephony {
         /** Billing policies settings */
-        interface BillingSettings {
+        export interface BillingSettings {
             /** Renew is done by billing contact instead of billing account */
             renewByBillingContact: boolean;
         }
         /** Default IP restriction of a VoIP line */
-        interface DefaultIpRestriction {
+        export interface DefaultIpRestriction {
             /** id */
             id: number;
             /** The IPv4 subnet you want to allow */
-            subnet: ipv4Block;
+            subnet: string;
             /** The protocol you want to restrict (sip/mgcp) */
             type: telephony.ProtocolEnum;
         }
         /** Line description policies settings */
-        interface LineDescriptionSettings {
+        export interface LineDescriptionSettings {
             /** Line's description is displayed on bills */
             displayOnBill: boolean;
             /** Line's description is displayed on incoming calls */
             displayOnIncomingCall: boolean;
         }
         /** Custom domains of your fax services */
-        interface MailDomain2Service {
+        export interface MailDomain2Service {
             /** The custom domain of your fax services */
             domain: string;
             /** id */
             id: number;
         }
         /** Phone protocol */
-        enum ProtocolEnum {
-            "mgcp",
-            "sip"
+        export enum ProtocolEnum {
+            "mgcp" = "mgcp",
+            "sip" = "sip"
         }
         /** Telephony settings linked to the customer account */
-        interface Settings {
+        export interface Settings {
             /** Billing policies settings */
             billingPolicies: telephony.BillingSettings;
             /** Line description policies settings */
             lineDescriptionPolicies: telephony.LineDescriptionSettings;
         }
     }
-    namespace xander {
+    export namespace xander {
         /** Available contact fields */
-        enum ContactFieldEnum {
-            "address.city",
-            "address.country",
-            "address.line1",
-            "address.line2",
-            "address.line3",
-            "address.otherDetails",
-            "address.province",
-            "address.zip",
-            "birthCity",
-            "birthCountry",
-            "birthDay",
-            "birthZip",
-            "cellPhone",
-            "companyNationalIdentificationNumber",
-            "email",
-            "fax",
-            "firstName",
-            "gender",
-            "language",
-            "lastName",
-            "legalForm",
-            "nationalIdentificationNumber",
-            "nationality",
-            "organisationName",
-            "organisationType",
-            "phone",
-            "spareEmail",
-            "vat"
+        export enum ContactFieldEnum {
+            "address.city" = "address.city",
+            "address.country" = "address.country",
+            "address.line1" = "address.line1",
+            "address.line2" = "address.line2",
+            "address.line3" = "address.line3",
+            "address.otherDetails" = "address.otherDetails",
+            "address.province" = "address.province",
+            "address.zip" = "address.zip",
+            "birthCity" = "birthCity",
+            "birthCountry" = "birthCountry",
+            "birthDay" = "birthDay",
+            "birthZip" = "birthZip",
+            "cellPhone" = "cellPhone",
+            "companyNationalIdentificationNumber" = "companyNationalIdentificationNumber",
+            "email" = "email",
+            "fax" = "fax",
+            "firstName" = "firstName",
+            "gender" = "gender",
+            "language" = "language",
+            "lastName" = "lastName",
+            "legalForm" = "legalForm",
+            "nationalIdentificationNumber" = "nationalIdentificationNumber",
+            "nationality" = "nationality",
+            "organisationName" = "organisationName",
+            "organisationType" = "organisationType",
+            "phone" = "phone",
+            "spareEmail" = "spareEmail",
+            "vat" = "vat"
         }
     }
-    namespace xdsl {
+    export namespace xdsl {
         /** Xdsl Settings */
-        interface Setting {
+        export interface Setting {
             /** Send the modem as soon as possible, do not wait the xdsl line to be active */
             resellerFastModemShipping: boolean;
             /** Let the modem with vendor configuration. It prevent to apply the config managed by ovh manager */

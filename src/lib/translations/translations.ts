@@ -1,5 +1,5 @@
 import i18n from 'sveltekit-i18n';
-
+console.log('hello from translations')
 /** @type {import('sveltekit-i18n').Config} */
 const config = ({
   loaders: [
@@ -17,6 +17,20 @@ const config = ({
             await import('./fr/common.json')
         ).default,
     },
+    {
+      locale: 'fr',
+      key: 'dataprocessing.job',
+      loader: async () => (
+          await import('./fr/pages/project/dataProcessing/job/job.json')
+      ).default,
+    },
+    {
+      locale: 'en',
+      key: 'dataprocessing.job',
+      loader: async () => (
+          await import('./en/pages/project/dataProcessing/job/job.json')
+      ).default,
+    }
   ],
 });
 
