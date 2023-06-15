@@ -1,5 +1,6 @@
 import { browser } from '$app/environment';
 import { loadTranslations, locale } from '$lib/translations/translations';
+import type { ovhapi } from '$types/ovh';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ url, fetch }) => {

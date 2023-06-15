@@ -8,6 +8,8 @@
 	import { addColumnOrder, addPagination, addSortBy } from "svelte-headless-table/plugins";
 	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
 	import { Card, CardContent, CardHeader } from "$components/ui/card";
+	import { POLLING_INTERVAL } from "$lib/global.constants";
+	import type { ovhapi } from "$types/ovh";
 
 
     export let data: PageData;
@@ -78,8 +80,10 @@
 
     onMount(() => {
         const it = setInterval(() => {
-            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/database/service`);
-        }, 10000)
+            if (document && !document.hidden) {
+                invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/database/service`);
+            }
+        }, POLLING_INTERVAL)
         return () => {
             clearInterval(it);
         }

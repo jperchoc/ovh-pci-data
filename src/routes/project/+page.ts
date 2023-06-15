@@ -1,6 +1,7 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageLoad } from "./$types";
 import fetchRelog from "$helpers/fetch-relog";
+import type { ovhapi } from "$types/ovh";
 
 export const load: PageLoad = async ({ fetch: _fetch, url }) => {
     const fetch = (path: string) => fetchRelog(_fetch, url, path)

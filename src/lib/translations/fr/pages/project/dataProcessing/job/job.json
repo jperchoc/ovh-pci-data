@@ -1,0 +1,11 @@
+{
+    "list": {
+        "header": "Jobs",
+        "no-job": "Aucun job trouvé",
+        "table": {
+            "columns": {
+                "name": "Nom"
+            }
+        }
+    }
+}

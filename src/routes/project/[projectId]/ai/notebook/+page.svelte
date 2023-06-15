@@ -8,7 +8,28 @@
 	import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
 	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
 	import { Card, CardContent, CardHeader } from "$components/ui/card";
+	import { ovhapi } from '$types/ovh';
+	import { Badge, badgeVariants } from "$components/ui/badge";
+	import type { VariantProps } from "class-variance-authority";
+	import { POLLING_INTERVAL } from "$lib/global.constants";
 
+    const getStatusVariant = (status: ovhapi.cloud.project.ai.notebook.NotebookStateEnum):VariantProps<typeof badgeVariants>["variant"] => {
+        switch(status) {
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.FAILED):
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPED):
+                return 'error';
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.SYNC_FAILED):
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPING):
+                return 'warning'
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.RUNNING):
+                return 'success'
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.DELETING):
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPED):
+                return 'info'
+            default: 
+                return 'default'
+        }
+    }
     export let data: PageData;
     const tableData: Writable<ovhapi.cloud.project.ai.notebook.Notebook[]> = writable([]);
     $: notebooks = data.notebooks;
@@ -68,14 +89,21 @@
         table.column({
             header: 'Status',
             accessor: app => app.status.state,
+            cell: ({ value }) => {
+                return createRender(Badge, {
+                    variant: value ? getStatusVariant(value) : 'default'
+                }).slot(value || '')
+            },
         }),
     ]);
     const viewModel = table.createViewModel(columns);
 
     onMount(() => {
         const it = setInterval(() => {
-            invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/notebook`);
-        }, 10000)
+            if (document && !document.hidden) {
+                invalidate(`/api/ovh/cloud/project/${$page.params.projectId}/ai/notebook`);
+            }
+        }, POLLING_INTERVAL)
         return () => {
             clearInterval(it);
         }
