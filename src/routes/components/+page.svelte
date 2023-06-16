@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { VariantProps } from "class-variance-authority";
 	import {
 		Accordion,
 		AccordionContent,
@@ -40,7 +39,7 @@
 		P,
 		Small
 	} from '$components/ui/typography';
-	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal } from 'lucide-svelte';
+	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal, X } from 'lucide-svelte';
 	import { Button } from '$components/ui/button';
 	import { AspectRatio } from '$components/ui/aspect-ratio';
 	import { Avatar, AvatarFallback, AvatarImage } from '$components/ui/avatar';
@@ -182,6 +181,7 @@
 	]);
     const viewModel = table.createViewModel(columns);
 
+	let showAlert = true;
 </script>
 
 <div class="space-y-2">
@@ -262,11 +262,14 @@
 			<AlertTitle>Error</AlertTitle>
 			<AlertDescription>This is an error message</AlertDescription>
 		</Alert>
+		{#if showAlert}
 		<Alert variant="success">
 			<AlertCircle class="h-4 w-4" />
 			<AlertTitle>Success</AlertTitle>
 			<AlertDescription>This is a success message</AlertDescription>
+			<button class="z-200 absolute right-2 top-2 opacity-50 hover:opacity-100" on:click={() => showAlert = false}><X class="w-4 h-4" /></button>
 		</Alert>
+		{/if}
 	</CardContent>
 </Card>
 
