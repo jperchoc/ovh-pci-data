@@ -2,6 +2,38 @@
 	import { DocsSidebarNav } from "$components/base/nav";
 	import type { SidebarNavItem } from "$types/nav";
     import navStore from "$stores/nav";
+    import ColorChanger from "./ColorChanger.svelte";
+
+    
+    const vars = [
+        '--background',
+        '--foreground',
+        '--muted',
+        '--muted-foreground',
+        '--popover',
+        '--popover-foreground',
+        '--card',
+        '--card-foreground',
+        '--border',
+        '--input',
+        '--primary',
+        '--primary-foreground',
+        '--secondary',
+        '--secondary-foreground',
+        '--accent',
+        '--accent-foreground',
+        '--destructive',
+        '--destructive-foreground',
+        '--error',
+        '--error-foreground',
+        '--warning',
+        '--warning-foreground',
+        '--success',
+        '--success-foreground',
+        '--info',
+        '--info-foreground',
+        '--ring',
+    ];
 
     navStore.set([{
         title: 'Components',
@@ -151,8 +183,14 @@
 		</div>
 	</aside>
     <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr]  px-2 md:px-0 md:pr-6 lg:pr-10 ">
-        <div class="mx-auto w-full min-w-0">
+        <div class=" w-2/3 min-w-0">
             <slot />
         </div>
     </main>
+    <aside class="fixed top-14 z-30 right-0 h-[calc(100vh-3.5rem-1px)] pr-4 overflow-y-auto">
+        {#each vars as variable }
+            <ColorChanger {variable} />
+        {/each}
+    </aside>
+    
 </div>
