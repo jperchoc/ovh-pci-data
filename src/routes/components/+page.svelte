@@ -39,7 +39,7 @@
 		P,
 		Small
 	} from '$components/ui/typography';
-	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal } from 'lucide-svelte';
+	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal, X } from 'lucide-svelte';
 	import { Button } from '$components/ui/button';
 	import { AspectRatio } from '$components/ui/aspect-ratio';
 	import { Avatar, AvatarFallback, AvatarImage } from '$components/ui/avatar';
@@ -181,6 +181,7 @@
 	]);
     const viewModel = table.createViewModel(columns);
 
+	let showAlert = true;
 </script>
 
 <div class="space-y-2">
@@ -246,6 +247,29 @@
 			<AlertTitle>Error</AlertTitle>
 			<AlertDescription>Your session has expired. Please login again.</AlertDescription>
 		</Alert>
+		<Alert variant="info">
+			<AlertCircle class="h-4 w-4" />
+			<AlertTitle>Info</AlertTitle>
+			<AlertDescription>This is an info message</AlertDescription>
+		</Alert>
+		<Alert variant="warning">
+			<AlertCircle class="h-4 w-4" />
+			<AlertTitle>Warning</AlertTitle>
+			<AlertDescription>This is an warning message</AlertDescription>
+		</Alert>
+		<Alert variant="error">
+			<AlertCircle class="h-4 w-4" />
+			<AlertTitle>Error</AlertTitle>
+			<AlertDescription>This is an error message</AlertDescription>
+		</Alert>
+		{#if showAlert}
+		<Alert variant="success">
+			<AlertCircle class="h-4 w-4" />
+			<AlertTitle>Success</AlertTitle>
+			<AlertDescription>This is a success message</AlertDescription>
+			<button class="z-200 absolute right-2 top-2 opacity-50 hover:opacity-100" on:click={() => showAlert = false}><X class="w-4 h-4" /></button>
+		</Alert>
+		{/if}
 	</CardContent>
 </Card>
 
@@ -303,7 +327,7 @@
 </div>
 <Separator class="my-4" />
 <Card>
-	<CardContent class="p-10 space-y-4">
+	<CardContent class="p-10 flex gap-2">
 		<Avatar>
 			<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
 			<AvatarFallback>CN</AvatarFallback>
@@ -320,11 +344,15 @@
 </div>
 <Separator class="my-4" />
 <Card>
-	<CardContent class="p-10 space-x-2">
+	<CardContent class="p-10 flex gap-2 flex-wrap">
 		<Badge>Primary</Badge>
 		<Badge variant="secondary">Secondary</Badge>
 		<Badge variant="outline">Outline</Badge>
 		<Badge variant="destructive">Destructive</Badge>
+		<Badge variant="info">info</Badge>
+		<Badge variant="warning">warning</Badge>
+		<Badge variant="error">error</Badge>
+		<Badge variant="success">success</Badge>
 		<a href="/components" class={badgeVariants({ variant: 'outline' })}>Link Badge</a>
 	</CardContent>
 </Card>
@@ -335,10 +363,15 @@
 </div>
 <Separator class="my-4" />
 <Card>
-	<CardContent class="p-10 space-x-2">
+	<CardContent class="p-10 flex gap-2 flex-wrap">
 		<Button>Primary</Button>
+
 		<Button variant="secondary">Secondary</Button>
 		<Button variant="destructive">Destructive</Button>
+		<Button variant="info">info</Button>
+		<Button variant="warning">warning</Button>
+		<Button variant="error">error</Button>
+		<Button variant="success">Success</Button>
 		<Button variant="outline">Outline</Button>
 		<Button variant="ghost">Ghost</Button>
 		<Button variant="link">Link</Button>

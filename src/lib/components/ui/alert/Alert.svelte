@@ -10,7 +10,11 @@
 				variant: {
 					default: "bg-background text-foreground",
 					destructive:
-						"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive"
+						"text-destructive border-destructive/50 dark:border-destructive [&>svg]:text-destructive text-destructive",
+					success: "bg-success border-success/50 dark:border-success [&>svg]:text-success-foreground text-success-foreground",
+					error: "bg-error border-error/50 dark:border-error [&>svg]:text-error-foreground text-error-foreground",
+					warning: "bg-warning border-warning/50 dark:border-warning [&>svg]:text-warning-foreground text-warning-foreground",
+					info: "bg-info border-info/50 dark:border-info [&>svg]:text-info-foreground text-info-foreground",
 				}
 			},
 			defaultVariants: {
