@@ -36,7 +36,7 @@
             cell: ({ value: notebook }) =>
                 createRender(TableLinkCell, {
                     linkLabel: notebook.spec.name, 
-                    href: `/project/${$page.params.projectId}/dataprocessing/notebook/${notebook.id}`, 
+                    href: `/project/${$page.params.projectId}/data-processing/notebook/${notebook.id}`, 
                     subLabel: notebook.id
                 }
             ),

@@ -7,6 +7,9 @@
 	import MainNav from "./nav/MainNav.svelte";
 	import MobileNav from "./nav/MobileNav.svelte";
 	import { locale } from '$lib/translations/translations';
+	import { Tabs, TabsList, TabsTrigger } from "$components/ui/tabs";
+	import { onMount } from "svelte";
+	import { browser } from "$app/environment";
 
 	export let user: ovhapi.nichandle.Nichandle | null;
 	let avatarInitials = '';
@@ -20,9 +23,19 @@
 		}
 	}
 	function changeLanguage(lang: string) {
-		localStorage.setItem('lang', lang);
-		locale.set(lang);
+		if (browser) {
+			localStorage.setItem('lang', lang);
+			locale.set(lang);
+		}
 	}
+
+	let settedLocale: string;
+
+	onMount(() => {
+		settedLocale = locale.get();
+	})
+
+	$: changeLanguage(settedLocale);
 </script>
 
 <header
@@ -38,8 +51,12 @@
 				<!-- Command Menu Here -->
 			</div>
 			<nav class="flex items-center space-x-1">
-				<Button on:click={() => changeLanguage('en')}>EN</Button>
-				<Button on:click={() => changeLanguage('fr')}>FR</Button>
+				<Tabs bind:value={settedLocale} class="max-w-[400px]">
+					<TabsList>
+						<TabsTrigger value="fr">Français</TabsTrigger>
+						<TabsTrigger value="en">English</TabsTrigger>
+					</TabsList>
+				</Tabs>
 				<LightSwitch />
 				{#if user}
 				<Avatar>

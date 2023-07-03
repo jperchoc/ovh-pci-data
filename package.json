@@ -11,8 +11,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
-		"postinstall": "cd ./node_modules/radix-svelte && pnpm install && pnpm run build"
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -47,7 +46,7 @@
 		"clsx": "^1.2.1",
 		"dotenv": "^16.1.4",
 		"lucide-svelte": "^0.236.0",
-		"radix-svelte": "https://github.com/jperchoc/radix-svelte.git",
+		"radix-svelte": "^0.8.0",
 		"sha1": "^1.1.1",
 		"sveltekit-i18n": "^2.2.2",
 		"tailwind-merge": "^1.13.0",

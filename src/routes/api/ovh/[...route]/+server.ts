@@ -27,7 +27,6 @@ export const GET: RequestHandler = async ({ params, url, cookies }) => {
         'X-Ovh-Signature': signature
     };
 
-    console.log(`Fetching ${params.route}`);
     const response = await fetch(distantUrl, { headers })
     const jsResponse = await response.json();
     return json(jsResponse, {

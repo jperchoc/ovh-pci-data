@@ -25,6 +25,7 @@
 	const { headerRows, tableAttrs, tableBodyAttrs, pageRows, pluginStates } = viewModel;
 
 	export let selectedItem: Writable<Item> | undefined = undefined;
+	export let selectedItemKey: string | undefined = '';
 
 	const handleClick = (row: BodyRow<Item, AnyPlugins>) => {
 		if (row.isData() && selectedItem !== undefined) {
@@ -64,7 +65,7 @@
 			{#each $pageRows as row (row.id)}
 				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 					<tr 
-						data-state={(row.isData() && selectedItem && $selectedItem === row.original) ? 'selected' : ''}
+						data-state={(row.isData() && selectedItemKey && $selectedItem && $selectedItem[selectedItemKey] === row.original[selectedItemKey]) ? 'selected' : ''}
 						class={cn(
 							"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted whitespace-nowrap",
 							classTr

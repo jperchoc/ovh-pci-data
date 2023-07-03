@@ -31,7 +31,7 @@
             cell: ({ value: job }) =>
                 createRender(TableLinkCell, {
                     linkLabel: job.name, 
-                    href: `/project/${$page.params.projectId}/dataprocessing/job/${job.id}`, 
+                    href: `/project/${$page.params.projectId}/data-processing/job/${job.id}`, 
                     subLabel: job.id
                 }
             ),

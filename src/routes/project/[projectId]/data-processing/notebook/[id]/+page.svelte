@@ -7,7 +7,7 @@
     $: notebook = data.notebook;
 </script>
 
-<a href="/project/{$page.params.projectId}/dataprocessing/notebook">Retour aux jobs</a>
+<a href="/project/{$page.params.projectId}/data-processing/notebook">Retour aux jobs</a>
 
 {#if notebook}
     <h2>{notebook.spec.name}</h2>

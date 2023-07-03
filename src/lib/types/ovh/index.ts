@@ -3,7 +3,7 @@
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-15T15:47:05.919Z
+ * Creation date: 2023-07-03T07:20:19.664Z
  * Author: Jonathan Perchoc 
 */
 export namespace ovhapi {
@@ -2421,8 +2421,8 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Default port to access the http service inside the app */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside the app. Deprecated: use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
+                        /** AI App deployment strategy */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
                         /** List of environment variable to be set inside the app */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** App image */
@@ -2452,8 +2452,8 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Default port to access http service inside the app */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside the app. Deprecated: use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
+                        /** AI App deployment strategy */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
                         /** List of environment variable to be set inside the app */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Docker or capability image to use in the app. App capability images must comply with the pattern 'image-id:version' */
@@ -2520,6 +2520,15 @@ export namespace ovhapi {
                         /** App Data linked */
                         volumes ? : cloud.project.ai.volume.VolumeStatus[];
                     }
+                    /** AI Solutions AI App deployment strategy object */
+                    export interface DeploymentStrategy {
+                        /** Maximum number of replicas that can be created over the desired number of Pods (can be expressed as a percentage of the desired pods, suffixed with '%') */
+                        maxSurge ? : string;
+                        /** Maximum number of replicas that can be unavailable during the update process (can be expressed as a percentage of the desired pods, suffixed with '%') */
+                        maxUnavailable ? : string;
+                        /** Number of seconds you want to wait for your Deployment to progress before the system reports back that the Deployment has failed progressing */
+                        progressDeadlineSeconds ? : number;
+                    }
                     /** AI Solutions App Probe Object */
                     export interface Probe {
                         /** Path to access to check for readiness */
@@ -2584,6 +2593,13 @@ export namespace ovhapi {
                         automatic ? : cloud.project.ai.app.ScalingAutomaticStrategyInput;
                         /** Strategy setting a fix number of replicas (conflicts with 'automatic' property when both are not null) */
                         fixed ? : cloud.project.ai.app.ScalingFixedStrategyInput;
+                    }
+                    /** AI Solutions AI App update object */
+                    export interface UpdateInput {
+                        /** Deployment strategy to use when updating this AI App */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
+                        /** URL of the Docker image for this AI deployment */
+                        url ? : string;
                     }
                 }
                 export namespace capabilities {
@@ -2679,6 +2695,8 @@ export namespace ovhapi {
                             logoUrl: string;
                             /** Name of the framework */
                             name: string;
+                            /** List of paths that are automatically saved */
+                            savedPaths ? : string[];
                             /** List of available versions of this framework */
                             versions: string[];
                         }
@@ -2822,8 +2840,6 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside job. Deprecated: Use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
                         /** List of environment variable to be set inside job */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Job image */
@@ -2857,8 +2873,6 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside job. Deprecated: Use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
                         /** List of environment variable to be set inside job */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Job image */
@@ -3201,249 +3215,6 @@ export namespace ovhapi {
                         url ? : string;
                         /** Docker registry username */
                         username ? : string;
-                    }
-                }
-                export namespace serving {
-                    /** Status of API */
-                    export enum APIStatusEnum {
-                        "pending" = "pending",
-                        "running" = "running",
-                        "scaling" = "scaling",
-                        "sleeping" = "sleeping",
-                        "starting" = "starting",
-                        "waking" = "waking"
-                    }
-                    /** Autoscaling specification */
-                    export interface AutoscalingSpec {
-                        /** CPU utilization threshold beyond which a scale is triggered */
-                        cpuAverageUtilization ? : number;
-                        /** Maximum number of replicas */
-                        maxReplicas ? : number;
-                        /** Memory utilization threshold beyond which a scale is triggered */
-                        memoryAverageUtilization ? : number;
-                        /** Minimum number of replicas */
-                        minReplicas ? : number;
-                    }
-                    /** Backend serving the model */
-                    export interface Backend {
-                        /** Backend ID */
-                        id: cloud.project.ai.serving.BackendIdEnum;
-                        /** Link to the backend project */
-                        link: string;
-                        /** Backend name */
-                        name: string;
-                    }
-                    /** Backend serving the model */
-                    export enum BackendIdEnum {
-                        "bentoml" = "bentoml",
-                        "serving-runtime" = "serving-runtime"
-                    }
-                    /** Features of Serving Engine */
-                    export interface Features {
-                        /** Capability to choose backend */
-                        chooseBackend: boolean;
-                    }
-                    /** Compute Flavor for the Serving Engine */
-                    export interface Flavor {
-                        /** Number of CPU core of the flavor */
-                        cpuCore: number;
-                        /** Description of the flavor */
-                        description: string;
-                        /** Flavor ID */
-                        id: string;
-                        /** RAM of the flavor (in MB) */
-                        ramMB: number;
-                    }
-                    /** Framework of the model */
-                    export interface Framework {
-                        /** Backends handling this framework */
-                        backends: cloud.project.ai.serving.BackendIdEnum[];
-                        /** Documentation page */
-                        docPage: string;
-                        /** Framework ID */
-                        id: cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Link to the framework project */
-                        link: string;
-                        /** Framework logo */
-                        logo: string;
-                        /** Framework name */
-                        name: string;
-                        /** Recommended backend for this framework */
-                        recommendedBackend: cloud.project.ai.serving.BackendIdEnum;
-                        /** Framework version */
-                        version: string;
-                    }
-                    /** Framework of the model */
-                    export enum FrameworkIdEnum {
-                        "fastai" = "fastai",
-                        "flow" = "flow",
-                        "huggingface" = "huggingface",
-                        "onnx" = "onnx",
-                        "pmml" = "pmml",
-                        "tensorflow_1" = "tensorflow_1",
-                        "torch" = "torch"
-                    }
-                    /** Metrics information */
-                    export interface Metrics {
-                        /** Metrics endpoint query platforms */
-                        endpoints: cloud.project.ai.serving.MetricsEndpoint[];
-                        /** Metrics token linked to the project */
-                        token: string;
-                    }
-                    /** User Metrics Endpoints */
-                    export interface MetricsEndpoint {
-                        /** Name of endpoint */
-                        name: string;
-                        /** URL of endpoint */
-                        url: string;
-                    }
-                    /** A deployed machine learning model */
-                    export interface Model {
-                        /** Api status */
-                        apiStatus: cloud.project.ai.serving.APIStatusEnum;
-                        /** Autoscaling specification */
-                        autoscalingSpec ? : cloud.project.ai.serving.AutoscalingSpec;
-                        /** Model creation date */
-                        createdAt: string;
-                        /** Flavor id */
-                        flavor ? : string;
-                        /** Model id */
-                        id: string;
-                        /** Number of API currently running */
-                        replicas ? : number;
-                        /** Model url */
-                        url ? : string;
-                        /** API Deployed version */
-                        version ? : number;
-                        /** Last version status */
-                        versionStatus: cloud.project.ai.serving.VersionStatusEnum;
-                        /** Workflow Template used to build the model */
-                        workflowTemplate ? : cloud.project.ai.serving.WorkflowTemplateEnum;
-                        /** Workflow Template Parameters used to build the model */
-                        workflowTemplateParameters: cloud.project.ai.serving.ModelWorkflowTemplateParameter;
-                    }
-                    /** Missing description */
-                    export interface ModelDefinition {
-                        /** Autoscaling specification */
-                        autoscalingSpec ? : cloud.project.ai.serving.AutoscalingSpec;
-                        /** Backend which will serve your model */
-                        backend ? : cloud.project.ai.serving.BackendIdEnum;
-                        /** Flavor id */
-                        flavor: string;
-                        /** Framework of your model */
-                        framework ? : cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Model id */
-                        id: string;
-                        /** Preset image to deploy */
-                        imageId ? : string;
-                        /** Path in the object storage container that contains your model */
-                        storagePath ? : string;
-                        /** Workflow template to use */
-                        workflowTemplate ? : cloud.project.ai.serving.WorkflowTemplateEnum;
-                    }
-                    /** Parameters of the Workflow that build */
-                    export interface ModelWorkflowTemplateParameter {
-                        /** Backend which will serve your model */
-                        backend ? : cloud.project.ai.serving.BackendIdEnum;
-                        /** Framework of your model */
-                        framework ? : cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Preset Model Image used to deploy your model */
-                        imageId ? : string;
-                        /** Path in the object storage container that contains your model */
-                        storagePath ? : string;
-                    }
-                    /** A serving engine namespace */
-                    export interface Namespace {
-                        /** Cluster id */
-                        clusterId: string;
-                        /** Object storage container */
-                        container: string;
-                        /** Object storage container id */
-                        containerId: string;
-                        /** Name creation date */
-                        createdAt: string;
-                        /** Description of namespace */
-                        description: string;
-                        /** Hub Service url */
-                        hubUrl: string;
-                        /** Namespace id */
-                        id: string;
-                        /** Current region of the namespace */
-                        region: string;
-                        /** Cluster url */
-                        url: string;
-                    }
-                    /** Missing description */
-                    export interface NamespaceCreation {
-                        /** Object storage container name */
-                        container: string;
-                        /** Description of namespace */
-                        description: string;
-                        /** Region name */
-                        region: string;
-                    }
-                    /** A Image of a built serving model */
-                    export interface PresetImage {
-                        /** Model Image Description */
-                        description: string;
-                        /** Image id */
-                        id: string;
-                        /** Link to the Opensource Model */
-                        link ? : string;
-                        /** Model Image Name */
-                        name: string;
-                        /** RAM requirement per model instantiated (in MB) */
-                        ramRequirementMB ? : number;
-                    }
-                    /** Representation of a registry */
-                    export interface Registry {
-                        /** True if user have a registry attached */
-                        custom: boolean;
-                        /** Docker registry password */
-                        password ? : string;
-                        /** Docker registry URL */
-                        url ? : string;
-                        /** Docker registry username */
-                        username ? : string;
-                    }
-                    /** Missing description */
-                    export interface RegistryResponse {
-                        /** message */
-                        message: string;
-                    }
-                    /** A token to access / manage a machine learning Model */
-                    export interface Token {
-                        /** Token creation date */
-                        createdAt: string;
-                        /** A list of access group to grant */
-                        groups: cloud.project.ai.serving.TokenGroupEnum[];
-                        /** Token id */
-                        id: string;
-                        /** Access resource of the token. You can provide: a strict id that will exactly match the resource id or a fuzzy string that ends with * to match multiple resource starting with the same prefix or a * to match all your resources */
-                        resource: string;
-                        /** The JWT Token */
-                        token ? : string;
-                    }
-                    /** A serving engine access group */
-                    export enum TokenGroupEnum {
-                        "model-evaluation" = "model-evaluation",
-                        "model-management" = "model-management"
-                    }
-                    /** Status of current version */
-                    export enum VersionStatusEnum {
-                        "build-error" = "build-error",
-                        "building" = "building",
-                        "built" = "built",
-                        "deployed" = "deployed",
-                        "deploying" = "deploying",
-                        "failed" = "failed",
-                        "pending" = "pending",
-                        "rollback" = "rollback"
-                    }
-                    /** The workflow Template to use */
-                    export enum WorkflowTemplateEnum {
-                        "build-image" = "build-image",
-                        "preset-image" = "preset-image"
                     }
                 }
                 export namespace token {
@@ -4011,6 +3782,13 @@ export namespace ovhapi {
                     /** List of parameter need for the connector */
                     parameters ? : cloud.project.dataIntegration.Parameter[];
                 }
+                /** Error detail */
+                export interface ErrorDetail {
+                    /** Error code */
+                    code: string;
+                    /** Error description */
+                    description: string;
+                }
                 /** Job information */
                 export interface Job {
                     /** Creation date of the job */
@@ -4044,7 +3822,7 @@ export namespace ovhapi {
                     /** Last status of the metadata extraction */
                     status: cloud.project.dataIntegration.MetadataStatusEnum;
                     /** Table name */
-                    tableName: string;
+                    tableName ? : string;
                 }
                 /** Metadata description */
                 export interface MetadataDescription {
@@ -4063,6 +3841,7 @@ export namespace ovhapi {
                 export enum MetadataStatusEnum {
                     "FAILED" = "FAILED",
                     "NOT_EXTRACTED" = "NOT_EXTRACTED",
+                    "NOT_FOUND" = "NOT_FOUND",
                     "PROCESSING" = "PROCESSING",
                     "STOP" = "STOP",
                     "SUCCESS" = "SUCCESS",
@@ -4131,6 +3910,8 @@ export namespace ovhapi {
                     destinationName ? : string;
                     /** Whether workflow is enabled */
                     enabled: boolean;
+                    /** Error detail of the workflow */
+                    errorDetail ? : cloud.project.dataIntegration.ErrorDetail;
                     /** Uuid of the workflow */
                     id: string;
                     /** Last jobs execution date  */
@@ -7381,6 +7162,10 @@ export namespace ovhapi {
             }
             /** Container */
             export interface Container {
+                /** Whether this is an archive container or not */
+                archive ? : boolean;
+                /** Container type */
+                containerType ? : cloud.storage.TypeEnum;
                 /** Storage id */
                 id: string;
                 /** Storage name */
@@ -9513,6 +9298,8 @@ export namespace ovhapi {
             city ? : string;
             /** Company National Identification Number */
             companyNationalIdentificationNumber ? : string;
+            /** Complementary Address */
+            complementaryAddress ? : string;
             /** Corporation type */
             corporationType ? : string;
             /** Customer country */
@@ -9551,6 +9338,10 @@ export namespace ovhapi {
             phone ? : string;
             /** phoneCountry */
             phoneCountry ? : nichandle.CountryEnum;
+            /** Type of phone(mobile, landline) */
+            phoneType ? : nichandle.PhoneTypeEnum;
+            /** Customer purpose of purchase */
+            purposeOfPurchase ? : string;
             /** Gender */
             sex ? : nichandle.GenderEnum;
             /** Spare email */
@@ -9585,6 +9376,11 @@ export namespace ovhapi {
             "kimsufi" = "kimsufi",
             "ovh" = "ovh",
             "soyoustart" = "soyoustart"
+        }
+        /** All phone type a person can choose */
+        export enum PhoneTypeEnum {
+            "landline" = "landline",
+            "mobile" = "mobile"
         }
         /** Indicates the mandatory nature of having a valid payment method */
         export enum RequiredPaymentMethodEnum {
@@ -10094,6 +9890,8 @@ export namespace ovhapi {
             loginSuccessDetails ? : audit.LogLoginSuccessDetails;
             /** type of event */
             type: audit.LogTypeEnum;
+            /** specific fields for USER_PASSWORD_CHANGED events */
+            userPasswordChangedDetails ? : audit.LogUserPasswordChangedDetails;
         }
         /** Authentication details */
         export interface LogAuthDetails {
@@ -10132,7 +9930,14 @@ export namespace ovhapi {
         }
         /** Audit event type */
         export enum LogTypeEnum {
-            "LOGIN_SUCCESS" = "LOGIN_SUCCESS"
+            "ACCOUNT_PASSWORD_CHANGED" = "ACCOUNT_PASSWORD_CHANGED",
+            "LOGIN_SUCCESS" = "LOGIN_SUCCESS",
+            "USER_PASSWORD_CHANGED" = "USER_PASSWORD_CHANGED"
+        }
+        /** specific fields for USER_PASSWORD_CHANGED events */
+        export interface LogUserPasswordChangedDetails {
+            /** User name */
+            user: string;
         }
     }
     export namespace auth {
@@ -11401,8 +11206,6 @@ export namespace ovhapi {
                 supportsDistributionKernel ? : boolean;
                 /** This distribution supports RTM software */
                 supportsRTM: boolean;
-                /** This distribution supports the microsoft SQL server */
-                supportsSqlServer ? : boolean;
                 /** This template name */
                 templateName: string;
             }
@@ -13063,6 +12866,17 @@ export namespace ovhapi {
                 serviceName: string;
             }
         }
+        export namespace insight {
+            /** Insight access token */
+            export interface Access {
+                /** Access token */
+                access: string;
+                /** Token creation date */
+                createdAt: string;
+                /** Token expiration date */
+                expireAt: string;
+            }
+        }
         export namespace migration {
             export namespace step {
                 /** Country Migration step contracts data */
@@ -13724,6 +13538,11 @@ export namespace ovhapi {
         }
     }
     export namespace oauth2 {
+        /** oAuth2 Flow */
+        export enum ClientFlowEnum {
+            "AUTHORIZATION_CODE" = "AUTHORIZATION_CODE",
+            "CLIENT_CREDENTIALS" = "CLIENT_CREDENTIALS"
+        }
         /** An oAuth2 Client */
         export interface client {
             /** allowed callback urls */
@@ -13734,6 +13553,10 @@ export namespace ovhapi {
             createdAt: string;
             /** client's description */
             description: string;
+            /** oAuth2's flow */
+            flow: oauth2.ClientFlowEnum;
+            /** associated IAM identity */
+            identity ? : string;
             /** client's name */
             name: string;
         }
@@ -13743,6 +13566,8 @@ export namespace ovhapi {
             callbackUrls: string[];
             /** client's description */
             description: string;
+            /** oAuth2's flow */
+            flow: oauth2.ClientFlowEnum;
             /** client's name */
             name: string;
         }

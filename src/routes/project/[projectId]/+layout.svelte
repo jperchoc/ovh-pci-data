@@ -14,16 +14,21 @@
             }]
         },
         {
-            title: 'Dataprocessing',
+            title: 'Data Processing',
             items: [
                 {
+                    title: 'Data Integration',
+                    href: `/project/${$page.params.projectId}/data-processing/data-integration`,
+                    items:[]
+                },
+                {
                     title: 'Jobs',
-                    href: `/project/${$page.params.projectId}/dataprocessing/job`,
+                    href: `/project/${$page.params.projectId}/data-processing/job`,
                     items:[]
                 },
                 {
                     title: 'Notebooks',
-                    href: `/project/${$page.params.projectId}/dataprocessing/notebook`,
+                    href: `/project/${$page.params.projectId}/data-processing/notebook`,
                     items:[]
                 }
             ]

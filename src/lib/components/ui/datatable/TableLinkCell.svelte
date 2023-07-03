@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { A, Small } from "../typography";
+	import { A, P, Small } from "../typography";
 
     export let linkLabel: string;
     export let href: string | undefined;
@@ -10,7 +10,7 @@
     {#if href}
         <A {href}>{linkLabel}</A>
     {:else}
-        {linkLabel}
+        <P>{linkLabel}</P>
     {/if}
     <Small>{subLabel}</Small>
 </div>

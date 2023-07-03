@@ -7,7 +7,7 @@
     $: job = data.job;
 </script>
 
-<a href="/project/{$page.params.projectId}/dataprocessing/job">Retour aux jobs</a>
+<a href="/project/{$page.params.projectId}/data-processing/job">Retour aux jobs</a>
 
 {#if job}
     <h2>{job.name}</h2>

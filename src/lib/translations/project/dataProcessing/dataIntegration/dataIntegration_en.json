@@ -1,0 +1,47 @@
+{
+    "list": {
+        "header": "Data Integration",
+        "description": "Discover our Data Integration offer and configure your first data extraction and loading jobs. Choose from our catalog of sources and destinations to easily configure the transportation of your data, whether in the form of files (HTTP files, FTP, SFTP), databases (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server), or even in a search engine (Elasticsearch, OpenSearch).",
+        "table_worflows": {
+            "columns": {
+                "name": "Name/ID",
+                "source": "Source",
+                "destination": "Destination",
+                "schedule": "Schedule",
+                "status": "Status",
+                "last_exec": "Last Execution",
+                "region": "Region",
+                "enabled": "Enabled"
+            }
+        },
+        "table_jobs": {
+            "columns": {
+                "createdAt": "Created At",
+                "startedAt": "Started At",
+                "endedAt": "Ended At",
+                "duration": "Duration",
+                "status": "Status",
+                "id": "Identifier"
+            }
+        },
+        "workflow_statuses": {
+            "CREATING": "Creating",
+            "ERROR": "Failed",
+            "READY": "Ready"
+        },
+        "jobs_statuses": {
+            "COMPLETED": "Completed",
+            "DELETED": "Deleted",
+            "FAILED": "Failed",
+            "PROVISIONING": "Provisioning",
+            "RUNNING": "Running",
+            "SUBMITTED": "Submitted",
+            "TERMINATED": "Cancelled",
+            "UNKNOWN": "Unknown"
+        },
+        "loading_jobs": "Loading jobs in progress...",
+        "no_job_message": "No jobs have been launched for this workflow yet.",
+        "no_workflow_message": "You haven't created any data integration yet. Visit our guide page to create your first workflow.",
+        "click_workflow_message": "Click on a Workflow to view the details of associated jobs."
+    }
+}

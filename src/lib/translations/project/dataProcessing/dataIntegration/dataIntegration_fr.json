@@ -1,0 +1,47 @@
+{
+    "list": {
+        "header": "Data Integration",
+        "description": "Découvrez notre offre Data Integration et configurez vos premiers jobs d'extraction et de chargement de données. Faites votre choix parmi notre catalogue de sources et de destinations pour facilement configurer le transport de vos données quelles soient sous forme de fichier (HTTP files, FTP, SFTP), en base de données (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server), ou encore dans un moteur de recherche (Elasticsearch, OpenSearch).",
+        "table_worflows": {
+            "columns": {
+                "name": "Nom/ID",
+                "source": "Source",
+                "destination": "Destination",
+                "schedule": "Planification",
+                "status": "Etat",
+                "last_exec": "Dernière exécution",
+                "region": "Résidence",
+                "enabled": "Activé"
+            }
+        },
+        "table_jobs": {
+            "columns": {
+                "createdAt": "Création",
+                "startedAt": "Début",
+                "endedAt": "Fin",
+                "duration": "Durée",
+                "status": "Etat",
+                "id": "Identifiant"
+            }
+        },
+        "workflow_statuses": {
+            "CREATING": "Création",
+            "ERROR": "Echoué",
+            "READY": "Prêt"
+        },
+        "jobs_statuses": {
+            "COMPLETED": "Terminé",
+            "DELETED":  "Supprimé",
+            "FAILED":  "Echoué",
+            "PROVISIONING": "Approvisionnement",
+            "RUNNING ":  "En cours",
+            "SUBMITTED":  "Soumis",
+            "TERMINATED": "Annulé",
+            "UNKNOWN":  "Inconnu"
+        },
+        "loading_jobs": "Chargement des jobs en cours...",
+        "no_job_message": "Aucun job n'a encore été lancé pour ce workflow.",
+        "no_workflow_message": "Vous n'avez pas encore créé d'intégration de données. Visitez notre page de guide afin de créer votre premier workflow.",
+        "click_workflow_message": "Cliquez sur un Workflow afin d'afficher le détails des jobs associés."
+    }
+}
