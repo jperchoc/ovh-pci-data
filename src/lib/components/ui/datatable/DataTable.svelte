@@ -15,7 +15,7 @@
 	type Item = $$Generic;
 	import { ArrowDownWideNarrow, ArrowUpWideNarrow } from 'lucide-svelte';
 	import { BodyRow, Render, Subscribe } from 'svelte-headless-table';
-	import type { TableViewModel } from 'svelte-headless-table';
+	import type { DataBodyRow, TableViewModel } from 'svelte-headless-table';
 	import type { AnyPlugins } from 'svelte-headless-table/lib/types/TablePlugin';
 	import { Table, TableHeader, TableRow } from "../table";
 	import TableBody from "../table/TableBody.svelte";
@@ -32,6 +32,15 @@
 			selectedItem.set(row.original);
 		}
 	};
+
+	const isRowSelected = (row: DataBodyRow<Item, AnyPlugins>) => {
+		if (!$selectedItem) return false;
+		if (selectedItemKey) {
+			return $selectedItem[selectedItemKey as keyof Item] === row.original[selectedItemKey as keyof Item];
+		} else {
+			return $selectedItem === row.original;
+		}
+	}
 </script>
 
 <div class="w-full overflow-auto">
@@ -65,7 +74,7 @@
 			{#each $pageRows as row (row.id)}
 				<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 					<tr 
-						data-state={(row.isData() && selectedItemKey && $selectedItem && $selectedItem[selectedItemKey] === row.original[selectedItemKey]) ? 'selected' : ''}
+						data-state={$selectedItem && row.isData() && isRowSelected(row) ? 'selected' : ''}
 						class={cn(
 							"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted whitespace-nowrap",
 							classTr
