@@ -18,7 +18,7 @@
 	import type { TableViewModel } from 'svelte-headless-table';
 	import type { AnyPlugins } from 'svelte-headless-table/lib/types/TablePlugin';
 	import { Table, TableHeader, TableRow } from "../table";
-	import TableBody from "../table/TableBody.svelte";
+	import TableBody from "../table/table-body.svelte";
 
 	export let viewModel: TableViewModel<Item, AnyPlugins>;
 
