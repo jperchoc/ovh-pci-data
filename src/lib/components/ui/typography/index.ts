@@ -1,12 +1,28 @@
-export { default as H1 } from "./H1.svelte";
-export { default as H2 } from "./H2.svelte";
-export { default as H3 } from "./H3.svelte";
-export { default as H4 } from "./H4.svelte";
-export { default as A } from "./A.svelte";
-export { default as P } from "./P.svelte";
-export { default as Blockquote } from "./Blockquote.svelte";
-export { default as Code } from "./Code.svelte";
-export { default as Lead } from "./Lead.svelte";
-export { default as Large } from "./Large.svelte";
-export { default as Small } from "./Small.svelte";
-export { default as Muted } from "./Muted.svelte";
+import H1 from "./H1.svelte";
+import H2 from "./H2.svelte";
+import H3 from "./H3.svelte";
+import H4 from "./H4.svelte";
+import A from "./A.svelte";
+import P from "./P.svelte";
+import Blockquote from "./Blockquote.svelte";
+import Code from "./Code.svelte";
+import Lead from "./Lead.svelte";
+import Large from "./Large.svelte";
+import Small from "./Small.svelte";
+import Muted from "./Muted.svelte";
+
+
+export { 
+    H1,
+    H2,
+    H3,
+    H4,
+    A,
+    P,
+    Blockquote,
+    Code,
+    Lead,
+    Large,
+    Small,
+    Muted
+};

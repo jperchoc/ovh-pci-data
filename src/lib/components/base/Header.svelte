@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Avatar from "$components/ui/avatar/Avatar.svelte";
-	import AvatarFallback from "$components/ui/avatar/AvatarFallback.svelte";
+	import Avatar from "$components/ui/avatar/avatar.svelte";
+	import AvatarFallback from "$components/ui/avatar/avatar-fallback.svelte";
 	import { Button } from "$components/ui/button";
 	import LightSwitch from "$components/ui/light-switch/LightSwitch.svelte";
 	import type { ovhapi } from "$types/ovh";

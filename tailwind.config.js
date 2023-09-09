@@ -1,5 +1,4 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
-import tailwindcssAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -18,9 +17,6 @@ const config = {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
-				headerbg: "hsl(var(--header-background))",
-				pagebg: "hsl(var(--page-background))",
-				sidebarbg: "hsl(var(--sidebar-background))",
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				primary: {
@@ -34,22 +30,6 @@ const config = {
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))"
-				},
-				info: {
-					DEFAULT: "hsl(var(--info))",
-					foreground: "hsl(var(--info-foreground))"
-				},
-				warning: {
-					DEFAULT: "hsl(var(--warning))",
-					foreground: "hsl(var(--warning-foreground))"
-				},
-				success: {
-					DEFAULT: "hsl(var(--success))",
-					foreground: "hsl(var(--success-foreground))"
-				},
-				error: {
-					DEFAULT: "hsl(var(--error))",
-					foreground: "hsl(var(--error-foreground))"
 				},
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
@@ -78,7 +58,6 @@ const config = {
 			}
 		}
 	},
-	plugins: [tailwindcssAnimate]
 };
 
 export default config;

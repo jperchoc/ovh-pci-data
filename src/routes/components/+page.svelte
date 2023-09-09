@@ -1,30 +1,9 @@
 <script lang="ts">
-	import {
-		Accordion,
-		AccordionContent,
-		AccordionItem,
-		AccordionTrigger
-	} from '$components/ui/accordion';
-	import { Alert, AlertDescription, AlertTitle } from '$components/ui/alert';
-	import {
-		AlertDialog,
-		AlertDialogAction,
-		AlertDialogCancel,
-		AlertDialogContent,
-		AlertDialogDescription,
-		AlertDialogFooter,
-		AlertDialogHeader,
-		AlertDialogTitle,
-		AlertDialogTrigger
-	} from '$components/ui/alert-dialog';
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardFooter,
-		CardHeader,
-		CardTitle
-	} from '$components/ui/card';
+	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal } from 'lucide-svelte';
+	import * as Accordion from "$lib/components/ui/accordion";
+	import * as Alert from "$lib/components/ui/alert";
+	import * as AlertDialog from '$components/ui/alert-dialog';
+	import * as Card from '$components/ui/card';
 	import { Separator } from '$components/ui/separator';
 	import {
 		Blockquote,
@@ -39,52 +18,27 @@
 		P,
 		Small
 	} from '$components/ui/typography';
-	import { AlertCircle, BellRing, Check, Italic, Loader2, Mail, Terminal, X } from 'lucide-svelte';
 	import { Button } from '$components/ui/button';
 	import { AspectRatio } from '$components/ui/aspect-ratio';
-	import { Avatar, AvatarFallback, AvatarImage } from '$components/ui/avatar';
+	import * as Avatar from '$components/ui/avatar';
 	import { Badge, badgeVariants } from '$components/ui/badge';
 	import { Switch } from '$components/ui/switch';
 	import { Checkbox } from '$components/ui/checkbox';
-	import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '$components/ui/collapsible';
-	import {
-		Dialog,
-		DialogContent,
-		DialogDescription,
-		DialogHeader,
-		DialogTitle,
-		DialogTrigger
-	} from '$components/ui/dialog';
-	import { HoverCard, HoverCardContent, HoverCardTrigger } from '$components/ui/hover-card';
+	import * as Collapsible from "$lib/components/ui/collapsible";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import * as HoverCard from "$lib/components/ui/hover-card";
 	import { Input } from '$components/ui/input';
 	import { Label } from '$components/ui/label';
 	import { Progress } from '$components/ui/progress';
-	import { RadioGroup, RadioGroupItem } from '$components/ui/radio-group';
-	import {
-		Sheet,
-		SheetClose,
-		SheetContent,
-		SheetDescription,
-		SheetFooter,
-		SheetHeader,
-		SheetTitle,
-		SheetTrigger
-	} from '$components/ui/sheet';
+	import * as RadioGroup from "$lib/components/ui/radio-group";
+	import* as Sheet from '$components/ui/sheet';
 	import { Skeleton } from '$components/ui/skeleton';
 	import { Slider } from '$components/ui/slider';
-	import {
-		Table,
-		TableBody,
-		TableCaption,
-		TableCell,
-		TableHead,
-		TableHeader,
-		TableRow
-	} from '$components/ui/table';
-	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$components/ui/tabs';
+	import * as Table from '$components/ui/table';
+	import * as Tabs from '$components/ui/tabs';
 	import { Textarea } from '$components/ui/textarea';
 	import { Toggle } from '$components/ui/toggle';
-	import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '$components/ui/tooltip';
+	import * as Tooltip from "$lib/components/ui/tooltip";
 	import { writable, type Writable } from 'svelte/store';
 	import { createTable } from 'svelte-headless-table';
     import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
@@ -191,8 +145,8 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<H1>This is a H1 text</H1>
 		<H2>This is a H2 text</H2>
 		<H3>This is a H3 text</H3>
@@ -209,8 +163,8 @@
 		<Large>A Large has a bigger font size thant a paragraph</Large>
 		<Small>A Small has a smaller font size thant a paragraph</Small>
 		<Muted>A Muted is a small text with a lighter color</Muted>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="accordion">Accordion</H1>
@@ -219,59 +173,36 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10  space-y-2">
-		<Accordion type="single" collapsible>
-			<AccordionItem value="item-1">
-				<AccordionTrigger>Is it accessible?</AccordionTrigger>
-				<AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-			</AccordionItem>
-		</Accordion>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10  space-y-2">
+		<Accordion.Root>
+			<Accordion.Item value="item-1">
+				<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+				<Accordion.Content>Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
+			</Accordion.Item>
+		</Accordion.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="alert">Alert</H1>
 	<Lead>Displays a callout for user attention.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Alert>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Alert.Root>
 			<Terminal class="h-4 w-4" />
-			<AlertTitle>Heads up!</AlertTitle>
-			<AlertDescription>You can add components to your app using the cli.</AlertDescription>
-		</Alert>
-		<Alert variant="destructive">
+			<Alert.Title>Heads up!</Alert.Title>
+			<Alert.Description>You can add components to your app using the cli.</Alert.Description>
+		</Alert.Root>
+		<Alert.Root variant="destructive">
 			<AlertCircle class="h-4 w-4" />
-			<AlertTitle>Error</AlertTitle>
-			<AlertDescription>Your session has expired. Please login again.</AlertDescription>
-		</Alert>
-		<Alert variant="info">
-			<AlertCircle class="h-4 w-4" />
-			<AlertTitle>Info</AlertTitle>
-			<AlertDescription>This is an info message</AlertDescription>
-		</Alert>
-		<Alert variant="warning">
-			<AlertCircle class="h-4 w-4" />
-			<AlertTitle>Warning</AlertTitle>
-			<AlertDescription>This is an warning message</AlertDescription>
-		</Alert>
-		<Alert variant="error">
-			<AlertCircle class="h-4 w-4" />
-			<AlertTitle>Error</AlertTitle>
-			<AlertDescription>This is an error message</AlertDescription>
-		</Alert>
-		{#if showAlert}
-		<Alert variant="success">
-			<AlertCircle class="h-4 w-4" />
-			<AlertTitle>Success</AlertTitle>
-			<AlertDescription>This is a success message</AlertDescription>
-			<button class="z-200 absolute right-2 top-2 opacity-50 hover:opacity-100" on:click={() => showAlert = false}><X class="w-4 h-4" /></button>
-		</Alert>
-		{/if}
-	</CardContent>
-</Card>
+			<Alert.Title>Error</Alert.Title>
+			<Alert.Description>Your session has expired. Please login again.</Alert.Description>
+		</Alert.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="alert-dialog">Alert Dialog</H1>
@@ -279,36 +210,36 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<AlertDialog>
-			<AlertDialogTrigger>
-				<Button variant="outline">Open Dialog</Button>
-			</AlertDialogTrigger>
-			<AlertDialogContent>
-				<AlertDialogHeader>
-					<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-					<AlertDialogDescription>
-						This action cannot be undone. This will permanently delete your account and remove your
-						data from our servers.
-					</AlertDialogDescription>
-				</AlertDialogHeader>
-				<AlertDialogFooter>
-					<AlertDialogCancel>Cancel</AlertDialogCancel>
-					<AlertDialogAction>Continue</AlertDialogAction>
-				</AlertDialogFooter>
-			</AlertDialogContent>
-		</AlertDialog>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<AlertDialog.Root>
+			<AlertDialog.Trigger asChild let:builder>
+			  <Button builders={[builder]} variant="outline">Show Dialog</Button>
+			</AlertDialog.Trigger>
+			<AlertDialog.Content>
+			  <AlertDialog.Header>
+				<AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
+				<AlertDialog.Description>
+				  This action cannot be undone. This will permanently delete your account
+				  and remove your data from our servers.
+				</AlertDialog.Description>
+			  </AlertDialog.Header>
+			  <AlertDialog.Footer>
+				<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+				<AlertDialog.Action>Continue</AlertDialog.Action>
+			  </AlertDialog.Footer>
+			</AlertDialog.Content>
+		  </AlertDialog.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="aspect-ratio">Aspect Ratio</H1>
 	<Lead>Displays content within a desired ratio.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<div class="max-w-[450px]">
 			<AspectRatio ratio={16 / 9} class="bg-muted">
 				<img
@@ -318,33 +249,33 @@
 				/>
 			</AspectRatio>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="avatar">Avatar</H1>
 	<Lead>An image element with a fallback for representing the user.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 flex gap-2">
-		<Avatar>
-			<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-			<AvatarFallback>CN</AvatarFallback>
-		</Avatar>
-		<Avatar>
-			<AvatarFallback>CN</AvatarFallback>
-		</Avatar>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Avatar.Root>
+			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+			<Avatar.Fallback>CN</Avatar.Fallback>
+		</Avatar.Root>
+		<Avatar.Root>
+			<Avatar.Fallback>CN</Avatar.Fallback>
+		</Avatar.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="badge">Badge</H1>
 	<Lead>Displays a badge or a component that looks like a badge.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 flex gap-2 flex-wrap">
+<Card.Root>
+	<Card.Content class="p-10 space-x-2">
 		<Badge>Primary</Badge>
 		<Badge variant="secondary">Secondary</Badge>
 		<Badge variant="outline">Outline</Badge>
@@ -354,16 +285,16 @@
 		<Badge variant="error">error</Badge>
 		<Badge variant="success">success</Badge>
 		<a href="/components" class={badgeVariants({ variant: 'outline' })}>Link Badge</a>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="button">Button</H1>
 	<Lead>Displays a button or a component that looks like a button.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 flex gap-2 flex-wrap">
+<Card.Root>
+	<Card.Content class="p-10 space-x-2">
 		<Button>Primary</Button>
 
 		<Button variant="secondary">Secondary</Button>
@@ -383,8 +314,8 @@
 			<Loader2 class="mr-2 h-4 w-4 animate-spin" />
 			Please wait
 		</Button>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="card">Card</H1>
@@ -392,12 +323,12 @@
 </div>
 <Separator class="my-4" />
 <div class="p-10 space-y-4">
-	<Card class="max-w-[380px]">
-		<CardHeader>
-			<CardTitle tag="h3">Card Title</CardTitle>
-			<CardDescription>Card Description</CardDescription>
-		</CardHeader>
-		<CardContent class="grid gap-4">
+	<Card.Root class="max-w-[380px]">
+		<Card.Header>
+			<Card.Title tag="h3">Card Title</Card.Title>
+			<Card.Description>Card Description</Card.Description>
+		</Card.Header>
+		<Card.Content class="grid gap-4">
 			<div class=" flex items-center space-x-4 rounded-md border p-4">
 				<BellRing />
 				<div class="flex-1 space-y-1">
@@ -429,13 +360,13 @@
 					</div>
 				</div>
 			</div>
-		</CardContent>
-		<CardFooter>
+		</Card.Content>
+		<Card.Footer>
 			<Button class="w-full">
 				<Check class="mr-2 h-4 w-4" /> Mark all as read
 			</Button>
-		</CardFooter>
-	</Card>
+		</Card.Footer>
+	</Card.Root>
 </div>
 
 <div class="space-y-2 mt-6">
@@ -443,8 +374,8 @@
 	<Lead>A control that allows the user to toggle between checked and not checked.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4 ">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4 ">
 		<div class="flex items-center space-x-2">
 			<Checkbox id="terms" />
 			<label
@@ -477,24 +408,24 @@
 				Accept terms and conditions
 			</label>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="collapsible">Collapsible</H1>
 	<Lead>An interactive component which expands/collapses a panel.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Collapsible>
-			<CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
-			<CollapsibleContent>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Collapsible.Root>
+			<Collapsible.Trigger>Can I use this in my project?</Collapsible.Trigger>
+			<Collapsible.Content>
 				Yes. Free to use for personal and commercial projects. No attribution required.
-			</CollapsibleContent>
-		</Collapsible>
-	</CardContent>
-</Card>
+			</Collapsible.Content>
+		</Collapsible.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="data-table">Datatable</H1>
@@ -503,16 +434,16 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<DataTable {viewModel} selectedItem={selectedInvoice}/>
 		{#if !$selectedInvoice}
 			<P>Click on a row to select an invoice.</P>
 		{:else}
 			<P>You have selected the invoice <span class="text-primary">{$selectedInvoice.invoice}</span></P>
 		{/if}
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="dialog">Dialog</H1>
@@ -522,44 +453,44 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Dialog>
-			<DialogTrigger>Open</DialogTrigger>
-			<DialogContent>
-				<DialogHeader>
-					<DialogTitle>Are you sure absolutely sure?</DialogTitle>
-					<DialogDescription>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Dialog.Root>
+			<Dialog.Trigger>Open</Dialog.Trigger>
+			<Dialog.Content>
+				<Dialog.Header>
+					<Dialog.Title>Are you sure absolutely sure?</Dialog.Title>
+					<Dialog.Description>
 						This action cannot be undone. This will permanently delete your account and remove your
 						data from our servers.
-					</DialogDescription>
-				</DialogHeader>
-			</DialogContent>
-		</Dialog>
-	</CardContent>
-</Card>
+					</Dialog.Description>
+				</Dialog.Header>
+			</Dialog.Content>
+		</Dialog.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="hover-card">Hover Card</H1>
 	<Lead>For sighted users to preview content available behind a link.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<HoverCard>
-			<HoverCardTrigger>Hover</HoverCardTrigger>
-			<HoverCardContent>SvelteKit - Web development, streamlined</HoverCardContent>
-		</HoverCard>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<HoverCard.Root>
+			<HoverCard.Trigger>Hover</HoverCard.Trigger>
+			<HoverCard.Content>SvelteKit - Web development, streamlined</HoverCard.Content>
+		</HoverCard.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="input">Input</H1>
 	<Lead>Displays a form input field or a component that looks like an input field.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<Input type="email" placeholder="email" />
 		<Input disabled type="email" placeholder="email" />
 		<div class="grid w-full max-w-sm items-center gap-1.5">
@@ -575,19 +506,19 @@
 			<Input type="email" placeholder="email" />
 			<Button type="submit">Subscribe</Button>
 		</form>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="label">Label</H1>
 	<Lead>Renders an accessible label associated with controls.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<Label for="email">Your email address</Label>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="progress">Progress</H1>
@@ -597,11 +528,11 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<Progress value={33} />
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="radio-group">Radio Group</H1>
@@ -611,28 +542,28 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<RadioGroup value="option-one">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<RadioGroup.Root value="option-one">
 			<div class="flex items-center space-x-2">
-				<RadioGroupItem value="option-one" id="option-one" />
+				<RadioGroup.Item value="option-one" id="option-one" />
 				<Label for="option-one">Option One</Label>
 			</div>
 			<div class="flex items-center space-x-2">
-				<RadioGroupItem value="option-two" id="option-two" />
+				<RadioGroup.Item value="option-two" id="option-two" />
 				<Label for="option-two">Option Two</Label>
 			</div>
-		</RadioGroup>
-	</CardContent>
-</Card>
+		</RadioGroup.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="separator">Separator</H1>
 	<Lead>Visually or semantically separates content.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<div>
 			<div class="space-y-1">
 				<h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
@@ -647,8 +578,8 @@
 				<div>Source</div>
 			</div>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="sheet">Sheet</H1>
@@ -658,68 +589,52 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4 flex justify-center items-center">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4 flex justify-center items-center">
 		<div class="flex flex-col space-y-8">
-			<RadioGroup bind:value={sheetPosition}>
-				<div class="grid grid-cols-2 gap-2">
-					{#each SHEET_POSITIONS as position, index (index)}
-						<div class="flex items-center space-x-2">
-							<RadioGroupItem value={position} id={position} />
-							<Label for={position}>{position}</Label>
-						</div>
-					{/each}
-				</div>
-			</RadioGroup>
-			<RadioGroup bind:value={sheetSize}>
-				<div class="grid grid-cols-2 gap-2">
-					{#each SHEET_SIZES as size, index (index)}
-						<div class="flex items-center space-x-2">
-							<RadioGroupItem value={size} id={size} />
-							<Label for={size}>{size}</Label>
-						</div>
-					{/each}
-				</div>
-			</RadioGroup>
-			<Sheet>
-				<SheetTrigger>
-					<Button>Open {sheetSize} {sheetPosition} sheet</Button>
-				</SheetTrigger>
-				<SheetContent position={sheetPosition} size={sheetSize}>
-					<SheetHeader>
-						<SheetTitle>Edit profile</SheetTitle>
-						<SheetDescription>
-							Make changes to your profile here. Click save when you're done.
-						</SheetDescription>
-					</SheetHeader>
-					<div class="grid gap-4 py-4">
+			<div class="grid grid-cols-2 gap-2">
+				{#each SHEET_POSITIONS as side, _ (side)}
+				  <Sheet.Root>
+					<Sheet.Trigger asChild let:builder>
+					  <Button builders={[builder]} variant="outline">{side}</Button>
+					</Sheet.Trigger>
+					<Sheet.Content {side}>
+					  <Sheet.Header>
+						<Sheet.Title>Edit profile</Sheet.Title>
+						<Sheet.Description>
+						  Make changes to your profile here. Click save when you're done.
+						</Sheet.Description>
+					  </Sheet.Header>
+					  <div class="grid gap-4 py-4">
 						<div class="grid grid-cols-4 items-center gap-4">
-							<Label for="name" class="text-right">Name</Label>
-							<Input id="name" value="Pedro Duarte" class="col-span-3" />
+						  <Label for="name" class="text-right">Name</Label>
+						  <Input id="name" value="Pedro Duarte" class="col-span-3" />
 						</div>
 						<div class="grid grid-cols-4 items-center gap-4">
-							<Label for="username" class="text-right">Username</Label>
-							<Input id="username" value="@peduarte" class="col-span-3" />
+						  <Label for="username" class="text-right">Username</Label>
+						  <Input id="username" value="@peduarte" class="col-span-3" />
 						</div>
-					</div>
-					<SheetFooter>
-						<SheetClose>
-							<Button type="submit">Save changes</Button>
-						</SheetClose>
-					</SheetFooter>
-				</SheetContent>
-			</Sheet>
+					  </div>
+					  <Sheet.Footer>
+						<Sheet.Close asChild let:builder>
+						  <Button builders={[builder]} type="submit">Save changes</Button>
+						</Sheet.Close>
+					  </Sheet.Footer>
+					</Sheet.Content>
+				  </Sheet.Root>
+				{/each}
+			  </div>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="skeleton">Skeleton</H1>
 	<Lead>Use to show a placeholder while content is loading.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<div class="flex items-center space-x-4">
 			<Skeleton class="h-12 w-12 rounded-full" />
 			<div class="space-y-2">
@@ -727,62 +642,62 @@
 				<Skeleton class="h-4 max-w-[200px]" />
 			</div>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="slider">Slider</H1>
 	<Lead>An input where the user selects a value from within a given range.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Slider value={33} max={100} step={1} />
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Slider value={[33]} max={100} step={1} />
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="switch">Switch</H1>
 	<Lead>A control that allows the user to toggle between checked and not checked.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<div class="flex items-center space-x-2">
 			<Switch id="airplane-mode" />
 			<Label for="airplane-mode">Airplane Mode</Label>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="table">Table</H1>
 	<Lead>A responsive table component.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<Table>
-		<TableCaption>A list of your recent invoices.</TableCaption>
-		<TableHeader>
-			<TableRow>
-				<TableHead class="max-w-[100px]">Invoice</TableHead>
-				<TableHead>Status</TableHead>
-				<TableHead>Method</TableHead>
-				<TableHead class="text-right">Amount</TableHead>
-			</TableRow>
-		</TableHeader>
-		<TableBody>
+<Card.Root>
+	<Table.Root>
+		<Table.Caption>A list of your recent invoices.</Table.Caption>
+		<Table.Header>
+			<Table.Row>
+				<Table.Head class="max-w-[100px]">Invoice</Table.Head>
+				<Table.Head>Status</Table.Head>
+				<Table.Head>Method</Table.Head>
+				<Table.Head class="text-right">Amount</Table.Head>
+			</Table.Row>
+		</Table.Header>
+		<Table.Body>
 			{#each invoices as invoice}
-				<TableRow key={invoice.invoice}>
-					<TableCell class="font-medium">{invoice.invoice}</TableCell>
-					<TableCell>{invoice.paymentStatus}</TableCell>
-					<TableCell>{invoice.paymentMethod}</TableCell>
-					<TableCell class="text-right">${invoice.totalAmount.toFixed(2)}</TableCell>
-				</TableRow>
+				<Table.Row>
+					<Table.Cell class="font-medium">{invoice.invoice}</Table.Cell>
+					<Table.Cell>{invoice.paymentStatus}</Table.Cell>
+					<Table.Cell>{invoice.paymentMethod}</Table.Cell>
+					<Table.Cell class="text-right">${invoice.totalAmount.toFixed(2)}</Table.Cell>
+				</Table.Row>
 			{/each}
-		</TableBody>
-	</Table>
-</Card>
+		</Table.Body>
+	</Table.Root>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="tabs">Tabs</H1>
@@ -791,46 +706,46 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<Tabs value="account" class="max-w-[400px]">
-			<TabsList>
-				<TabsTrigger value="account">Account</TabsTrigger>
-				<TabsTrigger value="password">Password</TabsTrigger>
-			</TabsList>
-			<TabsContent value="account">Make changes to your account here.</TabsContent>
-			<TabsContent value="password">Change your password here.</TabsContent>
-		</Tabs>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Tabs.Root value="account" class="max-w-[400px]">
+			<Tabs.List>
+				<Tabs.Trigger value="account">Account</Tabs.Trigger>
+				<Tabs.Trigger value="password">Password</Tabs.Trigger>
+			</Tabs.List>
+			<Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
+			<Tabs.Content value="password">Change your password here.</Tabs.Content>
+		</Tabs.Root>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="textarea">Textarea</H1>
 	<Lead>Displays a form textarea or a component that looks like a textarea.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<div class="grid w-full gap-1.5">
 			<Label for="message-2">Your Message</Label>
 			<Textarea placeholder="Type your message here." id="message-2" />
 			<p class="text-sm text-muted-foreground">Your message will be copied to the support team.</p>
 		</div>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="toggle">Toggle</H1>
 	<Lead>A two-state button that can be either on or off.</Lead>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
 		<Toggle variant="outline" aria-label="Toggle italic">
 			<Italic class="h-4 w-4" />
 		</Toggle>
-	</CardContent>
-</Card>
+	</Card.Content>
+</Card.Root>
 
 <div class="space-y-2 mt-6">
 	<H1 id="tooltip">Tooltip</H1>
@@ -840,15 +755,15 @@
 	>
 </div>
 <Separator class="my-4" />
-<Card>
-	<CardContent class="p-10 space-y-4">
-		<TooltipProvider>
-			<Tooltip>
-				<TooltipTrigger>Hover</TooltipTrigger>
-				<TooltipContent>
-					<p>Add to library</p>
-				</TooltipContent>
-			</Tooltip>
-		</TooltipProvider>
-	</CardContent>
-</Card>
+<Card.Root>
+	<Card.Content class="p-10 space-y-4">
+		<Tooltip.Root>
+			<Tooltip.Trigger asChild let:builder>
+			<Button builders={[builder]} variant="outline">Hover</Button>
+			</Tooltip.Trigger>
+			<Tooltip.Content>
+			<p>Add to library</p>
+			</Tooltip.Content>
+		</Tooltip.Root>
+	</Card.Content>
+</Card.Root>

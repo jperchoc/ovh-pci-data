@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Separator from "$components/ui/separator/Separator.svelte";
+	import Separator from "$components/ui/separator/separator.svelte";
 	import type { SidebarNavItem } from "$lib/types/nav";
 	import { cn } from "$lib/utils";
 	import DocsSidebarNavItems from "./DocsSidebarNavItems.svelte";

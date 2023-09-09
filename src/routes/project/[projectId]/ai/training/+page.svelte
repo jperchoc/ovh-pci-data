@@ -17,19 +17,19 @@
         switch(status) {
             case (ovhapi.cloud.project.ai.job.JobStateEnum.FAILED):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.ERROR):
-                return 'error';
+                //return 'error';
             case (ovhapi.cloud.project.ai.job.JobStateEnum.TIMEOUT):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTING):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTED):
-                return 'warning';
+                //return 'warning';
             case (ovhapi.cloud.project.ai.job.JobStateEnum.DONE):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.RUNNING):
-                return 'success';
+                //return 'success';
             case (ovhapi.cloud.project.ai.job.JobStateEnum.PENDING):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.QUEUED):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.INITIALIZING):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.FINALIZING):
-                return 'info'
+                //return 'info'
             default: 
                 return 'default'
         }

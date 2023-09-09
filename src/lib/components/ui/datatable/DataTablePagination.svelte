@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Readable, Writable } from 'svelte/store';
-	import Button from '../button/Button.svelte';
+	import Button from '../button/button.svelte';
 	import { P, Small } from '../typography';
 
 	type Pagination = {
