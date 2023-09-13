@@ -14,6 +14,14 @@ const buttonVariants = tv({
 				"border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
 			secondary:
 				"bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+				info:
+				"bg-secondary text-tertiary-foreground shadow-sm hover:bg-secondary/80",
+				warning:
+				"bg-yellow-500 text-gray-900 shadow-sm hover:bg-yellow-500/80",
+				error:
+				"bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/80",
+				success:
+				"bg-green-500 text-gray-900 shadow-sm hover:bg-green-500/80",
 			ghost: "hover:bg-accent hover:text-accent-foreground",
 			link: "text-primary underline-offset-4 hover:underline"
 		},

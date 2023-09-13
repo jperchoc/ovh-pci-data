@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { H1, Lead, A } from "$components/ui/typography";
-import type { PageData } from "./$types";
+    import type { PageData } from "./$types";
 
     export let data: PageData;
     $: projects = data.projects;

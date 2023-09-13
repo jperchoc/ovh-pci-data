@@ -63,7 +63,7 @@
     </nav>
 </header> -->
 
-<div
+<!-- <div
 	class="max-w-full flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)]"
 >
 	<aside
@@ -78,4 +78,6 @@
             <slot />
         </div>
     </main>
-</div>
+</div> -->
+
+<slot />
