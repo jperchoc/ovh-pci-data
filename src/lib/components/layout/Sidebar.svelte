@@ -1,5 +1,10 @@
 <script lang="ts">
+	import navLinks from "$stores/navbar";
 	import { getDrawerStore } from "@skeletonlabs/skeleton";
+	import { projectIdStore, projectsStore } from "$stores/projectsStore";
+	import { goto } from "$app/navigation";
+	import { page } from '$app/stores';  
+	import type { NavItem } from "$types/nav";
 
 	const drawerStore = getDrawerStore();
 
@@ -7,81 +12,41 @@
 		drawerStore.close();
 	}
 
-	import { page } from "$app/stores";
-	$: projectId = $page.params.projectId;
-	$: hasProjectId = projectId?.length > 0;
-
-	$: links = [
-		{ 
-			label: "Projects",
-			link: `/project`,
-			items: []
-		},
-		{ 
-			label: "Dashboard",
-			link: `/project/${projectId}`,
-			items: []
-		},
-		{ 
-			label: "Storage",
-			link: `/project/${projectId}/storage`,
-			items: [
-				{ 
-					label: "Databases",
-					link: `/project/${projectId}/database`,
-				}
-			]
-		},
-		{ 
-			label: "Data Processing",
-			link: null,
-			items:  [
-				{ 
-					label: "Job",
-					link: `/project/${projectId}/dataprocessing/job`,
-				},
-				{ 
-					label: "Notebook",
-					link: `/project/${projectId}/dataprocessing/notebook`,
-				}
-			]
-		},
-		{ 
-			label: "AI",
-			link: `/project/${projectId}/ai/dashboard`,
-			items: [
-				{ 
-					label: "Training",
-					link: `/project/${projectId}/ai/training`,
-				},
-				{ 
-					label: "Notebook",
-					link: `/project/${projectId}/ai/notebook`,
-				},
-				{ 
-					label: "Deploy",
-					link: `/project/${projectId}/ai/deploy`,
-				}
-			]
-		},
-		{ 
-			label: "Settings",
-			link: `/settings`,
-			items: []
-		}
-	]
-
 	const disabledLinkClass = 'text-gray-500 pointer-events-none';
+
+	const getItemClass = (item: NavItem, currentUrl:string) => {
+		if (item.disabled) return disabledLinkClass;
+		if (!item.link) return 'text-primary-50';
+		if (item.activeExact) {
+			if (currentUrl === item.link) return 'bg-primary';
+		} else {
+			if (currentUrl.startsWith(item.link)) return 'bg-primary';
+		}
+	}
+
+	const handleProjectChange = () => {
+		const newRoute = $page.route.id?.replace('/(private)','').replace('[projectId]', `${$projectIdStore}`);
+		goto(newRoute ? newRoute : `/project/${$projectIdStore}`);
+	}
+
 </script>
+
 <nav class="list-nav p-4">
+	{#if $projectsStore.length > 0}
+		<select class="select" bind:value={$projectIdStore} on:change={() => handleProjectChange()}>
+			{#each $projectsStore as project}
+				<option value={project.project_id}>{project.description}</option>
+			{/each}
+		</select>
+	{/if}
 	<ul>
-		{#each links as item}
+		{#each $navLinks as item}
 			<li>
-				<a href={item.link} class={item.link?.includes(`project/${projectId}`) && !hasProjectId ? disabledLinkClass : ''} on:click={drawerClose}>{item.label}</a>
+				<a href={item.link} class={getItemClass(item, $page.url.pathname)} on:click={drawerClose}>{item.label}</a>
 				<ul class="ml-4 border-l-[1px]">
 				{#each item.items as sublink}
 					<li>
-						<a href={sublink.link} class={sublink.link?.includes(`project/${projectId}`) && !hasProjectId ? disabledLinkClass : ''} on:click={drawerClose}>{sublink.label}</a>
+						<a href={sublink.link} class={getItemClass(sublink, $page.url.pathname)} on:click={drawerClose}>{sublink.label}</a>
 					</li>
 				{/each}
 				</ul>

@@ -1,9 +1,22 @@
 <script lang="ts">
 	import { H1, Lead, A } from "$components/ui/typography";
+	import { projectIdStore } from "$stores/projectsStore";
     import type { PageData } from "./$types";
+	import { onMount } from "svelte";
+	import { goto } from "$app/navigation";
 
     export let data: PageData;
     $: projects = data.projects;
+
+    onMount(() => {
+        if (projects.length === 0 ) {
+            console.log("redirect to error page here");
+        }
+        if (!$projectIdStore || !projects.find(p => p.project_id === $projectIdStore)) {
+            projectIdStore.set(data.projects[0].project_id);
+        }
+        goto(`/project/${$projectIdStore}`);
+    })
 </script>
 
 <div class="mx-auto w-full min-w-0">
