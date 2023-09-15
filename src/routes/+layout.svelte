@@ -1,21 +1,15 @@
 <script lang="ts">
 	import "../app.postcss";
 	import { dev } from "$app/environment";
-	import { locale } from '$lib/translations/translations';
-	import type { LayoutData } from "./$types";
-	import Header from "$components/base/Header.svelte";
 	import { navigating } from "$app/stores";
-	import { PreloadingIndicator } from "$components/ui/preloading-indicator";
 	import { setInitialClassState } from "$components/ui/light-switch/light-switch";
-	import { TailwindIndicator } from "$components/ui/tailwind-indicator";
+	import PreloadingIndicator from "$components/ui/preloading-indicator/PreloadingIndicator.svelte";
+	import TailwindIndicator from "$components/ui/tailwind-indicator/TailwindIndicator.svelte";
+	import MobileSidebar from "$components/layout/MobileSidebar.svelte";
 
-	function changeLanguage(lang: string) {
-		localStorage.setItem('lang', lang);
-		locale.set(lang);
-	}
-
-	export let data: LayoutData;
-	$: user = data.user;
+	// Load and initialize drawer store
+	import { initializeStores, Drawer } from '@skeletonlabs/skeleton';
+	initializeStores();
 </script>
 
 <svelte:head>
@@ -23,17 +17,18 @@
 	{@html `<\u{73}cript nonce="%sveltekit.nonce%">(${setInitialClassState.toString()})();</script>`}
 </svelte:head>
 
+<!-- Visual indicator that something is loading-->
 {#if $navigating}
 	<PreloadingIndicator />
 {/if}
 
-<div class="relative flex min-h-screen flex-col bg-pagebg" id="page">
-	<Header {user} />
-	<div class="flex-1">
-		<slot />
-	</div>
-	<!-- <SiteFooter /> -->
-	{#if dev}
-		<TailwindIndicator />
-	{/if}
-</div>
+<!-- Show mobile sidebar on small screens-->
+<Drawer>
+	<MobileSidebar />
+</Drawer>
+<slot />
+
+<!-- Display screen size in dev mode-->
+{#if dev}
+    <TailwindIndicator />
+{/if}

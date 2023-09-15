@@ -4,15 +4,21 @@
 	import { page } from "$app/stores";
 	import { invalidate } from "$app/navigation";
 	import { writable, type Writable } from "svelte/store";
-    import { createRender, createTable } from 'svelte-headless-table';
-    import { addColumnOrder, addSortBy, addPagination } from 'svelte-headless-table/plugins';
-	import { DataTable, TableDateCell, TableLinkCell } from "$components/ui/datatable";
+    import { createRender, createTable, Subscribe, Render } from 'svelte-headless-table';
+    import { addColumnOrder, addSortBy, addPagination, addTableFilter } from 'svelte-headless-table/plugins';
+
+    import { CaretSort, ChevronDown } from "radix-icons-svelte";
+    import { cn } from "$lib/utils";
+	import { /*DataTable,*/ TableDateCell, TableLinkCell } from "$components/ui/datatable";
+
+    import * as Table from "$lib/components/ui/table";
 	import { Card, CardContent, CardHeader } from "$components/ui/card";
 	import { JsonViewer } from "$components/ui/json-viewer";
 	import { POLLING_INTERVAL } from "$lib/global.constants";
 	import { Badge, badgeVariants } from "$components/ui/badge";
 	import type { VariantProps } from "class-variance-authority";
 	import { ovhapi } from "$types/ovh";
+	import Button from "$components/ui/button/button.svelte";
 
     const getStatusVariant = (status: ovhapi.cloud.project.ai.app.AppStateEnum):VariantProps<typeof badgeVariants>["variant"] => {
         switch(status) {
@@ -51,7 +57,10 @@
         page: addPagination({
             initialPageIndex: 0,
             initialPageSize: 5
-        })
+        }),
+        // filter: addTableFilter({
+        //     fn: ({ filterValue, value }) => value.includes(filterValue)
+        // }),
     });
     const columns = table.createColumns([
         table.column({
@@ -111,7 +120,20 @@
             },
         }),
     ]);
-    const viewModel = table.createViewModel(columns);
+    const {
+        headerRows,
+        pageRows,
+        tableAttrs,
+        tableBodyAttrs,
+        flatColumns,
+        pluginStates,
+        rows
+    } = table.createViewModel(columns);
+
+const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
+  const { sortKeys } = pluginStates.sort;
+
+  //const { selectedDataIds } = pluginStates.select;
 
     onMount(() => {
         const it = setInterval(() => {
@@ -131,7 +153,90 @@
     </CardHeader>
     <CardContent class="p-0 pb-4">
 {#if apps}
-    <DataTable {viewModel} selectedItem={selectedApp}/>
+    <!-- <DataTable {viewModel} selectedItem={selectedApp}/> -->
+    <Table.Root {...$tableAttrs}>
+        <Table.Header>
+          {#each $headerRows as headerRow}
+            <Subscribe rowAttrs={headerRow.attrs()}>
+              <Table.Row>
+                {#each headerRow.cells as cell (cell.id)}
+                  <Subscribe
+                    attrs={cell.attrs()}
+                    let:attrs
+                    props={cell.props()}
+                    let:props
+                  >
+                    <Table.Head
+                      {...attrs}
+                      class={cn("[&:has([role=checkbox])]:pl-3")}
+                    >
+                      {#if cell.id === "amount"}
+                        <div class="text-right">
+                          <Render of={cell.render()} />
+                        </div>
+                      {:else if cell.id === "email"}
+                        <Button variant="ghost" on:click={props.sort.toggle}>
+                          <Render of={cell.render()} />
+                          <CaretSort
+                            class={cn(
+                              $sortKeys[0]?.id === cell.id && "text-foreground",
+                              "ml-2 h-4 w-4"
+                            )}
+                          />
+                        </Button>
+                      {:else}
+                        <Render of={cell.render()} />
+                      {/if}
+                    </Table.Head>
+                  </Subscribe>
+                {/each}
+              </Table.Row>
+            </Subscribe>
+          {/each}
+        </Table.Header>
+        <Table.Body {...$tableBodyAttrs}>
+          {#each $pageRows as row (row.id)}
+            <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+              <Table.Row
+                {...rowAttrs}
+                
+              >
+                {#each row.cells as cell (cell.id)}
+                  <Subscribe attrs={cell.attrs()} let:attrs>
+                    <Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}>
+                      {#if cell.id === "amount"}
+                        <div class="text-right font-medium">
+                          <Render of={cell.render()} />
+                        </div>
+                      {:else}
+                        <Render of={cell.render()} />
+                      {/if}
+                    </Table.Cell>
+                  </Subscribe>
+                {/each}
+              </Table.Row>
+            </Subscribe>
+          {/each}
+        </Table.Body>
+      </Table.Root>
+      <div class="flex items-center justify-end space-x-2 py-4">
+        <div class="flex-1 text-sm text-muted-foreground">
+          {Object.keys($rows).length} of{" "}
+          {$rows.length} row(s) selected.
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          on:click={() => ($pageIndex = $pageIndex - 1)}
+          disabled={!$hasPreviousPage}>Previous</Button
+        >
+        <Button
+          variant="outline"
+          size="sm"
+          disabled={!$hasNextPage}
+          on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+        >
+      </div>
 {:else}
     <p>No app found</p>
 {/if}
