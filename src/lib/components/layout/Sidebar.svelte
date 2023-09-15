@@ -16,7 +16,7 @@
 
 	const getItemClass = (item: NavItem, currentUrl:string) => {
 		if (item.disabled) return disabledLinkClass;
-		if (!item.link) return 'text-primary-50';
+		if (!item.link) return 'cursor-default opacity-50';
 		if (item.activeExact) {
 			if (currentUrl === item.link) return 'bg-primary';
 		} else {
