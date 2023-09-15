@@ -8,7 +8,7 @@
 		{ label: 'One', color: 'rgba(255,255,255,1)', start: 0, end: 10 },
 		{ label: 'Two', color: 'rgba(255,255,255,0.5)', start: 10, end: 35 },
 		{ label: 'Three', color: 'rgba(255,255,255,0.25)', start: 35, end: 100 }
-];
+    ];
 </script>
 <H1>Storage</H1>
 <div class="grid grid-cols-2 gap-4 mt-4">

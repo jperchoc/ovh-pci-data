@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { LayoutData } from "../$types";
-	import Header from "$components/base/Header.svelte";
-	import { AppBar, AppShell } from '@skeletonlabs/skeleton';
+	import Header from "$components/layout/Header.svelte";
+	import { AppShell } from '@skeletonlabs/skeleton';
 
 	export let data: LayoutData;
 	$: user = data.user;
@@ -9,12 +9,9 @@
 
 <AppShell>
 	<svelte:fragment slot="header">
-		
-		<AppBar shadow="shadow-2xl">
 			<Header {user} />
-		</AppBar>
 	</svelte:fragment>
-	<main class="px-8 py-2">
+	<main class="px-8 py-8">
 		<slot />
 	</main>
 </AppShell>
