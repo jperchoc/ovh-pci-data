@@ -27,13 +27,14 @@
 	const handleProjectChange = () => {
 		const newRoute = $page.route.id?.replace('/(private)','').replace('[projectId]', `${$projectIdStore}`);
 		goto(newRoute ? newRoute : `/project/${$projectIdStore}`);
+		drawerStore.close();
 	}
 
 </script>
 
 <nav class="list-nav p-4">
 	{#if $projectsStore.length > 0}
-		<select class="select" bind:value={$projectIdStore} on:change={() => handleProjectChange()}>
+		<select class="select mb-2" bind:value={$projectIdStore} on:change={() => handleProjectChange()}>
 			{#each $projectsStore as project}
 				<option value={project.project_id}>{project.description}</option>
 			{/each}

@@ -36,7 +36,7 @@
 				</span>
 			</button>
 			{/if}
-			<strong class="text-xl uppercase">DataWarehouse</strong>
+			<strong class="text-xl uppercase"><a href="/">DataWarehouse</a></strong>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
