@@ -44,13 +44,15 @@
 		{#each $navLinks as item}
 			<li>
 				<a data-sveltekit-preload-data="tap" href={item.link} class={getItemClass(item, $page.url.pathname)} on:click={drawerClose}>{item.label}</a>
-				<ul class="ml-4 border-l-[1px]">
-				{#each item.items as sublink}
-					<li>
-						<a data-sveltekit-preload-data="tap" href={sublink.link} class={getItemClass(sublink, $page.url.pathname)} on:click={drawerClose}>{sublink.label}</a>
-					</li>
-				{/each}
-				</ul>
+				{#if item.items && item.items.length > 0}
+					<ul class="ml-4 border-l-[1px]">
+					{#each item.items as sublink}
+						<li>
+							<a data-sveltekit-preload-data="tap" href={sublink.link} class={getItemClass(sublink, $page.url.pathname)} on:click={drawerClose}>{sublink.label}</a>
+						</li>
+					{/each}
+					</ul>
+				{/if}
 			</li>
 		{/each}
 	</ul>

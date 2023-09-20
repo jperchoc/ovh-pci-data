@@ -9,7 +9,7 @@ const navLinks = derived(projectIdStore, (projectId) => [
         activeExact: true,
         disabled: !projectId,
         items: []
-    },
+    } as NavItem,
     { 
         label: "Storage",
         link: `/project/${projectId}/storage`,
@@ -19,9 +19,9 @@ const navLinks = derived(projectIdStore, (projectId) => [
                 label: "Databases",
                 link: `/project/${projectId}/database`,
                 disabled: !projectId,
-            }
+            } as NavItem,
         ]
-    },
+    } as NavItem,
     { 
         label: "Data Processing",
         link: null,
@@ -30,14 +30,14 @@ const navLinks = derived(projectIdStore, (projectId) => [
                 label: "Job",
                 link: `/project/${projectId}/dataprocessing/job`,
                 disabled: !projectId,
-            },
+            } as NavItem,
             { 
                 label: "Notebook",
                 link: `/project/${projectId}/dataprocessing/notebook`,
                 disabled: !projectId,
-            }
+            } as NavItem,
         ]
-    },
+    } as NavItem,
     { 
         label: "AI",
         link: `/project/${projectId}/ai/dashboard`,
@@ -47,25 +47,25 @@ const navLinks = derived(projectIdStore, (projectId) => [
                 label: "Training",
                 link: `/project/${projectId}/ai/training`,
                 disabled: !projectId,
-            },
+            } as NavItem,
             { 
                 label: "Notebook",
                 link: `/project/${projectId}/ai/notebook`,
                 disabled: !projectId,
-            },
+            } as NavItem,
             { 
                 label: "Deploy",
                 link: `/project/${projectId}/ai/deploy`,
                 disabled: !projectId,
-            }
+            } as NavItem,
         ]
-    },
+    } as NavItem,
     { 
         label: "Settings",
         link: `/project/settings`,
         disabled: false,
         items: []
-    }
+    } as NavItem
 ]
 );
 
