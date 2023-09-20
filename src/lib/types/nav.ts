@@ -1,15 +1,7 @@
 export type NavItem = {
-	title: string;
-	href?: string;
+	label: string;
+	link: string | null;
 	disabled?: boolean;
-	external?: boolean;
-	label?: string;
-};
-
-export type SidebarNavItem = NavItem & {
-	items: SidebarNavItem[];
-};
-
-export type NavItemWithChildren = NavItem & {
-	items: NavItemWithChildren[];
+	activeExact?: boolean;
+	items?: NavItem[];
 };

@@ -3,11 +3,11 @@ import type { ovhapi } from "$types/ovh";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async ({ fetch: _fetch, url, params }) => {
-    const fetch = (path: string) => fetchRelog(_fetch, url, path)
+    const fetch = (path: string) => fetchRelog(_fetch, url, path);
     const { projectId } = params;
-    const projectsReq = await fetch(`/api/ovh/cloud/project/${projectId}`);
-    const project: ovhapi.cloud.Project = await projectsReq.json();
+    const projectQuotasReq = await fetch(`/api/ovh/cloud/project/${projectId}/quota`);
+    const quotas: ovhapi.cloud.quota.Quotas[] = await projectQuotasReq.json();
     return {
-        project
+        quotas
     }
 };

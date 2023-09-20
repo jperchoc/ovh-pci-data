@@ -2,6 +2,7 @@
 	export let showDrawerButton:boolean = false;
 	export let user: ovhapi.nichandle.Nichandle | null = null;
 
+	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import * as Avatar from "$components/ui/avatar";
 	import LightSwitch from "$components/ui/light-switch/LightSwitch.svelte";
 	import type { ovhapi } from "$types/ovh";
@@ -36,15 +37,30 @@
 				</span>
 			</button>
 			{/if}
-			<strong class="text-xl uppercase">DataWarehouse</strong>
+			<strong class="text-xl uppercase"><a href="/">DataWarehouse</a></strong>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
 		<LightSwitch />
 		{#if user}
-			<Avatar.Root>
-				<Avatar.Fallback>{avatarInitials}</Avatar.Fallback>
-			</Avatar.Root>
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger>
+				<Avatar.Root>
+					<Avatar.Fallback>{avatarInitials}</Avatar.Fallback>
+				</Avatar.Root>
+			</DropdownMenu.Trigger>
+			<DropdownMenu.Content>
+			  <DropdownMenu.Group>
+				<DropdownMenu.Label>{user.nichandle}</DropdownMenu.Label>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Item><a href="/project" class="w-full">Dashboard</a></DropdownMenu.Item>
+				<DropdownMenu.Item><a href="/" class="w-full">Home</a></DropdownMenu.Item>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Item><form action="/api/auth/logout" method="post" class="inline w-full"><button type="submit" class="w-full text-left">Logout</button></form></DropdownMenu.Item>
+			  </DropdownMenu.Group>
+			</DropdownMenu.Content>
+		  </DropdownMenu.Root>
+			
 		{/if}
 	</svelte:fragment>
 </AppBar>

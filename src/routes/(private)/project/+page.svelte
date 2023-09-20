@@ -1,23 +1,19 @@
 <script lang="ts">
-	import { H1, Lead, A } from "$components/ui/typography";
-    import type { PageData } from "./$types";
+	import { browser } from "$app/environment";
+	import { goto } from "$app/navigation";
 
-    export let data: PageData;
-    $: projects = data.projects;
+	import { projectIdStore } from "$stores/projectsStore";
+	import type { LayoutData } from "./$types";
+
+    export let data: LayoutData;
+
+    $: if (browser && $projectIdStore) {
+        goto(`/project/${$projectIdStore}`);
+    }
 </script>
 
-<div class="mx-auto w-full min-w-0">
-    <H1>Your PCI Projects</H1>
-    <Lead>Click on a project to access the dashboard</Lead>
-    {#if projects && projects.length > 0}
-        <ul class="my-6 ml-6 list-disc [&>li]:mt-2">
-            {#each projects as project}
-            <li>
-                <A href="/project/{project.project_id}">{project.description}</A>
-            </li>
-            {/each}
-        </ul>
-    {:else}
-        <p>No project found</p>
-    {/if}
-</div>
+{#if data.projects.length === 0 }
+    Vous n'avez pas de project Cloud
+{:else}
+    Chargement du dashboard de votre project...
+{/if}
