@@ -47,6 +47,20 @@
 			]
 		},
 		{ 
+			label: "Data Integration",
+			link: `/project/${projectId}/dataintegration/dashboard`,
+			items: [
+				{ 
+					label: "Source",
+					link: `/project/${projectId}/dataingration/source`,
+				},
+				{ 
+					label: "cli",
+					link: `/project/${projectId}/dataintegration/cli`,
+				},
+			]
+		},
+		{ 
 			label: "AI",
 			link: `/project/${projectId}/ai/dashboard`,
 			items: [
