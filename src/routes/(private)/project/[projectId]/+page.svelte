@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Card from '$components/ui/card';
 	import Skeleton from '$components/ui/skeleton/skeleton.svelte';
+	import * as Table from '$components/ui/table';
 	import H2 from '$components/ui/typography/H2.svelte';
 	import BillingCard from './BillingCard.svelte';
 	import GraphCard from './GraphCard.svelte';
@@ -52,6 +53,7 @@
 			</Card.Root>
 		{/each}
 	{:then currentUsage}
+		{#if typeof currentUsage === 'object' && 'lastUpdate' in currentUsage}
 		<BillingCard title="Databases" usage={currentUsage} resources={['databases']} />
 		<BillingCard title="Data processing" usage={currentUsage} resources={['data-processing-job']} />
 		<BillingCard
@@ -59,5 +61,29 @@
 			usage={currentUsage}
 			resources={['ai-training', 'ai-notebook', 'ai-app']}
 		/>
+		{:else}
+		<Card.Root>
+			<Card.Header>Billing</Card.Header>
+			<Card.Content>
+				Current usage:{currentUsage.price.text}
+				<Table.Root>
+					<Table.Header> 
+						<Table.Row>
+							<Table.Head>Product</Table.Head>
+							<Table.Head class="text-right">Usage</Table.Head>
+					  </Table.Row>
+					</Table.Header>
+					<Table.Body>
+						{#each currentUsage.priceByPlanFamily as row}
+						<Table.Row>
+							<Table.Cell>{row.planFamily}</Table.Cell>
+							<Table.Cell class="text-right">{row.price.text}</Table.Cell>
+						</Table.Row>
+						{/each}
+					</Table.Body>
+				</Table.Root>
+			</Card.Content>
+		</Card.Root>
+		{/if}
 	{/await}
 </div>
