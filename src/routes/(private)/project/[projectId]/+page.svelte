@@ -11,7 +11,7 @@
 
 <H2 class="mb-4">Dashboard</H2>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
 	<Card.Root class="min-h-[80px] md:col-span-2">
 		<Card.Header>
 			<Card.Title>Project {data.project.description}</Card.Title>
