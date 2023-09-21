@@ -3,6 +3,12 @@ import type { ovhapi } from "$types/ovh";
 export async function load ({ fetch: _fetch, url, params }) {
     const fetch = (path: string) => fetchRelog(_fetch, url, path);
     const { projectId } = params;
+
+    const fetchProject = async (): Promise<ovhapi.cloud.Project> => {
+        const projectsReq = await fetch(`/api/ovh/cloud/project/${projectId}`);
+        return projectsReq.json();
+    }
+
     const fetchBilling = async () : Promise<ovhapi.cloud.usage.UsageCurrent | ovhapi.services.consumption.Summary> => {
         const projectBillingReq = await fetch(`/api/ovh/cloud/project/${projectId}/usage/current`);
         if (projectBillingReq.ok) {
@@ -21,6 +27,7 @@ export async function load ({ fetch: _fetch, url, params }) {
     
     return {
         streamed: {
+            project: fetchProject(),
             quotas: fetchQuota(),
             billing: fetchBilling()
         }

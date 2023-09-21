@@ -15,7 +15,14 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
 	<Card.Root class="min-h-[80px] md:col-span-2">
 		<Card.Header>
-			<Card.Title>Project {data.project.description}</Card.Title>
+			<Card.Title>
+				<span>Project</span>
+				{#await data.streamed.project}
+					<Skeleton class="h-8" />
+				{:then project} 
+					<span>{project.description}</span>
+				{/await} 
+			</Card.Title>
 		</Card.Header>
 		<Card.Content>
 			<GraphCard />
@@ -61,7 +68,7 @@
 			usage={currentUsage}
 			resources={['ai-training', 'ai-notebook', 'ai-app']}
 		/>
-		{:else}
+		{:else if typeof currentUsage === 'object' && 'price' in currentUsage}
 		<Card.Root>
 			<Card.Header>Billing</Card.Header>
 			<Card.Content>
