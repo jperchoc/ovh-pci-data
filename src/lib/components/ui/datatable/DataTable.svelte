@@ -21,11 +21,11 @@
 	import TableBody from "../table/table-body.svelte";
 
 	export let viewModel: TableViewModel<Item, AnyPlugins>;
-
-	const { headerRows, tableAttrs, tableBodyAttrs, pageRows, pluginStates } = viewModel;
-
 	export let selectedItem: Writable<Item> | undefined = undefined;
 
+	const { headerRows, tableAttrs, tableBodyAttrs, pageRows, pluginStates } = viewModel;
+	const { pageCount } = pluginStates.page;
+	
 	const handleClick = (row: BodyRow<Item, AnyPlugins>) => {
 		if (row.isData() && selectedItem !== undefined) {
 			selectedItem.set(row.original);
@@ -86,7 +86,7 @@
 		</TableBody>
 	</Table>
 </div>
-{#if pluginStates.page}
+{#if pluginStates.page && $pageCount > 1}
 <div class="text-right p-2">
 	<DataTablePagination pagination={pluginStates.page} />
 </div>

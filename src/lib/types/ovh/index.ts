@@ -3,7 +3,7 @@
 /**
  * Types for OVHcloud API
  * This file has been automatically created. Do not edit it.
- * Creation date: 2023-06-15T15:47:05.919Z
+ * Creation date: 2023-09-21T16:02:44.350Z
  * Author: Jonathan Perchoc 
 */
 export namespace ovhapi {
@@ -421,58 +421,7 @@ export namespace ovhapi {
             }
         }
         export namespace containerRegistry {
-            export namespace registry {
-                /** Region of the registry */
-                export enum RegionEnum {
-                    "GRA7" = "GRA7"
-                }
-                /** Managed docker registry */
-                export interface Registry {
-                    /** Registry creation date */
-                    createdAt: string;
-                    /** Registry ID */
-                    id: string;
-                    /** Registry name */
-                    name: string;
-                    /** Project ID of your registry */
-                    projectID: string;
-                    /** Region of the registry */
-                    region: cloud.containerRegistry.registry.RegionEnum;
-                    /** Registry status */
-                    status: cloud.containerRegistry.registry.StatusEnum;
-                    /** Registry last update date */
-                    updatedAt: string;
-                    /** Access url of the registry */
-                    url: string;
-                    /** Version of your registry */
-                    version: string;
-                }
-                /** Status of the registry */
-                export enum StatusEnum {
-                    "ERROR" = "ERROR",
-                    "READY" = "READY",
-                    "DELETED" = "DELETED",
-                    "SUSPENDED" = "SUSPENDED",
-                    "INSTALLING" = "INSTALLING",
-                    "UPDATING" = "UPDATING",
-                    "RESTORING" = "RESTORING",
-                    "SUSPENDING" = "SUSPENDING",
-                    "DELETING" = "DELETING"
-                }
-            }
-            export namespace user {
-                /** Docker registry user */
-                export interface User {
-                    /** User email */
-                    email: string;
-                    /** User ID */
-                    id: string;
-                    /** User password */
-                    password ? : string;
-                    /** User name */
-                    user: string;
-                }
-            } /** The container registry capability for a single region */
+            /** The container registry capability for a single region */
             export interface Capability {
                 /** Available plans in the region */
                 plans: cloud.containerRegistry.Plan[];
@@ -490,6 +439,76 @@ export namespace ovhapi {
                 imageStorage: number;
                 /** Parallel requests on Docker image API (/v2 Docker registry API) */
                 parallelRequest: number;
+            }
+            /** Docker registry OIDC Configuration */
+            export interface OIDCConfiguration {
+                /** The OIDC Configuration AdminGroup */
+                adminGroup ? : string;
+                /** The OIDC Configuration AutoOnboard */
+                autoOnboard ? : boolean;
+                /** The OIDC Configuration ClientID */
+                clientId: string;
+                /** The OIDC Configuration Client Secret */
+                clientSecret ? : string;
+                /** The OIDC Configuration creation date */
+                createdAt: string;
+                /** The OIDC Configuration Endpoint */
+                endpoint: string;
+                /** The OIDC Configuration GroupsClaim */
+                groupsClaim ? : string;
+                /** The OIDC Configuration ID */
+                id: string;
+                /** The OIDC Configuration Name */
+                name: string;
+                /** The OIDC Configuration comma-separated list of Scopes */
+                scope: string;
+                /** The OIDC Configuration status */
+                status: cloud.containerRegistry.OIDCStatusEnum;
+                /** The OIDC Configuration last update date */
+                updatedAt ? : string;
+                /** The OIDC Configuration UserClaim */
+                userClaim ? : string;
+                /** The OIDC Configuration VerifyCert */
+                verifyCert ? : boolean;
+            }
+            /** Docker registry Post OIDC configuration */
+            export interface OIDCPost {
+                /** Delete all previously created users to allow OIDC configuration */
+                deleteUsers ? : boolean;
+                /** The OIDC provider configuration */
+                provider: cloud.containerRegistry.OIDCConfiguration;
+            }
+            /** Docker registry Put OIDC Configuration */
+            export interface OIDCPut {
+                /** The OIDC Configuration AdminGroup */
+                adminGroup ? : string;
+                /** The OIDC Configuration AutoOnboard */
+                autoOnboard ? : boolean;
+                /** The OIDC Configuration ClientID */
+                clientId ? : string;
+                /** The OIDC Configuration Client Secret */
+                clientSecret ? : string;
+                /** The OIDC Configuration Endpoint */
+                endpoint ? : string;
+                /** The OIDC Configuration GroupsClaim */
+                groupsClaim ? : string;
+                /** The OIDC Configuration Name */
+                name ? : string;
+                /** The OIDC Configuration comma-separated list of Scopes */
+                scope ? : string;
+                /** The OIDC Configuration UserClaim */
+                userClaim ? : string;
+                /** The OIDC Configuration VerifyCert */
+                verifyCert ? : boolean;
+            }
+            /** Status of the registry's oidc configuration */
+            export enum OIDCStatusEnum {
+                "DELETING" = "DELETING",
+                "ERROR" = "ERROR",
+                "INSTALLING" = "INSTALLING",
+                "PATCHING" = "PATCHING",
+                "READY" = "READY",
+                "UPDATING" = "UPDATING"
             }
             /** Plan of the registry */
             export interface Plan {
@@ -1182,6 +1201,11 @@ export namespace ovhapi {
                 /** Temporary logs URL */
                 url: string;
             }
+            /** Managed Kubernetes Audit Logs forward payload */
+            export interface AuditLogsForward {
+                /** Customer stream ID */
+                streamId: string;
+            }
             /** Managed Kubernetes cluster description */
             export interface Cluster {
                 /** True if control-plane is up to date */
@@ -1200,11 +1224,13 @@ export namespace ovhapi {
                 name: string;
                 /** Kubernetes versions available for upgrade */
                 nextUpgradeVersions ? : string[];
+                /** OpenStack subnet ID that the cluster nodes will use. Optional, can only be set on cluster creation or reset, can only be set if privateNetworkId is also set. If unspecified, it will be selected automatically when the first node is created. */
+                nodesSubnetId ? : string;
                 /** Cluster nodes URL */
                 nodesUrl: string;
                 /** The private network configuration. This field is optional. */
                 privateNetworkConfiguration ? : cloud.kube.PrivateNetworkConfiguration;
-                /** OpenStack private network (or vrack) ID to bind to the cluster, this property is optional. This property cannot be updated afterwards, except through a cluster reset. */
+                /** OpenStack private network ID that the cluster will use. Optional, can only be set on cluster creation or reset. If unspecified, the cluster will use the public network. */
                 privateNetworkId ? : string;
                 /** Cluster region */
                 region: cloud.kube.RegionEnum;
@@ -1218,20 +1244,6 @@ export namespace ovhapi {
                 url: string;
                 /** Kubernetes version of your cluster */
                 version: string;
-            }
-            /** Enum values for Status */
-            export enum ClusterStatus {
-                "INSTALLING" = "INSTALLING",
-                "UPDATING" = "UPDATING",
-                "RESETTING" = "RESETTING",
-                "SUSPENDING" = "SUSPENDING",
-                "REOPENING" = "REOPENING",
-                "DELETING" = "DELETING",
-                "SUSPENDED" = "SUSPENDED",
-                "ERROR" = "ERROR",
-                "USER_ERROR" = "USER_ERROR",
-                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
-                "READY" = "READY"
             }
             /** Enum values for Status */
             export enum ClusterStatusEnum {
@@ -1274,14 +1286,6 @@ export namespace ovhapi {
                 vCPUs: number;
             }
             /** Enum values for category */
-            export enum FlavorCategory {
-                "c" = "c",
-                "g" = "g",
-                "t" = "t",
-                "b" = "b",
-                "r" = "r"
-            }
-            /** Enum values for category */
             export enum FlavorCategoryEnum {
                 "b" = "b",
                 "c" = "c",
@@ -1290,11 +1294,6 @@ export namespace ovhapi {
                 "i" = "i",
                 "r" = "r",
                 "t" = "t"
-            }
-            /** Enum values for State */
-            export enum FlavorState {
-                "available" = "available",
-                "unavailable" = "unavailable"
             }
             /** Enum values for State */
             export enum FlavorStateEnum {
@@ -1451,22 +1450,6 @@ export namespace ovhapi {
                 unschedulable: boolean;
             }
             /** Enum values for Status */
-            export enum NodeStatus {
-                "INSTALLING" = "INSTALLING",
-                "UPDATING" = "UPDATING",
-                "RESETTING" = "RESETTING",
-                "SUSPENDING" = "SUSPENDING",
-                "REOPENING" = "REOPENING",
-                "DELETING" = "DELETING",
-                "SUSPENDED" = "SUSPENDED",
-                "ERROR" = "ERROR",
-                "USER_ERROR" = "USER_ERROR",
-                "USER_QUOTA_ERROR" = "USER_QUOTA_ERROR",
-                "USER_NODE_NOT_FOUND_ERROR" = "USER_NODE_NOT_FOUND_ERROR",
-                "USER_NODE_SUSPENDED_SERVICE" = "USER_NODE_SUSPENDED_SERVICE",
-                "READY" = "READY"
-            }
-            /** Enum values for Status */
             export enum NodeStatusEnum {
                 "DELETED" = "DELETED",
                 "DELETING" = "DELETING",
@@ -1527,12 +1510,6 @@ export namespace ovhapi {
                 /** Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false. */
                 privateNetworkRoutingAsDefault ? : boolean;
             }
-            /** Enum values for available regions */
-            export enum Region {
-                "GRA5" = "GRA5",
-                "GRA7" = "GRA7",
-                "BHS5" = "BHS5"
-            }
             /** Enum values for regions where cluster creation is possible, region where cluster are deployed is cloud.kube.RegionEnum */
             export enum RegionCapabilitiesEnum {
                 "BHS5" = "BHS5",
@@ -1564,11 +1541,6 @@ export namespace ovhapi {
                 "WAW1" = "WAW1"
             }
             /** Enum values for worker nodes reset policy */
-            export enum ResetWorkerNodesPolicy {
-                "reinstall" = "reinstall",
-                "delete" = "delete"
-            }
-            /** Enum values for worker nodes reset policy */
             export enum ResetWorkerNodesPolicyEnum {
                 "delete" = "delete",
                 "reinstall" = "reinstall"
@@ -1594,46 +1566,21 @@ export namespace ovhapi {
                 "PreferNoSchedule" = "PreferNoSchedule"
             }
             /** Enum values for UpdatePolicy */
-            export enum UpdatePolicy {
-                "ALWAYS_UPDATE" = "ALWAYS_UPDATE",
-                "MINIMAL_DOWNTIME" = "MINIMAL_DOWNTIME",
-                "NEVER_UPDATE" = "NEVER_UPDATE"
-            }
-            /** Enum values for UpdatePolicy */
             export enum UpdatePolicyEnum {
                 "ALWAYS_UPDATE" = "ALWAYS_UPDATE",
                 "MINIMAL_DOWNTIME" = "MINIMAL_DOWNTIME",
                 "NEVER_UPDATE" = "NEVER_UPDATE"
             }
             /** Enum values for UpdateStrategy */
-            export enum UpdateStrategy {
-                "LATEST_PATCH" = "LATEST_PATCH",
-                "NEXT_MINOR" = "NEXT_MINOR"
-            }
-            /** Enum values for UpdateStrategy */
             export enum UpdateStrategyEnum {
                 "LATEST_PATCH" = "LATEST_PATCH",
                 "NEXT_MINOR" = "NEXT_MINOR"
             }
-            /** List of available versions for upgrade */
-            export enum UpgradeVersion {
-                "1.12" = "1.12",
-                "1.13" = "1.13",
-                "1.14" = "1.14",
-                "1.15" = "1.15",
-                "1.16" = "1.16"
-            }
-            /** List of available versions for installation */
-            export enum Version {
-                "1.13" = "1.13",
-                "1.14" = "1.14",
-                "1.15" = "1.15"
-            }
             /** List of available versions for installation */
             export enum VersionEnum {
-                "1.24" = "1.24",
                 "1.25" = "1.25",
-                "1.26" = "1.26"
+                "1.26" = "1.26",
+                "1.27" = "1.27"
             }
         }
         export namespace loadbalancing {
@@ -1744,6 +1691,17 @@ export namespace ovhapi {
                 port: number;
                 /** Protocol of the listener */
                 protocol: cloud.loadbalancing.ListenerProtocolEnum;
+            }
+            /** Edit a loadbalancer listener */
+            export interface EditListener {
+                /** ID of the secret containing the certificate */
+                certificateId: string;
+                /** ID of the default pool */
+                defaultPoolId: string;
+                /** Description of the listener */
+                description: string;
+                /** Name of the listener */
+                name: string;
             }
             /** Flavor */
             export interface Flavor {
@@ -1910,6 +1868,8 @@ export namespace ovhapi {
                 certificateId ? : string;
                 /** The ID of the default pool */
                 defaultPoolId ? : string;
+                /** Description of the listener */
+                description ? : string;
                 /** ID of the resource */
                 id: string;
                 /** A list of load balancer IDs */
@@ -2013,6 +1973,13 @@ export namespace ovhapi {
                 name: string;
                 /** Network information to create the loadbalancer */
                 networkInformation: cloud.loadbalancing.loadbalancer.NetworkInformationCreate;
+            }
+            /** Edit a loadbalancer */
+            export interface LoadbalancerEdit {
+                /** Description of the loadbalancer */
+                description: string;
+                /** Name of the member */
+                name: string;
             }
             /** Pool */
             export interface Pool {
@@ -2421,8 +2388,8 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Default port to access the http service inside the app */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside the app. Deprecated: use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
+                        /** AI App deployment strategy */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
                         /** List of environment variable to be set inside the app */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** App image */
@@ -2452,8 +2419,8 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Default port to access http service inside the app */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside the app. Deprecated: use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
+                        /** AI App deployment strategy */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
                         /** List of environment variable to be set inside the app */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Docker or capability image to use in the app. App capability images must comply with the pattern 'image-id:version' */
@@ -2503,12 +2470,16 @@ export namespace ovhapi {
                         availableReplicas: number;
                         /** Status about the datasync linked to the app */
                         dataSync: cloud.project.ai.volume.DataSync[];
+                        /** Address to reach when you want to access the App's gRPC services */
+                        grpcAddress ? : string;
                         /** Job state history */
                         history: cloud.project.ai.app.AppStateHistory[];
                         /** Information about the app */
                         info: cloud.project.ai.Info;
                         /** App info url */
                         infoUrl ? : string;
+                        /** Internal IP address of the app service */
+                        internalServiceIp ? : string;
                         /** Date of the last app state change */
                         lastTransitionDate ? : string;
                         /** App resource usage url */
@@ -2519,6 +2490,15 @@ export namespace ovhapi {
                         url ? : string;
                         /** App Data linked */
                         volumes ? : cloud.project.ai.volume.VolumeStatus[];
+                    }
+                    /** AI Solutions AI App deployment strategy object */
+                    export interface DeploymentStrategy {
+                        /** Maximum number of replicas that can be created over the desired number of Pods (can be expressed as a percentage of the desired pods, suffixed with '%') */
+                        maxSurge ? : string;
+                        /** Maximum number of replicas that can be unavailable during the update process (can be expressed as a percentage of the desired pods, suffixed with '%') */
+                        maxUnavailable ? : string;
+                        /** Number of seconds you want to wait for your Deployment to progress before the system reports back that the Deployment has failed progressing */
+                        progressDeadlineSeconds ? : number;
                     }
                     /** AI Solutions App Probe Object */
                     export interface Probe {
@@ -2584,6 +2564,15 @@ export namespace ovhapi {
                         automatic ? : cloud.project.ai.app.ScalingAutomaticStrategyInput;
                         /** Strategy setting a fix number of replicas (conflicts with 'automatic' property when both are not null) */
                         fixed ? : cloud.project.ai.app.ScalingFixedStrategyInput;
+                    }
+                    /** AI Solutions AI App update object */
+                    export interface UpdateInput {
+                        /** Default port to access http service inside the app */
+                        defaultHttpPort ? : number;
+                        /** Deployment strategy to use when updating this AI App */
+                        deploymentStrategy ? : cloud.project.ai.app.DeploymentStrategy;
+                        /** URL of the Docker image for this AI deployment */
+                        url ? : string;
                     }
                 }
                 export namespace capabilities {
@@ -2679,6 +2668,8 @@ export namespace ovhapi {
                             logoUrl: string;
                             /** Name of the framework */
                             name: string;
+                            /** List of paths that are automatically saved */
+                            savedPaths ? : string[];
                             /** List of available versions of this framework */
                             versions: string[];
                         }
@@ -2715,7 +2706,8 @@ export namespace ovhapi {
                     export enum LicensingTypeEnum {
                         "per-app" = "per-app",
                         "per-replica" = "per-replica",
-                        "per-resource" = "per-resource"
+                        "per-resource" = "per-resource",
+                        "per-second-bracket" = "per-second-bracket"
                     }
                     /** AI Solutions Preset image */
                     export interface Preset {
@@ -2822,8 +2814,6 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside job. Deprecated: Use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
                         /** List of environment variable to be set inside job */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Job image */
@@ -2846,7 +2836,9 @@ export namespace ovhapi {
                         sshPublicKeys ? : string[];
                         /** Maximum time to spend before killing the job */
                         timeout ? : number;
-                        /** true if job api port can be accessed without any authentication token, false otherwise */
+                        /** Whether job should be restarted after timeout */
+                        timeoutAutoRestart ? : boolean;
+                        /** Whether job api port can be accessed without any authentication token */
                         unsecureHttp ? : boolean;
                         /** Job Data linked */
                         volumes ? : cloud.project.ai.volume.Volume[];
@@ -2857,8 +2849,6 @@ export namespace ovhapi {
                         command ? : string[];
                         /** Port use as the default one to access http service inside job */
                         defaultHttpPort ? : number;
-                        /** List of environment variable to be set inside job. Deprecated: Use envVars instead */
-                        env ? : cloud.project.ai.job.JobEnv[];
                         /** List of environment variable to be set inside job */
                         envVars ? : cloud.project.ai.job.JobEnv[];
                         /** Job image */
@@ -2881,7 +2871,9 @@ export namespace ovhapi {
                         sshPublicKeys ? : string[];
                         /** Maximum time to spend before killing the job */
                         timeout ? : number;
-                        /** true if job api port can be accessed without any authentication token, false otherwise */
+                        /** Whether job is set to be restarted after timeout */
+                        timeoutAutoRestart ? : boolean;
+                        /** Whether job api port can be accessed without any authentication token */
                         unsecureHttp ? : boolean;
                         /** Job Data linked */
                         volumes ? : cloud.project.ai.volume.Volume[];
@@ -2913,6 +2905,8 @@ export namespace ovhapi {
                         externalIp ? : string;
                         /** Date when the job was finalized */
                         finalizedAt ? : string;
+                        /** Address to reach when you want to access the Job's gRPC services */
+                        grpcAddress ? : string;
                         /** Job state history */
                         history: cloud.project.ai.job.JobStatusHistory[];
                         /** Information about the job */
@@ -2937,6 +2931,8 @@ export namespace ovhapi {
                         state ? : cloud.project.ai.job.JobStateEnum;
                         /** Date when the job was stop */
                         stoppedAt ? : string;
+                        /** Date when the job is planned to timeout */
+                        timeoutAt ? : string;
                         /** Job access url */
                         url ? : string;
                         /** Job Data linked */
@@ -3057,7 +3053,9 @@ export namespace ovhapi {
                         shutdown ? : cloud.project.ai.ShutdownStrategyEnum;
                         /** SSH keys authorized to access the notebook */
                         sshPublicKeys ? : string[];
-                        /** true if notebook api port can be accessed without any authentication token, false otherwise */
+                        /** Whether notebook is set to be restarted after timeout */
+                        timeoutAutoRestart ? : boolean;
+                        /** Whether notebook api port can be accessed without any authentication token */
                         unsecureHttp ? : boolean;
                         /** Notebook Data linked */
                         volumes ? : cloud.project.ai.volume.Volume[];
@@ -3081,7 +3079,9 @@ export namespace ovhapi {
                         shutdown ? : cloud.project.ai.ShutdownStrategyEnum;
                         /** SSH keys authorized to access the notebook */
                         sshPublicKeys ? : string[];
-                        /** true if notebook api port can be accessed without any authentication token, false otherwise */
+                        /** Whether notebook is set to be restarted after timeout */
+                        timeoutAutoRestart ? : boolean;
+                        /** Whether notebook api port can be accessed without any authentication token */
                         unsecureHttp ? : boolean;
                         /** Notebook Data linked */
                         volumes ? : cloud.project.ai.volume.Volume[];
@@ -3102,6 +3102,8 @@ export namespace ovhapi {
                         dataSync: cloud.project.ai.volume.DataSync[];
                         /** Duration of the notebook in seconds */
                         duration ? : number;
+                        /** Address to reach when you want to access the Notebook's gRPC services */
+                        grpcAddress ? : string;
                         /** Information about the notebook */
                         info: cloud.project.ai.Info;
                         /** Notebook info url */
@@ -3133,7 +3135,9 @@ export namespace ovhapi {
                         resources ? : cloud.project.ai.ResourcesInput;
                         /** SSH keys authorized to access the notebook */
                         sshPublicKeys ? : string[];
-                        /** true if notebook api port can be accessed without any authentication token, false otherwise */
+                        /** Whether notebook is set to be restarted after timeout */
+                        timeoutAutoRestart ? : boolean;
+                        /** Whether notebook api port can be accessed without any authentication token */
                         unsecureHttp ? : boolean;
                         /** Notebook Data linked */
                         volumes ? : cloud.project.ai.volume.Volume[];
@@ -3201,249 +3205,6 @@ export namespace ovhapi {
                         url ? : string;
                         /** Docker registry username */
                         username ? : string;
-                    }
-                }
-                export namespace serving {
-                    /** Status of API */
-                    export enum APIStatusEnum {
-                        "pending" = "pending",
-                        "running" = "running",
-                        "scaling" = "scaling",
-                        "sleeping" = "sleeping",
-                        "starting" = "starting",
-                        "waking" = "waking"
-                    }
-                    /** Autoscaling specification */
-                    export interface AutoscalingSpec {
-                        /** CPU utilization threshold beyond which a scale is triggered */
-                        cpuAverageUtilization ? : number;
-                        /** Maximum number of replicas */
-                        maxReplicas ? : number;
-                        /** Memory utilization threshold beyond which a scale is triggered */
-                        memoryAverageUtilization ? : number;
-                        /** Minimum number of replicas */
-                        minReplicas ? : number;
-                    }
-                    /** Backend serving the model */
-                    export interface Backend {
-                        /** Backend ID */
-                        id: cloud.project.ai.serving.BackendIdEnum;
-                        /** Link to the backend project */
-                        link: string;
-                        /** Backend name */
-                        name: string;
-                    }
-                    /** Backend serving the model */
-                    export enum BackendIdEnum {
-                        "bentoml" = "bentoml",
-                        "serving-runtime" = "serving-runtime"
-                    }
-                    /** Features of Serving Engine */
-                    export interface Features {
-                        /** Capability to choose backend */
-                        chooseBackend: boolean;
-                    }
-                    /** Compute Flavor for the Serving Engine */
-                    export interface Flavor {
-                        /** Number of CPU core of the flavor */
-                        cpuCore: number;
-                        /** Description of the flavor */
-                        description: string;
-                        /** Flavor ID */
-                        id: string;
-                        /** RAM of the flavor (in MB) */
-                        ramMB: number;
-                    }
-                    /** Framework of the model */
-                    export interface Framework {
-                        /** Backends handling this framework */
-                        backends: cloud.project.ai.serving.BackendIdEnum[];
-                        /** Documentation page */
-                        docPage: string;
-                        /** Framework ID */
-                        id: cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Link to the framework project */
-                        link: string;
-                        /** Framework logo */
-                        logo: string;
-                        /** Framework name */
-                        name: string;
-                        /** Recommended backend for this framework */
-                        recommendedBackend: cloud.project.ai.serving.BackendIdEnum;
-                        /** Framework version */
-                        version: string;
-                    }
-                    /** Framework of the model */
-                    export enum FrameworkIdEnum {
-                        "fastai" = "fastai",
-                        "flow" = "flow",
-                        "huggingface" = "huggingface",
-                        "onnx" = "onnx",
-                        "pmml" = "pmml",
-                        "tensorflow_1" = "tensorflow_1",
-                        "torch" = "torch"
-                    }
-                    /** Metrics information */
-                    export interface Metrics {
-                        /** Metrics endpoint query platforms */
-                        endpoints: cloud.project.ai.serving.MetricsEndpoint[];
-                        /** Metrics token linked to the project */
-                        token: string;
-                    }
-                    /** User Metrics Endpoints */
-                    export interface MetricsEndpoint {
-                        /** Name of endpoint */
-                        name: string;
-                        /** URL of endpoint */
-                        url: string;
-                    }
-                    /** A deployed machine learning model */
-                    export interface Model {
-                        /** Api status */
-                        apiStatus: cloud.project.ai.serving.APIStatusEnum;
-                        /** Autoscaling specification */
-                        autoscalingSpec ? : cloud.project.ai.serving.AutoscalingSpec;
-                        /** Model creation date */
-                        createdAt: string;
-                        /** Flavor id */
-                        flavor ? : string;
-                        /** Model id */
-                        id: string;
-                        /** Number of API currently running */
-                        replicas ? : number;
-                        /** Model url */
-                        url ? : string;
-                        /** API Deployed version */
-                        version ? : number;
-                        /** Last version status */
-                        versionStatus: cloud.project.ai.serving.VersionStatusEnum;
-                        /** Workflow Template used to build the model */
-                        workflowTemplate ? : cloud.project.ai.serving.WorkflowTemplateEnum;
-                        /** Workflow Template Parameters used to build the model */
-                        workflowTemplateParameters: cloud.project.ai.serving.ModelWorkflowTemplateParameter;
-                    }
-                    /** Missing description */
-                    export interface ModelDefinition {
-                        /** Autoscaling specification */
-                        autoscalingSpec ? : cloud.project.ai.serving.AutoscalingSpec;
-                        /** Backend which will serve your model */
-                        backend ? : cloud.project.ai.serving.BackendIdEnum;
-                        /** Flavor id */
-                        flavor: string;
-                        /** Framework of your model */
-                        framework ? : cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Model id */
-                        id: string;
-                        /** Preset image to deploy */
-                        imageId ? : string;
-                        /** Path in the object storage container that contains your model */
-                        storagePath ? : string;
-                        /** Workflow template to use */
-                        workflowTemplate ? : cloud.project.ai.serving.WorkflowTemplateEnum;
-                    }
-                    /** Parameters of the Workflow that build */
-                    export interface ModelWorkflowTemplateParameter {
-                        /** Backend which will serve your model */
-                        backend ? : cloud.project.ai.serving.BackendIdEnum;
-                        /** Framework of your model */
-                        framework ? : cloud.project.ai.serving.FrameworkIdEnum;
-                        /** Preset Model Image used to deploy your model */
-                        imageId ? : string;
-                        /** Path in the object storage container that contains your model */
-                        storagePath ? : string;
-                    }
-                    /** A serving engine namespace */
-                    export interface Namespace {
-                        /** Cluster id */
-                        clusterId: string;
-                        /** Object storage container */
-                        container: string;
-                        /** Object storage container id */
-                        containerId: string;
-                        /** Name creation date */
-                        createdAt: string;
-                        /** Description of namespace */
-                        description: string;
-                        /** Hub Service url */
-                        hubUrl: string;
-                        /** Namespace id */
-                        id: string;
-                        /** Current region of the namespace */
-                        region: string;
-                        /** Cluster url */
-                        url: string;
-                    }
-                    /** Missing description */
-                    export interface NamespaceCreation {
-                        /** Object storage container name */
-                        container: string;
-                        /** Description of namespace */
-                        description: string;
-                        /** Region name */
-                        region: string;
-                    }
-                    /** A Image of a built serving model */
-                    export interface PresetImage {
-                        /** Model Image Description */
-                        description: string;
-                        /** Image id */
-                        id: string;
-                        /** Link to the Opensource Model */
-                        link ? : string;
-                        /** Model Image Name */
-                        name: string;
-                        /** RAM requirement per model instantiated (in MB) */
-                        ramRequirementMB ? : number;
-                    }
-                    /** Representation of a registry */
-                    export interface Registry {
-                        /** True if user have a registry attached */
-                        custom: boolean;
-                        /** Docker registry password */
-                        password ? : string;
-                        /** Docker registry URL */
-                        url ? : string;
-                        /** Docker registry username */
-                        username ? : string;
-                    }
-                    /** Missing description */
-                    export interface RegistryResponse {
-                        /** message */
-                        message: string;
-                    }
-                    /** A token to access / manage a machine learning Model */
-                    export interface Token {
-                        /** Token creation date */
-                        createdAt: string;
-                        /** A list of access group to grant */
-                        groups: cloud.project.ai.serving.TokenGroupEnum[];
-                        /** Token id */
-                        id: string;
-                        /** Access resource of the token. You can provide: a strict id that will exactly match the resource id or a fuzzy string that ends with * to match multiple resource starting with the same prefix or a * to match all your resources */
-                        resource: string;
-                        /** The JWT Token */
-                        token ? : string;
-                    }
-                    /** A serving engine access group */
-                    export enum TokenGroupEnum {
-                        "model-evaluation" = "model-evaluation",
-                        "model-management" = "model-management"
-                    }
-                    /** Status of current version */
-                    export enum VersionStatusEnum {
-                        "build-error" = "build-error",
-                        "building" = "building",
-                        "built" = "built",
-                        "deployed" = "deployed",
-                        "deploying" = "deploying",
-                        "failed" = "failed",
-                        "pending" = "pending",
-                        "rollback" = "rollback"
-                    }
-                    /** The workflow Template to use */
-                    export enum WorkflowTemplateEnum {
-                        "build-image" = "build-image",
-                        "preset-image" = "preset-image"
                     }
                 }
                 export namespace token {
@@ -4011,6 +3772,13 @@ export namespace ovhapi {
                     /** List of parameter need for the connector */
                     parameters ? : cloud.project.dataIntegration.Parameter[];
                 }
+                /** Error detail */
+                export interface ErrorDetail {
+                    /** Error code */
+                    code: string;
+                    /** Error description */
+                    description: string;
+                }
                 /** Job information */
                 export interface Job {
                     /** Creation date of the job */
@@ -4044,7 +3812,7 @@ export namespace ovhapi {
                     /** Last status of the metadata extraction */
                     status: cloud.project.dataIntegration.MetadataStatusEnum;
                     /** Table name */
-                    tableName: string;
+                    tableName ? : string;
                 }
                 /** Metadata description */
                 export interface MetadataDescription {
@@ -4063,6 +3831,7 @@ export namespace ovhapi {
                 export enum MetadataStatusEnum {
                     "FAILED" = "FAILED",
                     "NOT_EXTRACTED" = "NOT_EXTRACTED",
+                    "NOT_FOUND" = "NOT_FOUND",
                     "PROCESSING" = "PROCESSING",
                     "STOP" = "STOP",
                     "SUCCESS" = "SUCCESS",
@@ -4131,6 +3900,8 @@ export namespace ovhapi {
                     destinationName ? : string;
                     /** Whether workflow is enabled */
                     enabled: boolean;
+                    /** Error detail of the workflow */
+                    errorDetail ? : cloud.project.dataIntegration.ErrorDetail;
                     /** Uuid of the workflow */
                     id: string;
                     /** Last jobs execution date  */
@@ -4184,7 +3955,8 @@ export namespace ovhapi {
                 export enum WorkflowStatusEnum {
                     "CREATING" = "CREATING",
                     "ERROR" = "ERROR",
-                    "READY" = "READY"
+                    "READY" = "READY",
+                    "UPDATING" = "UPDATING"
                 }
                 /** Editable workflow properties */
                 export interface WorkflowUpdate {
@@ -4336,6 +4108,10 @@ export namespace ovhapi {
                     availableRegions: string[];
                     /** Description of the engine */
                     description: string;
+                    /** End of life of this engine version */
+                    endOfLife ? : string;
+                    /** End of support of this engine version */
+                    endOfSupport ? : string;
                     /** Name of the version */
                     name: string;
                 }
@@ -4598,21 +4374,25 @@ export namespace ovhapi {
                             /** User key for the cert */
                             key: string;
                         }
-                    } /** Cloud databases kafka acl definition */
-                    export interface Acl {
+                    } /** Cloud databases kafka permissions definition */
+                    export interface Permissions {
+                        /** Names of the topic permissions (DEPRECATED) */
+                        names: string[];
+                        /** Names of the schema registry permissions */
+                        schemaRegistry: string[];
+                        /** Names of the topic permissions */
+                        topic: string[];
+                    }
+                    /** Cloud databases kafka schema registry acl definition */
+                    export interface SchemaRegistryAcl {
                         /** Acl ID */
                         id: string;
-                        /** Permission to give to this username on this topic */
+                        /** Permission to give to this username on this resource. Permissions values can be retrieved using /cloud/project/{serviceName}/database/kafka/{clusterId}/permissions */
                         permission: string;
-                        /** Topic affected by this acl */
-                        topic: string;
+                        /** Resource affected by this acl */
+                        resource: string;
                         /** Username affected by this acl */
                         username: string;
-                    }
-                    /** Cloud databases kafka permissions definition */
-                    export interface Permissions {
-                        /** Names of the permissions */
-                        names: string[];
                     }
                     /** Cloud database kafka service definition */
                     export interface Service {
@@ -4671,6 +4451,17 @@ export namespace ovhapi {
                         retentionBytes: number;
                         /** Number of hours for the retention of the data for this topic */
                         retentionHours: number;
+                    }
+                    /** Cloud databases kafka topic acl definition */
+                    export interface TopicAcl {
+                        /** Acl ID */
+                        id: string;
+                        /** Permission to give to this username on this topic. Permissions values can be retrieved using /cloud/project/{serviceName}/database/kafka/{clusterId}/permissions */
+                        permission: string;
+                        /** Topic affected by this acl */
+                        topic: string;
+                        /** Username affected by this acl */
+                        username: string;
                     }
                     /** Cloud database kafka topic creation definition */
                     export interface TopicCreation {
@@ -4924,7 +4715,7 @@ export namespace ovhapi {
                     export namespace querystatistics {
                         /** Cloud database mysql single query statistic definition */
                         export interface Query {
-                            /** Average wait time of the summarized timed events */
+                            /** Average wait time of the summarized timed events, in milliseconds */
                             avgTimerWait: number;
                             /** Number of summarized events. This value includes all events, whether timed or nontimed */
                             countStar: number;
@@ -4936,9 +4727,9 @@ export namespace ovhapi {
                             firstSeen: string;
                             /** Last appearance of the events */
                             lastSeen: string;
-                            /** Maximum wait time of the summarized timed events */
+                            /** Maximum wait time of the summarized timed events, in milliseconds */
                             maxTimerWait: number;
-                            /** Mininum wait time of the summarized timed events */
+                            /** Mininum wait time of the summarized timed events, in milliseconds */
                             minTimerWait: number;
                             /** 95th percentile of the statement latency, in picoseconds */
                             quantile95: number;
@@ -4950,7 +4741,7 @@ export namespace ovhapi {
                             querySampleSeen: string;
                             /** Sample SQL statement that produces the digest value in the row */
                             querySampleText: string;
-                            /** Wait time for the sample statement in the querySampleText column */
+                            /** Wait time for the sample statement in the querySampleText column, in milliseconds */
                             querySampleTimerWait: number;
                             /** SchemaName of the summarized events */
                             schemaName: string;
@@ -4960,7 +4751,7 @@ export namespace ovhapi {
                             sumCreatedTmpTables: number;
                             /** Number of errors */
                             sumErrors: number;
-                            /** Sum of lock time of the summarized timed events */
+                            /** Sum of lock time of the summarized timed events, in milliseconds */
                             sumLockTime: number;
                             /** Sum of not good indexes of the summarized timed events */
                             sumNoGoodIndexUsed: number;
@@ -4990,7 +4781,7 @@ export namespace ovhapi {
                             sumSortRows: number;
                             /** Sum of sort scan of the summarized timed events */
                             sumSortScan: number;
-                            /** Sum of wait time of the summarized timed events */
+                            /** Sum of wait time of the summarized timed events, in milliseconds */
                             sumTimerWait: number;
                             /** Number of warnings */
                             sumWarnings: number;
@@ -7003,6 +6794,7 @@ export namespace ovhapi {
                 "credit" = "credit",
                 "creditCard" = "creditCard",
                 "paypal" = "paypal",
+                "rupay" = "rupay",
                 "sepaDirectDebit" = "sepaDirectDebit"
             }
             /** Product agreements */
@@ -7381,6 +7173,10 @@ export namespace ovhapi {
             }
             /** Container */
             export interface Container {
+                /** Whether this is an archive container or not */
+                archive ? : boolean;
+                /** Container type */
+                containerType ? : cloud.storage.TypeEnum;
                 /** Storage id */
                 id: string;
                 /** Storage name */
@@ -7481,6 +7277,7 @@ export namespace ovhapi {
             }
             /** Presigned URL method */
             export enum PresignedURLMethodEnum {
+                "DELETE" = "DELETE",
                 "GET" = "GET",
                 "PUT" = "PUT"
             }
@@ -7972,6 +7769,8 @@ export namespace ovhapi {
         export interface Execution {
             /** Last date of cron trigger execution */
             executedAt: string;
+            /** Execution ID */
+            id: string;
             /** Execution state */
             state: cloud.ExecutionStateEnum;
             /** Information about state */
@@ -8224,11 +8023,13 @@ export namespace ovhapi {
             kubeProxyMode: cloud.kube.KubeProxyModeEnum;
             /** Kubernetes cluster name */
             name: string;
-            /** Nodepool to init with cluster creation */
+            /** Nodepool to initialize with cluster creation */
             nodepool: cloud.ProjectKubeCreationNodePool;
+            /** OpenStack subnet ID that the cluster nodes will use. Optional, can only be set on cluster creation or reset, can only be set if privateNetworkId is also set. If unspecified, it will be selected automatically when the first node is created. */
+            nodesSubnetId: string;
             /** The private network configuration. */
             privateNetworkConfiguration: cloud.kube.PrivateNetworkConfiguration;
-            /** OpenStack private network (or vrack) ID to bind to cluster */
+            /** OpenStack private network ID that the cluster will use. Optional, can only be set on cluster creation or reset. If unspecified, the cluster will use the public network. */
             privateNetworkId: string;
             /** Kubernetes OpenStack region */
             region: string;
@@ -8415,9 +8216,11 @@ export namespace ovhapi {
             kubeProxyMode: cloud.kube.KubeProxyModeEnum;
             /** New cluster name */
             name: string;
+            /** OpenStack subnet ID that the cluster nodes will use. Optional, can only be set on cluster creation or reset, can only be set if privateNetworkId is also set. If unspecified, it will be selected automatically when the first node is created. */
+            nodesSubnetId: string;
             /** The private network configuration. */
             privateNetworkConfiguration: cloud.kube.PrivateNetworkConfiguration;
-            /** OpenStack private network (or vrack) ID to bind to cluster */
+            /** OpenStack private network ID that the cluster will use. Optional, can only be set on cluster creation or reset. If unspecified, the cluster will use the public network. */
             privateNetworkId: string;
             /** Enum values for UpdatePolicy */
             updatePolicy: cloud.kube.UpdatePolicyEnum;
@@ -8633,6 +8436,33 @@ export namespace ovhapi {
             /** New volume size (in GiB) (must be greater than current one) */
             size: number;
         }
+        /** Project */
+        export interface Project {
+            /** Project access */
+            access: cloud.AccessTypeEnum;
+            /** Project creation date */
+            creationDate: string;
+            /** Description of your project */
+            description ? : string;
+            /** Expiration date of your project. After this date, your project will be deleted */
+            expiration ? : string;
+            /** IAM resource metadata */
+            iam ? : iam.ResourceMetadata;
+            /** Manual quota prevent automatic quota upgrade */
+            manualQuota: boolean;
+            /** Project order id */
+            orderId ? : number;
+            /** Order plan code */
+            planCode: string;
+            /** Project name */
+            projectName ? : string;
+            /** Project id */
+            project_id: string;
+            /** Current status */
+            status: cloud.project.ProjectStatusEnum;
+            /** Project unleashed */
+            unleash: boolean;
+        }
         /** Details about your region */
         export interface Region {
             /** Region continent code */
@@ -8746,6 +8576,19 @@ export namespace ovhapi {
             key: string;
             /** value */
             value: T;
+        }
+    }
+    export namespace iam {
+        /** IAM resource metadata embedded in services models */
+        export interface ResourceMetadata {
+            /** Resource display name */
+            displayName ? : string;
+            /** Unique identifier of the resource */
+            id: string;
+            /** Resource tags. Tags that were internally computed are prefixed with ovh: */
+            tags ? : Record < string, string > ;
+            /** Unique resource name used in policies */
+            urn: string;
         }
     }
     export namespace nichandle {
@@ -9513,6 +9356,8 @@ export namespace ovhapi {
             city ? : string;
             /** Company National Identification Number */
             companyNationalIdentificationNumber ? : string;
+            /** Complementary Address */
+            complementaryAddress ? : string;
             /** Corporation type */
             corporationType ? : string;
             /** Customer country */
@@ -9551,6 +9396,10 @@ export namespace ovhapi {
             phone ? : string;
             /** phoneCountry */
             phoneCountry ? : nichandle.CountryEnum;
+            /** Type of phone(mobile, landline) */
+            phoneType ? : nichandle.PhoneTypeEnum;
+            /** Customer purpose of purchase */
+            purposeOfPurchase ? : string;
             /** Gender */
             sex ? : nichandle.GenderEnum;
             /** Spare email */
@@ -9585,6 +9434,11 @@ export namespace ovhapi {
             "kimsufi" = "kimsufi",
             "ovh" = "ovh",
             "soyoustart" = "soyoustart"
+        }
+        /** All phone type a person can choose */
+        export enum PhoneTypeEnum {
+            "landline" = "landline",
+            "mobile" = "mobile"
         }
         /** Indicates the mandatory nature of having a valid payment method */
         export enum RequiredPaymentMethodEnum {
@@ -9948,7 +9802,690 @@ export namespace ovhapi {
         }
     }
     export namespace services {
+        export namespace billing {
+            export namespace Pricing {
+                /** Configuration of an engagement triggered by a given pricing */
+                export interface EngagementConfiguration {
+                    /** Default action executed once the engagement is fully consumed */
+                    defaultEndAction: services.billing.engagement.EndStrategyEnum;
+                    /** Engagement's duration displayed using ISO8601 */
+                    duration: string;
+                    /** Engagement type, either fully pre-paid (upfront) or periodically paid up to engagement duration (periodic) */
+                    type: services.billing.engagement.TypeEnum;
+                }
+            }
+            export namespace engagement {
+                /** Description of the rule applied at the end of the Engagement */
+                export interface EndRule {
+                    /** Describes the possible strategies for this Engagement */
+                    possibleStrategies: services.billing.engagement.EndStrategyEnum[];
+                    /** Strategy applied at the end */
+                    strategy: services.billing.engagement.EndStrategyEnum;
+                }
+                /** Strategy applicable at the end of the Engagement */
+                export enum EndStrategyEnum {
+                    "CANCEL_SERVICE" = "CANCEL_SERVICE",
+                    "REACTIVATE_ENGAGEMENT" = "REACTIVATE_ENGAGEMENT",
+                    "STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE" = "STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE",
+                    "STOP_ENGAGEMENT_KEEP_PRICE" = "STOP_ENGAGEMENT_KEEP_PRICE"
+                }
+                /** Description of an Engagement */
+                export interface Engagement {
+                    /** Current engagement period */
+                    currentPeriod: services.billing.engagement.EngagementPeriod;
+                    /** Describes the rule applied at the end of the Engagement */
+                    endRule ? : services.billing.engagement.EndRule;
+                }
+                /** Order created when flushing the engagement of a service */
+                export interface EngagementFlushOrder {
+                    /** Order created to flush the engagement of the service */
+                    order: order.Order;
+                }
+                /** Parameters needed to flush the engagement */
+                export interface EngagementFlushRequest {
+                    /** Indicates that order, if needed, will be automatically paid with preferred payment method */
+                    autoPayWithPreferredPaymentMethod: boolean;
+                    /** If false, the order will be registered; if true, the order will be returned but not registered. Useful to compute prices */
+                    dryRun: boolean;
+                    /** If true, when the order will be paid, the service termination workflow will automatically be started */
+                    terminateSubscription: boolean;
+                }
+                /** Period of Engagement */
+                export interface EngagementPeriod {
+                    /** End of the period */
+                    endDate ? : string;
+                    /** Beginning of the period */
+                    startDate: string;
+                }
+                /** Ongoing Engagement request on a Service */
+                export interface EngagementRequest {
+                    /** Option Pricings this request will migrate the Services to */
+                    options: services.billing.engagement.EngagementRequestOption[];
+                    /** If not null, Order to pay in order to trigger the Engagement */
+                    order ? : order.Order;
+                    /** Pricing this request will migrate the Service to */
+                    pricing: services.billing.Pricing;
+                    /** Date the request was made on */
+                    requestDate: string;
+                }
+                /** Parameters needed to create an Engagement */
+                export interface EngagementRequestCreation {
+                    /** Pricing mode to use in order to engage the Service */
+                    pricingMode: string;
+                }
+                /** Pricing detail for an Ongoing Engagement request on an option Service */
+                export interface EngagementRequestOption {
+                    /** Pricing this request will migrate the option Service to */
+                    pricing: services.billing.Pricing;
+                    /** Service ID */
+                    serviceId: number;
+                }
+                /** Engagement's type, either fully pre-paid (upfront) or periodically paid up to engagement duration (periodic) */
+                export enum TypeEnum {
+                    "periodic" = "periodic",
+                    "upfront" = "upfront"
+                }
+                /** Update your Engagement end rules */
+                export interface UpdateEndRuleRequest {
+                    /** Strategy applied at the end of the Engagement */
+                    strategy: services.billing.engagement.EndStrategyEnum;
+                }
+            } /** Description of an invoice */
+            export interface Invoice {
+                /** Invoice date */
+                date: string;
+                /** Invoice reference */
+                id: string;
+                /** Invoice details */
+                lines: services.billing.InvoiceLine[];
+            }
+            /** Description of an invoice line */
+            export interface InvoiceLine {
+                /** Description of item */
+                description: string;
+                /** End period */
+                periodEnd ? : string;
+                /** Start period */
+                periodStart ? : string;
+                /** Price without tax */
+                price: order.Price;
+                /** Quantity of item */
+                quantity: number;
+                /** Associated service name */
+                serviceName: string;
+                /** Price with tax */
+                totalPrice: order.Price;
+                /** Type of item */
+                type ? : services.billing.InvoiceLineTypeEnum;
+            }
+            /** Type of item */
+            export enum InvoiceLineTypeEnum {
+                "accessory" = "accessory",
+                "consumption" = "consumption",
+                "creation" = "creation",
+                "deposit" = "deposit",
+                "duration" = "duration",
+                "gift" = "gift",
+                "installation" = "installation",
+                "misc" = "misc",
+                "other" = "other",
+                "outplan" = "outplan",
+                "quantity" = "quantity",
+                "special" = "special",
+                "voucher" = "voucher"
+            }
+            /** Representation of a service pricing */
+            export interface Pricing {
+                /** Capacities of the pricing (type of pricing) */
+                capacities: order.cart.GenericProductPricingCapacitiesEnum[];
+                /** Description of the pricing */
+                description: string;
+                /** Default renew interval displayed using ISO8601 */
+                duration: string;
+                /** Pricing's engagement configuration */
+                engagementConfiguration ? : services.billing.Pricing.EngagementConfiguration;
+                /** Interval of renewal */
+                interval: number;
+                /** Maximum quantity that can be ordered */
+                maximumQuantity ? : number;
+                /** Maximum repeat for renewal */
+                maximumRepeat ? : number;
+                /** Minimum quantity that can be ordered */
+                minimumQuantity: number;
+                /** Minimum repeat for renewal */
+                minimumRepeat: number;
+                /** Price of the product */
+                price: order.Price;
+                /** Price of the product in micro-centims */
+                priceInUcents: number;
+                /** Pricing model identifier */
+                pricingMode: string;
+                /** Pricing type */
+                pricingType: order.cart.GenericProductPricingTypeEnum;
+            }
+        }
+        export namespace consumption {
+            /** Element's quantity consumed for a given time range */
+            export interface Detail {
+                /** Begin date */
+                beginDate ? : string;
+                /** End date */
+                endDate ? : string;
+                /** Pricing mode used during detail's time period */
+                pricingMode: string;
+                /** Consumed quantity */
+                quantity: number;
+            }
+            /** Consumption information for a specific offer */
+            export interface Element {
+                /** List of consumption details for this element */
+                details: services.consumption.Detail[];
+                /** List of metadata related to this element */
+                metadata ? : complexType.SafeKeyValue < string > [];
+                /** Identifier of the offer */
+                planCode: string;
+                /** Family of the offer */
+                planFamily: string;
+                /** Total price of the element */
+                price: order.Price;
+                /** Consumed quantity */
+                quantity: number;
+                /** Unique ID of the consumed resource */
+                uniqueId ? : string;
+            }
+            /** Consumed amount for a given commercial offer's family */
+            export interface PricePlanFamily {
+                /** Commercial offer's range */
+                planFamily: string;
+                /** Consumed amount by resources related to the given family */
+                price: order.Price;
+            }
+            /** Summary of the consumption of a service */
+            export interface Summary {
+                /** Begin date of the returned consumption snapshot */
+                beginDate: string;
+                /** End date of the returned consumption snapshot */
+                endDate: string;
+                /** Consumption transaction ID */
+                id: number;
+                /** Order ID */
+                orderId ? : number;
+                /** Total price of the service's consumption */
+                price: order.Price;
+                /** All the categories of commercial offers involved in the consumption of the service and their price */
+                priceByPlanFamily: services.consumption.PricePlanFamily[];
+                /** Service ID */
+                serviceId: number;
+            }
+        }
+        export namespace contacts {
+            /** Contact change request */
+            export interface ContactChangeRequest {
+                /** List of accounts you want to be considered as 'admin' of the service */
+                admin: string[];
+                /** List of accounts you want to be considered as 'billing' contact */
+                billing: string[];
+                /** List of accounts you want to be considered as 'technical' contact */
+                technical: string[];
+            }
+            /** Contact change task */
+            export interface Task {
+                /** Unique identifier of the Task */
+                id: number;
+                /** Computed API route to fetch and manage the Task created */
+                route: string;
+            }
+        }
         export namespace expanded {
+            export namespace Customer {
+                export namespace Contact {
+                    /** Typology of customer contact */
+                    export enum TypeEnum {
+                        "administrator" = "administrator",
+                        "billing" = "billing",
+                        "technical" = "technical"
+                    }
+                } /** Customer contact service relative informations */
+                export interface Contact {
+                    /** Customer code */
+                    customerCode: string;
+                    /** Type of customer contact */
+                    type: services.expanded.Customer.Contact.TypeEnum;
+                }
+            }
+            export namespace Lifecycle {
+                /** Life cycle action */
+                export enum ActionEnum {
+                    "earlyRenewal" = "earlyRenewal",
+                    "terminate" = "terminate",
+                    "terminateAtEngagementDate" = "terminateAtEngagementDate",
+                    "terminateAtExpirationDate" = "terminateAtExpirationDate"
+                }
+                /** Service life cycle options */
+                export interface Capacities {
+                    /** Possible actions */
+                    actions: services.expanded.Lifecycle.ActionEnum[];
+                }
+                /** Current life cycle configuration */
+                export interface Current {
+                    /** Service creation date */
+                    creationDate ? : string;
+                    /** Pending actions */
+                    pendingActions: services.expanded.Lifecycle.ActionEnum[];
+                    /** Current life cycle state */
+                    state: services.expanded.Lifecycle.StateEnum;
+                    /** Scheduled termination date */
+                    terminationDate ? : string;
+                }
+                /** Life cycle service state */
+                export enum StateEnum {
+                    "active" = "active",
+                    "error" = "error",
+                    "rupture" = "rupture",
+                    "terminated" = "terminated",
+                    "toRenew" = "toRenew",
+                    "unpaid" = "unpaid",
+                    "unrenewed" = "unrenewed"
+                }
+            }
+            export namespace Renew {
+                /** Service renew capacities */
+                export interface Capacities {
+                    /** Renew mode capacities */
+                    mode: services.expanded.Renew.ModeEnum[];
+                }
+                /** Current renew configuration */
+                export interface Current {
+                    /** Renew mode */
+                    mode ? : services.expanded.Renew.ModeEnum;
+                    /** Scheduled renew date */
+                    nextDate ? : string;
+                    /** Next renewal duration */
+                    period ? : string;
+                }
+                /** Renew mode */
+                export enum ModeEnum {
+                    "automatic" = "automatic",
+                    "manual" = "manual"
+                }
+            }
+            export namespace Resource {
+                /** Resource state */
+                export enum StateEnum {
+                    "active" = "active",
+                    "deleted" = "deleted",
+                    "suspended" = "suspended",
+                    "toActivate" = "toActivate",
+                    "toDelete" = "toDelete",
+                    "toSuspend" = "toSuspend"
+                }
+            }
+            export namespace technical {
+                export namespace baremetalServer {
+                    export namespace server {
+                        export namespace services {
+                            /** Type of secure computing technology */
+                            export enum SecureComputingTechnologyEnum {
+                                "AMDInfinity" = "AMDInfinity",
+                                "IntelSGX" = "IntelSGX"
+                            }
+                            /** Type of support level */
+                            export enum SupportLevelEnum {
+                                "business" = "business",
+                                "enterprise" = "enterprise",
+                                "premium" = "premium",
+                                "premium-accredited" = "premium-accredited",
+                                "standard" = "standard"
+                            }
+                        } /** Technical information on cpu of a baremetal server service */
+                        export interface Cpu {
+                            /** Server Cpu boost */
+                            boost: number;
+                            /** Server Cpu brand name */
+                            brand: string;
+                            /** Cpu number of cores */
+                            cores: number;
+                            /** Server */
+                            frequency: number;
+                            /** Server Cpu model name */
+                            model: string;
+                            /** CPU number */
+                            number: number;
+                            /** Score of cpu */
+                            score: number;
+                            /** Server Cpu number of threads */
+                            threads: number;
+                        }
+                        /** Technical details for a server extension card */
+                        export interface ExtensionCard {
+                            /** Model of the extension card */
+                            model: string;
+                            /** Number of available ports */
+                            size: string;
+                        }
+                        /** Technical information on frame of a baremetal server service */
+                        export interface Frame {
+                            /** Server with dual power supply */
+                            dualPowerSupply: boolean;
+                            /** Maximum number of disks */
+                            maxNbDisks ? : number;
+                            /** Server frame Model */
+                            model: string;
+                            /** Server frame size */
+                            size: string;
+                        }
+                        /** Technical details for a server network */
+                        export interface Network {
+                            /** Network card capacity (in Gbps) */
+                            capacity: number;
+                            /** Number of network links */
+                            interfaces: number;
+                        }
+                        /** Technical details for a server services */
+                        export interface Services {
+                            /** AntiDDOS provided by the service */
+                            antiddos: string;
+                            /** FTP Backup size in GB */
+                            includedBackup: number;
+                            /** Is IPMI available */
+                            ipmiAvailable: boolean;
+                            /** ipv4 range included */
+                            ipv4RangeIncluded ? : string;
+                            /** ipv6 range included */
+                            ipv6RangeIncluded ? : string;
+                            /** Is KVMIP available */
+                            kvmipAvailable: boolean;
+                            /** Define if the product is eligible to the OVHcloud Link aggregation feature */
+                            olaAvailable: boolean;
+                            /** Which secure computing technology is used */
+                            secureComputingTechnology ? : services.expanded.technical.baremetalServer.server.services.SecureComputingTechnologyEnum;
+                            /** SLA of the service (in percent) */
+                            sla: number;
+                            /** Which support level of service is included */
+                            supportLevel ? : services.expanded.technical.baremetalServer.server.services.SupportLevelEnum;
+                        }
+                    }
+                    export namespace storage {
+                        export namespace Disk {
+                            /** Type of disk's usage */
+                            export enum UsageEnum {
+                                "cache" = "cache",
+                                "data" = "data",
+                                "os" = "os"
+                            }
+                        }
+                        export namespace Raid {
+                            /** RAID type */
+                            export enum TypeEnum {
+                                "Hard RAID" = "Hard RAID",
+                                "Soft RAID" = "Soft RAID",
+                                "none" = "none"
+                            }
+                        } /** Technical information of storage disk of a baremetal service */
+                        export interface Disk {
+                            /** Maximum disk capacity */
+                            capacity: number;
+                            /** Drive Writes Per Day */
+                            dwpd ? : number;
+                            /** Interface identifier */
+                            interface: string;
+                            /** Latency (in us) */
+                            latency ? : number;
+                            /** Number of interfaces */
+                            number: number;
+                            /** Average number of random read I/O operations per second */
+                            read ? : number;
+                            /** Form factor of the hardware */
+                            specs: string;
+                            /** Type of disk */
+                            technology: string;
+                            /** Disk's usage */
+                            usage ? : services.expanded.technical.baremetalServer.storage.Disk.UsageEnum;
+                            /** Average number of random write I/O operations per second */
+                            write ? : number;
+                        }
+                        /** Server raid storage type */
+                        export interface Raid {
+                            /** Name of the hardraid card model */
+                            cardModel ? : string;
+                            /** Number of slots */
+                            cardSize ? : string;
+                            /** type */
+                            type: services.expanded.technical.baremetalServer.storage.Raid.TypeEnum;
+                        }
+                    } /** Aggregation information */
+                    export interface Aggregation {
+                        /** Maximum aggregated bandwidth (in Mbps) */
+                        upTo: number;
+                    }
+                    /** Technical information on bandwidth of a baremetal service */
+                    export interface Bandwidth {
+                        /** Aggregation information */
+                        aggregation ? : services.expanded.technical.baremetalServer.Aggregation;
+                        /** Bandwidth burst */
+                        burst: number;
+                        /** Guaranteed bandwith of the server */
+                        guaranteed: boolean;
+                        /** Level width of Band */
+                        level: number;
+                        /** Bandwidth limit */
+                        limit: number;
+                    }
+                    /** Technical details for a GPU */
+                    export interface Gpu {
+                        /** GPU brand */
+                        brand: string;
+                        /** GPU memory */
+                        memory: services.expanded.technical.baremetalServer.GpuMemory;
+                        /** GPU model */
+                        model: string;
+                        /** Number of GPUs */
+                        number: number;
+                    }
+                    /** Technical details for a GPU Memory */
+                    export interface GpuMemory {
+                        /** Memory size (in GB) */
+                        size: number;
+                    }
+                    /** Technical information on memory of a baremetal service */
+                    export interface Memory {
+                        /** Is ECC feature is enabled on memory */
+                        ecc: boolean;
+                        /** Memory frequency */
+                        frequency: number;
+                        /** Type of memory */
+                        ramType: string;
+                        /** Memory size */
+                        size: number;
+                    }
+                    /** Technical information of a baremetal server service */
+                    export interface Server {
+                        /** Server Cpu */
+                        cpu: services.expanded.technical.baremetalServer.server.Cpu;
+                        /** Technical details for a server extension card */
+                        extensionCard ? : services.expanded.technical.baremetalServer.server.ExtensionCard;
+                        /** Server frame */
+                        frame: services.expanded.technical.baremetalServer.server.Frame;
+                        /** Technical details for a server network */
+                        network ? : services.expanded.technical.baremetalServer.server.Network;
+                        /** Server's range */
+                        range: string;
+                        /** Technical details for a server service */
+                        services ? : services.expanded.technical.baremetalServer.server.Services;
+                        /** useCase */
+                        useCase ? : string;
+                    }
+                    /** Technical information of storage of a baremetal service */
+                    export interface Storage {
+                        /** List of storage disks */
+                        disks: services.expanded.technical.baremetalServer.storage.Disk[];
+                        /** If disk is hot swapable */
+                        hotSwap: boolean;
+                        /** Storage raid type */
+                        raid: string;
+                        /** Server raid storage details */
+                        raidDetails ? : services.expanded.technical.baremetalServer.storage.Raid;
+                    }
+                    /** Technical information of vrack of a baremetal service */
+                    export interface Vrack {
+                        /** Aggregation information */
+                        aggregation ? : services.expanded.technical.baremetalServer.Aggregation;
+                        /** Bandwidth burst */
+                        burst: number;
+                        /** Guaranteed bandwith on the Vrack */
+                        guaranteed: boolean;
+                        /** Level width of Band */
+                        level: number;
+                        /** Bandwidth limit */
+                        limit: number;
+                    }
+                }
+                export namespace nutanixCluster {
+                    /** Technical information on nutanix cluster service */
+                    export interface Cluster {
+                        /** Nutanix cluster range */
+                        range: string;
+                        /** Nutanix cluster server */
+                        server: string;
+                    }
+                    /** Nutanix feature */
+                    export interface Features {
+                        /** Feature name */
+                        name: string;
+                        /** Feature value */
+                        value: string;
+                    }
+                    /** Nutanix cluster license */
+                    export interface License {
+                        /** Feature name */
+                        distribution: string;
+                        /** Feature value */
+                        edition: string;
+                        /** List of license features */
+                        features ? : services.expanded.technical.nutanixCluster.Features[];
+                    }
+                    /** Nutanix cluser services */
+                    export interface Service {
+                        /** Nutanix SLA service */
+                        sla: number;
+                    }
+                } /** Technical information on baremetal service */
+                export interface BaremetalServer {
+                    /** Technical information on server bandwidth */
+                    bandwidth ? : services.expanded.technical.baremetalServer.Bandwidth;
+                    /** Technical information on server gpu */
+                    gpu ? : services.expanded.technical.baremetalServer.Gpu;
+                    /** Technical information on server memory */
+                    memory ? : services.expanded.technical.baremetalServer.Memory;
+                    /** Technical information on server type */
+                    server ? : services.expanded.technical.baremetalServer.Server;
+                    /** Technical information on server storage */
+                    storage ? : services.expanded.technical.baremetalServer.Storage;
+                    /** Technical information on server vrack */
+                    vrack ? : services.expanded.technical.baremetalServer.Vrack;
+                }
+                /** Technical information on nutanix cluster service */
+                export interface NutanixCluster {
+                    /** Technical information on nutanix cluster */
+                    cluster ? : services.expanded.technical.nutanixCluster.Cluster;
+                    /** Features of a cluster */
+                    features ? : services.expanded.technical.nutanixCluster.Features[];
+                    /** Technical details of the license of a cluster */
+                    license ? : services.expanded.technical.nutanixCluster.License;
+                    /** Details about the service (SLA, ..) */
+                    service ? : services.expanded.technical.nutanixCluster.Service;
+                }
+            } /** Billing informations of the service */
+            export interface Billing {
+                /** Engagement summary for this Service */
+                engagement ? : services.expanded.EngagementSummary;
+                /** Ongoing engagement request summary for this Service */
+                engagementRequest ? : services.expanded.EngagementRequestSummary;
+                /** Expiration date */
+                expirationDate ? : string;
+                /** Group informations */
+                group ? : services.expanded.Group;
+                /** Service life cycle */
+                lifecycle ? : services.expanded.Lifecycle;
+                /** Next billing date */
+                nextBillingDate ? : string;
+                /** Service Plan */
+                plan ? : services.expanded.Plan;
+                /** Service current Pricing */
+                pricing ? : services.billing.Pricing;
+                /** Service life renew */
+                renew ? : services.expanded.Renew;
+            }
+            /** Customer service relative informations */
+            export interface Customer {
+                /** Customer contact list */
+                contacts: services.expanded.Customer.Contact[];
+            }
+            /** Engagement request summary for a Service */
+            export interface EngagementRequestSummary {
+                /** Future pricing mode of the service, when the request has been processed */
+                pricingMode: string;
+                /** Date on which the request has been made */
+                requestDate: string;
+            }
+            /** Engagement summary for a Service */
+            export interface EngagementSummary {
+                /** Engagement end date */
+                endDate ? : string;
+                /** Describes the rule applied at the end of the Engagement */
+                endRule ? : services.billing.engagement.EndRule;
+            }
+            /** Billing group of the service */
+            export interface Group {
+                /** Billing group id */
+                id: number;
+            }
+            /** Service life cycle */
+            export interface Lifecycle {
+                /** Life cycle capacities */
+                capacities: services.expanded.Lifecycle.Capacities;
+                /** Current life cycle configuration */
+                current: services.expanded.Lifecycle.Current;
+            }
+            /** Plan of the service */
+            export interface Plan {
+                /** Plan code */
+                code: string;
+                /** Invoice Name */
+                invoiceName: string;
+            }
+            /** Product of the service */
+            export interface Product {
+                /** Product description */
+                description: string;
+                /** Product name */
+                name: string;
+            }
+            /** Service renew informations */
+            export interface Renew {
+                /** Renew capacities */
+                capacities: services.expanded.Renew.Capacities;
+                /** Current renew configuration */
+                current: services.expanded.Renew.Current;
+            }
+            /** Reselling providers a service can be provided from */
+            export enum ResellingProviderEnum {
+                "ovh.ca" = "ovh.ca",
+                "ovh.eu" = "ovh.eu"
+            }
+            /** Resource of the service */
+            export interface Resource {
+                /** Display name of the resource */
+                displayName: string;
+                /** Name of the resource */
+                name: string;
+                /** Product */
+                product ? : services.expanded.Product;
+                /** Reselling provider providing the service */
+                resellingProvider ? : services.expanded.ResellingProviderEnum;
+                /** Resource state */
+                state: services.expanded.Resource.StateEnum;
+            }
             /** Route of the service */
             export interface Route {
                 /** Path to use in API */
@@ -9957,6 +10494,171 @@ export namespace ovhapi {
                 url ? : string;
                 /** Variables to use in the path */
                 vars: complexType.SafeKeyValue < string > [];
+            }
+            /** Description of a service */
+            export interface Service {
+                /** Billing information */
+                billing: services.expanded.Billing;
+                /** Customer information */
+                customer: services.expanded.Customer;
+                /** Parent service ID */
+                parentServiceId ? : number;
+                /** Resource */
+                resource: services.expanded.Resource;
+                /** Route */
+                route ? : services.expanded.Route;
+                /** Service ID */
+                serviceId: number;
+                /** Service tags */
+                tags: string[];
+            }
+            /** Technical information of a baremetal service */
+            export interface TechnicalDetails {
+                /** baremetalServers */
+                baremetalServers ? : services.expanded.technical.BaremetalServer;
+                /** nutanixCluster */
+                nutanixCluster ? : services.expanded.technical.NutanixCluster;
+            }
+            /** Termination policies */
+            export enum terminationPolicyEnum {
+                "empty" = "empty",
+                "terminateAtEngagementDate" = "terminateAtEngagementDate",
+                "terminateAtExpirationDate" = "terminateAtExpirationDate"
+            }
+        }
+        export namespace form {
+            /** Answer to a form */
+            export interface Answer {
+                /** Question of the answer */
+                question: string;
+                /** Answer value to the question */
+                value: string;
+            }
+            /** Possible value for an answer to the question */
+            export interface AnswerAllowedValue {
+                /** Possible answer to the question */
+                key: string;
+            }
+            /** Type of the answer */
+            export enum AnswerTypeEnum {
+                "boolean" = "boolean",
+                "date" = "date",
+                "datetime" = "datetime",
+                "double" = "double",
+                "enum" = "enum",
+                "long" = "long",
+                "string" = "string",
+                "text" = "text"
+            }
+            /** Description of a form */
+            export interface Description {
+                /** Name of the form */
+                name: string;
+                /** List of available questions for the form */
+                questions: services.form.Question[];
+            }
+            /** Input body for posting a form */
+            export interface Form {
+                /** Answers to the form */
+                answers: services.form.Answer[];
+            }
+            /** Question description for a churn form */
+            export interface Question {
+                /** List of available values for answer */
+                answers ? : services.form.AnswerAllowedValue[];
+                /** Is the Question mandatory for the form ? */
+                mandatory: boolean;
+                /** Question name */
+                question: string;
+                /** Type of the expected answer : text, enum, number... */
+                type: services.form.AnswerTypeEnum;
+            }
+            /** Response ack for posting a form */
+            export interface Response {
+                /** Message after posting a form */
+                message: string;
+            }
+        }
+        export namespace operation {
+            /** Contains all information for the given addon in order to be detached */
+            export interface AddonDetachExecutionRequest {
+                /** Duration selected for the operation execution */
+                duration: string;
+                /** Commercial offer to detach the service to */
+                planCode: string;
+                /** Pricing mode selected for the operation execution */
+                pricingMode: string;
+                /** Quantity for the operation execution */
+                quantity: number;
+                /** ID of the service that will be detached */
+                serviceId: number;
+            }
+            /** Request allowing the detachment of a service from its parent */
+            export interface DetachExecutionRequest {
+                /** Addons informations for the operation execution */
+                addons ? : services.operation.AddonDetachExecutionRequest[];
+                /** Indicates that order, if needed, will be automatically paid with preferred payment method */
+                autoPayWithPreferredPaymentMethod: boolean;
+                /** Duration selected for the operation execution */
+                duration: string;
+                /** Pricing mode selected for the operation execution */
+                pricingMode: string;
+                /** Quantity for the operation execution */
+                quantity: number;
+            }
+            /** All possible detachment offers for the given service options */
+            export interface DetachOptionsDefinition {
+                /** Possible options for the given service */
+                plans: order.cart.GenericProductDefinition[];
+                /** ID of the service */
+                serviceId: number;
+            }
+            /** Missing description */
+            export interface ExecutionRequest {
+                /** Indicates that order, if needed, will be automatically paid with preferred payment method */
+                autoPayWithPreferredPaymentMethod: boolean;
+                /** Duration selected for the operation execution */
+                duration: string;
+                /** Pricing mode selected for the operation execution */
+                pricingMode: string;
+                /** Quantity for the operation execution */
+                quantity: number;
+            }
+            /** Order created by an Operation to modify a Service */
+            export interface Order {
+                /** Order created, if any */
+                order ? : order.Order;
+            }
+        }
+        export namespace terminate {
+            /** Confirm service termination request */
+            export interface ConfirmServiceTerminationRequest {
+                /** The termination token sent by mail to the admin contact */
+                token: string;
+            }
+            /** Termination instructions */
+            export interface TerminationAnswer {
+                /** Termination instructions to be followed */
+                message: string;
+            }
+        }
+        export namespace update {
+            export namespace Service {
+                /** Update renew information of a service */
+                export interface Renew {
+                    /** Renew mode for next renewal */
+                    mode: services.expanded.Renew.ModeEnum;
+                    /** Renew period for next renewal */
+                    period: string;
+                }
+            } /** Update of a service */
+            export interface Service {
+                /** Display name for the service */
+                displayName ? : string;
+                /** Renew information */
+                renew ? : services.update.Service.Renew;
+                /** Termination policy */
+                terminationPolicy ? : services.expanded.terminationPolicyEnum;
             }
         } /** Details about a Service */
         export interface Service {
@@ -10081,6 +10783,18 @@ export namespace ovhapi {
             route: string;
         }
     }
+    export namespace apilogs {
+        /** Forward logs request */
+        export interface ForwardRequest {
+            /** Identifier of the destination logs stream */
+            streamId: string;
+        }
+        /** Forward logs response */
+        export interface ForwardResponse {
+            /** Identifier of the operation */
+            operationId: string;
+        }
+    }
     export namespace audit {
         /** An audit Log */
         export interface Log {
@@ -10094,6 +10808,8 @@ export namespace ovhapi {
             loginSuccessDetails ? : audit.LogLoginSuccessDetails;
             /** type of event */
             type: audit.LogTypeEnum;
+            /** specific fields for USER_PASSWORD_CHANGED events */
+            userPasswordChangedDetails ? : audit.LogUserPasswordChangedDetails;
         }
         /** Authentication details */
         export interface LogAuthDetails {
@@ -10132,7 +10848,14 @@ export namespace ovhapi {
         }
         /** Audit event type */
         export enum LogTypeEnum {
-            "LOGIN_SUCCESS" = "LOGIN_SUCCESS"
+            "ACCOUNT_PASSWORD_CHANGED" = "ACCOUNT_PASSWORD_CHANGED",
+            "LOGIN_SUCCESS" = "LOGIN_SUCCESS",
+            "USER_PASSWORD_CHANGED" = "USER_PASSWORD_CHANGED"
+        }
+        /** specific fields for USER_PASSWORD_CHANGED events */
+        export interface LogUserPasswordChangedDetails {
+            /** User name */
+            user: string;
         }
     }
     export namespace auth {
@@ -10250,95 +10973,6 @@ export namespace ovhapi {
             export interface OrderPlanProduct {
                 /** Name of the product used when ordering through /order/cart */
                 name ? : string;
-            }
-        }
-        export namespace credit {
-            export namespace balance {
-                export namespace movement {
-                    /** Movement sub object */
-                    export interface SubObject {
-                        /** Sub object ID */
-                        id ? : string;
-                        /** Sub object name */
-                        name ? : string;
-                    }
-                } /** Part of a balance */
-                export interface BalanceDetail {
-                    /** Balance part amount */
-                    amount: order.Price;
-                    /** Service ID of this balance part */
-                    serviceId ? : long;
-                }
-                /** Movement already booked on orders */
-                export interface BookedMovement {
-                    /** Movement amount */
-                    amount: order.Price;
-                    /** Order ID */
-                    orderId: number;
-                }
-                /** Movement expiring soon */
-                export interface ExpiringMovement {
-                    /** Movement amount */
-                    amount: order.Price;
-                    /** Movement creation date */
-                    creationDate: string;
-                    /** Movement expiration date */
-                    expirationDate: string;
-                    /** Movement last update */
-                    lastUpdate: string;
-                    /** Object source of this credit movement */
-                    sourceObject: billing.credit.balance.movement.SubObject;
-                }
-                /** Credit balance */
-                export interface Movement {
-                    /** Movement amount */
-                    amount: order.Price;
-                    /** Balance name */
-                    balanceName: string;
-                    /** Movement creation date */
-                    creationDate: string;
-                    /** Object destination of this credit movement */
-                    destinationObject ? : billing.credit.balance.movement.SubObject;
-                    /** Movement expiration date */
-                    expirationDate ? : string;
-                    /** Movement last update */
-                    lastUpdate: string;
-                    /** Movement ID */
-                    movementId: number;
-                    /** Order ID associated to this credit movement */
-                    orderId ? : number;
-                    /** Object source of this credit movement */
-                    sourceObject: billing.credit.balance.movement.SubObject;
-                    /** Movement type */
-                    type: string;
-                }
-                /** Balance type */
-                export enum Type {
-                    "PREPAID_ACCOUNT" = "PREPAID_ACCOUNT",
-                    "VOUCHER" = "VOUCHER",
-                    "DEPOSIT" = "DEPOSIT",
-                    "BONUS" = "BONUS"
-                }
-            } /** Credit balance */
-            export interface Balance {
-                /** Balance amount */
-                amount: order.Price;
-                /** Balance details, amounts by serviceID */
-                balanceDetails: billing.credit.balance.BalanceDetail[];
-                /** Balance name */
-                balanceName: string;
-                /** Movement already booked on orders */
-                booked: billing.credit.balance.BookedMovement[];
-                /** Balance creation date */
-                creationDate: string;
-                /** Movement expiring soon */
-                expiring: billing.credit.balance.ExpiringMovement[];
-                /** Movement expiring soon */
-                expiringSummary: billing.credit.balance.ExpiringMovement[];
-                /** Balance last update */
-                lastUpdate: string;
-                /** Balance type */
-                type: billing.credit.balance.Type;
             }
         }
         export namespace fidelityAccount {
@@ -11079,6 +11713,11 @@ export namespace ovhapi {
             /** ID of the calculation task */
             taskID: string;
         }
+        /** Boolean to determine if account can generate invoice */
+        export interface HasInvoiceResponse {
+            /** Whether the account has data to generate invoice */
+            hasInvoice: boolean;
+        }
         /** Task to generate a carbon impact document */
         export interface Task {
             /** Link to the document */
@@ -11397,12 +12036,6 @@ export namespace ovhapi {
                 softRaidOnlyMirroring: boolean;
                 /** this template subfamily type */
                 subfamily: dedicated.TemplateOsSubfamilyEnum;
-                /** This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel */
-                supportsDistributionKernel ? : boolean;
-                /** This distribution supports RTM software */
-                supportsRTM: boolean;
-                /** This distribution supports the microsoft SQL server */
-                supportsSqlServer ? : boolean;
                 /** This template name */
                 templateName: string;
             }
@@ -12023,8 +12656,6 @@ export namespace ovhapi {
             postInstallationScriptReturn ? : string;
             /** Name of the ssh key that should be installed. Password login will be disabled */
             sshKeyName ? : string;
-            /** Use the distribution's native kernel instead of the recommended OVH Kernel */
-            useDistributionKernel ? : boolean;
         }
         /** Os subfamily definition */
         export enum TemplateOsSubfamilyEnum {
@@ -12151,6 +12782,7 @@ export namespace ovhapi {
             "doing" = "doing",
             "done" = "done",
             "error" = "error",
+            "problem" = "problem",
             "todo" = "todo"
         }
         /** One step from an operation */
@@ -12189,6 +12821,30 @@ export namespace ovhapi {
             /** Todo date of the task */
             todoDate: string;
         }
+        /** All functions from a dns task */
+        export enum TaskFunctionEnum {
+            "DnsAnycastActivate" = "DnsAnycastActivate",
+            "DnsAnycastDeactivate" = "DnsAnycastDeactivate",
+            "DnssecDisable" = "DnssecDisable",
+            "DnssecEnable" = "DnssecEnable",
+            "DnssecResigning" = "DnssecResigning",
+            "DnssecRollKsk" = "DnssecRollKsk",
+            "DnssecRollZsk" = "DnssecRollZsk",
+            "ZoneCreate" = "ZoneCreate",
+            "ZoneCut" = "ZoneCut",
+            "ZoneDelete" = "ZoneDelete",
+            "ZoneImport" = "ZoneImport",
+            "ZoneRestore" = "ZoneRestore"
+        }
+        /** All statuses from a dns task */
+        export enum TaskStatusEnum {
+            "cancelled" = "cancelled",
+            "doing" = "doing",
+            "done" = "done",
+            "error" = "error",
+            "problem" = "problem",
+            "todo" = "todo"
+        }
     }
     export namespace http {
         /** All HTTP methods available */
@@ -12197,17 +12853,6 @@ export namespace ovhapi {
             "GET" = "GET",
             "POST" = "POST",
             "PUT" = "PUT"
-        }
-    }
-    export namespace insight {
-        /** Insight access token */
-        export interface Access {
-            /** Access token */
-            access: string;
-            /** Token creation date */
-            createdAt: string;
-            /** Token expiration date */
-            expireAt: string;
         }
     }
     export namespace ip {
@@ -12405,6 +13050,40 @@ export namespace ovhapi {
                     type ? : me.billing.purchaseOrder.PurchaseOrderTypeEnum;
                 }
             }
+            export namespace report {
+                export namespace consumption {
+                    /** Request of consumption billing report creation */
+                    export interface CreationRequest {
+                        /** End date of the report period */
+                        periodEnd: string;
+                        /** Start date of the report period */
+                        periodStart: string;
+                    }
+                    /** Response of consumption billing report creation */
+                    export interface CreationResponse {
+                        /** Task id of the report */
+                        taskId: string;
+                    }
+                    /** Status of consumption billing report */
+                    export enum StatusEnum {
+                        "CREATING" = "CREATING",
+                        "ERROR" = "ERROR",
+                        "READY" = "READY"
+                    }
+                } /** Consumption billing report */
+                export interface Consumption {
+                    /** End date of the report period */
+                    periodEnd: string;
+                    /** Start date of the report period */
+                    periodStart: string;
+                    /** Url of the report */
+                    report ? : string;
+                    /** Status of the report */
+                    status: me.billing.report.consumption.StatusEnum;
+                    /** Task id of the report */
+                    taskId: string;
+                }
+            }
             export namespace tasks {
                 /** Asynchronous task related to Billing */
                 export interface Task {
@@ -12478,7 +13157,7 @@ export namespace ovhapi {
         }
         export namespace consumption {
             export namespace transaction {
-                export namespace Element {
+                export namespace element {
                     /** Element of consumption for resource */
                     export interface Detail {
                         /** Consumption amount price */
@@ -12599,6 +13278,15 @@ export namespace ovhapi {
                 /** VAT number */
                 vat ? : string;
             }
+            /** Extras informations about a field */
+            export interface FieldInformation {
+                /** Name of the field concerned by restrictions */
+                fieldName: string;
+                /** Indicates if the field is mandatory when editing */
+                mandatory: boolean;
+                /** Indicates if the field can't be edited */
+                readOnly: boolean;
+            }
         }
         export namespace credit {
             export namespace balance {
@@ -12714,6 +13402,35 @@ export namespace ovhapi {
                 lastUpdate: string;
                 /** Balance type */
                 type: me.credit.balance.TypeEnum;
+            }
+        }
+        export namespace dns {
+            /** DNS task */
+            export interface Task {
+                /** Can accelerate the task */
+                canAccelerate: boolean;
+                /** Can cancel the task */
+                canCancel: boolean;
+                /** Can relaunch the task */
+                canRelaunch: boolean;
+                /** Comment about the task */
+                comment ? : string;
+                /** Creation date of the task */
+                creationDate: string;
+                /** Done date of the task */
+                doneDate ? : string;
+                /** Function of the task */
+                function: domain.TaskFunctionEnum;
+                /** Id of the task */
+                id: number;
+                /** Last update date of the task */
+                lastUpdate ? : string;
+                /** Status of the task */
+                status: domain.TaskStatusEnum;
+                /** Todo date of the task */
+                todoDate: string;
+                /** Zone related to the task */
+                zone: string;
             }
         }
         export namespace geolocation {
@@ -13063,6 +13780,43 @@ export namespace ovhapi {
                 serviceName: string;
             }
         }
+        export namespace insight {
+            /** Insight access token */
+            export interface Access {
+                /** Access token */
+                access: string;
+                /** Token creation date */
+                createdAt: string;
+                /** Token expiration date */
+                expireAt: string;
+            }
+        }
+        export namespace marketing {
+            /** User marketing consent */
+            export interface Consent {
+                /** Details for call marketing communication */
+                call: me.marketing.ConsentDetails;
+                /** Stop all marketing communication */
+                denyAll: boolean;
+                /** Stop marketing communication until this date */
+                denyUntil ? : string;
+                /** Details for email marketing communication */
+                email: me.marketing.ConsentDetails;
+                /** Details for sms marketing communication */
+                sms: me.marketing.ConsentDetails;
+            }
+            /** User consent details for a marketing communication mean */
+            export interface ConsentDetails {
+                /** Enable marketing communication for OVHcloud events and webinars */
+                events: boolean;
+                /** Enable marketing communication for new product */
+                newProductRecommendation: boolean;
+                /** Enable marketing communication for OVHcloud newsletter */
+                newsletter: boolean;
+                /** Enable marketing communication for offer and discount */
+                offerAndDiscount: boolean;
+            }
+        }
         export namespace migration {
             export namespace step {
                 /** Country Migration step contracts data */
@@ -13141,6 +13895,8 @@ export namespace ovhapi {
             export interface Level {
                 /** Level of partner */
                 level: me.partnerLevel.LevelTypeEnum;
+                /** Contains an MSA certificate */
+                msa: boolean;
                 /** Level of Support required */
                 requirement: me.partnerLevel.RequirementLoSEnum;
             }
@@ -13148,7 +13904,8 @@ export namespace ovhapi {
             export enum LevelTypeEnum {
                 "advanced" = "advanced",
                 "none" = "none",
-                "standard" = "standard"
+                "standard" = "standard",
+                "strategic" = "strategic"
             }
             /** Level of Support required */
             export enum RequirementLoSEnum {
@@ -13306,6 +14063,7 @@ export namespace ovhapi {
                 "MAESTRO" = "MAESTRO",
                 "MASTERCARD" = "MASTERCARD",
                 "NONE" = "NONE",
+                "RUPAY" = "RUPAY",
                 "VISA" = "VISA"
             }
             /** Payment method creation sub-type enum */
@@ -13324,6 +14082,7 @@ export namespace ovhapi {
             }
             /** Register integration type enum */
             export enum IntegrationEnum {
+                "BANK_TRANSFER" = "BANK_TRANSFER",
                 "COMPONENT" = "COMPONENT",
                 "IFRAME_VANTIV" = "IFRAME_VANTIV",
                 "IN_CONTEXT" = "IN_CONTEXT",
@@ -13724,6 +14483,11 @@ export namespace ovhapi {
         }
     }
     export namespace oauth2 {
+        /** oAuth2 Flow */
+        export enum ClientFlowEnum {
+            "AUTHORIZATION_CODE" = "AUTHORIZATION_CODE",
+            "CLIENT_CREDENTIALS" = "CLIENT_CREDENTIALS"
+        }
         /** An oAuth2 Client */
         export interface client {
             /** allowed callback urls */
@@ -13734,6 +14498,10 @@ export namespace ovhapi {
             createdAt: string;
             /** client's description */
             description: string;
+            /** oAuth2's flow */
+            flow: oauth2.ClientFlowEnum;
+            /** associated IAM identity */
+            identity ? : string;
             /** client's name */
             name: string;
         }
@@ -13743,6 +14511,8 @@ export namespace ovhapi {
             callbackUrls: string[];
             /** client's description */
             description: string;
+            /** oAuth2's flow */
+            flow: oauth2.ClientFlowEnum;
             /** client's name */
             name: string;
         }
@@ -13790,6 +14560,7 @@ export namespace ovhapi {
             }
             /** Payment method integration type */
             export enum IntegrationType {
+                "BANK_TRANSFER" = "BANK_TRANSFER",
                 "COMPONENT" = "COMPONENT",
                 "DONE" = "DONE",
                 "IFRAME_VANTIV" = "IFRAME_VANTIV",
@@ -13867,6 +14638,7 @@ export namespace ovhapi {
                 "MAESTRO" = "MAESTRO",
                 "MASTERCARD" = "MASTERCARD",
                 "NONE" = "NONE",
+                "RUPAY" = "RUPAY",
                 "VISA" = "VISA"
             }
         }
