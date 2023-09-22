@@ -3,9 +3,7 @@
 	import Skeleton from '$components/ui/skeleton/skeleton.svelte';
 	import * as Table from '$components/ui/table';
 	import H2 from '$components/ui/typography/H2.svelte';
-	import BillingCard from './BillingCard.svelte';
-	import GraphCard from './GraphCard.svelte';
-	import QuotaCard from './QuotaCard.svelte';
+	import { BillingCard, GraphCard, QuotaCard } from '$components/pages/project-dashboard';
 
 	export let data;
 </script>

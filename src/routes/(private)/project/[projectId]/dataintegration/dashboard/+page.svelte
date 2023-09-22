@@ -7,8 +7,7 @@
 	import { POLLING_INTERVAL } from '$lib/global.constants';
 	import { t } from '$lib/translations/translations';
 	import WorkflowsTable from './WorkflowsTable.svelte';
-	import Onboarding from '../../../../../../lib/components/layout/General/Onboarding.svelte';
-	import Tutorial from '../../../../../../lib/components/layout/General/Tutorial.svelte';
+	import { Onboarding, Tutorial }  from '$components/pages/onboarding';
 	import onboardingImgPC from '$assets/data-integration.png';
 	import onboardingImgMobile from '$assets/data-integration-mobile.png';
 
