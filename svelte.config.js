@@ -21,6 +21,7 @@ const config = {
 			$stores: 'src/lib/stores',
 			$helpers: 'src/lib/helpers',
 			$components: 'src/lib/components',
+			$assets: 'src/lib/assets',
 			'$components/*': 'src/lib/components/*'
 		}
 	},

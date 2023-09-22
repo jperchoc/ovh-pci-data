@@ -8,6 +8,7 @@ import beautify from 'js-beautify/js/index.js';
 const outputLocation = './src/lib/types/ovh/index.ts';
 const JSONFiles = [
     'https://api.ovh.com/1.0/cloud.json',
+    'https://api.ovh.com/1.0/services.json',
     'https://api.ovh.com/1.0/me.json'
 ];
 

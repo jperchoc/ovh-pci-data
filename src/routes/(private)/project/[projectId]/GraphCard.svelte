@@ -10,6 +10,7 @@
     const conicStops: ConicStop[] = []
     $: {
         if ($projectIdStore) {
+            conicStops.splice(0, conicStops.length)
             setTimeout(() => {
                 const nbItems = randomIntFromInterval(2, 5);
                 for (let i = 0; i < nbItems; i++) {
@@ -19,7 +20,6 @@
                     })
                 }
                 loading = false;
-                console.log(conicStops)
             }, Math.random()*1000)
         }
     }

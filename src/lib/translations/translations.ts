@@ -30,6 +30,19 @@ const config = ({
       loader: async () => (
           await import('./en/pages/project/dataProcessing/job/job.json')
       ).default,
+    },
+    {
+      locale: 'fr',
+      key: 'dataintegration.workflow',
+      loader: async () => (
+          await import('./fr/pages/project/dataIntegration/workflow/workflow.json')
+      ).default,
+    },    {
+      locale: 'en',
+      key: 'dataintegration.workflow',
+      loader: async () => (
+          await import('./en/pages/project/dataIntegration/workflow/workflow.json')
+      ).default,
     }
   ],
 });
