@@ -1,0 +1,18 @@
+{
+    "list": {
+        "header": "Workflows",
+        "no-job": "No workflows found",       
+        "table": {
+            "columns": {
+                "name": "Name",
+                "description": "Description",
+                "region": "Region",
+                "source": "Source",
+                "destination": "Destination",
+                "lastExecutionDate": "Date de dernière exécution",
+                "status":"Status",
+                "enabled": "Activé"
+            }
+        }
+    }
+}

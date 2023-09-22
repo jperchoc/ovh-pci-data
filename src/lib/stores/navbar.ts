@@ -38,6 +38,30 @@ const navLinks = derived(projectIdStore, (projectId) => [
             } as NavItem,
         ]
     } as NavItem,
+    /*
+    { 
+        label: "Data Integration",
+        link: `/project/${projectId}/dataintegration/dashboard`,
+        disabled: !projectId,
+        items:  [
+            { 
+                label: "Cli",
+                link: `/project/${projectId}/dataintegration/cli`,
+                disabled: !projectId,
+            } as NavItem,
+            { 
+                label: "Source",
+                link: `/project/${projectId}/dataintegration/source`,
+                disabled: !projectId,
+            } as NavItem,
+            { 
+                label: "Destination",
+                link: `/project/${projectId}/dataintegration/destination`,
+                disabled: !projectId,
+            } as NavItem,
+        ]
+    } as NavItem,
+    */
     { 
         label: "AI",
         link: `/project/${projectId}/ai/dashboard`,
