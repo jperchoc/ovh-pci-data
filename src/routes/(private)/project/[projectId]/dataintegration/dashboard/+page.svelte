@@ -37,62 +37,64 @@
 		</CardContent>
 	</Card>
 {:else}
-	<div class="p-4">
-		<Onboarding>
-			<svelte:fragment slot="image"><img src={onboardingImgPC} alt="myImage" /></svelte:fragment>
-			<svelte:fragment slot="title">Data Integration</svelte:fragment>
-			<svelte:fragment slot="subtitle">La circulation des données simplifiée</svelte:fragment>
-			<svelte:fragment slot="paragraphe"
-				>Vous souhaitez ingérer des données et construire des pipelines de données facilement ?
-				Automatisez la circulation de vos données grâce à notre solution Data Integration. Vous
-				bénéficiez d'un catalogue de sources et de destinations pour configurer le transport de vos
-				données quelles soient sous forme de fichier (Object Storage, HTTP files, SFTP, FTP), en
-				base de données (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server), ou encore dans un moteur
-				de recherche (Elasticsearch, OpenSearch). Rejoignez notre bêta gratuite en cliquant sur le
-				bouton ci-dessous.</svelte:fragment
-			>
-			<svelte:fragment slot="actionLink">Explorer vos intégrations de données</svelte:fragment>
-		</Onboarding>
-	</div>
-	<div class="flex gap-2">
-		<Tutorial>
-			<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
-			<svelte:fragment slot="guideDescription"
-				>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande
-				claque</svelte:fragment
-			>
-			<svelte:fragment slot="guideLink"
-				><a
-					href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
-					>En savoir plus</a
-				></svelte:fragment
-			>
-		</Tutorial>
-		<Tutorial>
-			<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
-			<svelte:fragment slot="guideDescription"
-				>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande
-				claque</svelte:fragment
-			>
-			<svelte:fragment slot="guideLink"
-				><a
-					href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
-					>En savoir plus</a
-				></svelte:fragment
-			>
-		</Tutorial>
-		<Tutorial>
-			<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
-			<svelte:fragment slot="guideDescription"
-				>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande
-				claque</svelte:fragment
-			>
-			<svelte:fragment slot="guideLink"
-				><a
-					href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
-					>En savoir plus</a
-				></svelte:fragment
-			>
-		</Tutorial>
-	</div>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-2" />
+	<Onboarding>
+		<svelte:fragment slot="image">
+			<div class="hidden md:block">
+				<img src={onboardingImgPC} alt="myImage" />
+			</div>
+			<div class="block md:hidden">
+				<img src={onboardingImgMobile} alt="myImage" />
+			</div>
+		</svelte:fragment>
+		<svelte:fragment slot="title">Data Integration</svelte:fragment>
+		<svelte:fragment slot="subtitle">La circulation des données simplifiée</svelte:fragment>
+		<svelte:fragment slot="paragraphe"
+			>Vous souhaitez ingérer des données et construire des pipelines de données facilement ?
+			Automatisez la circulation de vos données grâce à notre solution Data Integration. Vous
+			bénéficiez d'un catalogue de sources et de destinations pour configurer le transport de vos
+			données quelles soient sous forme de fichier (Object Storage, HTTP files, SFTP, FTP), en base
+			de données (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server), ou encore dans un moteur de
+			recherche (Elasticsearch, OpenSearch). Rejoignez notre bêta gratuite en cliquant sur le bouton
+			ci-dessous.</svelte:fragment
+		>
+		<svelte:fragment slot="actionLink">Explorer vos intégrations de données</svelte:fragment>
+	</Onboarding>
+
+	<Tutorial>
+		<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
+		<svelte:fragment slot="guideDescription"
+			>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande claque</svelte:fragment
+		>
+		<svelte:fragment slot="guideLink"
+			><a
+				href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+				>En savoir plus</a
+			></svelte:fragment
+		>
+	</Tutorial>
+	<Tutorial>
+		<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
+		<svelte:fragment slot="guideDescription"
+			>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande claque</svelte:fragment
+		>
+		<svelte:fragment slot="guideLink"
+			><a
+				href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+				>En savoir plus</a
+			></svelte:fragment
+		>
+	</Tutorial>
+	<Tutorial>
+		<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
+		<svelte:fragment slot="guideDescription"
+			>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une grande claque</svelte:fragment
+		>
+		<svelte:fragment slot="guideLink"
+			><a
+				href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+				>En savoir plus</a
+			></svelte:fragment
+		>
+	</Tutorial>
 {/if}
