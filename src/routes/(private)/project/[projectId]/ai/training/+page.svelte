@@ -17,19 +17,18 @@
         switch(status) {
             case (ovhapi.cloud.project.ai.job.JobStateEnum.FAILED):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.ERROR):
-                //return 'error';
+                return 'error';
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTED):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.TIMEOUT):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTING):
-            case (ovhapi.cloud.project.ai.job.JobStateEnum.INTERRUPTED):
-                //return 'warning';
-            case (ovhapi.cloud.project.ai.job.JobStateEnum.DONE):
-            case (ovhapi.cloud.project.ai.job.JobStateEnum.RUNNING):
-                //return 'success';
             case (ovhapi.cloud.project.ai.job.JobStateEnum.PENDING):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.QUEUED):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.INITIALIZING):
+                return 'warning';
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.RUNNING):
+            case (ovhapi.cloud.project.ai.job.JobStateEnum.DONE):
             case (ovhapi.cloud.project.ai.job.JobStateEnum.FINALIZING):
-                //return 'info'
+                return 'success';
             default: 
                 return 'default'
         }
@@ -111,7 +110,6 @@
         }
     });
 </script>
-
 
 <Card>
     <CardHeader>

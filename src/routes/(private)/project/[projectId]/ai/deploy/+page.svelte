@@ -36,7 +36,7 @@
             case (ovhapi.cloud.project.ai.app.AppStateEnum.DELETED):
             case (ovhapi.cloud.project.ai.app.AppStateEnum.DELETING):
             case (ovhapi.cloud.project.ai.app.AppStateEnum.STOPPED):
-                return 'info'
+              return 'warning'
             default: 
                 return 'default'
         }
