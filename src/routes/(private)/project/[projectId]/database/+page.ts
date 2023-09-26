@@ -2,7 +2,7 @@ import fetchRelog from "$helpers/fetch-relog";
 import type { ovhapi } from "$types/ovh";
 import type { PageLoad } from "./$types";
 
-export const load: PageLoad = async ({ fetch: _fetch, url, params}) => {
+export const load = (async ({ fetch: _fetch, url, params, data}) => {
     const fetch = (path: string) => fetchRelog(_fetch, url, path);
     const { projectId } = params;
     const databasesIdsReq = await fetch(`/api/ovh/cloud/project/${projectId}/database/service`);
@@ -13,6 +13,7 @@ export const load: PageLoad = async ({ fetch: _fetch, url, params}) => {
     }
 
     return {
+        ...data,
         dbServices
     }
-};
+}) satisfies PageLoad;
