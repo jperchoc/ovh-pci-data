@@ -4,7 +4,7 @@
 	import trainImg from '$assets/train.png';
 	import deployImg from '$assets/serve.png';
 	import reversImg from '$assets/revers.png';
-	import { A, H1, P, H2 } from '$components/ui/typography';
+	import { A, H1, P, H2, H3 } from '$components/ui/typography';
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$components/ui/tabs';
 	import WorkflowAi from './WorkflowAI.svelte';
 	import type { PageData } from './$types';
@@ -13,15 +13,11 @@
 	import AdvAi from './AdvAI.svelte';
 	import { page } from '$app/stores';
 	import Tutorial from '$components/pages/onboarding/Tutorial.svelte';
+	import Button from '$components/ui/button/button.svelte';
 
 	export let data: PageData;
 
-	/*
-	$: newProject = true;
-
-	if (data.notebooks.length > 0 || data.jobs.length > 0 || data.apps.length > 0) {
-		newProject = false;
-	}*/
+	$: newProject = data.notebooks.length + data.jobs.length + data.apps.length === 0;
 
 	type AppsByType = {
 		running: ovhapi.cloud.project.ai.app.App[];
@@ -127,15 +123,16 @@
 							><A href="/project/{$page.params.projectId}/ai/notebook">AI Notebooks -></A
 							></svelte:fragment
 						>
-						<svelte:fragment slot="badge_run"
-							>
+						<svelte:fragment slot="badge_run">
+							{#if !newProject}
 								<Badge variant="success">{notebooksByStatus.running.length} en service</Badge>
+							{/if}
 						</svelte:fragment>
-						<svelte:fragment slot="badge_stop"
-							><Badge variant="warning"
-									>{notebooksByStatus.stopped.length} arrêté(s)</Badge
-								></svelte:fragment
-						>
+						<svelte:fragment slot="badge_stop">
+							{#if !newProject}
+								<Badge variant="warning">{notebooksByStatus.stopped.length} arrêté(s)</Badge>
+							{/if}
+						</svelte:fragment>
 					</WorkflowAi>
 					<WorkflowAi>
 						<svelte:fragment slot="image">
@@ -146,15 +143,16 @@
 							><A href="/project/{$page.params.projectId}/ai/training">AI Training -></A
 							></svelte:fragment
 						>
-						<svelte:fragment slot="badge_run"
-							><Badge variant="success"
-									>{jobsByStatus.running.length} en service</Badge
-								></svelte:fragment
-						>
-						<svelte:fragment slot="badge_stop"
-							><Badge variant="warning">{jobsByStatus.done.length} arrêté(s)</Badge
-								></svelte:fragment
-						>
+						<svelte:fragment slot="badge_run">
+							{#if !newProject}
+								<Badge variant="success">{jobsByStatus.running.length} en service</Badge>
+							{/if}
+						</svelte:fragment>
+						<svelte:fragment slot="badge_stop">
+							{#if !newProject}
+								<Badge variant="warning">{jobsByStatus.done.length} arrêté(s)</Badge>
+							{/if}
+						</svelte:fragment>
 					</WorkflowAi>
 					<WorkflowAi>
 						<svelte:fragment slot="image">
@@ -165,19 +163,20 @@
 							><A href="/project/{$page.params.projectId}/ai/deploy">AI Deploy -></A
 							></svelte:fragment
 						>
-						<svelte:fragment slot="badge_run"
-							><Badge variant="success"
-									>{appsByStatus.running.length} en service</Badge
-								></svelte:fragment
-						>
-						<svelte:fragment slot="badge_stop"
-							><Badge variant="warning"
-									>{appsByStatus.stopped.length} arrêté(s)</Badge
-								></svelte:fragment
-						>
+						<svelte:fragment slot="badge_run">
+							{#if !newProject}
+								<Badge variant="success">{appsByStatus.running.length} en service</Badge>
+							{/if}
+						</svelte:fragment>
+						<svelte:fragment slot="badge_stop">
+							{#if !newProject}
+								<Badge variant="warning">{appsByStatus.stopped.length} arrêté(s)</Badge>
+							{/if}
+						</svelte:fragment>
 					</WorkflowAi>
 				</div>
-			
+
+				{#if newProject}
 					<H2>Avantages</H2>
 					<div class="grid md:grid-cols-2 grid-cols-1 gap-4">
 						<AdvAi>
@@ -236,7 +235,7 @@
 							>
 						</AdvAi>
 					</div>
-	
+				{/if}
 			</div>
 			<div class="col-span-1">
 				<H2>Tutorial</H2>
@@ -253,8 +252,57 @@
 								>En savoir plus</a
 							></svelte:fragment
 						>
+						<svelte:fragment slot="guideName1">CLI - Installation (EN)</svelte:fragment>
+						<svelte:fragment slot="guideDescription1"
+							>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une
+							grande claque</svelte:fragment
+						>
+						<svelte:fragment slot="guideLink1"
+							><a
+								href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+								>En savoir plus</a
+							></svelte:fragment
+						>
+						<svelte:fragment slot="guideName2">CLI - Installation (EN)</svelte:fragment>
+						<svelte:fragment slot="guideDescription2"
+							>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une
+							grande claque</svelte:fragment
+						>
+						<svelte:fragment slot="guideLink2"
+							><a
+								href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+								>En savoir plus</a
+							></svelte:fragment
+						>
+						<svelte:fragment slot="guideLinkGene"
+							><a
+								href="https://help.ovhcloud.com/csm/fr-documentation-public-cloud-ai-and-machine-learning?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=1f34d555f49801102d4ca4d466a7fd7d"
+								>Parcourir l'ensemble de la documentation -></a
+							></svelte:fragment
+						>
 					</Tutorial>
 				</div>
+			</div>
+		</div>
+	</TabsContent>
+
+	<TabsContent value="user-tokens">
+		<div class="grid sm:grid-cols-3 grid-cols-1 gap-4">
+			<div class="col-span-2">
+				<H2>Authentification et accès sécurisé</H2>
+				<P class="text-justify">La sécurité de vos données et de vos activités est primordiale. C'est la raison pour laquelle une authentification supplémentaire vous est demandée lorsque vous utilisez les AI Tools.</P>
+				<H3>Gérer les accès avec les utilisateurs Public Cloud</H3>
+				<P class="text-justify">Lorsque vous travaillez avec nos outils, il vous faut vous authentifier au travers d'utilisateurs communs à l'ensemble de votre projet Public Cloud.</P>
+				<P class="text-justify">Les utilisateurs Public Cloud vous permettent d'accéder à vos notebooks, jobs et applications. Afin de pouvoir expérimenter en toute liberté, il vous faut choisir à minima un rôle "Admin" ou "AI".</P>
+				<Button>Gérer mes utilisateurs AI</Button>
+				<Button>+ Créer un utilisateurs AI</Button>
+				<H2>Gérer les accès via des tokens applicatifs</H2>
+				<P class="text-justify">Les tokens sont des jetons uniques d'authentification. Ils vous permettent d'accéder à vos notebooks, jobs et apps de façon granulaire, par exemple en effectuant une sélection par label.</P>
+				<P class="text-justify">Les tokens sont spécifiques aux AI Tools.</P>
+				<Button>+ Créer un token</Button>
+			</div>
+			<div class="col-span-1">
+				<H2>Tutorial</H2>
 				<div class="row-span border-top-0">
 					<Tutorial>
 						<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
@@ -268,19 +316,32 @@
 								>En savoir plus</a
 							></svelte:fragment
 						>
-					</Tutorial>
-				</div>
-				<div class="row-span border-top-0">
-					<Tutorial>
-						<svelte:fragment slot="guideName">CLI - Installation (EN)</svelte:fragment>
-						<svelte:fragment slot="guideDescription"
+						<svelte:fragment slot="guideName1">CLI - Installation (EN)</svelte:fragment>
+						<svelte:fragment slot="guideDescription1"
 							>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une
 							grande claque</svelte:fragment
 						>
-						<svelte:fragment slot="guideLink"
+						<svelte:fragment slot="guideLink1"
 							><a
 								href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
 								>En savoir plus</a
+							></svelte:fragment
+						>
+						<svelte:fragment slot="guideName2">CLI - Installation (EN)</svelte:fragment>
+						<svelte:fragment slot="guideDescription2"
+							>Découvrez comment installer notre CLI en quelques click qui valent mieux qu'une
+							grande claque</svelte:fragment
+						>
+						<svelte:fragment slot="guideLink2"
+							><a
+								href="https://help.ovhcloud.com/csm/fr-public-cloud-data-analytics-data-integration-cli-installation?id=kb_article_view&sysparm_article=KB0058608"
+								>En savoir plus</a
+							></svelte:fragment
+						>
+						<svelte:fragment slot="guideLinkGene"
+							><a
+								href="https://help.ovhcloud.com/csm/fr-documentation-public-cloud-ai-and-machine-learning?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=1f34d555f49801102d4ca4d466a7fd7d"
+								>Parcourir l'ensemble de la documentation -></a
 							></svelte:fragment
 						>
 					</Tutorial>
