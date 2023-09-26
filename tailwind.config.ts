@@ -39,6 +39,10 @@ const config = {
 					DEFAULT: "rgb(var(--secondary))",
 					foreground: "rgb(var(--secondary-foreground))"
 				},
+				ovh: {
+					DEFAULT: "rgb(var(--ovh))",
+					foreground: "rgb(var(--ovh-foreground))"
+				},
 				destructive: {
 					DEFAULT: "rgb(var(--destructive))",
 					foreground: "rgb(var(--destructive-foreground))"

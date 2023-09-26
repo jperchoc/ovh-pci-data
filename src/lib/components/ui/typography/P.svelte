@@ -6,7 +6,7 @@
 
 <p
     class={cn(
-        "leading-7 [&:not(:first-child)]:mt-6",
+        "leading-7 [&:not(:first-child)]:mt-2",
         className
     )}
     {...$$restProps}
