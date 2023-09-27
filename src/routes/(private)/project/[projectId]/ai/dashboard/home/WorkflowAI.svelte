@@ -4,7 +4,7 @@
 </script>
 
 <Card>
-	<CardHeader >
+	<CardHeader>
 		<H3><slot name="title" /></H3>
 	</CardHeader>
 	<CardContent>
