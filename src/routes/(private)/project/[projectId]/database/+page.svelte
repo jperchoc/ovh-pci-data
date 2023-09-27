@@ -33,14 +33,13 @@
 	});
 
 	const openRenameModale = (item: ovhapi.cloud.project.database.Service) => {
-		const serviceToUpdate = services.find(s => s.id === item.id);
+		const serviceToUpdate = services.find((s) => s.id === item.id);
 		if (!serviceToUpdate) return;
 		dialogOpen = true;
 		data.form.data.description = serviceToUpdate.description;
 		data.form.data.id = serviceToUpdate.id;
 		data.form.data.engine = serviceToUpdate.engine;
-	}
-
+	};
 
 	function removeMessage(idx: number): void {
 		$pageMessages.splice(idx, 1);
@@ -48,15 +47,16 @@
 	}
 </script>
 
-
 {#each $pageMessages as message, idx}
 	<Alert class="mb-2 bg-green-100 text-green-800" variant="default">
 		<div class="flex">
 			<div class="flex-1">
-				<Check class="border rounded-full bg-green-800 text-green-100 inline-block w-4 h-4"/>
+				<Check class="border rounded-full bg-green-800 text-green-100 inline-block w-4 h-4" />
 				<span>{message}</span>
 			</div>
-			<button type="button" on:click={() => removeMessage(idx)} aria-label="close"><X class="w-4 h-4"/></button>
+			<button type="button" on:click={() => removeMessage(idx)} aria-label="close"
+				><X class="w-4 h-4" /></button
+			>
 		</div>
 	</Alert>
 {/each}
@@ -76,15 +76,21 @@
 					{#if renameError}
 						<Alert variant="destructive">{renameError}</Alert>
 					{/if}
-					<RenameServiceForm 
+					<RenameServiceForm
 						form={data.form}
-						on:submit={() => { renameError = null;}}
+						on:submit={() => {
+							renameError = null;
+						}}
 						on:success={() => {
 							$pageMessages = [...$pageMessages, 'Your service has been renamed'];
 							dialogOpen = false;
 							renameError = null;
 						}}
-						on:error={(e) => {renameError = `An error occured while renaming your service${e.detail.error ? `: ${e.detail.error.message} (${e.detail.error.status})`:''}`; }}
+						on:error={(e) => {
+							renameError = `An error occured while renaming your service${
+								e.detail.error ? `: ${e.detail.error.message} (${e.detail.error.status})` : ''
+							}`;
+						}}
 					/>
 				</Dialog.Content>
 			</Dialog.Root>

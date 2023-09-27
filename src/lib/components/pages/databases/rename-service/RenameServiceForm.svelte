@@ -1,7 +1,10 @@
 <script lang="ts">
 	import * as Form from '$components/ui/form';
 
-	import { formSchema as schema, type FormSchema } from '$components/pages/databases/rename-service/schema';
+	import {
+		formSchema as schema,
+		type FormSchema
+	} from '$components/pages/databases/rename-service/schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import type { ActionResult } from '@sveltejs/kit';
 	import { createEventDispatcher } from 'svelte';
@@ -17,18 +20,18 @@
 		validators: schema,
 		onSubmit: () => {
 			submitting = true;
-			dispatch('submit')
+			dispatch('submit');
 		},
-		onResult: (event: { result: ActionResult; formEl: HTMLFormElement; cancel: () => void; }) => {
+		onResult: (event: { result: ActionResult; formEl: HTMLFormElement; cancel: () => void }) => {
 			submitting = false;
-			if (event.result.type === "success") {
+			if (event.result.type === 'success') {
 				dispatch('success');
-			} else if (event.result.type === "failure"){
-				console.log(event.result.data)
-				dispatch('error', {error: event.result.data?.error});
+			} else if (event.result.type === 'failure') {
+				console.log(event.result.data);
+				dispatch('error', { error: event.result.data?.error });
 			}
 		}
-  	};
+	};
 </script>
 
 <Form.Root {action} {options} {form} {schema} let:config>
@@ -42,13 +45,13 @@
 	</Form.Field>
 	<Form.Field {config} name="id">
 		<Form.Item>
-			<Form.Input type="hidden"/>
+			<Form.Input type="hidden" />
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
 	<Form.Field {config} name="engine">
 		<Form.Item>
-			<Form.Input type="hidden"/>
+			<Form.Input type="hidden" />
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
