@@ -11,9 +11,10 @@ import { redirect } from "@sveltejs/kit";
 export default async function fetchRelog(
     fetch:(input: URL |RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
     urlFrom: URL,
-    path: string
+    path: string,
+    init?: RequestInit | undefined
 ) {
-    const req = fetch(path);
+    const req = fetch(path, init);
     if (!browser) return req;
     const res = await(req);
     if (res.status === 403) {
