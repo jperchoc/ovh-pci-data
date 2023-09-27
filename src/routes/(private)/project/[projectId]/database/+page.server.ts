@@ -27,18 +27,17 @@ export const actions: Actions = {
           description: form.data.description
         })
       })
+      if (!res.ok) {
+        return fail(400, {
+          form,
+          error: {
+            status: res.status,
+            message: res.statusText
+          }
+        });
+      }
       return {
         form,
-        result: res.ok ? {
-          type: 'success',
-          errors: null
-        } : {
-          type: 'error',
-          errors: [
-            'Totally need to rework this part, but its already late',
-            res.statusText
-          ]
-        }
       };
     }
   };

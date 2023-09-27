@@ -1,14 +1,37 @@
 <script lang="ts">
 	import * as Form from '$components/ui/form';
 
-	import { formSchema, type FormSchema } from '$components/pages/databases/rename-service/schema';
+	import { formSchema as schema, type FormSchema } from '$components/pages/databases/rename-service/schema';
 	import type { SuperValidated } from 'sveltekit-superforms';
+	import type { ActionResult } from '@sveltejs/kit';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let form: SuperValidated<FormSchema>;
 	export let action = '?/rename';
+
+	let submitting = false;
+
+	const options = {
+		validators: schema,
+		onSubmit: () => {
+			submitting = true;
+			dispatch('submit')
+		},
+		onResult: (event: { result: ActionResult; formEl: HTMLFormElement; cancel: () => void; }) => {
+			submitting = false;
+			if (event.result.type === "success") {
+				dispatch('success');
+			} else if (event.result.type === "failure"){
+				console.log(event.result.data)
+				dispatch('error', {error: event.result.data?.error});
+			}
+		}
+  	};
 </script>
 
-<Form.Root {action} method="POST" {form} schema={formSchema} let:config>
+<Form.Root {action} {options} {form} {schema} let:config>
 	<Form.Field {config} name="description">
 		<Form.Item>
 			<Form.Label>Name</Form.Label>
@@ -29,5 +52,5 @@
 			<Form.Validation />
 		</Form.Item>
 	</Form.Field>
-	<Form.Button type="submit" class="w-full">Submit</Form.Button>
+	<Form.Button type="submit" class="w-full" disabled={submitting}>Submit</Form.Button>
 </Form.Root>
