@@ -64,7 +64,7 @@ const navLinks = derived(projectIdStore, (projectId) => [
     */
     { 
         label: "AI",
-        link: `/project/${projectId}/ai/dashboard`,
+        link: `/project/${projectId}/ai/dashboard/home`,
         disabled: !projectId,
         items: [
             { 

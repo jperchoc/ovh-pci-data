@@ -27,7 +27,7 @@ export const GET: RequestHandler = async ({ params, url, cookies }) => {
         'X-Ovh-Signature': signature
     };
 
-    console.log(`Fetching ${params.route}`);
+    console.log(`GET Fetching ${params.route}`);
     const response = await fetch(distantUrl, { headers })
     const jsResponse = await response.json();
     return json(jsResponse, {
@@ -55,15 +55,81 @@ export const PUT: RequestHandler = async ({ request, params, url, cookies }) => 
     const signature = signRequest(consumerKey, 'PUT', distantRoute, JSON.stringify(body), timestamp);
 
     const headers = {
+        "Content-Type": "application/json",
         'X-Ovh-Application': env.AK,
         'X-Ovh-Consumer': consumerKey,
         'X-Ovh-Timestamp': timestamp,
         'X-Ovh-Signature': signature
     };
-
+    console.log(`PUT Fetching ${params.route}`);
     const response = await fetch(distantUrl, { method:'PUT', headers, body: JSON.stringify(body) })
     const jsResponse = await response.json();
     return json(jsResponse, {
+        status: response.status,
+        statusText: response.statusText,
+    });
+};
+
+export const POST: RequestHandler = async ({ request, params, url, cookies }) => {
+    const body = await request.json() || '';
+    const consumerKey = cookies.get('consumerKey');
+    if (!consumerKey) {
+        return json({
+            message: 'Not authorized',
+            httpCode: '403 Forbidden',
+            errorCode: "NO_CONSUMER_KEY"
+        }, {
+            status: 403,
+            statusText: "Not authorized",
+        });
+    }
+    const distantRoute = `https://eu.api.ovh.com/1.0/${params.route}`;
+    const distantUrl = `${distantRoute}${url.search}`;
+    const timestamp = Math.round(Date.now() / 1000).toString();
+    const signature = signRequest(consumerKey, 'POST', distantRoute, JSON.stringify(body), timestamp);
+
+    const headers = {
+        "Content-Type": "application/json",
+        'X-Ovh-Application': env.AK,
+        'X-Ovh-Consumer': consumerKey,
+        'X-Ovh-Timestamp': timestamp,
+        'X-Ovh-Signature': signature
+    };
+    console.log(`POST Fetching ${params.route}`);
+    const response = await fetch(distantUrl, { method:'POST', headers, body: JSON.stringify(body) })
+    const jsResponse = await response.json();
+    return json(jsResponse, {
+        status: response.status,
+        statusText: response.statusText,
+    });
+};
+
+export const DELETE: RequestHandler = async ({ params, url, cookies }) => {
+    const consumerKey = cookies.get('consumerKey');
+    if (!consumerKey) {
+        return json({
+            message: 'Not authorized',
+            httpCode: '403 Forbidden',
+            errorCode: "NO_CONSUMER_KEY"
+        }, {
+            status: 403,
+            statusText: "Not authorized",
+        });
+    }
+    const distantRoute = `https://eu.api.ovh.com/1.0/${params.route}`;
+    const distantUrl = `${distantRoute}${url.search}`;
+    const timestamp = Math.round(Date.now() / 1000).toString();
+    const signature = signRequest(consumerKey, 'DELETE', distantRoute, '', timestamp);
+
+    const headers = {
+        'X-Ovh-Application': env.AK,
+        'X-Ovh-Consumer': consumerKey,
+        'X-Ovh-Timestamp': timestamp,
+        'X-Ovh-Signature': signature
+    };
+    console.log(`DELETE Fetching ${params.route}`);
+    const response = await fetch(distantUrl, { method:'DELETE', headers })
+    return json({
         status: response.status,
         statusText: response.statusText,
     });

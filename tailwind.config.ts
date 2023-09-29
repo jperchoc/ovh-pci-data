@@ -39,9 +39,25 @@ const config = {
 					DEFAULT: "rgb(var(--secondary))",
 					foreground: "rgb(var(--secondary-foreground))"
 				},
+				ovh: {
+					DEFAULT: "rgb(var(--ovh))",
+					foreground: "rgb(var(--ovh-foreground))"
+				},
 				destructive: {
 					DEFAULT: "rgb(var(--destructive))",
 					foreground: "rgb(var(--destructive-foreground))"
+				},
+				danger: {
+					DEFAULT: "rgb(var(--danger))",
+					foreground: "rgb(var(--danger-foreground))"
+				},
+				success: {
+					DEFAULT: "rgb(var(--success))",
+					foreground: "rgb(var(--success-foreground))"
+				},
+				warning: {
+					DEFAULT: "rgb(var(--warning))",
+					foreground: "rgb(var(--warning-foreground))"
 				},
 				muted: {
 					DEFAULT: "rgb(var(--muted))",

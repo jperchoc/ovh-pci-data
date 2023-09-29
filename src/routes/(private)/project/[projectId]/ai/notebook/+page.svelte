@@ -17,15 +17,13 @@
         switch(status) {
             case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.FAILED):
             case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPED):
-                //return 'error';
+                return "error";
             case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.SYNC_FAILED):
             case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPING):
-                //return 'warning'
-            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.RUNNING):
-                //return 'success'
             case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.DELETING):
-            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.STOPPED):
-                //return 'info'
+                return "warning";
+            case (ovhapi.cloud.project.ai.notebook.NotebookStateEnum.RUNNING):
+                return "success";
             default: 
                 return 'default'
         }

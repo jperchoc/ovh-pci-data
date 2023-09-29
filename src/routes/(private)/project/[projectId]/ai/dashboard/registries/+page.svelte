@@ -1,49 +1,92 @@
 <script lang="ts">
 	import { Button } from '$components/ui/button';
-    import { P, H2, H3} from '$components/ui/typography';
-    import TokenTable from './TokenTable.svelte';
+    import { P, H2, H3, H4, Code } from '$components/ui/typography';
     import Tutorial from '$components/pages/onboarding/Tutorial.svelte';
     import Skeleton from '$components/ui/skeleton/skeleton.svelte';
     import type { PageData } from './$types';
+    import { page } from '$app/stores';
+    import RegistriesTable from './RegistriesTable.svelte';
+	import type { ovhapi } from '$types/ovh';
     export let data: PageData;
+
+    $: regions = data.regions;
+
+	let selectedRegion: string;
+	$: selectedRegion = regions[0].id;
+
+	interface IDictionaryRegion {
+		[index: string]: ovhapi.cloud.project.ai.capabilities.Region;
+	}
+
+	$: mappedRegion = regions.reduce(
+		(acc: IDictionaryRegion, curr: ovhapi.cloud.project.ai.capabilities.Region) => {
+			acc[curr.id] = curr;
+			return acc;
+		},
+		{}
+	);
+
+	$: selectedRegionObject = mappedRegion[selectedRegion];
+
+	function handleSelectChange(event: Event) {
+		selectedRegion = (event.target as HTMLSelectElement).value;
+	}
 
 </script>
 
 <div class="grid sm:grid-cols-3 grid-cols-1 gap-4">
     <div class="col-span-2">
-        <H2>Authentification et accès sécurisé</H2>
+        <H2>Registres Docker</H2>
         <P class="text-justify"
-            >La sécurité de vos données et de vos activités est primordiale. C'est la raison pour
-            laquelle une authentification supplémentaire vous est demandée lorsque vous utilisez les
-            AI Tools.</P
+            >Un registre docker vous permet de stocker vos images logicielles afin de pouvoir
+            facilement y accéder lors de vos entraînements ou déploiements.</P
         >
-        <H3>Gérer les accès avec les utilisateurs Public Cloud</H3>
+        <H3>Registres Docker Privés</H3>
         <P class="text-justify"
-            >Lorsque vous travaillez avec nos outils, il vous faut vous authentifier au travers
-            d'utilisateurs communs à l'ensemble de votre projet Public Cloud.</P
+            >Vous pouvez gérer ici vos Docker Registries privés. Vous pourrez ensuite facilement
+            lancer des jobs et des apps avec ces images.</P
         >
         <P class="text-justify"
-            >Les utilisateurs Public Cloud vous permettent d'accéder à vos notebooks, jobs et
-            applications. Afin de pouvoir expérimenter en toute liberté, il vous faut choisir à minima
-            un rôle "Admin" ou "AI".</P
+            >Vous pouvez choisir d'utiliser un Registre privé managé OVHcloud avec toutes les
+            fonctionnalités du projet open source Harbor pour en garantir la sécurité. Ce service est
+            disponible via le réseau haute performance d’OVHcloud afin d’accélérer vos déploiements.</P
         >
-        <Button>Gérer mes utilisateurs AI</Button>
-        <Button>+ Créer un utilisateurs AI</Button>
-        <H2>Gérer les accès via des tokens applicatifs</H2>
+        <Button>Gérer mes Managed Private Registries</Button>
         <P class="text-justify"
-            >Les tokens sont des jetons uniques d'authentification. Ils vous permettent d'accéder à
-            vos notebooks, jobs et apps de façon granulaire, par exemple en effectuant une sélection
-            par label.</P
+            >Il vous est également possible d'utiliser votre propre Docker Registry.</P
         >
-        <P class="text-justify">Les tokens sont spécifiques aux AI Tools.</P>
-        <Button>+ Créer un token</Button>
-        {#await data.streamed.tokens}
+        <Button>+ Ajouter</Button>
+        {#await data.streamed.registries}
             <Skeleton class="h-8" />
-        {:then tokens} 
-            <TokenTable {tokens} />
+        {:then registries} 
+            <RegistriesTable {registries} />
         {/await} 
-            
-        
+
+        <H3>Registres docker partagés</H3>
+
+        <span>Sélectionnez la région que vous souhaitez utiliser :</span>
+        <select class="select mb-2" value={selectedRegion} on:change={handleSelectChange}>
+            {#each regions as region}
+                <option value={region.id}>{region.id}</option>
+            {/each}
+        </select>
+
+        <H4>Docker Registry POPOVER A AJOUTER</H4>
+        <span class="text-justify">{selectedRegionObject.registryUrl}</span>
+        <H4>Projet Public Cloud</H4>
+        <span class="py-2">{$page.params.projectId}</span>
+        <P>Vous pouvez vous connecter au Docker Registry partagé via la commande suivante :</P>
+        <Code class="py-2"
+            >docker login {selectedRegionObject.registryUrl}/{$page.params.projectId}</Code
+        >
+        <P
+            >L'authentification sur la plateforme peut se faire via tous les utilisateurs configurés
+            au sein du même projet Public Cloud.</P
+        >
+        <P>Vous pouvez ensuite marquer vos images et les charger sur le registre.</P>
+
+        <pre><Code>{`docker tag <imageName>${selectedRegionObject.registryUrl}/${$page.params.projectId}</imageName>`}<br/>{`docker push ${selectedRegionObject.registryUrl}/${$page.params.projectId}</imageName>          `}</Code></pre>
+        <P>Votre image est maintenant utilisable dans un job ou une app.</P>
     </div>
     <div class="col-span-1">
         <H2>Tutorial</H2>
